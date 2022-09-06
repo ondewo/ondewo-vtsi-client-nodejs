@@ -1,4 +1,11 @@
 # Release History
+
+***************** 
+## Release ONDEWO VTSI Nodejs Client 4.0.0 
+ 
+### Improvements 
+ * Tracking API Version 4.0.0 
+
 *****************
 
 ## Release ONDEWO VTSI Nodejs Client 4.0.0
