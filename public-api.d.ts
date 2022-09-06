@@ -1,3 +1,4 @@
+export * from './api/google/rpc/status_pb.d';
 export * from './api/google/api/annotations_pb.d';
 export * from './api/google/type/latlng_pb.d';
 export * from './api/google/protobuf/timestamp_pb.d';

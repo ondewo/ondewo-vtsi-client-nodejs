@@ -1,3 +1,5 @@
+export * from './api/google/rpc/status_grpc_pb';
+export * from './api/google/rpc/status_pb';
 export * from './api/google/api/annotations_pb';
 export * from './api/google/api/annotations_grpc_pb';
 export * from './api/google/type/latlng_grpc_pb';
