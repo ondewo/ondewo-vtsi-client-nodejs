@@ -181,15 +181,114 @@ function deserialize_ondewo_nlu_FullTextSearchRequest(buffer_arg) {
 	return ondewo_nlu_agent_pb.FullTextSearchRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_ondewo_nlu_FullTextSearchResponse(arg) {
-	if (!(arg instanceof ondewo_nlu_agent_pb.FullTextSearchResponse)) {
-		throw new Error('Expected argument of type ondewo.nlu.FullTextSearchResponse');
+function serialize_ondewo_nlu_FullTextSearchResponseEntity(arg) {
+	if (!(arg instanceof ondewo_nlu_agent_pb.FullTextSearchResponseEntity)) {
+		throw new Error('Expected argument of type ondewo.nlu.FullTextSearchResponseEntity');
 	}
 	return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_ondewo_nlu_FullTextSearchResponse(buffer_arg) {
-	return ondewo_nlu_agent_pb.FullTextSearchResponse.deserializeBinary(new Uint8Array(buffer_arg));
+function deserialize_ondewo_nlu_FullTextSearchResponseEntity(buffer_arg) {
+	return ondewo_nlu_agent_pb.FullTextSearchResponseEntity.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_ondewo_nlu_FullTextSearchResponseEntitySynonym(arg) {
+	if (!(arg instanceof ondewo_nlu_agent_pb.FullTextSearchResponseEntitySynonym)) {
+		throw new Error('Expected argument of type ondewo.nlu.FullTextSearchResponseEntitySynonym');
+	}
+	return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_ondewo_nlu_FullTextSearchResponseEntitySynonym(buffer_arg) {
+	return ondewo_nlu_agent_pb.FullTextSearchResponseEntitySynonym.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_ondewo_nlu_FullTextSearchResponseEntityType(arg) {
+	if (!(arg instanceof ondewo_nlu_agent_pb.FullTextSearchResponseEntityType)) {
+		throw new Error('Expected argument of type ondewo.nlu.FullTextSearchResponseEntityType');
+	}
+	return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_ondewo_nlu_FullTextSearchResponseEntityType(buffer_arg) {
+	return ondewo_nlu_agent_pb.FullTextSearchResponseEntityType.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_ondewo_nlu_FullTextSearchResponseIntent(arg) {
+	if (!(arg instanceof ondewo_nlu_agent_pb.FullTextSearchResponseIntent)) {
+		throw new Error('Expected argument of type ondewo.nlu.FullTextSearchResponseIntent');
+	}
+	return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_ondewo_nlu_FullTextSearchResponseIntent(buffer_arg) {
+	return ondewo_nlu_agent_pb.FullTextSearchResponseIntent.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_ondewo_nlu_FullTextSearchResponseIntentContextIn(arg) {
+	if (!(arg instanceof ondewo_nlu_agent_pb.FullTextSearchResponseIntentContextIn)) {
+		throw new Error('Expected argument of type ondewo.nlu.FullTextSearchResponseIntentContextIn');
+	}
+	return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_ondewo_nlu_FullTextSearchResponseIntentContextIn(buffer_arg) {
+	return ondewo_nlu_agent_pb.FullTextSearchResponseIntentContextIn.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_ondewo_nlu_FullTextSearchResponseIntentContextOut(arg) {
+	if (!(arg instanceof ondewo_nlu_agent_pb.FullTextSearchResponseIntentContextOut)) {
+		throw new Error('Expected argument of type ondewo.nlu.FullTextSearchResponseIntentContextOut');
+	}
+	return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_ondewo_nlu_FullTextSearchResponseIntentContextOut(buffer_arg) {
+	return ondewo_nlu_agent_pb.FullTextSearchResponseIntentContextOut.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_ondewo_nlu_FullTextSearchResponseIntentParameters(arg) {
+	if (!(arg instanceof ondewo_nlu_agent_pb.FullTextSearchResponseIntentParameters)) {
+		throw new Error('Expected argument of type ondewo.nlu.FullTextSearchResponseIntentParameters');
+	}
+	return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_ondewo_nlu_FullTextSearchResponseIntentParameters(buffer_arg) {
+	return ondewo_nlu_agent_pb.FullTextSearchResponseIntentParameters.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_ondewo_nlu_FullTextSearchResponseIntentResponse(arg) {
+	if (!(arg instanceof ondewo_nlu_agent_pb.FullTextSearchResponseIntentResponse)) {
+		throw new Error('Expected argument of type ondewo.nlu.FullTextSearchResponseIntentResponse');
+	}
+	return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_ondewo_nlu_FullTextSearchResponseIntentResponse(buffer_arg) {
+	return ondewo_nlu_agent_pb.FullTextSearchResponseIntentResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_ondewo_nlu_FullTextSearchResponseIntentTags(arg) {
+	if (!(arg instanceof ondewo_nlu_agent_pb.FullTextSearchResponseIntentTags)) {
+		throw new Error('Expected argument of type ondewo.nlu.FullTextSearchResponseIntentTags');
+	}
+	return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_ondewo_nlu_FullTextSearchResponseIntentTags(buffer_arg) {
+	return ondewo_nlu_agent_pb.FullTextSearchResponseIntentTags.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_ondewo_nlu_FullTextSearchResponseIntentUsersays(arg) {
+	if (!(arg instanceof ondewo_nlu_agent_pb.FullTextSearchResponseIntentUsersays)) {
+		throw new Error('Expected argument of type ondewo.nlu.FullTextSearchResponseIntentUsersays');
+	}
+	return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_ondewo_nlu_FullTextSearchResponseIntentUsersays(buffer_arg) {
+	return ondewo_nlu_agent_pb.FullTextSearchResponseIntentUsersays.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_ondewo_nlu_GetAgentRequest(arg) {
@@ -388,6 +487,17 @@ function serialize_ondewo_nlu_PlatformMapping(arg) {
 
 function deserialize_ondewo_nlu_PlatformMapping(buffer_arg) {
 	return ondewo_nlu_agent_pb.PlatformMapping.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_ondewo_nlu_ReindexAgentRequest(arg) {
+	if (!(arg instanceof ondewo_nlu_agent_pb.ReindexAgentRequest)) {
+		throw new Error('Expected argument of type ondewo.nlu.ReindexAgentRequest');
+	}
+	return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_ondewo_nlu_ReindexAgentRequest(buffer_arg) {
+	return ondewo_nlu_agent_pb.ReindexAgentRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_ondewo_nlu_RemoveUserFromProjectRequest(arg) {
@@ -997,16 +1107,127 @@ var AgentsService = (exports.AgentsService = {
 		responseDeserialize: deserialize_ondewo_nlu_PlatformMapping
 	},
 	// Full text search endpoint
-	getFullTextSearch: {
-		path: '/ondewo.nlu.Agents/GetFullTextSearch',
+	getFullTextSearchEntityType: {
+		path: '/ondewo.nlu.Agents/GetFullTextSearchEntityType',
 		requestStream: false,
 		responseStream: false,
 		requestType: ondewo_nlu_agent_pb.FullTextSearchRequest,
-		responseType: ondewo_nlu_agent_pb.FullTextSearchResponse,
+		responseType: ondewo_nlu_agent_pb.FullTextSearchResponseEntityType,
 		requestSerialize: serialize_ondewo_nlu_FullTextSearchRequest,
 		requestDeserialize: deserialize_ondewo_nlu_FullTextSearchRequest,
-		responseSerialize: serialize_ondewo_nlu_FullTextSearchResponse,
-		responseDeserialize: deserialize_ondewo_nlu_FullTextSearchResponse
+		responseSerialize: serialize_ondewo_nlu_FullTextSearchResponseEntityType,
+		responseDeserialize: deserialize_ondewo_nlu_FullTextSearchResponseEntityType
+	},
+	getFullTextSearchEntity: {
+		path: '/ondewo.nlu.Agents/GetFullTextSearchEntity',
+		requestStream: false,
+		responseStream: false,
+		requestType: ondewo_nlu_agent_pb.FullTextSearchRequest,
+		responseType: ondewo_nlu_agent_pb.FullTextSearchResponseEntity,
+		requestSerialize: serialize_ondewo_nlu_FullTextSearchRequest,
+		requestDeserialize: deserialize_ondewo_nlu_FullTextSearchRequest,
+		responseSerialize: serialize_ondewo_nlu_FullTextSearchResponseEntity,
+		responseDeserialize: deserialize_ondewo_nlu_FullTextSearchResponseEntity
+	},
+	getFullTextSearchEntitySynonym: {
+		path: '/ondewo.nlu.Agents/GetFullTextSearchEntitySynonym',
+		requestStream: false,
+		responseStream: false,
+		requestType: ondewo_nlu_agent_pb.FullTextSearchRequest,
+		responseType: ondewo_nlu_agent_pb.FullTextSearchResponseEntitySynonym,
+		requestSerialize: serialize_ondewo_nlu_FullTextSearchRequest,
+		requestDeserialize: deserialize_ondewo_nlu_FullTextSearchRequest,
+		responseSerialize: serialize_ondewo_nlu_FullTextSearchResponseEntitySynonym,
+		responseDeserialize: deserialize_ondewo_nlu_FullTextSearchResponseEntitySynonym
+	},
+	getFullTextSearchIntent: {
+		path: '/ondewo.nlu.Agents/GetFullTextSearchIntent',
+		requestStream: false,
+		responseStream: false,
+		requestType: ondewo_nlu_agent_pb.FullTextSearchRequest,
+		responseType: ondewo_nlu_agent_pb.FullTextSearchResponseIntent,
+		requestSerialize: serialize_ondewo_nlu_FullTextSearchRequest,
+		requestDeserialize: deserialize_ondewo_nlu_FullTextSearchRequest,
+		responseSerialize: serialize_ondewo_nlu_FullTextSearchResponseIntent,
+		responseDeserialize: deserialize_ondewo_nlu_FullTextSearchResponseIntent
+	},
+	getFullTextSearchIntentContextIn: {
+		path: '/ondewo.nlu.Agents/GetFullTextSearchIntentContextIn',
+		requestStream: false,
+		responseStream: false,
+		requestType: ondewo_nlu_agent_pb.FullTextSearchRequest,
+		responseType: ondewo_nlu_agent_pb.FullTextSearchResponseIntentContextIn,
+		requestSerialize: serialize_ondewo_nlu_FullTextSearchRequest,
+		requestDeserialize: deserialize_ondewo_nlu_FullTextSearchRequest,
+		responseSerialize: serialize_ondewo_nlu_FullTextSearchResponseIntentContextIn,
+		responseDeserialize: deserialize_ondewo_nlu_FullTextSearchResponseIntentContextIn
+	},
+	getFullTextSearchIntentContextOut: {
+		path: '/ondewo.nlu.Agents/GetFullTextSearchIntentContextOut',
+		requestStream: false,
+		responseStream: false,
+		requestType: ondewo_nlu_agent_pb.FullTextSearchRequest,
+		responseType: ondewo_nlu_agent_pb.FullTextSearchResponseIntentContextOut,
+		requestSerialize: serialize_ondewo_nlu_FullTextSearchRequest,
+		requestDeserialize: deserialize_ondewo_nlu_FullTextSearchRequest,
+		responseSerialize: serialize_ondewo_nlu_FullTextSearchResponseIntentContextOut,
+		responseDeserialize: deserialize_ondewo_nlu_FullTextSearchResponseIntentContextOut
+	},
+	getFullTextSearchIntentUsersays: {
+		path: '/ondewo.nlu.Agents/GetFullTextSearchIntentUsersays',
+		requestStream: false,
+		responseStream: false,
+		requestType: ondewo_nlu_agent_pb.FullTextSearchRequest,
+		responseType: ondewo_nlu_agent_pb.FullTextSearchResponseIntentUsersays,
+		requestSerialize: serialize_ondewo_nlu_FullTextSearchRequest,
+		requestDeserialize: deserialize_ondewo_nlu_FullTextSearchRequest,
+		responseSerialize: serialize_ondewo_nlu_FullTextSearchResponseIntentUsersays,
+		responseDeserialize: deserialize_ondewo_nlu_FullTextSearchResponseIntentUsersays
+	},
+	getFullTextSearchIntentTags: {
+		path: '/ondewo.nlu.Agents/GetFullTextSearchIntentTags',
+		requestStream: false,
+		responseStream: false,
+		requestType: ondewo_nlu_agent_pb.FullTextSearchRequest,
+		responseType: ondewo_nlu_agent_pb.FullTextSearchResponseIntentTags,
+		requestSerialize: serialize_ondewo_nlu_FullTextSearchRequest,
+		requestDeserialize: deserialize_ondewo_nlu_FullTextSearchRequest,
+		responseSerialize: serialize_ondewo_nlu_FullTextSearchResponseIntentTags,
+		responseDeserialize: deserialize_ondewo_nlu_FullTextSearchResponseIntentTags
+	},
+	getFullTextSearchIntentResponse: {
+		path: '/ondewo.nlu.Agents/GetFullTextSearchIntentResponse',
+		requestStream: false,
+		responseStream: false,
+		requestType: ondewo_nlu_agent_pb.FullTextSearchRequest,
+		responseType: ondewo_nlu_agent_pb.FullTextSearchResponseIntentResponse,
+		requestSerialize: serialize_ondewo_nlu_FullTextSearchRequest,
+		requestDeserialize: deserialize_ondewo_nlu_FullTextSearchRequest,
+		responseSerialize: serialize_ondewo_nlu_FullTextSearchResponseIntentResponse,
+		responseDeserialize: deserialize_ondewo_nlu_FullTextSearchResponseIntentResponse
+	},
+	getFullTextSearchIntentParameters: {
+		path: '/ondewo.nlu.Agents/GetFullTextSearchIntentParameters',
+		requestStream: false,
+		responseStream: false,
+		requestType: ondewo_nlu_agent_pb.FullTextSearchRequest,
+		responseType: ondewo_nlu_agent_pb.FullTextSearchResponseIntentParameters,
+		requestSerialize: serialize_ondewo_nlu_FullTextSearchRequest,
+		requestDeserialize: deserialize_ondewo_nlu_FullTextSearchRequest,
+		responseSerialize: serialize_ondewo_nlu_FullTextSearchResponseIntentParameters,
+		responseDeserialize: deserialize_ondewo_nlu_FullTextSearchResponseIntentParameters
+	},
+	// Force reindexing Intent and Entity data of Agent
+	reindexAgent: {
+		path: '/ondewo.nlu.Agents/ReindexAgent',
+		requestStream: false,
+		responseStream: false,
+		requestType: ondewo_nlu_agent_pb.ReindexAgentRequest,
+		responseType: ondewo_nlu_operations_pb.Operation,
+		requestSerialize: serialize_ondewo_nlu_ReindexAgentRequest,
+		requestDeserialize: deserialize_ondewo_nlu_ReindexAgentRequest,
+		responseSerialize: serialize_ondewo_nlu_Operation,
+		responseDeserialize: deserialize_ondewo_nlu_Operation
 	}
 });
 
