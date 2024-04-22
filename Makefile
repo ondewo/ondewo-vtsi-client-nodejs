@@ -17,8 +17,8 @@ export
 
 ONDEWO_VTSI_VERSION = 5.0.0
 
-VTSI_API_GIT_BRANCH=tags/5.0.0
-ONDEWO_PROTO_COMPILER_GIT_BRANCH=tags/4.2.0
+VTSI_API_GIT_BRANCH=tags/7.0.0
+ONDEWO_PROTO_COMPILER_GIT_BRANCH=tags/4.8.0
 ONDEWO_PROTO_COMPILER_DIR=ondewo-proto-compiler
 VTSI_APIS_DIR=src/ondewo-vtsi-api
 VTSI_PROTOS_DIR=${VTSI_APIS_DIR}/ondewo
@@ -209,14 +209,13 @@ build: check_out_correct_submodule_versions build_compiler update_package npm_ru
 	make install_dependencies
 	rm -rf ${VTSI_APIS_DIR}/google
 
-
-remove_npm_script:
+remove_npm_script: ## Removes Script section from package.json
 	$(eval script_lines:= $(shell cat package.json | sed -n '/\"scripts\"/,/\}\,/='))
 	$(eval start:= $(shell echo $(script_lines) | cut -c 1-2))
 	$(eval end:= $(shell echo $(script_lines) | rev | cut -c 1-3 | rev))
 	@sed -i '$(start),$(end)d' package.json
 
-create_npm_package:
+create_npm_package: ## Create NPM Package for Release
 	rm -rf npm
 	mkdir npm
 	cp -R api npm
@@ -226,11 +225,12 @@ create_npm_package:
 	cp LICENSE npm
 	cp README.md npm
 
-install_dependencies:
-	npm i eslint --save-dev
-	npm i prettier --save-dev
-	npm i @typescript-eslint/eslint-plugin --save-dev
-	npm i husky --save-dev
+install_dependencies: ## Installs Dev-Dependencies
+	npm i @typescript-eslint/eslint-plugin \
+		  eslint \
+		  prettier \
+		  husky \
+		  --save-dev
 
 check_out_correct_submodule_versions: ## Fetches all Submodules and checksout specified branch
 	@echo "START checking out correct submodule versions ..."
@@ -242,7 +242,6 @@ check_out_correct_submodule_versions: ## Fetches all Submodules and checksout sp
 	make -C ${VTSI_APIS_DIR} build
 	#cp -R ${VTSI_APIS_DIR}/googleapis/google ${VTSI_APIS_DIR}/google
 	@echo "DONE checking out correct submodule versions."
-
 
 npm_run_build: ## Runs the build command in package.json
 	@echo "START npm run build ..."
