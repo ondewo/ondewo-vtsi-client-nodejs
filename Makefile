@@ -75,6 +75,7 @@ check_build: #
 	@for proto in `find src/ondewo-vtsi-api/ondewo -iname "*.proto*"`; \
 	do \
 		cat $${proto} | grep import | grep "google/" | cut -d "/" -f 3 | cut -d "." -f 1 >> build_check.txt; \
+		sed -i 's/import.*//g' build_check.txt; \
 		echo $${proto} | cut -d "/" -f 5 | cut -d "." -f 1 >> build_check.txt; \
 	done
 	@echo "`sort build_check.txt | uniq`" > build_check.txt
