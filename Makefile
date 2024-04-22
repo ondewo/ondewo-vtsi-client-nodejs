@@ -15,7 +15,7 @@ export
 # 		Variables
 ########################################################
 
-ONDEWO_VTSI_VERSION = 5.0.0
+ONDEWO_VTSI_VERSION = 7.0.0
 
 VTSI_API_GIT_BRANCH=tags/7.0.0
 ONDEWO_PROTO_COMPILER_GIT_BRANCH=tags/4.8.0
