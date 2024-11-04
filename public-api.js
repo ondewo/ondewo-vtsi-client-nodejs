@@ -42,5 +42,3 @@ export * from './api/ondewo/s2t/speech-to-text_pb';
 export * from './api/ondewo/s2t/speech-to-text_grpc_pb';
 export * from './api/ondewo/t2s/text-to-speech_pb';
 export * from './api/ondewo/t2s/text-to-speech_grpc_pb';
-export * from './api/google/api/annotations_pb';
-export * from './api/google/api/annotations_grpc_pb';
