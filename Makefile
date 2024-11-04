@@ -199,6 +199,7 @@ build: check_out_correct_submodule_versions build_compiler update_package npm_ru
 		sudo chown -R `whoami`:`whoami` $$f && echo $$f; \
 	done
 	-cd src/ondewo-vtsi-api && git checkout -- '**/*.proto' && cd ../..
+	-cd src/ondewo-vtsi-api && git restore google && cd ../..
 	cp src/README.md .
 	cp src/RELEASE.md .
 	make remove_npm_script
@@ -207,7 +208,7 @@ build: check_out_correct_submodule_versions build_compiler update_package npm_ru
 	@$(eval DELETE_LINES:=$(shell echo ${README_CUT_LINES}| sed -e "s/[[:space:]]/,/"))
 	@sed -i "${DELETE_LINES}d" npm/README.md
 	make install_dependencies
-	rm -rf ${VTSI_APIS_DIR}/google
+	# rm -rf ${VTSI_APIS_DIR}/google
 
 remove_npm_script: ## Removes Script section from package.json
 	$(eval script_lines:= $(shell cat package.json | sed -n '/\"scripts\"/,/\}\,/='))
