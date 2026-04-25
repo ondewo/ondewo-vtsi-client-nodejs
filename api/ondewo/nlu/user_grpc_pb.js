@@ -1,7 +1,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 // Original file comments:
-// Copyright 2020-2023 ONDEWO GmbH
+// Copyright 2020-2025 ONDEWO GmbH
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -635,4 +635,4 @@ deleteAllUserPreferences: {
   },
 };
 
-exports.UsersClient = grpc.makeGenericClientConstructor(UsersService);
+exports.UsersClient = grpc.makeGenericClientConstructor(UsersService, 'Users');

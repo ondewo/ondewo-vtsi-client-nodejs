@@ -14405,7 +14405,8 @@ proto.ondewo.nlu.ListSessionLabelsOfAllSessionsRequest.prototype.toObject = func
 proto.ondewo.nlu.ListSessionLabelsOfAllSessionsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     parent: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    sessionFilter: (f = msg.getSessionFilter()) && proto.ondewo.nlu.SessionFilter.toObject(includeInstance, f)
+    sessionFilter: (f = msg.getSessionFilter()) && proto.ondewo.nlu.SessionFilter.toObject(includeInstance, f),
+    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -14451,6 +14452,11 @@ proto.ondewo.nlu.ListSessionLabelsOfAllSessionsRequest.deserializeBinaryFromRead
       reader.readMessage(value,proto.ondewo.nlu.SessionFilter.deserializeBinaryFromReader);
       msg.setSessionFilter(value);
       break;
+    case 3:
+      var value = new google_protobuf_field_mask_pb.FieldMask;
+      reader.readMessage(value,google_protobuf_field_mask_pb.FieldMask.deserializeBinaryFromReader);
+      msg.setFieldMask(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -14493,6 +14499,14 @@ proto.ondewo.nlu.ListSessionLabelsOfAllSessionsRequest.serializeBinaryToWriter =
       2,
       f,
       proto.ondewo.nlu.SessionFilter.serializeBinaryToWriter
+    );
+  }
+  f = message.getFieldMask();
+  if (f != null) {
+    writer.writeMessage(
+      3,
+      f,
+      google_protobuf_field_mask_pb.FieldMask.serializeBinaryToWriter
     );
   }
 };
@@ -14550,6 +14564,43 @@ proto.ondewo.nlu.ListSessionLabelsOfAllSessionsRequest.prototype.clearSessionFil
  */
 proto.ondewo.nlu.ListSessionLabelsOfAllSessionsRequest.prototype.hasSessionFilter = function() {
   return jspb.Message.getField(this, 2) != null;
+};
+
+
+/**
+ * optional google.protobuf.FieldMask field_mask = 3;
+ * @return {?proto.google.protobuf.FieldMask}
+ */
+proto.ondewo.nlu.ListSessionLabelsOfAllSessionsRequest.prototype.getFieldMask = function() {
+  return /** @type{?proto.google.protobuf.FieldMask} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_field_mask_pb.FieldMask, 3));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.FieldMask|undefined} value
+ * @return {!proto.ondewo.nlu.ListSessionLabelsOfAllSessionsRequest} returns this
+*/
+proto.ondewo.nlu.ListSessionLabelsOfAllSessionsRequest.prototype.setFieldMask = function(value) {
+  return jspb.Message.setWrapperField(this, 3, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.ondewo.nlu.ListSessionLabelsOfAllSessionsRequest} returns this
+ */
+proto.ondewo.nlu.ListSessionLabelsOfAllSessionsRequest.prototype.clearFieldMask = function() {
+  return this.setFieldMask(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.nlu.ListSessionLabelsOfAllSessionsRequest.prototype.hasFieldMask = function() {
+  return jspb.Message.getField(this, 3) != null;
 };
 
 
@@ -14742,7 +14793,8 @@ proto.ondewo.nlu.ListLanguageCodesOfAllSessionsRequest.prototype.toObject = func
 proto.ondewo.nlu.ListLanguageCodesOfAllSessionsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     parent: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    sessionFilter: (f = msg.getSessionFilter()) && proto.ondewo.nlu.SessionFilter.toObject(includeInstance, f)
+    sessionFilter: (f = msg.getSessionFilter()) && proto.ondewo.nlu.SessionFilter.toObject(includeInstance, f),
+    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -14788,6 +14840,11 @@ proto.ondewo.nlu.ListLanguageCodesOfAllSessionsRequest.deserializeBinaryFromRead
       reader.readMessage(value,proto.ondewo.nlu.SessionFilter.deserializeBinaryFromReader);
       msg.setSessionFilter(value);
       break;
+    case 3:
+      var value = new google_protobuf_field_mask_pb.FieldMask;
+      reader.readMessage(value,google_protobuf_field_mask_pb.FieldMask.deserializeBinaryFromReader);
+      msg.setFieldMask(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -14830,6 +14887,14 @@ proto.ondewo.nlu.ListLanguageCodesOfAllSessionsRequest.serializeBinaryToWriter =
       2,
       f,
       proto.ondewo.nlu.SessionFilter.serializeBinaryToWriter
+    );
+  }
+  f = message.getFieldMask();
+  if (f != null) {
+    writer.writeMessage(
+      3,
+      f,
+      google_protobuf_field_mask_pb.FieldMask.serializeBinaryToWriter
     );
   }
 };
@@ -14887,6 +14952,43 @@ proto.ondewo.nlu.ListLanguageCodesOfAllSessionsRequest.prototype.clearSessionFil
  */
 proto.ondewo.nlu.ListLanguageCodesOfAllSessionsRequest.prototype.hasSessionFilter = function() {
   return jspb.Message.getField(this, 2) != null;
+};
+
+
+/**
+ * optional google.protobuf.FieldMask field_mask = 3;
+ * @return {?proto.google.protobuf.FieldMask}
+ */
+proto.ondewo.nlu.ListLanguageCodesOfAllSessionsRequest.prototype.getFieldMask = function() {
+  return /** @type{?proto.google.protobuf.FieldMask} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_field_mask_pb.FieldMask, 3));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.FieldMask|undefined} value
+ * @return {!proto.ondewo.nlu.ListLanguageCodesOfAllSessionsRequest} returns this
+*/
+proto.ondewo.nlu.ListLanguageCodesOfAllSessionsRequest.prototype.setFieldMask = function(value) {
+  return jspb.Message.setWrapperField(this, 3, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.ondewo.nlu.ListLanguageCodesOfAllSessionsRequest} returns this
+ */
+proto.ondewo.nlu.ListLanguageCodesOfAllSessionsRequest.prototype.clearFieldMask = function() {
+  return this.setFieldMask(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.nlu.ListLanguageCodesOfAllSessionsRequest.prototype.hasFieldMask = function() {
+  return jspb.Message.getField(this, 3) != null;
 };
 
 
@@ -15079,7 +15181,8 @@ proto.ondewo.nlu.ListMatchedIntentsOfAllSessionsRequest.prototype.toObject = fun
 proto.ondewo.nlu.ListMatchedIntentsOfAllSessionsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     parent: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    sessionFilter: (f = msg.getSessionFilter()) && proto.ondewo.nlu.SessionFilter.toObject(includeInstance, f)
+    sessionFilter: (f = msg.getSessionFilter()) && proto.ondewo.nlu.SessionFilter.toObject(includeInstance, f),
+    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -15125,6 +15228,11 @@ proto.ondewo.nlu.ListMatchedIntentsOfAllSessionsRequest.deserializeBinaryFromRea
       reader.readMessage(value,proto.ondewo.nlu.SessionFilter.deserializeBinaryFromReader);
       msg.setSessionFilter(value);
       break;
+    case 3:
+      var value = new google_protobuf_field_mask_pb.FieldMask;
+      reader.readMessage(value,google_protobuf_field_mask_pb.FieldMask.deserializeBinaryFromReader);
+      msg.setFieldMask(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -15167,6 +15275,14 @@ proto.ondewo.nlu.ListMatchedIntentsOfAllSessionsRequest.serializeBinaryToWriter 
       2,
       f,
       proto.ondewo.nlu.SessionFilter.serializeBinaryToWriter
+    );
+  }
+  f = message.getFieldMask();
+  if (f != null) {
+    writer.writeMessage(
+      3,
+      f,
+      google_protobuf_field_mask_pb.FieldMask.serializeBinaryToWriter
     );
   }
 };
@@ -15224,6 +15340,43 @@ proto.ondewo.nlu.ListMatchedIntentsOfAllSessionsRequest.prototype.clearSessionFi
  */
 proto.ondewo.nlu.ListMatchedIntentsOfAllSessionsRequest.prototype.hasSessionFilter = function() {
   return jspb.Message.getField(this, 2) != null;
+};
+
+
+/**
+ * optional google.protobuf.FieldMask field_mask = 3;
+ * @return {?proto.google.protobuf.FieldMask}
+ */
+proto.ondewo.nlu.ListMatchedIntentsOfAllSessionsRequest.prototype.getFieldMask = function() {
+  return /** @type{?proto.google.protobuf.FieldMask} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_field_mask_pb.FieldMask, 3));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.FieldMask|undefined} value
+ * @return {!proto.ondewo.nlu.ListMatchedIntentsOfAllSessionsRequest} returns this
+*/
+proto.ondewo.nlu.ListMatchedIntentsOfAllSessionsRequest.prototype.setFieldMask = function(value) {
+  return jspb.Message.setWrapperField(this, 3, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.ondewo.nlu.ListMatchedIntentsOfAllSessionsRequest} returns this
+ */
+proto.ondewo.nlu.ListMatchedIntentsOfAllSessionsRequest.prototype.clearFieldMask = function() {
+  return this.setFieldMask(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.nlu.ListMatchedIntentsOfAllSessionsRequest.prototype.hasFieldMask = function() {
+  return jspb.Message.getField(this, 3) != null;
 };
 
 
@@ -15416,7 +15569,8 @@ proto.ondewo.nlu.ListMatchedEntityTypesOfAllSessionsRequest.prototype.toObject =
 proto.ondewo.nlu.ListMatchedEntityTypesOfAllSessionsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     parent: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    sessionFilter: (f = msg.getSessionFilter()) && proto.ondewo.nlu.SessionFilter.toObject(includeInstance, f)
+    sessionFilter: (f = msg.getSessionFilter()) && proto.ondewo.nlu.SessionFilter.toObject(includeInstance, f),
+    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -15462,6 +15616,11 @@ proto.ondewo.nlu.ListMatchedEntityTypesOfAllSessionsRequest.deserializeBinaryFro
       reader.readMessage(value,proto.ondewo.nlu.SessionFilter.deserializeBinaryFromReader);
       msg.setSessionFilter(value);
       break;
+    case 3:
+      var value = new google_protobuf_field_mask_pb.FieldMask;
+      reader.readMessage(value,google_protobuf_field_mask_pb.FieldMask.deserializeBinaryFromReader);
+      msg.setFieldMask(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -15504,6 +15663,14 @@ proto.ondewo.nlu.ListMatchedEntityTypesOfAllSessionsRequest.serializeBinaryToWri
       2,
       f,
       proto.ondewo.nlu.SessionFilter.serializeBinaryToWriter
+    );
+  }
+  f = message.getFieldMask();
+  if (f != null) {
+    writer.writeMessage(
+      3,
+      f,
+      google_protobuf_field_mask_pb.FieldMask.serializeBinaryToWriter
     );
   }
 };
@@ -15561,6 +15728,43 @@ proto.ondewo.nlu.ListMatchedEntityTypesOfAllSessionsRequest.prototype.clearSessi
  */
 proto.ondewo.nlu.ListMatchedEntityTypesOfAllSessionsRequest.prototype.hasSessionFilter = function() {
   return jspb.Message.getField(this, 2) != null;
+};
+
+
+/**
+ * optional google.protobuf.FieldMask field_mask = 3;
+ * @return {?proto.google.protobuf.FieldMask}
+ */
+proto.ondewo.nlu.ListMatchedEntityTypesOfAllSessionsRequest.prototype.getFieldMask = function() {
+  return /** @type{?proto.google.protobuf.FieldMask} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_field_mask_pb.FieldMask, 3));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.FieldMask|undefined} value
+ * @return {!proto.ondewo.nlu.ListMatchedEntityTypesOfAllSessionsRequest} returns this
+*/
+proto.ondewo.nlu.ListMatchedEntityTypesOfAllSessionsRequest.prototype.setFieldMask = function(value) {
+  return jspb.Message.setWrapperField(this, 3, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.ondewo.nlu.ListMatchedEntityTypesOfAllSessionsRequest} returns this
+ */
+proto.ondewo.nlu.ListMatchedEntityTypesOfAllSessionsRequest.prototype.clearFieldMask = function() {
+  return this.setFieldMask(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.nlu.ListMatchedEntityTypesOfAllSessionsRequest.prototype.hasFieldMask = function() {
+  return jspb.Message.getField(this, 3) != null;
 };
 
 
@@ -15753,7 +15957,8 @@ proto.ondewo.nlu.ListUserIdsOfAllSessionsRequest.prototype.toObject = function(o
 proto.ondewo.nlu.ListUserIdsOfAllSessionsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     parent: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    sessionFilter: (f = msg.getSessionFilter()) && proto.ondewo.nlu.SessionFilter.toObject(includeInstance, f)
+    sessionFilter: (f = msg.getSessionFilter()) && proto.ondewo.nlu.SessionFilter.toObject(includeInstance, f),
+    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -15799,6 +16004,11 @@ proto.ondewo.nlu.ListUserIdsOfAllSessionsRequest.deserializeBinaryFromReader = f
       reader.readMessage(value,proto.ondewo.nlu.SessionFilter.deserializeBinaryFromReader);
       msg.setSessionFilter(value);
       break;
+    case 3:
+      var value = new google_protobuf_field_mask_pb.FieldMask;
+      reader.readMessage(value,google_protobuf_field_mask_pb.FieldMask.deserializeBinaryFromReader);
+      msg.setFieldMask(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -15841,6 +16051,14 @@ proto.ondewo.nlu.ListUserIdsOfAllSessionsRequest.serializeBinaryToWriter = funct
       2,
       f,
       proto.ondewo.nlu.SessionFilter.serializeBinaryToWriter
+    );
+  }
+  f = message.getFieldMask();
+  if (f != null) {
+    writer.writeMessage(
+      3,
+      f,
+      google_protobuf_field_mask_pb.FieldMask.serializeBinaryToWriter
     );
   }
 };
@@ -15898,6 +16116,43 @@ proto.ondewo.nlu.ListUserIdsOfAllSessionsRequest.prototype.clearSessionFilter = 
  */
 proto.ondewo.nlu.ListUserIdsOfAllSessionsRequest.prototype.hasSessionFilter = function() {
   return jspb.Message.getField(this, 2) != null;
+};
+
+
+/**
+ * optional google.protobuf.FieldMask field_mask = 3;
+ * @return {?proto.google.protobuf.FieldMask}
+ */
+proto.ondewo.nlu.ListUserIdsOfAllSessionsRequest.prototype.getFieldMask = function() {
+  return /** @type{?proto.google.protobuf.FieldMask} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_field_mask_pb.FieldMask, 3));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.FieldMask|undefined} value
+ * @return {!proto.ondewo.nlu.ListUserIdsOfAllSessionsRequest} returns this
+*/
+proto.ondewo.nlu.ListUserIdsOfAllSessionsRequest.prototype.setFieldMask = function(value) {
+  return jspb.Message.setWrapperField(this, 3, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.ondewo.nlu.ListUserIdsOfAllSessionsRequest} returns this
+ */
+proto.ondewo.nlu.ListUserIdsOfAllSessionsRequest.prototype.clearFieldMask = function() {
+  return this.setFieldMask(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.nlu.ListUserIdsOfAllSessionsRequest.prototype.hasFieldMask = function() {
+  return jspb.Message.getField(this, 3) != null;
 };
 
 
@@ -16090,7 +16345,8 @@ proto.ondewo.nlu.ListIdentifiedUserIdsOfAllSessionsRequest.prototype.toObject = 
 proto.ondewo.nlu.ListIdentifiedUserIdsOfAllSessionsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     parent: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    sessionFilter: (f = msg.getSessionFilter()) && proto.ondewo.nlu.SessionFilter.toObject(includeInstance, f)
+    sessionFilter: (f = msg.getSessionFilter()) && proto.ondewo.nlu.SessionFilter.toObject(includeInstance, f),
+    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -16136,6 +16392,11 @@ proto.ondewo.nlu.ListIdentifiedUserIdsOfAllSessionsRequest.deserializeBinaryFrom
       reader.readMessage(value,proto.ondewo.nlu.SessionFilter.deserializeBinaryFromReader);
       msg.setSessionFilter(value);
       break;
+    case 3:
+      var value = new google_protobuf_field_mask_pb.FieldMask;
+      reader.readMessage(value,google_protobuf_field_mask_pb.FieldMask.deserializeBinaryFromReader);
+      msg.setFieldMask(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -16178,6 +16439,14 @@ proto.ondewo.nlu.ListIdentifiedUserIdsOfAllSessionsRequest.serializeBinaryToWrit
       2,
       f,
       proto.ondewo.nlu.SessionFilter.serializeBinaryToWriter
+    );
+  }
+  f = message.getFieldMask();
+  if (f != null) {
+    writer.writeMessage(
+      3,
+      f,
+      google_protobuf_field_mask_pb.FieldMask.serializeBinaryToWriter
     );
   }
 };
@@ -16235,6 +16504,43 @@ proto.ondewo.nlu.ListIdentifiedUserIdsOfAllSessionsRequest.prototype.clearSessio
  */
 proto.ondewo.nlu.ListIdentifiedUserIdsOfAllSessionsRequest.prototype.hasSessionFilter = function() {
   return jspb.Message.getField(this, 2) != null;
+};
+
+
+/**
+ * optional google.protobuf.FieldMask field_mask = 3;
+ * @return {?proto.google.protobuf.FieldMask}
+ */
+proto.ondewo.nlu.ListIdentifiedUserIdsOfAllSessionsRequest.prototype.getFieldMask = function() {
+  return /** @type{?proto.google.protobuf.FieldMask} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_field_mask_pb.FieldMask, 3));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.FieldMask|undefined} value
+ * @return {!proto.ondewo.nlu.ListIdentifiedUserIdsOfAllSessionsRequest} returns this
+*/
+proto.ondewo.nlu.ListIdentifiedUserIdsOfAllSessionsRequest.prototype.setFieldMask = function(value) {
+  return jspb.Message.setWrapperField(this, 3, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.ondewo.nlu.ListIdentifiedUserIdsOfAllSessionsRequest} returns this
+ */
+proto.ondewo.nlu.ListIdentifiedUserIdsOfAllSessionsRequest.prototype.clearFieldMask = function() {
+  return this.setFieldMask(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.nlu.ListIdentifiedUserIdsOfAllSessionsRequest.prototype.hasFieldMask = function() {
+  return jspb.Message.getField(this, 3) != null;
 };
 
 
@@ -16427,7 +16733,8 @@ proto.ondewo.nlu.ListTagsOfAllSessionsRequest.prototype.toObject = function(opt_
 proto.ondewo.nlu.ListTagsOfAllSessionsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     parent: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    sessionFilter: (f = msg.getSessionFilter()) && proto.ondewo.nlu.SessionFilter.toObject(includeInstance, f)
+    sessionFilter: (f = msg.getSessionFilter()) && proto.ondewo.nlu.SessionFilter.toObject(includeInstance, f),
+    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -16473,6 +16780,11 @@ proto.ondewo.nlu.ListTagsOfAllSessionsRequest.deserializeBinaryFromReader = func
       reader.readMessage(value,proto.ondewo.nlu.SessionFilter.deserializeBinaryFromReader);
       msg.setSessionFilter(value);
       break;
+    case 3:
+      var value = new google_protobuf_field_mask_pb.FieldMask;
+      reader.readMessage(value,google_protobuf_field_mask_pb.FieldMask.deserializeBinaryFromReader);
+      msg.setFieldMask(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -16515,6 +16827,14 @@ proto.ondewo.nlu.ListTagsOfAllSessionsRequest.serializeBinaryToWriter = function
       2,
       f,
       proto.ondewo.nlu.SessionFilter.serializeBinaryToWriter
+    );
+  }
+  f = message.getFieldMask();
+  if (f != null) {
+    writer.writeMessage(
+      3,
+      f,
+      google_protobuf_field_mask_pb.FieldMask.serializeBinaryToWriter
     );
   }
 };
@@ -16572,6 +16892,43 @@ proto.ondewo.nlu.ListTagsOfAllSessionsRequest.prototype.clearSessionFilter = fun
  */
 proto.ondewo.nlu.ListTagsOfAllSessionsRequest.prototype.hasSessionFilter = function() {
   return jspb.Message.getField(this, 2) != null;
+};
+
+
+/**
+ * optional google.protobuf.FieldMask field_mask = 3;
+ * @return {?proto.google.protobuf.FieldMask}
+ */
+proto.ondewo.nlu.ListTagsOfAllSessionsRequest.prototype.getFieldMask = function() {
+  return /** @type{?proto.google.protobuf.FieldMask} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_field_mask_pb.FieldMask, 3));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.FieldMask|undefined} value
+ * @return {!proto.ondewo.nlu.ListTagsOfAllSessionsRequest} returns this
+*/
+proto.ondewo.nlu.ListTagsOfAllSessionsRequest.prototype.setFieldMask = function(value) {
+  return jspb.Message.setWrapperField(this, 3, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.ondewo.nlu.ListTagsOfAllSessionsRequest} returns this
+ */
+proto.ondewo.nlu.ListTagsOfAllSessionsRequest.prototype.clearFieldMask = function() {
+  return this.setFieldMask(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.nlu.ListTagsOfAllSessionsRequest.prototype.hasFieldMask = function() {
+  return jspb.Message.getField(this, 3) != null;
 };
 
 
@@ -16764,7 +17121,8 @@ proto.ondewo.nlu.ListInputContextsOfAllSessionsRequest.prototype.toObject = func
 proto.ondewo.nlu.ListInputContextsOfAllSessionsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     parent: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    sessionFilter: (f = msg.getSessionFilter()) && proto.ondewo.nlu.SessionFilter.toObject(includeInstance, f)
+    sessionFilter: (f = msg.getSessionFilter()) && proto.ondewo.nlu.SessionFilter.toObject(includeInstance, f),
+    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -16810,6 +17168,11 @@ proto.ondewo.nlu.ListInputContextsOfAllSessionsRequest.deserializeBinaryFromRead
       reader.readMessage(value,proto.ondewo.nlu.SessionFilter.deserializeBinaryFromReader);
       msg.setSessionFilter(value);
       break;
+    case 3:
+      var value = new google_protobuf_field_mask_pb.FieldMask;
+      reader.readMessage(value,google_protobuf_field_mask_pb.FieldMask.deserializeBinaryFromReader);
+      msg.setFieldMask(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -16852,6 +17215,14 @@ proto.ondewo.nlu.ListInputContextsOfAllSessionsRequest.serializeBinaryToWriter =
       2,
       f,
       proto.ondewo.nlu.SessionFilter.serializeBinaryToWriter
+    );
+  }
+  f = message.getFieldMask();
+  if (f != null) {
+    writer.writeMessage(
+      3,
+      f,
+      google_protobuf_field_mask_pb.FieldMask.serializeBinaryToWriter
     );
   }
 };
@@ -16909,6 +17280,43 @@ proto.ondewo.nlu.ListInputContextsOfAllSessionsRequest.prototype.clearSessionFil
  */
 proto.ondewo.nlu.ListInputContextsOfAllSessionsRequest.prototype.hasSessionFilter = function() {
   return jspb.Message.getField(this, 2) != null;
+};
+
+
+/**
+ * optional google.protobuf.FieldMask field_mask = 3;
+ * @return {?proto.google.protobuf.FieldMask}
+ */
+proto.ondewo.nlu.ListInputContextsOfAllSessionsRequest.prototype.getFieldMask = function() {
+  return /** @type{?proto.google.protobuf.FieldMask} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_field_mask_pb.FieldMask, 3));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.FieldMask|undefined} value
+ * @return {!proto.ondewo.nlu.ListInputContextsOfAllSessionsRequest} returns this
+*/
+proto.ondewo.nlu.ListInputContextsOfAllSessionsRequest.prototype.setFieldMask = function(value) {
+  return jspb.Message.setWrapperField(this, 3, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.ondewo.nlu.ListInputContextsOfAllSessionsRequest} returns this
+ */
+proto.ondewo.nlu.ListInputContextsOfAllSessionsRequest.prototype.clearFieldMask = function() {
+  return this.setFieldMask(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.nlu.ListInputContextsOfAllSessionsRequest.prototype.hasFieldMask = function() {
+  return jspb.Message.getField(this, 3) != null;
 };
 
 
@@ -17101,7 +17509,8 @@ proto.ondewo.nlu.ListOutputContextsOfAllSessionsRequest.prototype.toObject = fun
 proto.ondewo.nlu.ListOutputContextsOfAllSessionsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     parent: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    sessionFilter: (f = msg.getSessionFilter()) && proto.ondewo.nlu.SessionFilter.toObject(includeInstance, f)
+    sessionFilter: (f = msg.getSessionFilter()) && proto.ondewo.nlu.SessionFilter.toObject(includeInstance, f),
+    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -17147,6 +17556,11 @@ proto.ondewo.nlu.ListOutputContextsOfAllSessionsRequest.deserializeBinaryFromRea
       reader.readMessage(value,proto.ondewo.nlu.SessionFilter.deserializeBinaryFromReader);
       msg.setSessionFilter(value);
       break;
+    case 3:
+      var value = new google_protobuf_field_mask_pb.FieldMask;
+      reader.readMessage(value,google_protobuf_field_mask_pb.FieldMask.deserializeBinaryFromReader);
+      msg.setFieldMask(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -17189,6 +17603,14 @@ proto.ondewo.nlu.ListOutputContextsOfAllSessionsRequest.serializeBinaryToWriter 
       2,
       f,
       proto.ondewo.nlu.SessionFilter.serializeBinaryToWriter
+    );
+  }
+  f = message.getFieldMask();
+  if (f != null) {
+    writer.writeMessage(
+      3,
+      f,
+      google_protobuf_field_mask_pb.FieldMask.serializeBinaryToWriter
     );
   }
 };
@@ -17246,6 +17668,43 @@ proto.ondewo.nlu.ListOutputContextsOfAllSessionsRequest.prototype.clearSessionFi
  */
 proto.ondewo.nlu.ListOutputContextsOfAllSessionsRequest.prototype.hasSessionFilter = function() {
   return jspb.Message.getField(this, 2) != null;
+};
+
+
+/**
+ * optional google.protobuf.FieldMask field_mask = 3;
+ * @return {?proto.google.protobuf.FieldMask}
+ */
+proto.ondewo.nlu.ListOutputContextsOfAllSessionsRequest.prototype.getFieldMask = function() {
+  return /** @type{?proto.google.protobuf.FieldMask} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_field_mask_pb.FieldMask, 3));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.FieldMask|undefined} value
+ * @return {!proto.ondewo.nlu.ListOutputContextsOfAllSessionsRequest} returns this
+*/
+proto.ondewo.nlu.ListOutputContextsOfAllSessionsRequest.prototype.setFieldMask = function(value) {
+  return jspb.Message.setWrapperField(this, 3, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.ondewo.nlu.ListOutputContextsOfAllSessionsRequest} returns this
+ */
+proto.ondewo.nlu.ListOutputContextsOfAllSessionsRequest.prototype.clearFieldMask = function() {
+  return this.setFieldMask(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.nlu.ListOutputContextsOfAllSessionsRequest.prototype.hasFieldMask = function() {
+  return jspb.Message.getField(this, 3) != null;
 };
 
 
@@ -17438,7 +17897,8 @@ proto.ondewo.nlu.ListPlatformsOfAllSessionsRequest.prototype.toObject = function
 proto.ondewo.nlu.ListPlatformsOfAllSessionsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     parent: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    sessionFilter: (f = msg.getSessionFilter()) && proto.ondewo.nlu.SessionFilter.toObject(includeInstance, f)
+    sessionFilter: (f = msg.getSessionFilter()) && proto.ondewo.nlu.SessionFilter.toObject(includeInstance, f),
+    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -17484,6 +17944,11 @@ proto.ondewo.nlu.ListPlatformsOfAllSessionsRequest.deserializeBinaryFromReader =
       reader.readMessage(value,proto.ondewo.nlu.SessionFilter.deserializeBinaryFromReader);
       msg.setSessionFilter(value);
       break;
+    case 3:
+      var value = new google_protobuf_field_mask_pb.FieldMask;
+      reader.readMessage(value,google_protobuf_field_mask_pb.FieldMask.deserializeBinaryFromReader);
+      msg.setFieldMask(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -17526,6 +17991,14 @@ proto.ondewo.nlu.ListPlatformsOfAllSessionsRequest.serializeBinaryToWriter = fun
       2,
       f,
       proto.ondewo.nlu.SessionFilter.serializeBinaryToWriter
+    );
+  }
+  f = message.getFieldMask();
+  if (f != null) {
+    writer.writeMessage(
+      3,
+      f,
+      google_protobuf_field_mask_pb.FieldMask.serializeBinaryToWriter
     );
   }
 };
@@ -17583,6 +18056,43 @@ proto.ondewo.nlu.ListPlatformsOfAllSessionsRequest.prototype.clearSessionFilter 
  */
 proto.ondewo.nlu.ListPlatformsOfAllSessionsRequest.prototype.hasSessionFilter = function() {
   return jspb.Message.getField(this, 2) != null;
+};
+
+
+/**
+ * optional google.protobuf.FieldMask field_mask = 3;
+ * @return {?proto.google.protobuf.FieldMask}
+ */
+proto.ondewo.nlu.ListPlatformsOfAllSessionsRequest.prototype.getFieldMask = function() {
+  return /** @type{?proto.google.protobuf.FieldMask} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_field_mask_pb.FieldMask, 3));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.FieldMask|undefined} value
+ * @return {!proto.ondewo.nlu.ListPlatformsOfAllSessionsRequest} returns this
+*/
+proto.ondewo.nlu.ListPlatformsOfAllSessionsRequest.prototype.setFieldMask = function(value) {
+  return jspb.Message.setWrapperField(this, 3, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.ondewo.nlu.ListPlatformsOfAllSessionsRequest} returns this
+ */
+proto.ondewo.nlu.ListPlatformsOfAllSessionsRequest.prototype.clearFieldMask = function() {
+  return this.setFieldMask(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.nlu.ListPlatformsOfAllSessionsRequest.prototype.hasFieldMask = function() {
+  return jspb.Message.getField(this, 3) != null;
 };
 
 
@@ -17775,7 +18285,8 @@ proto.ondewo.nlu.ListAccountIdsOfAllSessionsRequest.prototype.toObject = functio
 proto.ondewo.nlu.ListAccountIdsOfAllSessionsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     parent: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    sessionFilter: (f = msg.getSessionFilter()) && proto.ondewo.nlu.SessionFilter.toObject(includeInstance, f)
+    sessionFilter: (f = msg.getSessionFilter()) && proto.ondewo.nlu.SessionFilter.toObject(includeInstance, f),
+    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -17821,6 +18332,11 @@ proto.ondewo.nlu.ListAccountIdsOfAllSessionsRequest.deserializeBinaryFromReader 
       reader.readMessage(value,proto.ondewo.nlu.SessionFilter.deserializeBinaryFromReader);
       msg.setSessionFilter(value);
       break;
+    case 3:
+      var value = new google_protobuf_field_mask_pb.FieldMask;
+      reader.readMessage(value,google_protobuf_field_mask_pb.FieldMask.deserializeBinaryFromReader);
+      msg.setFieldMask(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -17863,6 +18379,14 @@ proto.ondewo.nlu.ListAccountIdsOfAllSessionsRequest.serializeBinaryToWriter = fu
       2,
       f,
       proto.ondewo.nlu.SessionFilter.serializeBinaryToWriter
+    );
+  }
+  f = message.getFieldMask();
+  if (f != null) {
+    writer.writeMessage(
+      3,
+      f,
+      google_protobuf_field_mask_pb.FieldMask.serializeBinaryToWriter
     );
   }
 };
@@ -17920,6 +18444,43 @@ proto.ondewo.nlu.ListAccountIdsOfAllSessionsRequest.prototype.clearSessionFilter
  */
 proto.ondewo.nlu.ListAccountIdsOfAllSessionsRequest.prototype.hasSessionFilter = function() {
   return jspb.Message.getField(this, 2) != null;
+};
+
+
+/**
+ * optional google.protobuf.FieldMask field_mask = 3;
+ * @return {?proto.google.protobuf.FieldMask}
+ */
+proto.ondewo.nlu.ListAccountIdsOfAllSessionsRequest.prototype.getFieldMask = function() {
+  return /** @type{?proto.google.protobuf.FieldMask} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_field_mask_pb.FieldMask, 3));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.FieldMask|undefined} value
+ * @return {!proto.ondewo.nlu.ListAccountIdsOfAllSessionsRequest} returns this
+*/
+proto.ondewo.nlu.ListAccountIdsOfAllSessionsRequest.prototype.setFieldMask = function(value) {
+  return jspb.Message.setWrapperField(this, 3, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.ondewo.nlu.ListAccountIdsOfAllSessionsRequest} returns this
+ */
+proto.ondewo.nlu.ListAccountIdsOfAllSessionsRequest.prototype.clearFieldMask = function() {
+  return this.setFieldMask(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.nlu.ListAccountIdsOfAllSessionsRequest.prototype.hasFieldMask = function() {
+  return jspb.Message.getField(this, 3) != null;
 };
 
 
@@ -18786,7 +19347,8 @@ proto.ondewo.nlu.ListOriginIdsOfAllSessionsRequest.prototype.toObject = function
 proto.ondewo.nlu.ListOriginIdsOfAllSessionsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     parent: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    sessionFilter: (f = msg.getSessionFilter()) && proto.ondewo.nlu.SessionFilter.toObject(includeInstance, f)
+    sessionFilter: (f = msg.getSessionFilter()) && proto.ondewo.nlu.SessionFilter.toObject(includeInstance, f),
+    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -18832,6 +19394,11 @@ proto.ondewo.nlu.ListOriginIdsOfAllSessionsRequest.deserializeBinaryFromReader =
       reader.readMessage(value,proto.ondewo.nlu.SessionFilter.deserializeBinaryFromReader);
       msg.setSessionFilter(value);
       break;
+    case 3:
+      var value = new google_protobuf_field_mask_pb.FieldMask;
+      reader.readMessage(value,google_protobuf_field_mask_pb.FieldMask.deserializeBinaryFromReader);
+      msg.setFieldMask(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -18874,6 +19441,14 @@ proto.ondewo.nlu.ListOriginIdsOfAllSessionsRequest.serializeBinaryToWriter = fun
       2,
       f,
       proto.ondewo.nlu.SessionFilter.serializeBinaryToWriter
+    );
+  }
+  f = message.getFieldMask();
+  if (f != null) {
+    writer.writeMessage(
+      3,
+      f,
+      google_protobuf_field_mask_pb.FieldMask.serializeBinaryToWriter
     );
   }
 };
@@ -18931,6 +19506,43 @@ proto.ondewo.nlu.ListOriginIdsOfAllSessionsRequest.prototype.clearSessionFilter 
  */
 proto.ondewo.nlu.ListOriginIdsOfAllSessionsRequest.prototype.hasSessionFilter = function() {
   return jspb.Message.getField(this, 2) != null;
+};
+
+
+/**
+ * optional google.protobuf.FieldMask field_mask = 3;
+ * @return {?proto.google.protobuf.FieldMask}
+ */
+proto.ondewo.nlu.ListOriginIdsOfAllSessionsRequest.prototype.getFieldMask = function() {
+  return /** @type{?proto.google.protobuf.FieldMask} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_field_mask_pb.FieldMask, 3));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.FieldMask|undefined} value
+ * @return {!proto.ondewo.nlu.ListOriginIdsOfAllSessionsRequest} returns this
+*/
+proto.ondewo.nlu.ListOriginIdsOfAllSessionsRequest.prototype.setFieldMask = function(value) {
+  return jspb.Message.setWrapperField(this, 3, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.ondewo.nlu.ListOriginIdsOfAllSessionsRequest} returns this
+ */
+proto.ondewo.nlu.ListOriginIdsOfAllSessionsRequest.prototype.clearFieldMask = function() {
+  return this.setFieldMask(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.nlu.ListOriginIdsOfAllSessionsRequest.prototype.hasFieldMask = function() {
+  return jspb.Message.getField(this, 3) != null;
 };
 
 
@@ -20043,7 +20655,8 @@ proto.ondewo.nlu.ListSessionCommentsRequest.prototype.toObject = function(opt_in
 proto.ondewo.nlu.ListSessionCommentsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     sessionId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    pageToken: jspb.Message.getFieldWithDefault(msg, 2, "")
+    pageToken: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -20088,6 +20701,11 @@ proto.ondewo.nlu.ListSessionCommentsRequest.deserializeBinaryFromReader = functi
       var value = /** @type {string} */ (reader.readString());
       msg.setPageToken(value);
       break;
+    case 3:
+      var value = new google_protobuf_field_mask_pb.FieldMask;
+      reader.readMessage(value,google_protobuf_field_mask_pb.FieldMask.deserializeBinaryFromReader);
+      msg.setFieldMask(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -20131,6 +20749,14 @@ proto.ondewo.nlu.ListSessionCommentsRequest.serializeBinaryToWriter = function(m
       f
     );
   }
+  f = message.getFieldMask();
+  if (f != null) {
+    writer.writeMessage(
+      3,
+      f,
+      google_protobuf_field_mask_pb.FieldMask.serializeBinaryToWriter
+    );
+  }
 };
 
 
@@ -20167,6 +20793,43 @@ proto.ondewo.nlu.ListSessionCommentsRequest.prototype.getPageToken = function() 
  */
 proto.ondewo.nlu.ListSessionCommentsRequest.prototype.setPageToken = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional google.protobuf.FieldMask field_mask = 3;
+ * @return {?proto.google.protobuf.FieldMask}
+ */
+proto.ondewo.nlu.ListSessionCommentsRequest.prototype.getFieldMask = function() {
+  return /** @type{?proto.google.protobuf.FieldMask} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_field_mask_pb.FieldMask, 3));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.FieldMask|undefined} value
+ * @return {!proto.ondewo.nlu.ListSessionCommentsRequest} returns this
+*/
+proto.ondewo.nlu.ListSessionCommentsRequest.prototype.setFieldMask = function(value) {
+  return jspb.Message.setWrapperField(this, 3, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.ondewo.nlu.ListSessionCommentsRequest} returns this
+ */
+proto.ondewo.nlu.ListSessionCommentsRequest.prototype.clearFieldMask = function() {
+  return this.setFieldMask(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.nlu.ListSessionCommentsRequest.prototype.hasFieldMask = function() {
+  return jspb.Message.getField(this, 3) != null;
 };
 
 
@@ -20773,7 +21436,8 @@ proto.ondewo.nlu.GetSessionReviewRequest.prototype.toObject = function(opt_inclu
 proto.ondewo.nlu.GetSessionReviewRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     sessionReviewId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    sessionReviewView: jspb.Message.getFieldWithDefault(msg, 2, 0)
+    sessionReviewView: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -20818,6 +21482,11 @@ proto.ondewo.nlu.GetSessionReviewRequest.deserializeBinaryFromReader = function(
       var value = /** @type {!proto.ondewo.nlu.SessionReview.View} */ (reader.readEnum());
       msg.setSessionReviewView(value);
       break;
+    case 3:
+      var value = new google_protobuf_field_mask_pb.FieldMask;
+      reader.readMessage(value,google_protobuf_field_mask_pb.FieldMask.deserializeBinaryFromReader);
+      msg.setFieldMask(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -20861,6 +21530,14 @@ proto.ondewo.nlu.GetSessionReviewRequest.serializeBinaryToWriter = function(mess
       f
     );
   }
+  f = message.getFieldMask();
+  if (f != null) {
+    writer.writeMessage(
+      3,
+      f,
+      google_protobuf_field_mask_pb.FieldMask.serializeBinaryToWriter
+    );
+  }
 };
 
 
@@ -20900,6 +21577,43 @@ proto.ondewo.nlu.GetSessionReviewRequest.prototype.setSessionReviewView = functi
 };
 
 
+/**
+ * optional google.protobuf.FieldMask field_mask = 3;
+ * @return {?proto.google.protobuf.FieldMask}
+ */
+proto.ondewo.nlu.GetSessionReviewRequest.prototype.getFieldMask = function() {
+  return /** @type{?proto.google.protobuf.FieldMask} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_field_mask_pb.FieldMask, 3));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.FieldMask|undefined} value
+ * @return {!proto.ondewo.nlu.GetSessionReviewRequest} returns this
+*/
+proto.ondewo.nlu.GetSessionReviewRequest.prototype.setFieldMask = function(value) {
+  return jspb.Message.setWrapperField(this, 3, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.ondewo.nlu.GetSessionReviewRequest} returns this
+ */
+proto.ondewo.nlu.GetSessionReviewRequest.prototype.clearFieldMask = function() {
+  return this.setFieldMask(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.nlu.GetSessionReviewRequest.prototype.hasFieldMask = function() {
+  return jspb.Message.getField(this, 3) != null;
+};
+
+
 
 
 
@@ -20933,7 +21647,8 @@ proto.ondewo.nlu.GetLatestSessionReviewRequest.prototype.toObject = function(opt
 proto.ondewo.nlu.GetLatestSessionReviewRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     sessionId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    sessionReviewView: jspb.Message.getFieldWithDefault(msg, 2, 0)
+    sessionReviewView: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -20978,6 +21693,11 @@ proto.ondewo.nlu.GetLatestSessionReviewRequest.deserializeBinaryFromReader = fun
       var value = /** @type {!proto.ondewo.nlu.SessionReview.View} */ (reader.readEnum());
       msg.setSessionReviewView(value);
       break;
+    case 3:
+      var value = new google_protobuf_field_mask_pb.FieldMask;
+      reader.readMessage(value,google_protobuf_field_mask_pb.FieldMask.deserializeBinaryFromReader);
+      msg.setFieldMask(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -21021,6 +21741,14 @@ proto.ondewo.nlu.GetLatestSessionReviewRequest.serializeBinaryToWriter = functio
       f
     );
   }
+  f = message.getFieldMask();
+  if (f != null) {
+    writer.writeMessage(
+      3,
+      f,
+      google_protobuf_field_mask_pb.FieldMask.serializeBinaryToWriter
+    );
+  }
 };
 
 
@@ -21057,6 +21785,43 @@ proto.ondewo.nlu.GetLatestSessionReviewRequest.prototype.getSessionReviewView = 
  */
 proto.ondewo.nlu.GetLatestSessionReviewRequest.prototype.setSessionReviewView = function(value) {
   return jspb.Message.setProto3EnumField(this, 2, value);
+};
+
+
+/**
+ * optional google.protobuf.FieldMask field_mask = 3;
+ * @return {?proto.google.protobuf.FieldMask}
+ */
+proto.ondewo.nlu.GetLatestSessionReviewRequest.prototype.getFieldMask = function() {
+  return /** @type{?proto.google.protobuf.FieldMask} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_field_mask_pb.FieldMask, 3));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.FieldMask|undefined} value
+ * @return {!proto.ondewo.nlu.GetLatestSessionReviewRequest} returns this
+*/
+proto.ondewo.nlu.GetLatestSessionReviewRequest.prototype.setFieldMask = function(value) {
+  return jspb.Message.setWrapperField(this, 3, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.ondewo.nlu.GetLatestSessionReviewRequest} returns this
+ */
+proto.ondewo.nlu.GetLatestSessionReviewRequest.prototype.clearFieldMask = function() {
+  return this.setFieldMask(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.nlu.GetLatestSessionReviewRequest.prototype.hasFieldMask = function() {
+  return jspb.Message.getField(this, 3) != null;
 };
 
 
@@ -23209,7 +23974,8 @@ proto.ondewo.nlu.GetAudioFilesRequest.toObject = function(includeInstance, msg) 
     namesList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f,
     resourceView: jspb.Message.getFieldWithDefault(msg, 3, 0),
     pageToken: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    sortingMode: jspb.Message.getFieldWithDefault(msg, 5, 0)
+    sortingMode: jspb.Message.getFieldWithDefault(msg, 5, 0),
+    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -23265,6 +24031,11 @@ proto.ondewo.nlu.GetAudioFilesRequest.deserializeBinaryFromReader = function(msg
     case 5:
       var value = /** @type {!proto.ondewo.nlu.SortingMode} */ (reader.readEnum());
       msg.setSortingMode(value);
+      break;
+    case 6:
+      var value = new google_protobuf_field_mask_pb.FieldMask;
+      reader.readMessage(value,google_protobuf_field_mask_pb.FieldMask.deserializeBinaryFromReader);
+      msg.setFieldMask(value);
       break;
     default:
       reader.skipField();
@@ -23328,6 +24099,14 @@ proto.ondewo.nlu.GetAudioFilesRequest.serializeBinaryToWriter = function(message
     writer.writeEnum(
       5,
       f
+    );
+  }
+  f = message.getFieldMask();
+  if (f != null) {
+    writer.writeMessage(
+      6,
+      f,
+      google_protobuf_field_mask_pb.FieldMask.serializeBinaryToWriter
     );
   }
 };
@@ -23439,6 +24218,43 @@ proto.ondewo.nlu.GetAudioFilesRequest.prototype.getSortingMode = function() {
  */
 proto.ondewo.nlu.GetAudioFilesRequest.prototype.setSortingMode = function(value) {
   return jspb.Message.setProto3EnumField(this, 5, value);
+};
+
+
+/**
+ * optional google.protobuf.FieldMask field_mask = 6;
+ * @return {?proto.google.protobuf.FieldMask}
+ */
+proto.ondewo.nlu.GetAudioFilesRequest.prototype.getFieldMask = function() {
+  return /** @type{?proto.google.protobuf.FieldMask} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_field_mask_pb.FieldMask, 6));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.FieldMask|undefined} value
+ * @return {!proto.ondewo.nlu.GetAudioFilesRequest} returns this
+*/
+proto.ondewo.nlu.GetAudioFilesRequest.prototype.setFieldMask = function(value) {
+  return jspb.Message.setWrapperField(this, 6, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.ondewo.nlu.GetAudioFilesRequest} returns this
+ */
+proto.ondewo.nlu.GetAudioFilesRequest.prototype.clearFieldMask = function() {
+  return this.setFieldMask(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.nlu.GetAudioFilesRequest.prototype.hasFieldMask = function() {
+  return jspb.Message.getField(this, 6) != null;
 };
 
 
@@ -24510,7 +25326,8 @@ proto.ondewo.nlu.ListAudioFilesRequest.toObject = function(includeInstance, msg)
     sessionId: jspb.Message.getFieldWithDefault(msg, 2, ""),
     resourceView: jspb.Message.getFieldWithDefault(msg, 3, 0),
     pageToken: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    sortingMode: jspb.Message.getFieldWithDefault(msg, 5, 0)
+    sortingMode: jspb.Message.getFieldWithDefault(msg, 5, 0),
+    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -24566,6 +25383,11 @@ proto.ondewo.nlu.ListAudioFilesRequest.deserializeBinaryFromReader = function(ms
     case 5:
       var value = /** @type {!proto.ondewo.nlu.SortingMode} */ (reader.readEnum());
       msg.setSortingMode(value);
+      break;
+    case 6:
+      var value = new google_protobuf_field_mask_pb.FieldMask;
+      reader.readMessage(value,google_protobuf_field_mask_pb.FieldMask.deserializeBinaryFromReader);
+      msg.setFieldMask(value);
       break;
     default:
       reader.skipField();
@@ -24629,6 +25451,14 @@ proto.ondewo.nlu.ListAudioFilesRequest.serializeBinaryToWriter = function(messag
     writer.writeEnum(
       5,
       f
+    );
+  }
+  f = message.getFieldMask();
+  if (f != null) {
+    writer.writeMessage(
+      6,
+      f,
+      google_protobuf_field_mask_pb.FieldMask.serializeBinaryToWriter
     );
   }
 };
@@ -24721,6 +25551,43 @@ proto.ondewo.nlu.ListAudioFilesRequest.prototype.getSortingMode = function() {
  */
 proto.ondewo.nlu.ListAudioFilesRequest.prototype.setSortingMode = function(value) {
   return jspb.Message.setProto3EnumField(this, 5, value);
+};
+
+
+/**
+ * optional google.protobuf.FieldMask field_mask = 6;
+ * @return {?proto.google.protobuf.FieldMask}
+ */
+proto.ondewo.nlu.ListAudioFilesRequest.prototype.getFieldMask = function() {
+  return /** @type{?proto.google.protobuf.FieldMask} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_field_mask_pb.FieldMask, 6));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.FieldMask|undefined} value
+ * @return {!proto.ondewo.nlu.ListAudioFilesRequest} returns this
+*/
+proto.ondewo.nlu.ListAudioFilesRequest.prototype.setFieldMask = function(value) {
+  return jspb.Message.setWrapperField(this, 6, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.ondewo.nlu.ListAudioFilesRequest} returns this
+ */
+proto.ondewo.nlu.ListAudioFilesRequest.prototype.clearFieldMask = function() {
+  return this.setFieldMask(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.nlu.ListAudioFilesRequest.prototype.hasFieldMask = function() {
+  return jspb.Message.getField(this, 6) != null;
 };
 
 
@@ -24978,7 +25845,8 @@ proto.ondewo.nlu.GetAudioFileOfSessionRequest.toObject = function(includeInstanc
   var f, obj = {
     parent: jspb.Message.getFieldWithDefault(msg, 1, ""),
     sessionId: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    resourceView: jspb.Message.getFieldWithDefault(msg, 3, 0)
+    resourceView: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -25026,6 +25894,11 @@ proto.ondewo.nlu.GetAudioFileOfSessionRequest.deserializeBinaryFromReader = func
     case 3:
       var value = /** @type {!proto.ondewo.nlu.ResourceView} */ (reader.readEnum());
       msg.setResourceView(value);
+      break;
+    case 4:
+      var value = new google_protobuf_field_mask_pb.FieldMask;
+      reader.readMessage(value,google_protobuf_field_mask_pb.FieldMask.deserializeBinaryFromReader);
+      msg.setFieldMask(value);
       break;
     default:
       reader.skipField();
@@ -25075,6 +25948,14 @@ proto.ondewo.nlu.GetAudioFileOfSessionRequest.serializeBinaryToWriter = function
     writer.writeEnum(
       3,
       f
+    );
+  }
+  f = message.getFieldMask();
+  if (f != null) {
+    writer.writeMessage(
+      4,
+      f,
+      google_protobuf_field_mask_pb.FieldMask.serializeBinaryToWriter
     );
   }
 };
@@ -25131,6 +26012,43 @@ proto.ondewo.nlu.GetAudioFileOfSessionRequest.prototype.getResourceView = functi
  */
 proto.ondewo.nlu.GetAudioFileOfSessionRequest.prototype.setResourceView = function(value) {
   return jspb.Message.setProto3EnumField(this, 3, value);
+};
+
+
+/**
+ * optional google.protobuf.FieldMask field_mask = 4;
+ * @return {?proto.google.protobuf.FieldMask}
+ */
+proto.ondewo.nlu.GetAudioFileOfSessionRequest.prototype.getFieldMask = function() {
+  return /** @type{?proto.google.protobuf.FieldMask} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_field_mask_pb.FieldMask, 4));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.FieldMask|undefined} value
+ * @return {!proto.ondewo.nlu.GetAudioFileOfSessionRequest} returns this
+*/
+proto.ondewo.nlu.GetAudioFileOfSessionRequest.prototype.setFieldMask = function(value) {
+  return jspb.Message.setWrapperField(this, 4, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.ondewo.nlu.GetAudioFileOfSessionRequest} returns this
+ */
+proto.ondewo.nlu.GetAudioFileOfSessionRequest.prototype.clearFieldMask = function() {
+  return this.setFieldMask(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.nlu.GetAudioFileOfSessionRequest.prototype.hasFieldMask = function() {
+  return jspb.Message.getField(this, 4) != null;
 };
 
 

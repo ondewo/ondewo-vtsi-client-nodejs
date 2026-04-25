@@ -568,13 +568,13 @@ function deserialize_ondewo_vtsi_TransferCallsResponse(buffer_arg) {
 }
 
 
-// ONDEWO VTSI API
+// <p>ONDEWO VTSI API</p>
 var CallsService = exports.CallsService = {
   // ////////////////////////////////////////////////////////////////////////////
 // Caller and Listener endpoints
 // ////////////////////////////////////////////////////////////////////////////
 //
-// start single caller instance for a specific nlu-project.
+// <p>Start single caller instance for a specific nlu-project.</p>
 startCaller: {
     path: '/ondewo.vtsi.Calls/StartCaller',
     requestStream: false,
@@ -586,7 +586,7 @@ startCaller: {
     responseSerialize: serialize_ondewo_vtsi_StartCallerResponse,
     responseDeserialize: deserialize_ondewo_vtsi_StartCallerResponse,
   },
-  // start multiple ondewo-sip callers instances for a specific nlu-project.
+  // <p>Start multiple ondewo-sip callers instances for a specific nlu-project.</p>
 startCallers: {
     path: '/ondewo.vtsi.Calls/StartCallers',
     requestStream: false,
@@ -598,7 +598,7 @@ startCallers: {
     responseSerialize: serialize_ondewo_vtsi_StartCallersResponse,
     responseDeserialize: deserialize_ondewo_vtsi_StartCallersResponse,
   },
-  // lists all available callers
+  // <p>Lists all available callers</p>
 listCallers: {
     path: '/ondewo.vtsi.Calls/ListCallers',
     requestStream: false,
@@ -610,7 +610,7 @@ listCallers: {
     responseSerialize: serialize_ondewo_vtsi_ListCallersResponse,
     responseDeserialize: deserialize_ondewo_vtsi_ListCallersResponse,
   },
-  // gets a caller
+  // <p>Gets a caller</p>
 getCaller: {
     path: '/ondewo.vtsi.Calls/GetCaller',
     requestStream: false,
@@ -622,7 +622,7 @@ getCaller: {
     responseSerialize: serialize_ondewo_vtsi_Caller,
     responseDeserialize: deserialize_ondewo_vtsi_Caller,
   },
-  // deletes a caller
+  // <p>Deletes a caller</p>
 deleteCaller: {
     path: '/ondewo.vtsi.Calls/DeleteCaller',
     requestStream: false,
@@ -634,7 +634,7 @@ deleteCaller: {
     responseSerialize: serialize_ondewo_vtsi_DeleteCallerResponse,
     responseDeserialize: deserialize_ondewo_vtsi_DeleteCallerResponse,
   },
-  // deletes multiple callers
+  // <p>Deletes multiple callers</p>
 deleteCallers: {
     path: '/ondewo.vtsi.Calls/DeleteCallers',
     requestStream: false,
@@ -646,7 +646,7 @@ deleteCallers: {
     responseSerialize: serialize_ondewo_vtsi_DeleteCallersResponse,
     responseDeserialize: deserialize_ondewo_vtsi_DeleteCallersResponse,
   },
-  // stops a caller
+  // <p>Stops a caller</p>
 stopCaller: {
     path: '/ondewo.vtsi.Calls/StopCaller',
     requestStream: false,
@@ -658,7 +658,7 @@ stopCaller: {
     responseSerialize: serialize_ondewo_vtsi_StopCallerResponse,
     responseDeserialize: deserialize_ondewo_vtsi_StopCallerResponse,
   },
-  // stops multiple callers
+  // <p>Stops multiple callers</p>
 stopCallers: {
     path: '/ondewo.vtsi.Calls/StopCallers',
     requestStream: false,
@@ -670,7 +670,7 @@ stopCallers: {
     responseSerialize: serialize_ondewo_vtsi_StopCallersResponse,
     responseDeserialize: deserialize_ondewo_vtsi_StopCallersResponse,
   },
-  // start single listener instance for a specific nlu-project.
+  // <p>Start single listener instance for a specific nlu-project.</p>
 startListener: {
     path: '/ondewo.vtsi.Calls/StartListener',
     requestStream: false,
@@ -682,7 +682,7 @@ startListener: {
     responseSerialize: serialize_ondewo_vtsi_StartListenerResponse,
     responseDeserialize: deserialize_ondewo_vtsi_StartListenerResponse,
   },
-  // start multiple ondewo-sip listeners instances for a specific nlu-project.
+  // <p>Start multiple ondewo-sip listeners instances for a specific nlu-project.</p>
 startListeners: {
     path: '/ondewo.vtsi.Calls/StartListeners',
     requestStream: false,
@@ -694,7 +694,7 @@ startListeners: {
     responseSerialize: serialize_ondewo_vtsi_StartListenersResponse,
     responseDeserialize: deserialize_ondewo_vtsi_StartListenersResponse,
   },
-  // stop a ondewo-sip listeners instances for a specific nlu-project.
+  // <p>Stop a ondewo-sip listeners instances for a specific nlu-project.</p>
 stopListener: {
     path: '/ondewo.vtsi.Calls/StopListener',
     requestStream: false,
@@ -706,7 +706,7 @@ stopListener: {
     responseSerialize: serialize_ondewo_vtsi_StopListenerResponse,
     responseDeserialize: deserialize_ondewo_vtsi_StopListenerResponse,
   },
-  // stop multiple ondewo-sip listeners instances for a specific nlu-project.
+  // <p>Stop multiple ondewo-sip listeners instances for a specific nlu-project.</p>
 stopListeners: {
     path: '/ondewo.vtsi.Calls/StopListeners',
     requestStream: false,
@@ -718,7 +718,7 @@ stopListeners: {
     responseSerialize: serialize_ondewo_vtsi_StopListenersResponse,
     responseDeserialize: deserialize_ondewo_vtsi_StopListenersResponse,
   },
-  // lists all available listeners
+  // <p>Lists all available listeners</p>
 listListeners: {
     path: '/ondewo.vtsi.Calls/ListListeners',
     requestStream: false,
@@ -730,7 +730,7 @@ listListeners: {
     responseSerialize: serialize_ondewo_vtsi_ListListenersResponse,
     responseDeserialize: deserialize_ondewo_vtsi_ListListenersResponse,
   },
-  // gets a listener
+  // <p>Gets a listener</p>
 getListener: {
     path: '/ondewo.vtsi.Calls/GetListener',
     requestStream: false,
@@ -742,7 +742,7 @@ getListener: {
     responseSerialize: serialize_ondewo_vtsi_Listener,
     responseDeserialize: deserialize_ondewo_vtsi_Listener,
   },
-  // deletes a listener
+  // <p>Deletes a listener</p>
 deleteListener: {
     path: '/ondewo.vtsi.Calls/DeleteListener',
     requestStream: false,
@@ -754,7 +754,7 @@ deleteListener: {
     responseSerialize: serialize_ondewo_vtsi_DeleteListenerResponse,
     responseDeserialize: deserialize_ondewo_vtsi_DeleteListenerResponse,
   },
-  // deletes multiple listeners
+  // <p>Deletes multiple listeners</p>
 deleteListeners: {
     path: '/ondewo.vtsi.Calls/DeleteListeners',
     requestStream: false,
@@ -766,7 +766,7 @@ deleteListeners: {
     responseSerialize: serialize_ondewo_vtsi_DeleteListenersResponse,
     responseDeserialize: deserialize_ondewo_vtsi_DeleteListenersResponse,
   },
-  // start multiple ondewo-sip callers instances with schedules
+  // <p>Start multiple ondewo-sip callers instances with schedules</p>
 startScheduledCaller: {
     path: '/ondewo.vtsi.Calls/StartScheduledCaller',
     requestStream: false,
@@ -778,7 +778,7 @@ startScheduledCaller: {
     responseSerialize: serialize_ondewo_vtsi_StartScheduledCallerResponse,
     responseDeserialize: deserialize_ondewo_vtsi_StartScheduledCallerResponse,
   },
-  // start multiple ondewo-sip callers instances with schedules
+  // <p>Start multiple ondewo-sip callers instances with schedules</p>
 startScheduledCallers: {
     path: '/ondewo.vtsi.Calls/StartScheduledCallers',
     requestStream: false,
@@ -790,7 +790,7 @@ startScheduledCallers: {
     responseSerialize: serialize_ondewo_vtsi_StartScheduledCallersResponse,
     responseDeserialize: deserialize_ondewo_vtsi_StartScheduledCallersResponse,
   },
-  // stop/kill a ondewo-sip listener or caller instance for a specific vtsi-project.
+  // <p>Stop/kill a ondewo-sip listener or caller instance for a specific vtsi-project.</p>
 stopCall: {
     path: '/ondewo.vtsi.Calls/StopCall',
     requestStream: false,
@@ -802,8 +802,8 @@ stopCall: {
     responseSerialize: serialize_ondewo_vtsi_StopCallResponse,
     responseDeserialize: deserialize_ondewo_vtsi_StopCallResponse,
   },
-  // stop/kill a list of ondewo-sip listener or caller instances for a specific vtsi-project.
-// "stops both Listener and Caller calls"
+  // <p>Stop/kill a list of ondewo-sip listener or caller instances for a specific vtsi-project.</p>
+// <p>Stops both Listener and Caller calls</p>
 stopCalls: {
     path: '/ondewo.vtsi.Calls/StopCalls',
     requestStream: false,
@@ -815,8 +815,8 @@ stopCalls: {
     responseSerialize: serialize_ondewo_vtsi_StopCallsResponse,
     responseDeserialize: deserialize_ondewo_vtsi_StopCallsResponse,
   },
-  // stop/kill all ondewo-sip listener or caller instance for a specific nlu-project.
-// "stops all Listener and Caller calls"
+  // <p>Stop/kill all ondewo-sip listener or caller instance for a specific nlu-project.</p>
+// <p>Stops all Listener and Caller calls</p>
 stopAllCalls: {
     path: '/ondewo.vtsi.Calls/StopAllCalls',
     requestStream: false,
@@ -828,7 +828,7 @@ stopAllCalls: {
     responseSerialize: serialize_ondewo_vtsi_StopCallsResponse,
     responseDeserialize: deserialize_ondewo_vtsi_StopCallsResponse,
   },
-  // Transfer a call from a listener to another
+  // <p>Transfer a call from a listener to another</p>
 transferCall: {
     path: '/ondewo.vtsi.Calls/TransferCall',
     requestStream: false,
@@ -840,7 +840,7 @@ transferCall: {
     responseSerialize: serialize_ondewo_vtsi_TransferCallResponse,
     responseDeserialize: deserialize_ondewo_vtsi_TransferCallResponse,
   },
-  // Transfer a call from a listener to another
+  // <p>Transfer a call from a listener to another</p>
 transferCalls: {
     path: '/ondewo.vtsi.Calls/TransferCalls',
     requestStream: false,
@@ -852,7 +852,7 @@ transferCalls: {
     responseSerialize: serialize_ondewo_vtsi_TransferCallsResponse,
     responseDeserialize: deserialize_ondewo_vtsi_TransferCallsResponse,
   },
-  // get call log for single call instance
+  // <p>Get call log for single call instance</p>
 getCall: {
     path: '/ondewo.vtsi.Calls/GetCall',
     requestStream: false,
@@ -864,7 +864,7 @@ getCall: {
     responseSerialize: serialize_ondewo_vtsi_Call,
     responseDeserialize: deserialize_ondewo_vtsi_Call,
   },
-  // get call log for all call instances
+  // <p>Get call log for all call instances</p>
 listCalls: {
     path: '/ondewo.vtsi.Calls/ListCalls',
     requestStream: false,
@@ -878,4 +878,4 @@ listCalls: {
   },
 };
 
-exports.CallsClient = grpc.makeGenericClientConstructor(CallsService);
+exports.CallsClient = grpc.makeGenericClientConstructor(CallsService, 'Calls');

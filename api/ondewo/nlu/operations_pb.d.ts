@@ -7,6 +7,7 @@
 import * as jspb from "google-protobuf";
 import * as google_protobuf_any_pb from "google-protobuf/google/protobuf/any_pb";
 import * as google_protobuf_empty_pb from "google-protobuf/google/protobuf/empty_pb";
+import * as google_protobuf_field_mask_pb from "google-protobuf/google/protobuf/field_mask_pb";
 import * as google_rpc_status_pb from "../../google/rpc/status_pb";
 import * as google_protobuf_timestamp_pb from "google-protobuf/google/protobuf/timestamp_pb";
 import * as ondewo_nlu_operation_metadata_pb from "../../ondewo/nlu/operation_metadata_pb";
@@ -65,6 +66,11 @@ export class GetOperationRequest extends jspb.Message {
     getName(): string;
     setName(value: string): GetOperationRequest;
 
+    hasFieldMask(): boolean;
+    clearFieldMask(): void;
+    getFieldMask(): google_protobuf_field_mask_pb.FieldMask | undefined;
+    setFieldMask(value?: google_protobuf_field_mask_pb.FieldMask): GetOperationRequest;
+
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): GetOperationRequest.AsObject;
     static toObject(includeInstance: boolean, msg: GetOperationRequest): GetOperationRequest.AsObject;
@@ -78,6 +84,7 @@ export class GetOperationRequest extends jspb.Message {
 export namespace GetOperationRequest {
     export type AsObject = {
         name: string,
+        fieldMask?: google_protobuf_field_mask_pb.FieldMask.AsObject,
     }
 }
 
@@ -96,6 +103,11 @@ export class ListOperationsRequest extends jspb.Message {
     getOperationFilter(): OperationFilter | undefined;
     setOperationFilter(value?: OperationFilter): ListOperationsRequest;
 
+    hasFieldMask(): boolean;
+    clearFieldMask(): void;
+    getFieldMask(): google_protobuf_field_mask_pb.FieldMask | undefined;
+    setFieldMask(value?: google_protobuf_field_mask_pb.FieldMask): ListOperationsRequest;
+
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): ListOperationsRequest.AsObject;
     static toObject(includeInstance: boolean, msg: ListOperationsRequest): ListOperationsRequest.AsObject;
@@ -113,6 +125,7 @@ export namespace ListOperationsRequest {
         pageSize: number,
         pageToken: string,
         operationFilter?: OperationFilter.AsObject,
+        fieldMask?: google_protobuf_field_mask_pb.FieldMask.AsObject,
     }
 }
 

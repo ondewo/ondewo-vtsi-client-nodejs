@@ -15,7 +15,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-// Modifications Copyright 2020-2023 ONDEWO GmbH
+// Modifications Copyright 2020-2026 ONDEWO GmbH
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -804,10 +804,7 @@ function deserialize_ondewo_nlu_UpdateSessionStepRequest(buffer_arg) {
 }
 
 
-// A session represents an interaction with a user. You retrieve user input
-// and pass it to the [DetectIntent][google.cloud.dialogflow.v2.Sessions.DetectIntent] (or
-// [StreamingDetectIntent][google.cloud.dialogflow.v2.Sessions.StreamingDetectIntent]) method to determine
-// user intent and respond.
+// A session represents an interaction with a user. You retrieve user input and pass it to the <a href="index.html#ondewo.nlu.Sessions.DetectIntent">DetectIntent</a> (or <a href="index.html#ondewo.nlu.Sessions.StreamingDetectIntent">StreamingDetectIntent</a>) method to determine user intent and respond.
 var SessionsService = exports.SessionsService = {
   // Processes a natural language query and returns structured, actionable data
 // as a result. This method is not idempotent, because it may cause contexts
@@ -839,6 +836,7 @@ streamingDetectIntent: {
     responseDeserialize: deserialize_ondewo_nlu_StreamingDetectIntentResponse,
   },
   // *** SESSION RELATED ENDPOINTS *** //
+//
 // ListSessions: returns list of sessions from ondewo-kb; by default returns only session IDs
 listSessions: {
     path: '/ondewo.nlu.Sessions/ListSessions',
@@ -936,6 +934,7 @@ deleteSession: {
     responseDeserialize: deserialize_google_protobuf_Empty,
   },
   // *** SESSION-LABEL RELATED ENDPOINTS *** //
+//
 listSessionLabels: {
     path: '/ondewo.nlu.Sessions/ListSessionLabels',
     requestStream: false,
@@ -1168,6 +1167,7 @@ listSessionLabels: {
     responseDeserialize: deserialize_ondewo_nlu_ListSessionCommentsResponse,
   },
   // *** SESSION-REVIEW RELATED ENDPOINTS *** //
+//
 // ListSessionReviews:
 // returns list of session reviews from ondewo-kb; by default only returns session review IDs
 listSessionReviews: {
@@ -1292,4 +1292,4 @@ listAudioFiles: {
   },
 };
 
-exports.SessionsClient = grpc.makeGenericClientConstructor(SessionsService);
+exports.SessionsClient = grpc.makeGenericClientConstructor(SessionsService, 'Sessions');

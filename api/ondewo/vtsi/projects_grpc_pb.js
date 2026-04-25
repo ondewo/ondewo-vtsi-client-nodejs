@@ -176,13 +176,13 @@ function deserialize_ondewo_vtsi_VtsiProject(buffer_arg) {
 }
 
 
-// ONDEWO VTSI API
+// <p>ONDEWO VTSI API</p>
 var ProjectsService = exports.ProjectsService = {
   // ////////////////////////////////////////////////////////////////////////////
 // Project endpoints
 // ////////////////////////////////////////////////////////////////////////////
 //
-// Create a VTSI project with configs
+// <p>Create a VTSI project with configs</p>
 createVtsiProject: {
     path: '/ondewo.vtsi.Projects/CreateVtsiProject',
     requestStream: false,
@@ -194,7 +194,7 @@ createVtsiProject: {
     responseSerialize: serialize_ondewo_vtsi_CreateVtsiProjectResponse,
     responseDeserialize: deserialize_ondewo_vtsi_CreateVtsiProjectResponse,
   },
-  // Get a VTSI project with configs
+  // <p>Get a VTSI project with configs</p>
 getVtsiProject: {
     path: '/ondewo.vtsi.Projects/GetVtsiProject',
     requestStream: false,
@@ -206,7 +206,7 @@ getVtsiProject: {
     responseSerialize: serialize_ondewo_vtsi_VtsiProject,
     responseDeserialize: deserialize_ondewo_vtsi_VtsiProject,
   },
-  // Update a VTSI project with configs
+  // <p>Update a VTSI project with configs</p>
 updateVtsiProject: {
     path: '/ondewo.vtsi.Projects/UpdateVtsiProject',
     requestStream: false,
@@ -218,7 +218,7 @@ updateVtsiProject: {
     responseSerialize: serialize_ondewo_vtsi_UpdateVtsiProjectResponse,
     responseDeserialize: deserialize_ondewo_vtsi_UpdateVtsiProjectResponse,
   },
-  // Delete a VTSI project with configs
+  // <p>Delete a VTSI project with configs</p>
 deleteVtsiProject: {
     path: '/ondewo.vtsi.Projects/DeleteVtsiProject',
     requestStream: false,
@@ -230,7 +230,7 @@ deleteVtsiProject: {
     responseSerialize: serialize_ondewo_vtsi_DeleteVtsiProjectResponse,
     responseDeserialize: deserialize_ondewo_vtsi_DeleteVtsiProjectResponse,
   },
-  // Deploy a VTSI project
+  // <p>Deploy a VTSI project</p>
 deployVtsiProject: {
     path: '/ondewo.vtsi.Projects/DeployVtsiProject',
     requestStream: false,
@@ -242,7 +242,7 @@ deployVtsiProject: {
     responseSerialize: serialize_ondewo_vtsi_DeployVtsiProjectResponse,
     responseDeserialize: deserialize_ondewo_vtsi_DeployVtsiProjectResponse,
   },
-  // Undeploy a VTSI project
+  // <p>Undeploy a VTSI project</p>
 undeployVtsiProject: {
     path: '/ondewo.vtsi.Projects/UndeployVtsiProject',
     requestStream: false,
@@ -254,7 +254,7 @@ undeployVtsiProject: {
     responseSerialize: serialize_ondewo_vtsi_UndeployVtsiProjectResponse,
     responseDeserialize: deserialize_ondewo_vtsi_UndeployVtsiProjectResponse,
   },
-  // Get a VTSI project with configs
+  // <p>Get a VTSI project with configs</p>
 listVtsiProjects: {
     path: '/ondewo.vtsi.Projects/ListVtsiProjects',
     requestStream: false,
@@ -268,4 +268,4 @@ listVtsiProjects: {
   },
 };
 
-exports.ProjectsClient = grpc.makeGenericClientConstructor(ProjectsService);
+exports.ProjectsClient = grpc.makeGenericClientConstructor(ProjectsService, 'Projects');

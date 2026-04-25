@@ -1,7 +1,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 // Original file comments:
-// Copyright 2020-2023 ONDEWO GmbH
+// Copyright 2020-2026 ONDEWO GmbH
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -96,4 +96,4 @@ getUserCount: {
   },
 };
 
-exports.ServerStatisticsClient = grpc.makeGenericClientConstructor(ServerStatisticsService);
+exports.ServerStatisticsClient = grpc.makeGenericClientConstructor(ServerStatisticsService, 'ServerStatistics');

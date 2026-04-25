@@ -1546,6 +1546,11 @@ export class ListSessionLabelsOfAllSessionsRequest extends jspb.Message {
     getSessionFilter(): SessionFilter | undefined;
     setSessionFilter(value?: SessionFilter): ListSessionLabelsOfAllSessionsRequest;
 
+    hasFieldMask(): boolean;
+    clearFieldMask(): void;
+    getFieldMask(): google_protobuf_field_mask_pb.FieldMask | undefined;
+    setFieldMask(value?: google_protobuf_field_mask_pb.FieldMask): ListSessionLabelsOfAllSessionsRequest;
+
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): ListSessionLabelsOfAllSessionsRequest.AsObject;
     static toObject(includeInstance: boolean, msg: ListSessionLabelsOfAllSessionsRequest): ListSessionLabelsOfAllSessionsRequest.AsObject;
@@ -1560,6 +1565,7 @@ export namespace ListSessionLabelsOfAllSessionsRequest {
     export type AsObject = {
         parent: string,
         sessionFilter?: SessionFilter.AsObject,
+        fieldMask?: google_protobuf_field_mask_pb.FieldMask.AsObject,
     }
 }
 
@@ -1594,6 +1600,11 @@ export class ListLanguageCodesOfAllSessionsRequest extends jspb.Message {
     getSessionFilter(): SessionFilter | undefined;
     setSessionFilter(value?: SessionFilter): ListLanguageCodesOfAllSessionsRequest;
 
+    hasFieldMask(): boolean;
+    clearFieldMask(): void;
+    getFieldMask(): google_protobuf_field_mask_pb.FieldMask | undefined;
+    setFieldMask(value?: google_protobuf_field_mask_pb.FieldMask): ListLanguageCodesOfAllSessionsRequest;
+
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): ListLanguageCodesOfAllSessionsRequest.AsObject;
     static toObject(includeInstance: boolean, msg: ListLanguageCodesOfAllSessionsRequest): ListLanguageCodesOfAllSessionsRequest.AsObject;
@@ -1608,6 +1619,7 @@ export namespace ListLanguageCodesOfAllSessionsRequest {
     export type AsObject = {
         parent: string,
         sessionFilter?: SessionFilter.AsObject,
+        fieldMask?: google_protobuf_field_mask_pb.FieldMask.AsObject,
     }
 }
 
@@ -1642,6 +1654,11 @@ export class ListMatchedIntentsOfAllSessionsRequest extends jspb.Message {
     getSessionFilter(): SessionFilter | undefined;
     setSessionFilter(value?: SessionFilter): ListMatchedIntentsOfAllSessionsRequest;
 
+    hasFieldMask(): boolean;
+    clearFieldMask(): void;
+    getFieldMask(): google_protobuf_field_mask_pb.FieldMask | undefined;
+    setFieldMask(value?: google_protobuf_field_mask_pb.FieldMask): ListMatchedIntentsOfAllSessionsRequest;
+
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): ListMatchedIntentsOfAllSessionsRequest.AsObject;
     static toObject(includeInstance: boolean, msg: ListMatchedIntentsOfAllSessionsRequest): ListMatchedIntentsOfAllSessionsRequest.AsObject;
@@ -1656,6 +1673,7 @@ export namespace ListMatchedIntentsOfAllSessionsRequest {
     export type AsObject = {
         parent: string,
         sessionFilter?: SessionFilter.AsObject,
+        fieldMask?: google_protobuf_field_mask_pb.FieldMask.AsObject,
     }
 }
 
@@ -1690,6 +1708,11 @@ export class ListMatchedEntityTypesOfAllSessionsRequest extends jspb.Message {
     getSessionFilter(): SessionFilter | undefined;
     setSessionFilter(value?: SessionFilter): ListMatchedEntityTypesOfAllSessionsRequest;
 
+    hasFieldMask(): boolean;
+    clearFieldMask(): void;
+    getFieldMask(): google_protobuf_field_mask_pb.FieldMask | undefined;
+    setFieldMask(value?: google_protobuf_field_mask_pb.FieldMask): ListMatchedEntityTypesOfAllSessionsRequest;
+
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): ListMatchedEntityTypesOfAllSessionsRequest.AsObject;
     static toObject(includeInstance: boolean, msg: ListMatchedEntityTypesOfAllSessionsRequest): ListMatchedEntityTypesOfAllSessionsRequest.AsObject;
@@ -1704,6 +1727,7 @@ export namespace ListMatchedEntityTypesOfAllSessionsRequest {
     export type AsObject = {
         parent: string,
         sessionFilter?: SessionFilter.AsObject,
+        fieldMask?: google_protobuf_field_mask_pb.FieldMask.AsObject,
     }
 }
 
@@ -1738,6 +1762,11 @@ export class ListUserIdsOfAllSessionsRequest extends jspb.Message {
     getSessionFilter(): SessionFilter | undefined;
     setSessionFilter(value?: SessionFilter): ListUserIdsOfAllSessionsRequest;
 
+    hasFieldMask(): boolean;
+    clearFieldMask(): void;
+    getFieldMask(): google_protobuf_field_mask_pb.FieldMask | undefined;
+    setFieldMask(value?: google_protobuf_field_mask_pb.FieldMask): ListUserIdsOfAllSessionsRequest;
+
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): ListUserIdsOfAllSessionsRequest.AsObject;
     static toObject(includeInstance: boolean, msg: ListUserIdsOfAllSessionsRequest): ListUserIdsOfAllSessionsRequest.AsObject;
@@ -1752,6 +1781,7 @@ export namespace ListUserIdsOfAllSessionsRequest {
     export type AsObject = {
         parent: string,
         sessionFilter?: SessionFilter.AsObject,
+        fieldMask?: google_protobuf_field_mask_pb.FieldMask.AsObject,
     }
 }
 
@@ -1786,6 +1816,11 @@ export class ListIdentifiedUserIdsOfAllSessionsRequest extends jspb.Message {
     getSessionFilter(): SessionFilter | undefined;
     setSessionFilter(value?: SessionFilter): ListIdentifiedUserIdsOfAllSessionsRequest;
 
+    hasFieldMask(): boolean;
+    clearFieldMask(): void;
+    getFieldMask(): google_protobuf_field_mask_pb.FieldMask | undefined;
+    setFieldMask(value?: google_protobuf_field_mask_pb.FieldMask): ListIdentifiedUserIdsOfAllSessionsRequest;
+
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): ListIdentifiedUserIdsOfAllSessionsRequest.AsObject;
     static toObject(includeInstance: boolean, msg: ListIdentifiedUserIdsOfAllSessionsRequest): ListIdentifiedUserIdsOfAllSessionsRequest.AsObject;
@@ -1800,6 +1835,7 @@ export namespace ListIdentifiedUserIdsOfAllSessionsRequest {
     export type AsObject = {
         parent: string,
         sessionFilter?: SessionFilter.AsObject,
+        fieldMask?: google_protobuf_field_mask_pb.FieldMask.AsObject,
     }
 }
 
@@ -1834,6 +1870,11 @@ export class ListTagsOfAllSessionsRequest extends jspb.Message {
     getSessionFilter(): SessionFilter | undefined;
     setSessionFilter(value?: SessionFilter): ListTagsOfAllSessionsRequest;
 
+    hasFieldMask(): boolean;
+    clearFieldMask(): void;
+    getFieldMask(): google_protobuf_field_mask_pb.FieldMask | undefined;
+    setFieldMask(value?: google_protobuf_field_mask_pb.FieldMask): ListTagsOfAllSessionsRequest;
+
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): ListTagsOfAllSessionsRequest.AsObject;
     static toObject(includeInstance: boolean, msg: ListTagsOfAllSessionsRequest): ListTagsOfAllSessionsRequest.AsObject;
@@ -1848,6 +1889,7 @@ export namespace ListTagsOfAllSessionsRequest {
     export type AsObject = {
         parent: string,
         sessionFilter?: SessionFilter.AsObject,
+        fieldMask?: google_protobuf_field_mask_pb.FieldMask.AsObject,
     }
 }
 
@@ -1882,6 +1924,11 @@ export class ListInputContextsOfAllSessionsRequest extends jspb.Message {
     getSessionFilter(): SessionFilter | undefined;
     setSessionFilter(value?: SessionFilter): ListInputContextsOfAllSessionsRequest;
 
+    hasFieldMask(): boolean;
+    clearFieldMask(): void;
+    getFieldMask(): google_protobuf_field_mask_pb.FieldMask | undefined;
+    setFieldMask(value?: google_protobuf_field_mask_pb.FieldMask): ListInputContextsOfAllSessionsRequest;
+
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): ListInputContextsOfAllSessionsRequest.AsObject;
     static toObject(includeInstance: boolean, msg: ListInputContextsOfAllSessionsRequest): ListInputContextsOfAllSessionsRequest.AsObject;
@@ -1896,6 +1943,7 @@ export namespace ListInputContextsOfAllSessionsRequest {
     export type AsObject = {
         parent: string,
         sessionFilter?: SessionFilter.AsObject,
+        fieldMask?: google_protobuf_field_mask_pb.FieldMask.AsObject,
     }
 }
 
@@ -1930,6 +1978,11 @@ export class ListOutputContextsOfAllSessionsRequest extends jspb.Message {
     getSessionFilter(): SessionFilter | undefined;
     setSessionFilter(value?: SessionFilter): ListOutputContextsOfAllSessionsRequest;
 
+    hasFieldMask(): boolean;
+    clearFieldMask(): void;
+    getFieldMask(): google_protobuf_field_mask_pb.FieldMask | undefined;
+    setFieldMask(value?: google_protobuf_field_mask_pb.FieldMask): ListOutputContextsOfAllSessionsRequest;
+
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): ListOutputContextsOfAllSessionsRequest.AsObject;
     static toObject(includeInstance: boolean, msg: ListOutputContextsOfAllSessionsRequest): ListOutputContextsOfAllSessionsRequest.AsObject;
@@ -1944,6 +1997,7 @@ export namespace ListOutputContextsOfAllSessionsRequest {
     export type AsObject = {
         parent: string,
         sessionFilter?: SessionFilter.AsObject,
+        fieldMask?: google_protobuf_field_mask_pb.FieldMask.AsObject,
     }
 }
 
@@ -1978,6 +2032,11 @@ export class ListPlatformsOfAllSessionsRequest extends jspb.Message {
     getSessionFilter(): SessionFilter | undefined;
     setSessionFilter(value?: SessionFilter): ListPlatformsOfAllSessionsRequest;
 
+    hasFieldMask(): boolean;
+    clearFieldMask(): void;
+    getFieldMask(): google_protobuf_field_mask_pb.FieldMask | undefined;
+    setFieldMask(value?: google_protobuf_field_mask_pb.FieldMask): ListPlatformsOfAllSessionsRequest;
+
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): ListPlatformsOfAllSessionsRequest.AsObject;
     static toObject(includeInstance: boolean, msg: ListPlatformsOfAllSessionsRequest): ListPlatformsOfAllSessionsRequest.AsObject;
@@ -1992,6 +2051,7 @@ export namespace ListPlatformsOfAllSessionsRequest {
     export type AsObject = {
         parent: string,
         sessionFilter?: SessionFilter.AsObject,
+        fieldMask?: google_protobuf_field_mask_pb.FieldMask.AsObject,
     }
 }
 
@@ -2026,6 +2086,11 @@ export class ListAccountIdsOfAllSessionsRequest extends jspb.Message {
     getSessionFilter(): SessionFilter | undefined;
     setSessionFilter(value?: SessionFilter): ListAccountIdsOfAllSessionsRequest;
 
+    hasFieldMask(): boolean;
+    clearFieldMask(): void;
+    getFieldMask(): google_protobuf_field_mask_pb.FieldMask | undefined;
+    setFieldMask(value?: google_protobuf_field_mask_pb.FieldMask): ListAccountIdsOfAllSessionsRequest;
+
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): ListAccountIdsOfAllSessionsRequest.AsObject;
     static toObject(includeInstance: boolean, msg: ListAccountIdsOfAllSessionsRequest): ListAccountIdsOfAllSessionsRequest.AsObject;
@@ -2040,6 +2105,7 @@ export namespace ListAccountIdsOfAllSessionsRequest {
     export type AsObject = {
         parent: string,
         sessionFilter?: SessionFilter.AsObject,
+        fieldMask?: google_protobuf_field_mask_pb.FieldMask.AsObject,
     }
 }
 
@@ -2170,6 +2236,11 @@ export class ListOriginIdsOfAllSessionsRequest extends jspb.Message {
     getSessionFilter(): SessionFilter | undefined;
     setSessionFilter(value?: SessionFilter): ListOriginIdsOfAllSessionsRequest;
 
+    hasFieldMask(): boolean;
+    clearFieldMask(): void;
+    getFieldMask(): google_protobuf_field_mask_pb.FieldMask | undefined;
+    setFieldMask(value?: google_protobuf_field_mask_pb.FieldMask): ListOriginIdsOfAllSessionsRequest;
+
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): ListOriginIdsOfAllSessionsRequest.AsObject;
     static toObject(includeInstance: boolean, msg: ListOriginIdsOfAllSessionsRequest): ListOriginIdsOfAllSessionsRequest.AsObject;
@@ -2184,6 +2255,7 @@ export namespace ListOriginIdsOfAllSessionsRequest {
     export type AsObject = {
         parent: string,
         sessionFilter?: SessionFilter.AsObject,
+        fieldMask?: google_protobuf_field_mask_pb.FieldMask.AsObject,
     }
 }
 
@@ -2342,6 +2414,11 @@ export class ListSessionCommentsRequest extends jspb.Message {
     getPageToken(): string;
     setPageToken(value: string): ListSessionCommentsRequest;
 
+    hasFieldMask(): boolean;
+    clearFieldMask(): void;
+    getFieldMask(): google_protobuf_field_mask_pb.FieldMask | undefined;
+    setFieldMask(value?: google_protobuf_field_mask_pb.FieldMask): ListSessionCommentsRequest;
+
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): ListSessionCommentsRequest.AsObject;
     static toObject(includeInstance: boolean, msg: ListSessionCommentsRequest): ListSessionCommentsRequest.AsObject;
@@ -2356,6 +2433,7 @@ export namespace ListSessionCommentsRequest {
     export type AsObject = {
         sessionId: string,
         pageToken: string,
+        fieldMask?: google_protobuf_field_mask_pb.FieldMask.AsObject,
     }
 }
 
@@ -2441,6 +2519,11 @@ export class GetSessionReviewRequest extends jspb.Message {
     getSessionReviewView(): SessionReview.View;
     setSessionReviewView(value: SessionReview.View): GetSessionReviewRequest;
 
+    hasFieldMask(): boolean;
+    clearFieldMask(): void;
+    getFieldMask(): google_protobuf_field_mask_pb.FieldMask | undefined;
+    setFieldMask(value?: google_protobuf_field_mask_pb.FieldMask): GetSessionReviewRequest;
+
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): GetSessionReviewRequest.AsObject;
     static toObject(includeInstance: boolean, msg: GetSessionReviewRequest): GetSessionReviewRequest.AsObject;
@@ -2455,6 +2538,7 @@ export namespace GetSessionReviewRequest {
     export type AsObject = {
         sessionReviewId: string,
         sessionReviewView: SessionReview.View,
+        fieldMask?: google_protobuf_field_mask_pb.FieldMask.AsObject,
     }
 }
 
@@ -2463,6 +2547,11 @@ export class GetLatestSessionReviewRequest extends jspb.Message {
     setSessionId(value: string): GetLatestSessionReviewRequest;
     getSessionReviewView(): SessionReview.View;
     setSessionReviewView(value: SessionReview.View): GetLatestSessionReviewRequest;
+
+    hasFieldMask(): boolean;
+    clearFieldMask(): void;
+    getFieldMask(): google_protobuf_field_mask_pb.FieldMask | undefined;
+    setFieldMask(value?: google_protobuf_field_mask_pb.FieldMask): GetLatestSessionReviewRequest;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): GetLatestSessionReviewRequest.AsObject;
@@ -2478,6 +2567,7 @@ export namespace GetLatestSessionReviewRequest {
     export type AsObject = {
         sessionId: string,
         sessionReviewView: SessionReview.View,
+        fieldMask?: google_protobuf_field_mask_pb.FieldMask.AsObject,
     }
 }
 
@@ -2757,6 +2847,11 @@ export class GetAudioFilesRequest extends jspb.Message {
     getSortingMode(): ondewo_nlu_common_pb.SortingMode;
     setSortingMode(value: ondewo_nlu_common_pb.SortingMode): GetAudioFilesRequest;
 
+    hasFieldMask(): boolean;
+    clearFieldMask(): void;
+    getFieldMask(): google_protobuf_field_mask_pb.FieldMask | undefined;
+    setFieldMask(value?: google_protobuf_field_mask_pb.FieldMask): GetAudioFilesRequest;
+
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): GetAudioFilesRequest.AsObject;
     static toObject(includeInstance: boolean, msg: GetAudioFilesRequest): GetAudioFilesRequest.AsObject;
@@ -2774,6 +2869,7 @@ export namespace GetAudioFilesRequest {
         resourceView: ResourceView,
         pageToken: string,
         sortingMode: ondewo_nlu_common_pb.SortingMode,
+        fieldMask?: google_protobuf_field_mask_pb.FieldMask.AsObject,
     }
 }
 
@@ -2923,6 +3019,11 @@ export class ListAudioFilesRequest extends jspb.Message {
     getSortingMode(): ondewo_nlu_common_pb.SortingMode;
     setSortingMode(value: ondewo_nlu_common_pb.SortingMode): ListAudioFilesRequest;
 
+    hasFieldMask(): boolean;
+    clearFieldMask(): void;
+    getFieldMask(): google_protobuf_field_mask_pb.FieldMask | undefined;
+    setFieldMask(value?: google_protobuf_field_mask_pb.FieldMask): ListAudioFilesRequest;
+
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): ListAudioFilesRequest.AsObject;
     static toObject(includeInstance: boolean, msg: ListAudioFilesRequest): ListAudioFilesRequest.AsObject;
@@ -2940,6 +3041,7 @@ export namespace ListAudioFilesRequest {
         resourceView: ResourceView,
         pageToken: string,
         sortingMode: ondewo_nlu_common_pb.SortingMode,
+        fieldMask?: google_protobuf_field_mask_pb.FieldMask.AsObject,
     }
 }
 
@@ -2979,6 +3081,11 @@ export class GetAudioFileOfSessionRequest extends jspb.Message {
     getResourceView(): ResourceView;
     setResourceView(value: ResourceView): GetAudioFileOfSessionRequest;
 
+    hasFieldMask(): boolean;
+    clearFieldMask(): void;
+    getFieldMask(): google_protobuf_field_mask_pb.FieldMask | undefined;
+    setFieldMask(value?: google_protobuf_field_mask_pb.FieldMask): GetAudioFileOfSessionRequest;
+
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): GetAudioFileOfSessionRequest.AsObject;
     static toObject(includeInstance: boolean, msg: GetAudioFileOfSessionRequest): GetAudioFileOfSessionRequest.AsObject;
@@ -2994,6 +3101,7 @@ export namespace GetAudioFileOfSessionRequest {
         parent: string,
         sessionId: string,
         resourceView: ResourceView,
+        fieldMask?: google_protobuf_field_mask_pb.FieldMask.AsObject,
     }
 }
 

@@ -36,6 +36,7 @@ interface IAgentsService extends grpc.ServiceDefinition<grpc.UntypedServiceImple
     exportAgent: IAgentsService_IExportAgent;
     exportBenchmarkAgent: IAgentsService_IExportBenchmarkAgent;
     importAgent: IAgentsService_IImportAgent;
+    migrateAgent: IAgentsService_IMigrateAgent;
     optimizeRankingMatch: IAgentsService_IOptimizeRankingMatch;
     restoreAgent: IAgentsService_IRestoreAgent;
     getAgentStatistics: IAgentsService_IGetAgentStatistics;
@@ -219,6 +220,15 @@ interface IAgentsService_IImportAgent extends grpc.MethodDefinition<ondewo_nlu_a
     responseStream: false;
     requestSerialize: grpc.serialize<ondewo_nlu_agent_pb.ImportAgentRequest>;
     requestDeserialize: grpc.deserialize<ondewo_nlu_agent_pb.ImportAgentRequest>;
+    responseSerialize: grpc.serialize<ondewo_nlu_operations_pb.Operation>;
+    responseDeserialize: grpc.deserialize<ondewo_nlu_operations_pb.Operation>;
+}
+interface IAgentsService_IMigrateAgent extends grpc.MethodDefinition<ondewo_nlu_agent_pb.MigrateAgentRequest, ondewo_nlu_operations_pb.Operation> {
+    path: "/ondewo.nlu.Agents/MigrateAgent";
+    requestStream: false;
+    responseStream: false;
+    requestSerialize: grpc.serialize<ondewo_nlu_agent_pb.MigrateAgentRequest>;
+    requestDeserialize: grpc.deserialize<ondewo_nlu_agent_pb.MigrateAgentRequest>;
     responseSerialize: grpc.serialize<ondewo_nlu_operations_pb.Operation>;
     responseDeserialize: grpc.deserialize<ondewo_nlu_operations_pb.Operation>;
 }
@@ -442,6 +452,7 @@ export interface IAgentsServer {
     exportAgent: grpc.handleUnaryCall<ondewo_nlu_agent_pb.ExportAgentRequest, ondewo_nlu_operations_pb.Operation>;
     exportBenchmarkAgent: grpc.handleUnaryCall<ondewo_nlu_agent_pb.ExportBenchmarkAgentRequest, ondewo_nlu_operations_pb.Operation>;
     importAgent: grpc.handleUnaryCall<ondewo_nlu_agent_pb.ImportAgentRequest, ondewo_nlu_operations_pb.Operation>;
+    migrateAgent: grpc.handleUnaryCall<ondewo_nlu_agent_pb.MigrateAgentRequest, ondewo_nlu_operations_pb.Operation>;
     optimizeRankingMatch: grpc.handleUnaryCall<ondewo_nlu_agent_pb.OptimizeRankingMatchRequest, ondewo_nlu_operations_pb.Operation>;
     restoreAgent: grpc.handleUnaryCall<ondewo_nlu_agent_pb.RestoreAgentRequest, ondewo_nlu_operations_pb.Operation>;
     getAgentStatistics: grpc.handleUnaryCall<ondewo_nlu_agent_pb.GetAgentStatisticsRequest, ondewo_nlu_agent_pb.GetAgentStatisticsResponse>;
@@ -521,6 +532,9 @@ export interface IAgentsClient {
     importAgent(request: ondewo_nlu_agent_pb.ImportAgentRequest, callback: (error: grpc.ServiceError | null, response: ondewo_nlu_operations_pb.Operation) => void): grpc.ClientUnaryCall;
     importAgent(request: ondewo_nlu_agent_pb.ImportAgentRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: ondewo_nlu_operations_pb.Operation) => void): grpc.ClientUnaryCall;
     importAgent(request: ondewo_nlu_agent_pb.ImportAgentRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: ondewo_nlu_operations_pb.Operation) => void): grpc.ClientUnaryCall;
+    migrateAgent(request: ondewo_nlu_agent_pb.MigrateAgentRequest, callback: (error: grpc.ServiceError | null, response: ondewo_nlu_operations_pb.Operation) => void): grpc.ClientUnaryCall;
+    migrateAgent(request: ondewo_nlu_agent_pb.MigrateAgentRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: ondewo_nlu_operations_pb.Operation) => void): grpc.ClientUnaryCall;
+    migrateAgent(request: ondewo_nlu_agent_pb.MigrateAgentRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: ondewo_nlu_operations_pb.Operation) => void): grpc.ClientUnaryCall;
     optimizeRankingMatch(request: ondewo_nlu_agent_pb.OptimizeRankingMatchRequest, callback: (error: grpc.ServiceError | null, response: ondewo_nlu_operations_pb.Operation) => void): grpc.ClientUnaryCall;
     optimizeRankingMatch(request: ondewo_nlu_agent_pb.OptimizeRankingMatchRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: ondewo_nlu_operations_pb.Operation) => void): grpc.ClientUnaryCall;
     optimizeRankingMatch(request: ondewo_nlu_agent_pb.OptimizeRankingMatchRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: ondewo_nlu_operations_pb.Operation) => void): grpc.ClientUnaryCall;
@@ -645,6 +659,9 @@ export class AgentsClient extends grpc.Client implements IAgentsClient {
     public importAgent(request: ondewo_nlu_agent_pb.ImportAgentRequest, callback: (error: grpc.ServiceError | null, response: ondewo_nlu_operations_pb.Operation) => void): grpc.ClientUnaryCall;
     public importAgent(request: ondewo_nlu_agent_pb.ImportAgentRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: ondewo_nlu_operations_pb.Operation) => void): grpc.ClientUnaryCall;
     public importAgent(request: ondewo_nlu_agent_pb.ImportAgentRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: ondewo_nlu_operations_pb.Operation) => void): grpc.ClientUnaryCall;
+    public migrateAgent(request: ondewo_nlu_agent_pb.MigrateAgentRequest, callback: (error: grpc.ServiceError | null, response: ondewo_nlu_operations_pb.Operation) => void): grpc.ClientUnaryCall;
+    public migrateAgent(request: ondewo_nlu_agent_pb.MigrateAgentRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: ondewo_nlu_operations_pb.Operation) => void): grpc.ClientUnaryCall;
+    public migrateAgent(request: ondewo_nlu_agent_pb.MigrateAgentRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: ondewo_nlu_operations_pb.Operation) => void): grpc.ClientUnaryCall;
     public optimizeRankingMatch(request: ondewo_nlu_agent_pb.OptimizeRankingMatchRequest, callback: (error: grpc.ServiceError | null, response: ondewo_nlu_operations_pb.Operation) => void): grpc.ClientUnaryCall;
     public optimizeRankingMatch(request: ondewo_nlu_agent_pb.OptimizeRankingMatchRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: ondewo_nlu_operations_pb.Operation) => void): grpc.ClientUnaryCall;
     public optimizeRankingMatch(request: ondewo_nlu_agent_pb.OptimizeRankingMatchRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: ondewo_nlu_operations_pb.Operation) => void): grpc.ClientUnaryCall;
