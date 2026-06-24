@@ -5,3 +5,7 @@
 node_modules
 npm
 tmp
+.test-build
+.test-build/
+coverage/
+.nyc_output/
