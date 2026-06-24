@@ -78,6 +78,22 @@ function makeFetchStub(responses: QueuedResponse[]): FetchStub {
 	return fetchStub;
 }
 
+// Builds a fetch stub that replies once with a raw (possibly non-JSON or empty) text body.
+// Needed for the transport edge paths that makeFetchStub cannot express because it always
+// JSON-stringifies its queued body.
+function makeRawFetchStub(rawText: string, ok: boolean, status: number): FetchLike {
+	return (): Promise<FetchResponseLike> => {
+		const response: FetchResponseLike = {
+			ok,
+			status,
+			text(): Promise<string> {
+				return Promise.resolve(rawText);
+			}
+		};
+		return Promise.resolve(response);
+	};
+}
+
 nodeTest('buildTokenEndpoint constructs the realm token URL and trims trailing slashes', () => {
 	assert.equal(buildTokenEndpoint(KEYCLOAK_URL, REALM), EXPECTED_ENDPOINT);
 	assert.equal(buildTokenEndpoint(KEYCLOAK_URL + '///', REALM), EXPECTED_ENDPOINT);
@@ -207,4 +223,137 @@ nodeTest('login surfaces a Keycloak error_description on invalid_grant', async (
 		}),
 		/Invalid user credentials/
 	);
+});
+
+nodeTest('login falls back to error then text then HTTP status when no error_description is present', async () => {
+	// error_description absent → falls back to the bare `error` code.
+	await assert.rejects(
+		login({
+			keycloakUrl: KEYCLOAK_URL,
+			realm: REALM,
+			clientId: CLIENT_ID,
+			username: USERNAME,
+			password: 'wrong',
+			fetch: makeFetchStub([{ ok: false, status: 401, body: { error: 'invalid_client' } }])
+		}),
+		/Keycloak token request failed \(401\): invalid_client/
+	);
+
+	// No error/error_description either → falls back to the raw response text.
+	await assert.rejects(
+		login({
+			keycloakUrl: KEYCLOAK_URL,
+			realm: REALM,
+			clientId: CLIENT_ID,
+			username: USERNAME,
+			password: 'wrong',
+			fetch: makeFetchStub([{ ok: false, status: 503, body: {} }])
+		}),
+		/Keycloak token request failed \(503\): \{\}/
+	);
+
+	// Empty body too → falls back to the "HTTP <status>" placeholder.
+	await assert.rejects(
+		login({
+			keycloakUrl: KEYCLOAK_URL,
+			realm: REALM,
+			clientId: CLIENT_ID,
+			username: USERNAME,
+			password: 'wrong',
+			fetch: makeRawFetchStub('', false, 500)
+		}),
+		/Keycloak token request failed \(500\): HTTP 500/
+	);
+});
+
+nodeTest('login rejects when the token endpoint returns a non-JSON response', async () => {
+	await assert.rejects(
+		login({
+			keycloakUrl: KEYCLOAK_URL,
+			realm: REALM,
+			clientId: CLIENT_ID,
+			username: USERNAME,
+			password: PASSWORD,
+			fetch: makeRawFetchStub('<html>502 Bad Gateway</html>', true, 200)
+		}),
+		/non-JSON response: <html>502 Bad Gateway<\/html>/
+	);
+});
+
+nodeTest('login rejects when the token response contains no access_token', async () => {
+	await assert.rejects(
+		login({
+			keycloakUrl: KEYCLOAK_URL,
+			realm: REALM,
+			clientId: CLIENT_ID,
+			username: USERNAME,
+			password: PASSWORD,
+			// 2xx body without an access_token (only a refresh_token) → applyTokenResponse throws.
+			fetch: makeFetchStub([{ body: { refresh_token: 'offline-1', expires_in: 300 } }])
+		}),
+		/did not contain an access_token/
+	);
+});
+
+nodeTest('stop() makes subsequent getAccessToken fail fast without a refresh call', async () => {
+	const fetchStub: FetchStub = makeFetchStub([
+		{ body: { access_token: 'access-1', refresh_token: 'offline-1', expires_in: 300 } }
+	]);
+	const provider: OfflineTokenProvider = await login({
+		keycloakUrl: KEYCLOAK_URL,
+		realm: REALM,
+		clientId: CLIENT_ID,
+		username: USERNAME,
+		password: PASSWORD,
+		fetch: fetchStub
+	});
+
+	provider.stop();
+	await assert.rejects(provider.getAccessToken(), /tokenExpirationInS elapsed/);
+	// stop() short-circuits before any refresh: only the initial login call was made.
+	assert.equal(fetchStub.calls.length, 1);
+});
+
+nodeTest('login rejects when called without a configuration object', async () => {
+	await assert.rejects(login(null as unknown as Parameters<typeof login>[0]), /requires a configuration object/);
+});
+
+nodeTest('login uses globalThis.fetch when config.fetch is omitted', async () => {
+	const fetchStub: FetchStub = makeFetchStub([
+		{ body: { access_token: 'global-access-1', refresh_token: 'offline-1', expires_in: 300 } }
+	]);
+	const originalFetch: typeof globalThis.fetch = globalThis.fetch;
+	globalThis.fetch = fetchStub as unknown as typeof globalThis.fetch;
+	try {
+		const provider: OfflineTokenProvider = await login({
+			keycloakUrl: KEYCLOAK_URL,
+			realm: REALM,
+			clientId: CLIENT_ID,
+			username: USERNAME,
+			password: PASSWORD
+		});
+		assert.equal(await provider.getAccessToken(), 'global-access-1');
+		assert.equal(fetchStub.calls.length, 1);
+	} finally {
+		globalThis.fetch = originalFetch;
+	}
+});
+
+nodeTest('login rejects when no fetch implementation is available', async () => {
+	const originalFetch: typeof globalThis.fetch = globalThis.fetch;
+	delete (globalThis as { fetch?: typeof globalThis.fetch }).fetch;
+	try {
+		await assert.rejects(
+			login({
+				keycloakUrl: KEYCLOAK_URL,
+				realm: REALM,
+				clientId: CLIENT_ID,
+				username: USERNAME,
+				password: PASSWORD
+			}),
+			/No fetch implementation available/
+		);
+	} finally {
+		globalThis.fetch = originalFetch;
+	}
 });

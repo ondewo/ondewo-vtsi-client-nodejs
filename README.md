@@ -44,6 +44,33 @@ cd ondewo-vtsi-client-nodejs                                      ## Change into
 make setup_developer_environment_locally                         ## Install dependencies
 ```
 
+## Authentication (Keycloak offline token)
+
+For headless access, this package ships a reusable Keycloak auth helper. `login(...)` performs a
+Resource-Owner-Password-Credentials (ROPC) grant with `scope=offline_access` against a **public**
+Keycloak client (no `client_secret`), then auto-refreshes the short-lived access token from the
+returned offline refresh token. Attach the resulting access token as the standard
+`Authorization: Bearer <jwt>` gRPC metadata. The refresh loop stops once `tokenExpirationInS` has
+elapsed (when given).
+
+```typescript
+import { Metadata } from '@grpc/grpc-js';
+import { login } from '@ondewo/vtsi-client-nodejs';
+
+const tokenProvider = await login({
+	keycloakUrl: 'https://my-host/auth',
+	realm: 'ondewo-ccai-platform',
+	clientId: 'ondewo-nlu-cai-sdk-public', // public client, no secret
+	username: 'tech-user@example.com',
+	password: '<password>',
+	tokenExpirationInS: 3600 // optional: stop auto-refresh after this many seconds
+});
+
+const metadata = new Metadata();
+metadata.set('Authorization', `Bearer ${await tokenProvider.getAccessToken()}`);
+// ... use `metadata` with any generated VTSI/NLU gRPC client call
+```
+
 ## Package structure
 
 ```

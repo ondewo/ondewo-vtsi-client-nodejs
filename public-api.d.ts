@@ -1,3 +1,4 @@
+export * from './auth/offlineTokenProvider.d';
 export * from './api/ondewo/sip/sip_grpc_pb.d';
 export * from './api/ondewo/sip/sip_pb.d';
 export * from './api/ondewo/qa/qa_pb.d';
