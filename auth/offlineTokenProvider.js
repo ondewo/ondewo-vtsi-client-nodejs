@@ -24,13 +24,32 @@ Object.defineProperty(exports, '__esModule', { value: true });
 exports.OfflineTokenProvider = void 0;
 exports.buildTokenEndpoint = buildTokenEndpoint;
 exports.login = login;
+/**
+ * Number of seconds before the access-token `exp` at which {@link OfflineTokenProvider.getAccessToken}
+ * proactively refreshes, so a token returned to a caller is never within this window of expiring.
+ */
 const DEFAULT_REFRESH_SKEW_S = 30;
-/** Builds the realm token endpoint URL from a Keycloak base URL + realm. */
+/**
+ * Builds the realm token endpoint URL from a Keycloak base URL + realm.
+ *
+ * @param keycloakUrl Keycloak base URL, e.g. `https://host/auth`; any trailing slashes are trimmed.
+ * @param realm Realm name; URL-encoded into the path.
+ * @returns The fully-qualified OpenID-Connect token endpoint URL for the realm.
+ */
 function buildTokenEndpoint(keycloakUrl, realm) {
 	const base = keycloakUrl.replace(/\/+$/, '');
 	return base + '/realms/' + encodeURIComponent(realm) + '/protocol/openid-connect/token';
 }
-/** Performs a token request against the Keycloak token endpoint and returns the parsed body. */
+/**
+ * Performs a token request against the Keycloak token endpoint and returns the parsed body.
+ *
+ * @param tokenEndpoint Absolute realm token endpoint URL (from {@link buildTokenEndpoint}).
+ * @param form Form-encoded grant parameters (e.g. `grant_type`, `client_id`).
+ * @param fetchImpl Fetch implementation used to issue the HTTP POST.
+ * @returns A promise resolving to the parsed {@link TokenResponseBody} on success.
+ * @throws {Error} When the response body is non-empty but not valid JSON, or when the HTTP
+ *   status is not `ok` (the message carries the Keycloak error detail).
+ */
 async function requestToken(tokenEndpoint, form, fetchImpl) {
 	const response = await fetchImpl(tokenEndpoint, {
 		method: 'POST',
@@ -60,6 +79,12 @@ async function requestToken(tokenEndpoint, form, fetchImpl) {
  * offline refresh token, and exposes it for the `Authorization: Bearer` gRPC metadata.
  */
 class OfflineTokenProvider {
+	/**
+	 * Creates a provider; call {@link login} before requesting tokens.
+	 *
+	 * @param config Resolved provider configuration (endpoint, client id, credentials, optional deadline).
+	 * @param fetchImpl Fetch implementation used for every token-endpoint request.
+	 */
 	constructor(config, fetchImpl) {
 		this.tokenEndpoint = buildTokenEndpoint(config.keycloakUrl, config.realm);
 		this.clientId = config.clientId;
@@ -73,7 +98,15 @@ class OfflineTokenProvider {
 		this.deadlineMs = undefined;
 		this.stopped = false;
 	}
-	/** One-time ROPC login with `scope=offline_access` against the public client. */
+	/**
+	 * One-time ROPC login with `scope=offline_access` against the public client.
+	 *
+	 * Stores the returned access/refresh tokens and, when `tokenExpirationInS` is set, records the
+	 * session deadline relative to now.
+	 *
+	 * @returns A promise that resolves once the tokens have been stored.
+	 * @throws {Error} When the token request fails or the response carries no `access_token`.
+	 */
 	async login() {
 		const form = new URLSearchParams();
 		form.set('grant_type', 'password');
@@ -87,7 +120,12 @@ class OfflineTokenProvider {
 			this.deadlineMs = Date.now() + this.tokenExpirationInS * 1000;
 		}
 	}
-	/** Exchanges the offline refresh token for a fresh access token. */
+	/**
+	 * Exchanges the offline refresh token for a fresh access token.
+	 *
+	 * @returns A promise that resolves once the new tokens have been stored.
+	 * @throws {Error} When the refresh request fails or the response carries no `access_token`.
+	 */
 	async refresh() {
 		const form = new URLSearchParams();
 		form.set('grant_type', 'refresh_token');
@@ -96,7 +134,15 @@ class OfflineTokenProvider {
 		const body = await requestToken(this.tokenEndpoint, form, this.fetchImpl);
 		this.applyTokenResponse(body);
 	}
-	/** Stores the tokens from a token-endpoint response and records the access-token expiry. */
+	/**
+	 * Stores the tokens from a token-endpoint response and records the access-token expiry.
+	 *
+	 * The refresh token is only overwritten when the response carries a new one, so a refresh
+	 * grant that omits it keeps the existing offline token.
+	 *
+	 * @param body Parsed token-endpoint response body.
+	 * @throws {Error} When `body` has no `access_token`.
+	 */
 	applyTokenResponse(body) {
 		if (!body.access_token) {
 			throw new Error('Keycloak token response did not contain an access_token');
@@ -111,13 +157,21 @@ class OfflineTokenProvider {
 		}
 		this.accessExpiresAtMs = Date.now() + expiresInS * 1000;
 	}
-	/** True once `tokenExpirationInS` has elapsed since login (auto-refresh must then stop). */
+	/**
+	 * Reports whether the session deadline has passed.
+	 *
+	 * @returns `true` once `tokenExpirationInS` has elapsed since login (auto-refresh must then
+	 *   stop); always `false` when no deadline was configured.
+	 */
 	isExpired() {
 		return typeof this.deadlineMs === 'number' && Date.now() >= this.deadlineMs;
 	}
 	/**
 	 * Returns a valid access token, refreshing it first when it is within the skew window of
 	 * `exp`. Throws once `tokenExpirationInS` has elapsed (callers must re-login).
+	 *
+	 * @returns A promise resolving to a currently-valid access-token JWT.
+	 * @throws {Error} When the session is stopped or expired, or when an underlying refresh fails.
 	 */
 	async getAccessToken() {
 		if (this.stopped || this.isExpired()) {
@@ -130,12 +184,22 @@ class OfflineTokenProvider {
 		}
 		return this.accessToken;
 	}
-	/** Returns the gRPC metadata header object for the current access token. */
+	/**
+	 * Returns the gRPC metadata header object for the current access token.
+	 *
+	 * @returns A promise resolving to an object with a single `Authorization: 'Bearer <jwt>'` entry,
+	 *   ready to attach as gRPC call metadata.
+	 * @throws {Error} When the session is stopped or expired, or when an underlying refresh fails.
+	 */
 	async getAuthorizationMetadata() {
 		const token = await this.getAccessToken();
 		return { Authorization: 'Bearer ' + token };
 	}
-	/** Stops the session so subsequent token access fails fast. */
+	/**
+	 * Stops the session so subsequent token access fails fast.
+	 *
+	 * @returns Nothing; after this call {@link getAccessToken} rejects without issuing a refresh.
+	 */
 	stop() {
 		this.stopped = true;
 	}
@@ -147,6 +211,8 @@ exports.OfflineTokenProvider = OfflineTokenProvider;
  *
  * @param config login configuration; `fetch` may be injected for tests (defaults to global `fetch`).
  * @returns a live provider whose `getAccessToken` / `getAuthorizationMetadata` yield a fresh JWT.
+ * @throws {Error} When `config` is missing/not an object, a required field is empty, no fetch
+ *   implementation is available, or the initial login request fails.
  */
 async function login(config) {
 	if (!config || typeof config !== 'object') {

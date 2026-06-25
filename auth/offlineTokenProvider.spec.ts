@@ -27,31 +27,55 @@ import {
 	OfflineTokenProvider
 } from './offlineTokenProvider';
 
+/** Keycloak base URL used across the tests. */
 const KEYCLOAK_URL: string = 'https://kc.example.com/auth';
+/** Realm name used across the tests. */
 const REALM: string = 'ondewo-ccai-platform';
+/** PUBLIC client id used across the tests. */
 const CLIENT_ID: string = 'ondewo-nlu-cai-sdk-public';
+/** Technical-user email used across the tests. */
 const USERNAME: string = 'tech-user@example.com';
+/** Technical-user password used across the tests. */
 const PASSWORD: string = 'secret-pw';
+/** Token endpoint that {@link buildTokenEndpoint} must produce from {@link KEYCLOAK_URL} + {@link REALM}. */
 const EXPECTED_ENDPOINT: string =
 	'https://kc.example.com/auth/realms/ondewo-ccai-platform/protocol/openid-connect/token';
 
+/** A single queued reply for {@link makeFetchStub}, modelling one Keycloak token-endpoint response. */
 interface QueuedResponse {
+	/** HTTP `ok` flag; defaults to `true` when omitted. */
 	ok?: boolean;
+	/** HTTP status code; defaults to `200` when omitted. */
 	status?: number;
+	/** Response body the stub JSON-stringifies and returns from `text()`. */
 	body: TokenResponseBody;
 }
 
+/** A request captured by {@link makeFetchStub}, exposing the URL, raw init, and parsed form params. */
 interface RecordedCall {
+	/** The request URL the provider called. */
 	url: string;
+	/** The raw request init (method, headers, form-encoded body) passed to fetch. */
 	init: { method: string; headers: Record<string, string>; body: string };
+	/** The request body parsed back into {@link URLSearchParams} for ergonomic assertions. */
 	params: URLSearchParams;
 }
 
+/** A {@link FetchLike} test double that additionally records every call it received. */
 interface FetchStub extends FetchLike {
+	/** Calls captured in invocation order. */
 	calls: RecordedCall[];
 }
 
-// Builds a fetch stub that records each call and replies from a queue of JSON bodies.
+/**
+ * Builds a fetch stub that records each call and replies from a queue of JSON bodies.
+ *
+ * Each invocation shifts the next {@link QueuedResponse} off the queue, JSON-stringifies its
+ * `body`, and returns it; running out of queued responses throws to surface an unexpected extra call.
+ *
+ * @param responses Replies to hand out, in call order.
+ * @returns A {@link FetchStub} whose `calls` array records every request it received.
+ */
 function makeFetchStub(responses: QueuedResponse[]): FetchStub {
 	const calls: RecordedCall[] = [];
 	const queue: QueuedResponse[] = responses.slice();
@@ -78,9 +102,17 @@ function makeFetchStub(responses: QueuedResponse[]): FetchStub {
 	return fetchStub;
 }
 
-// Builds a fetch stub that replies once with a raw (possibly non-JSON or empty) text body.
-// Needed for the transport edge paths that makeFetchStub cannot express because it always
-// JSON-stringifies its queued body.
+/**
+ * Builds a fetch stub that replies once with a raw (possibly non-JSON or empty) text body.
+ *
+ * Needed for the transport edge paths that {@link makeFetchStub} cannot express because it always
+ * JSON-stringifies its queued body.
+ *
+ * @param rawText Exact text the stub returns from `text()` (may be empty or non-JSON).
+ * @param ok HTTP `ok` flag to report.
+ * @param status HTTP status code to report.
+ * @returns A {@link FetchLike} that always resolves with the given raw response.
+ */
 function makeRawFetchStub(rawText: string, ok: boolean, status: number): FetchLike {
 	return (): Promise<FetchResponseLike> => {
 		const response: FetchResponseLike = {
@@ -94,11 +126,13 @@ function makeRawFetchStub(rawText: string, ok: boolean, status: number): FetchLi
 	};
 }
 
+/** {@link buildTokenEndpoint} produces the realm token URL and trims trailing slashes off the base. */
 nodeTest('buildTokenEndpoint constructs the realm token URL and trims trailing slashes', () => {
 	assert.equal(buildTokenEndpoint(KEYCLOAK_URL, REALM), EXPECTED_ENDPOINT);
 	assert.equal(buildTokenEndpoint(KEYCLOAK_URL + '///', REALM), EXPECTED_ENDPOINT);
 });
 
+/** {@link login} issues a ROPC password grant with `scope=offline_access` and no `client_secret`. */
 nodeTest('login performs ROPC with scope=offline_access against the PUBLIC client (no client_secret)', async () => {
 	const fetchStub: FetchStub = makeFetchStub([
 		{ body: { access_token: 'access-1', refresh_token: 'offline-1', expires_in: 300 } }
@@ -130,6 +164,7 @@ nodeTest('login performs ROPC with scope=offline_access against the PUBLIC clien
 	assert.equal(token, 'access-1');
 });
 
+/** {@link OfflineTokenProvider.getAuthorizationMetadata} wraps the current token in a Bearer header. */
 nodeTest('getAuthorizationMetadata returns the Bearer header for the current access token', async () => {
 	const fetchStub: FetchStub = makeFetchStub([
 		{ body: { access_token: 'access-1', refresh_token: 'offline-1', expires_in: 300 } }
@@ -147,6 +182,7 @@ nodeTest('getAuthorizationMetadata returns the Bearer header for the current acc
 	assert.deepEqual(metadata, { Authorization: 'Bearer access-1' });
 });
 
+/** When the access token is within the skew window, `getAccessToken` refreshes via the offline token. */
 nodeTest('access token auto-refreshes from the offline refresh token when near expiry', async () => {
 	const fetchStub: FetchStub = makeFetchStub([
 		// Initial login: expires_in=0 forces the next getAccessToken into the skew window.
@@ -174,6 +210,7 @@ nodeTest('access token auto-refreshes from the offline refresh token when near e
 	assert.equal(refreshCall.params.get('client_secret'), null);
 });
 
+/** A `tokenExpirationInS` deadline marks the session expired so `getAccessToken` throws, no refresh. */
 nodeTest('tokenExpirationInS stops the refresh loop and getAccessToken then throws', async () => {
 	const fetchStub: FetchStub = makeFetchStub([
 		{ body: { access_token: 'access-1', refresh_token: 'offline-1', expires_in: 300 } }
@@ -194,6 +231,7 @@ nodeTest('tokenExpirationInS stops the refresh loop and getAccessToken then thro
 	assert.equal(fetchStub.calls.length, 1);
 });
 
+/** {@link login} rejects up front when a required config field (here `password`) is empty. */
 nodeTest('login rejects when a required config field is missing', async () => {
 	await assert.rejects(
 		login({
@@ -208,6 +246,7 @@ nodeTest('login rejects when a required config field is missing', async () => {
 	);
 });
 
+/** On an HTTP error, {@link login} surfaces the Keycloak `error_description` in the thrown message. */
 nodeTest('login surfaces a Keycloak error_description on invalid_grant', async () => {
 	const fetchStub: FetchStub = makeFetchStub([
 		{ ok: false, status: 401, body: { error: 'invalid_grant', error_description: 'Invalid user credentials' } }
@@ -225,6 +264,7 @@ nodeTest('login surfaces a Keycloak error_description on invalid_grant', async (
 	);
 });
 
+/** The error message degrades gracefully: `error_description` → `error` → raw text → `HTTP <status>`. */
 nodeTest('login falls back to error then text then HTTP status when no error_description is present', async () => {
 	// error_description absent → falls back to the bare `error` code.
 	await assert.rejects(
@@ -266,6 +306,7 @@ nodeTest('login falls back to error then text then HTTP status when no error_des
 	);
 });
 
+/** A non-JSON 2xx body (e.g. an HTML error page) makes {@link login} reject with the raw text. */
 nodeTest('login rejects when the token endpoint returns a non-JSON response', async () => {
 	await assert.rejects(
 		login({
@@ -280,6 +321,7 @@ nodeTest('login rejects when the token endpoint returns a non-JSON response', as
 	);
 });
 
+/** A 2xx body lacking `access_token` makes `applyTokenResponse` (via {@link login}) reject. */
 nodeTest('login rejects when the token response contains no access_token', async () => {
 	await assert.rejects(
 		login({
@@ -295,6 +337,7 @@ nodeTest('login rejects when the token response contains no access_token', async
 	);
 });
 
+/** {@link OfflineTokenProvider.stop} short-circuits `getAccessToken` to reject without a refresh. */
 nodeTest('stop() makes subsequent getAccessToken fail fast without a refresh call', async () => {
 	const fetchStub: FetchStub = makeFetchStub([
 		{ body: { access_token: 'access-1', refresh_token: 'offline-1', expires_in: 300 } }
@@ -314,10 +357,12 @@ nodeTest('stop() makes subsequent getAccessToken fail fast without a refresh cal
 	assert.equal(fetchStub.calls.length, 1);
 });
 
+/** {@link login} rejects when invoked with a non-object (here `null`) config argument. */
 nodeTest('login rejects when called without a configuration object', async () => {
 	await assert.rejects(login(null as unknown as Parameters<typeof login>[0]), /requires a configuration object/);
 });
 
+/** With `config.fetch` omitted, {@link login} falls back to `globalThis.fetch`. */
 nodeTest('login uses globalThis.fetch when config.fetch is omitted', async () => {
 	const fetchStub: FetchStub = makeFetchStub([
 		{ body: { access_token: 'global-access-1', refresh_token: 'offline-1', expires_in: 300 } }
@@ -339,6 +384,7 @@ nodeTest('login uses globalThis.fetch when config.fetch is omitted', async () =>
 	}
 });
 
+/** With neither `config.fetch` nor `globalThis.fetch` available, {@link login} rejects. */
 nodeTest('login rejects when no fetch implementation is available', async () => {
 	const originalFetch: typeof globalThis.fetch = globalThis.fetch;
 	delete (globalThis as { fetch?: typeof globalThis.fetch }).fetch;
