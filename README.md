@@ -71,6 +71,36 @@ metadata.set('Authorization', `Bearer ${await tokenProvider.getAccessToken()}`);
 // ... use `metadata` with any generated VTSI/NLU gRPC client call
 ```
 
+## Examples
+
+Runnable, self-contained examples live in [`examples/`](examples). They show how to construct a
+generated gRPC client, attach the Keycloak bearer token as `Authorization` metadata, call an RPC, and
+handle the response:
+
+- [`examples/listCallers.ts`](examples/listCallers.ts) — construct a `CallsClient` and list a VTSI
+  project's callers (the reusable, unit-tested RPC core).
+- [`examples/loginAndListCallers.ts`](examples/loginAndListCallers.ts) — the end-to-end flow wiring
+  `login(...)` to the ListCallers RPC.
+
+```typescript
+import { runListCallersExample } from './examples/loginAndListCallers';
+
+const callerNames = await runListCallersExample({
+	keycloakUrl: 'https://my-host/auth',
+	realm: 'ondewo-ccai-platform',
+	clientId: 'ondewo-nlu-cai-sdk-public', // public client, no secret
+	username: 'tech-user@example.com',
+	password: '<password>',
+	grpcTarget: 'localhost:40051',
+	vtsiProjectName: 'projects/my-vtsi-project'
+});
+console.log(callerNames);
+```
+
+The examples are covered by hermetic mock tests (`npm run test:examples`) that exercise the
+request-building, bearer-metadata, and response-handling logic with the gRPC client mocked — no live
+server required.
+
 ## Package structure
 
 ```
