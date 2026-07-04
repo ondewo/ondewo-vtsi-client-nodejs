@@ -177,12 +177,16 @@ export declare class OfflineTokenProvider {
 	/**
 	 * Returns the gRPC metadata header object for the current access token.
 	 *
-	 * @returns A promise resolving to an object with a single `Authorization: 'Bearer <jwt>'` entry,
-	 *   ready to attach as gRPC call metadata.
+	 * The key is the lowercase `authorization` required on the wire: native gRPC transports
+	 * (`@grpc/grpc-js`, grpc-python) normalize/reject a capitalized metadata key, so emitting it
+	 * lowercase keeps the bearer header valid across every SDK language.
+	 *
+	 * @returns A promise resolving to an object with a single lowercase `authorization: 'Bearer <jwt>'`
+	 *   entry, ready to attach as gRPC call metadata.
 	 * @throws {Error} When the session is stopped or expired, or when an underlying refresh fails.
 	 */
 	getAuthorizationMetadata(): Promise<{
-		Authorization: string;
+		authorization: string;
 	}>;
 	/**
 	 * Stops the session so subsequent token access fails fast.

@@ -110,7 +110,8 @@ export async function fetchCallerNames(
 ): Promise<string[]> {
 	const accessToken: string = await tokenSource.getAccessToken();
 	const metadata: Metadata = new Metadata();
-	metadata.set('Authorization', 'Bearer ' + accessToken);
+	// Lowercase `authorization`: native gRPC transports normalize/reject a capitalized metadata key.
+	metadata.set('authorization', 'Bearer ' + accessToken);
 
 	const request: ListCallersRequest = new ListCallersRequest();
 	request.setVtsiProjectName(vtsiProjectName);

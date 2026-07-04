@@ -15,8 +15,8 @@
 // End-to-end VTSI example wiring the Keycloak offline-token `login(...)` flow to the
 // ListCallers RPC. `login(...)` performs a ROPC + `offline_access` grant against a PUBLIC
 // Keycloak client and returns an auto-refreshing OfflineTokenProvider whose access token is
-// attached as `Authorization: Bearer <jwt>` metadata on every call (the current auth convention;
-// the legacy cai-token / HTTP-basic login was removed under the Keycloak migration).
+// attached as `Authorization: Bearer <jwt>` metadata on every call (the current, bearer-only auth
+// convention).
 
 import { login, OfflineTokenProvider } from '../auth/offlineTokenProvider';
 

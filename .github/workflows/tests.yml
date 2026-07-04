@@ -2,7 +2,7 @@ name: tests
 
 on:
   push:
-    branches: ["**"]
+    branches: ['**']
   pull_request:
 
 jobs:
@@ -14,7 +14,7 @@ jobs:
       - name: Set up Node.js 20
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: '20'
 
       - name: Install dependencies
         run: npm install --no-audit --no-fund
@@ -24,3 +24,8 @@ jobs:
       # node's built-in test runner under c8 with a >=90% line-coverage gate.
       - name: Unit tests + >=90% coverage gate on hand-written code
         run: npm test
+
+      - name: Typecheck + run example mock tests
+        run: |
+          npm run typecheck:examples
+          npm run test:examples

@@ -119,7 +119,11 @@ nodeTest(
 		assert.equal(stub.calls.length, 1);
 		const sent: RecordedListCall = stub.calls[0];
 		assert.equal(sent.request.getVtsiProjectName(), PROJECT_NAME);
-		assert.deepEqual(sent.metadata.get('Authorization'), ['Bearer ' + ACCESS_TOKEN]);
+		assert.deepEqual(sent.metadata.get('authorization'), ['Bearer ' + ACCESS_TOKEN]);
+		// The bearer header goes on the wire under the lowercase `authorization` key.
+		const wireKeys: string[] = Object.keys(sent.metadata.getMap());
+		assert.ok(wireKeys.includes('authorization'));
+		assert.ok(!wireKeys.includes('Authorization'));
 	}
 );
 

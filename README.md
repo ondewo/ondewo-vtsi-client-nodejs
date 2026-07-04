@@ -50,8 +50,9 @@ For headless access, this package ships a reusable Keycloak auth helper. `login(
 Resource-Owner-Password-Credentials (ROPC) grant with `scope=offline_access` against a **public**
 Keycloak client (no `client_secret`), then auto-refreshes the short-lived access token from the
 returned offline refresh token. Attach the resulting access token as the standard
-`Authorization: Bearer <jwt>` gRPC metadata. The refresh loop stops once `tokenExpirationInS` has
-elapsed (when given).
+`Authorization: Bearer <jwt>` gRPC metadata. `getAccessToken()` refreshes on demand when the token
+is within the skew window of `exp`; once `tokenExpirationInS` has elapsed it throws and re-login is
+required.
 
 ```typescript
 import { Metadata } from '@grpc/grpc-js';
@@ -67,7 +68,8 @@ const tokenProvider = await login({
 });
 
 const metadata = new Metadata();
-metadata.set('Authorization', `Bearer ${await tokenProvider.getAccessToken()}`);
+// Lowercase `authorization`: native gRPC transports normalize/reject a capitalized metadata key.
+metadata.set('authorization', `Bearer ${await tokenProvider.getAccessToken()}`);
 // ... use `metadata` with any generated VTSI/NLU gRPC client call
 ```
 
@@ -216,6 +218,14 @@ npm
 │       │   ├── text-to-speech_pb.d.ts
 │       │   └── text-to-speech_pb.js
 │       └── vtsi
+│           ├── calls_grpc_pb.d.ts
+│           ├── calls_grpc_pb.js
+│           ├── calls_pb.d.ts
+│           ├── calls_pb.js
+│           ├── projects_grpc_pb.d.ts
+│           ├── projects_grpc_pb.js
+│           ├── projects_pb.d.ts
+│           ├── projects_pb.js
 │           ├── voip_grpc_pb.d.ts
 │           ├── voip_grpc_pb.js
 │           ├── voip_pb.d.ts

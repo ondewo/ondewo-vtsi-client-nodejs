@@ -164,8 +164,11 @@ nodeTest('login performs ROPC with scope=offline_access against the PUBLIC clien
 	assert.equal(token, 'access-1');
 });
 
-/** {@link OfflineTokenProvider.getAuthorizationMetadata} wraps the current token in a Bearer header. */
-nodeTest('getAuthorizationMetadata returns the Bearer header for the current access token', async () => {
+/**
+ * {@link OfflineTokenProvider.getAuthorizationMetadata} wraps the current token in a Bearer header
+ * under the lowercase `authorization` key required by native gRPC transports.
+ */
+nodeTest('getAuthorizationMetadata returns a lowercase-authorization Bearer header', async () => {
 	const fetchStub: FetchStub = makeFetchStub([
 		{ body: { access_token: 'access-1', refresh_token: 'offline-1', expires_in: 300 } }
 	]);
@@ -178,8 +181,11 @@ nodeTest('getAuthorizationMetadata returns the Bearer header for the current acc
 		fetch: fetchStub
 	});
 
-	const metadata: { Authorization: string } = await provider.getAuthorizationMetadata();
-	assert.deepEqual(metadata, { Authorization: 'Bearer access-1' });
+	const metadata: { authorization: string } = await provider.getAuthorizationMetadata();
+	assert.deepEqual(metadata, { authorization: 'Bearer access-1' });
+	// The metadata key MUST be the lowercase `authorization` (grpc-js / grpc-python normalize or
+	// reject a capitalized key on the wire); assert the literal key, not a case-insensitive lookup.
+	assert.deepEqual(Object.keys(metadata), ['authorization']);
 });
 
 /** When the access token is within the skew window, `getAccessToken` refreshes via the offline token. */

@@ -11,3 +11,6 @@ src/
 ondewo-proto-compiler
 
 ondewo-vtsi-api
+
+.test-build/
+coverage/

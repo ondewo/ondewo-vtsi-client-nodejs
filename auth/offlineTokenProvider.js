@@ -19,7 +19,8 @@
 // performs Resource-Owner-Password-Credentials (ROPC) + `offline_access`, then
 // auto-refreshes the short-lived access token from the long-lived offline refresh token
 // so callers always have a fresh `Authorization: Bearer <jwt>` value to attach as gRPC
-// metadata. The refresh loop stops after `tokenExpirationInS` (when given).
+// metadata. getAccessToken() refreshes on demand when the token is within the skew window of
+// exp; once `tokenExpirationInS` has elapsed it throws and re-login is required.
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.OfflineTokenProvider = void 0;
 exports.buildTokenEndpoint = buildTokenEndpoint;
@@ -117,7 +118,8 @@ class OfflineTokenProvider {
 		const body = await requestToken(this.tokenEndpoint, form, this.fetchImpl);
 		this.applyTokenResponse(body);
 		if (typeof this.tokenExpirationInS === 'number') {
-			this.deadlineMs = Date.now() + this.tokenExpirationInS * 1000;
+			const boundMs = this.tokenExpirationInS * 1000;
+			this.deadlineMs = Date.now() + boundMs;
 		}
 	}
 	/**
@@ -155,7 +157,8 @@ class OfflineTokenProvider {
 		if (typeof body.expires_in === 'number') {
 			expiresInS = body.expires_in;
 		}
-		this.accessExpiresAtMs = Date.now() + expiresInS * 1000;
+		const expiresInMs = expiresInS * 1000;
+		this.accessExpiresAtMs = Date.now() + expiresInMs;
 	}
 	/**
 	 * Reports whether the session deadline has passed.
@@ -187,13 +190,17 @@ class OfflineTokenProvider {
 	/**
 	 * Returns the gRPC metadata header object for the current access token.
 	 *
-	 * @returns A promise resolving to an object with a single `Authorization: 'Bearer <jwt>'` entry,
-	 *   ready to attach as gRPC call metadata.
+	 * The key is the lowercase `authorization` required on the wire: native gRPC transports
+	 * (`@grpc/grpc-js`, grpc-python) normalize/reject a capitalized metadata key, so emitting it
+	 * lowercase keeps the bearer header valid across every SDK language.
+	 *
+	 * @returns A promise resolving to an object with a single lowercase `authorization: 'Bearer <jwt>'`
+	 *   entry, ready to attach as gRPC call metadata.
 	 * @throws {Error} When the session is stopped or expired, or when an underlying refresh fails.
 	 */
 	async getAuthorizationMetadata() {
 		const token = await this.getAccessToken();
-		return { Authorization: 'Bearer ' + token };
+		return { authorization: 'Bearer ' + token };
 	}
 	/**
 	 * Stops the session so subsequent token access fails fast.
