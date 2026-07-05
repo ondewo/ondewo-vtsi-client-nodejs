@@ -44,65 +44,6 @@ cd ondewo-vtsi-client-nodejs                                      ## Change into
 make setup_developer_environment_locally                         ## Install dependencies
 ```
 
-## Authentication (Keycloak offline token)
-
-For headless access, this package ships a reusable Keycloak auth helper. `login(...)` performs a
-Resource-Owner-Password-Credentials (ROPC) grant with `scope=offline_access` against a **public**
-Keycloak client (no `client_secret`), then auto-refreshes the short-lived access token from the
-returned offline refresh token. Attach the resulting access token as the standard
-`Authorization: Bearer <jwt>` gRPC metadata. `getAccessToken()` refreshes on demand when the token
-is within the skew window of `exp`; once `tokenExpirationInS` has elapsed it throws and re-login is
-required.
-
-```typescript
-import { Metadata } from '@grpc/grpc-js';
-import { login } from '@ondewo/vtsi-client-nodejs';
-
-const tokenProvider = await login({
-	keycloakUrl: 'https://my-host/auth',
-	realm: 'ondewo-ccai-platform',
-	clientId: 'ondewo-nlu-cai-sdk-public', // public client, no secret
-	username: 'tech-user@example.com',
-	password: '<password>',
-	tokenExpirationInS: 3600 // optional: stop auto-refresh after this many seconds
-});
-
-const metadata = new Metadata();
-// Lowercase `authorization`: native gRPC transports normalize/reject a capitalized metadata key.
-metadata.set('authorization', `Bearer ${await tokenProvider.getAccessToken()}`);
-// ... use `metadata` with any generated VTSI/NLU gRPC client call
-```
-
-## Examples
-
-Runnable, self-contained examples live in [`examples/`](examples). They show how to construct a
-generated gRPC client, attach the Keycloak bearer token as `Authorization` metadata, call an RPC, and
-handle the response:
-
-- [`examples/listCallers.ts`](examples/listCallers.ts) — construct a `CallsClient` and list a VTSI
-  project's callers (the reusable, unit-tested RPC core).
-- [`examples/loginAndListCallers.ts`](examples/loginAndListCallers.ts) — the end-to-end flow wiring
-  `login(...)` to the ListCallers RPC.
-
-```typescript
-import { runListCallersExample } from './examples/loginAndListCallers';
-
-const callerNames = await runListCallersExample({
-	keycloakUrl: 'https://my-host/auth',
-	realm: 'ondewo-ccai-platform',
-	clientId: 'ondewo-nlu-cai-sdk-public', // public client, no secret
-	username: 'tech-user@example.com',
-	password: '<password>',
-	grpcTarget: 'localhost:40051',
-	vtsiProjectName: 'projects/my-vtsi-project'
-});
-console.log(callerNames);
-```
-
-The examples are covered by hermetic mock tests (`npm run test:examples`) that exercise the
-request-building, bearer-metadata, and response-handling logic with the gRPC client mocked — no live
-server required.
-
 ## Package structure
 
 ```
@@ -218,14 +159,6 @@ npm
 │       │   ├── text-to-speech_pb.d.ts
 │       │   └── text-to-speech_pb.js
 │       └── vtsi
-│           ├── calls_grpc_pb.d.ts
-│           ├── calls_grpc_pb.js
-│           ├── calls_pb.d.ts
-│           ├── calls_pb.js
-│           ├── projects_grpc_pb.d.ts
-│           ├── projects_grpc_pb.js
-│           ├── projects_pb.d.ts
-│           ├── projects_pb.js
 │           ├── voip_grpc_pb.d.ts
 │           ├── voip_grpc_pb.js
 │           ├── voip_pb.d.ts
@@ -237,7 +170,7 @@ npm
 └── README.md
 ```
 
-[comment]: <> (START OF GITHUB README)
+[comment]: <> 'START OF GITHUB README'
 
 ## Build
 
@@ -273,7 +206,6 @@ TODO after PR merge:
   ```
 - Adjust `ONDEWO_VTSI_VERSION` in the `Makefile` <br><br>
 - Add new Release Notes to `src/RELEASE.md` in following format:
-
   ```
   ## Release ONDEWO VTSI Nodejs Client X.X.X    <----- Beginning of Notes
 
@@ -281,13 +213,13 @@ TODO after PR merge:
 
   *****************                             <----- End of Notes
   ```
-
 - release
   ```shell
   make ondewo_release
   ```
-  <br>
-  The release process can be divided into 6 Steps:
+
+<br>
+The release process can be divided into 6 Steps:
 
 1. `build` specified version of the `ondewo-vtsi-api`
 2. `commit and push` all changes in code resulting from the `build`
@@ -298,4 +230,4 @@ TODO after PR merge:
 
 > :warning: The Release Automation checks if the build has created all the proto-code files, but it does not check the code-integrity. Please build and test the generated code prior to starting the release process.
 
-[comment]: <> (END OF GITHUB README)
+[comment]: <> 'END OF GITHUB README'

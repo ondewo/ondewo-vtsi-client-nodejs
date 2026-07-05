@@ -14,3 +14,8 @@ ondewo-vtsi-api
 
 .test-build/
 coverage/
+package-lock.json
+package.json
+npm/
+dist/
+.test-build-examples/
