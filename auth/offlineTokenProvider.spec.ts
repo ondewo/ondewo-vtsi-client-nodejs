@@ -55,8 +55,8 @@ interface QueuedResponse {
 interface RecordedCall {
 	/** The request URL the provider called. */
 	url: string;
-	/** The raw request init (method, headers, form-encoded body) passed to fetch. */
-	init: { method: string; headers: Record<string, string>; body: string };
+	/** The raw request init (method, headers, form-encoded body, optional dispatcher) passed to fetch. */
+	init: { method: string; headers: Record<string, string>; body: string; dispatcher?: unknown };
 	/** The request body parsed back into {@link URLSearchParams} for ergonomic assertions. */
 	params: URLSearchParams;
 }
@@ -408,4 +408,104 @@ nodeTest('login rejects when no fetch implementation is available', async () => 
 	} finally {
 		globalThis.fetch = originalFetch;
 	}
+});
+
+/** By default (flag omitted) the default transport uses the plain global `fetch` with NO dispatcher, so TLS verification stays ON. */
+nodeTest('keycloakVerifySsl default: the default transport attaches no dispatcher (TLS verify ON)', async () => {
+	const originalFetch: typeof globalThis.fetch = globalThis.fetch;
+	let capturedInit: { method: string; headers: Record<string, string>; body: string; dispatcher?: unknown } | undefined;
+	globalThis.fetch = ((
+		url: string,
+		init: { method: string; headers: Record<string, string>; body: string; dispatcher?: unknown }
+	): Promise<FetchResponseLike> => {
+		capturedInit = init;
+		return Promise.resolve({
+			ok: true,
+			status: 200,
+			text: (): Promise<string> =>
+				Promise.resolve(
+					JSON.stringify({ access_token: 'access-secure', refresh_token: 'offline-secure', expires_in: 300 })
+				)
+		});
+	}) as unknown as typeof globalThis.fetch;
+	try {
+		// Omit fetch (-> default transport) and keycloakVerifySsl (-> defaults to verify ON).
+		const provider: OfflineTokenProvider = await login({
+			keycloakUrl: KEYCLOAK_URL,
+			realm: REALM,
+			clientId: CLIENT_ID,
+			username: USERNAME,
+			password: PASSWORD
+		});
+		assert.ok(capturedInit !== undefined);
+		// No undici dispatcher => undici's global dispatcher with TLS verification ON.
+		assert.equal(capturedInit.dispatcher, undefined);
+		assert.equal(await provider.getAccessToken(), 'access-secure');
+	} finally {
+		globalThis.fetch = originalFetch;
+	}
+});
+
+/** With `keycloakVerifySsl: false` the default transport attaches an undici `Agent` dispatcher, disabling TLS verification for the token call. */
+nodeTest(
+	'keycloakVerifySsl false: the default transport attaches an undici Agent dispatcher (TLS verify OFF)',
+	async () => {
+		const originalFetch: typeof globalThis.fetch = globalThis.fetch;
+		let capturedInit:
+			{ method: string; headers: Record<string, string>; body: string; dispatcher?: unknown } | undefined;
+		globalThis.fetch = ((
+			url: string,
+			init: { method: string; headers: Record<string, string>; body: string; dispatcher?: unknown }
+		): Promise<FetchResponseLike> => {
+			capturedInit = init;
+			return Promise.resolve({
+				ok: true,
+				status: 200,
+				text: (): Promise<string> =>
+					Promise.resolve(
+						JSON.stringify({ access_token: 'access-insecure', refresh_token: 'offline-insecure', expires_in: 300 })
+					)
+			});
+		}) as unknown as typeof globalThis.fetch;
+		try {
+			const provider: OfflineTokenProvider = await login({
+				keycloakUrl: KEYCLOAK_URL,
+				realm: REALM,
+				clientId: CLIENT_ID,
+				username: USERNAME,
+				password: PASSWORD,
+				keycloakVerifySsl: false
+			});
+			// eslint-disable-next-line @typescript-eslint/no-require-imports
+			const undici: { Agent: new (options: unknown) => unknown } = require('undici') as {
+				Agent: new (options: unknown) => unknown;
+			};
+			assert.ok(capturedInit !== undefined);
+			// The insecure undici Agent (rejectUnauthorized:false) reached the token POST.
+			assert.ok(capturedInit.dispatcher instanceof undici.Agent);
+			assert.equal(await provider.getAccessToken(), 'access-insecure');
+		} finally {
+			globalThis.fetch = originalFetch;
+		}
+	}
+);
+
+/** An injected `fetch` is used verbatim, so `keycloakVerifySsl: false` is a no-op (no dispatcher) for custom transports. */
+nodeTest('keycloakVerifySsl false is ignored when a custom fetch is injected', async () => {
+	const fetchStub: FetchStub = makeFetchStub([
+		{ body: { access_token: 'access-1', refresh_token: 'offline-1', expires_in: 300 } }
+	]);
+	const provider: OfflineTokenProvider = await login({
+		keycloakUrl: KEYCLOAK_URL,
+		realm: REALM,
+		clientId: CLIENT_ID,
+		username: USERNAME,
+		password: PASSWORD,
+		keycloakVerifySsl: false,
+		fetch: fetchStub
+	});
+	assert.equal(fetchStub.calls.length, 1);
+	// The injected transport receives the request unchanged — the flag never touches it.
+	assert.equal(fetchStub.calls[0].init.dispatcher, undefined);
+	assert.equal(await provider.getAccessToken(), 'access-1');
 });

@@ -231,10 +231,13 @@ async function login(config) {
 			throw new Error('login(config) requires a non-empty "' + key + '"');
 		}
 	}
-	const fetchImpl = config.fetch || globalThis.fetch;
-	if (typeof fetchImpl !== 'function') {
+	const injectedFetch = config.fetch;
+	const baseFetch = injectedFetch || globalThis.fetch;
+	if (typeof baseFetch !== 'function') {
 		throw new Error('No fetch implementation available; pass config.fetch or run on Node 18+');
 	}
+	// keycloakVerifySsl only tunes the default (global) transport; an injected fetch is used verbatim.
+	const fetchImpl = injectedFetch ?? createDefaultFetch(baseFetch, config.keycloakVerifySsl ?? true);
 	const provider = new OfflineTokenProvider(
 		{
 			keycloakUrl: config.keycloakUrl,
@@ -248,4 +251,25 @@ async function login(config) {
 	);
 	await provider.login();
 	return provider;
+}
+/**
+ * Wraps the default (global) `fetch` to honour {@link OfflineTokenLoginConfig.keycloakVerifySsl}.
+ *
+ * When `verifySsl` is `true` (the secure default) the global `fetch` is returned unchanged. When
+ * `false`, a cached undici `Agent` with `rejectUnauthorized: false` is attached to every request as
+ * its `dispatcher`, so the Keycloak token call skips TLS certificate verification (opt-in insecure;
+ * Node-only). The dispatcher is built once here and reused for all requests this transport makes
+ * (login + refreshes); the secure default never loads undici.
+ *
+ * @param globalFetch The resolved global `fetch` implementation to delegate to.
+ * @param verifySsl Whether to verify the Keycloak server's TLS certificate.
+ * @returns A fetch layer bound to the chosen TLS-verification behaviour.
+ */
+function createDefaultFetch(globalFetch, verifySsl) {
+	if (verifySsl) {
+		return globalFetch;
+	}
+	const Agent = require('undici').Agent;
+	const dispatcher = new Agent({ connect: { rejectUnauthorized: false } });
+	return (input, init) => globalFetch(input, { ...init, dispatcher });
 }

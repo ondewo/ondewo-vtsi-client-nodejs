@@ -32,6 +32,11 @@ export type FetchLike = (
 		method: string;
 		headers: Record<string, string>;
 		body: string;
+		/**
+		 * Optional undici dispatcher (Node's non-standard `fetch` extension); set only on the default
+		 * transport when `keycloakVerifySsl` is `false` to skip TLS certificate verification.
+		 */
+		dispatcher?: unknown;
 	}
 ) => Promise<FetchResponseLike>;
 /**
@@ -69,6 +74,12 @@ export interface OfflineTokenLoginConfig {
 	tokenExpirationInS?: number;
 	/** Optional fetch implementation (for tests); defaults to the global `fetch`. */
 	fetch?: FetchLike;
+	/**
+	 * When `false`, disable TLS certificate verification on the Keycloak token request (opt-in
+	 * insecure, for a self-signed local Envoy). Defaults to `true` (secure). Ignored when a custom
+	 * `fetch` is injected. Node-only (undici dispatcher).
+	 */
+	keycloakVerifySsl?: boolean;
 }
 /**
  * Internal provider configuration (the public {@link FetchLike} is supplied separately).
