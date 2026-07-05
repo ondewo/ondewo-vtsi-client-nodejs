@@ -20,8 +20,12 @@
     "directory": "https://github.com/ondewo/ondewo-vtsi-client-nodejs"
   },
   "scripts": {
-    "pretest": "tsc auth/offlineTokenProvider.ts auth/offlineTokenProvider.spec.ts --ignoreConfig --module commonjs --target es2020 --strict --lib es2020,dom --skipLibCheck --sourceMap --types node --typeRoots ./node_modules/@types --outDir .test-build && tsc examples/listCallers.ts examples/listCallers.spec.ts --ignoreConfig --module commonjs --target es2020 --strict --lib es2020,dom --skipLibCheck --sourceMap --types node --typeRoots ./node_modules/@types --outDir .test-build",
-    "test": "c8 --check-coverage --lines 100 --functions 100 --branches 100 --include '**/offlineTokenProvider.js' --exclude '**/*.spec.js' --reporter text node --test .test-build/offlineTokenProvider.spec.js && node --test .test-build/listCallers.spec.js"
+    "build:auth": "tsc auth/offlineTokenProvider.ts --ignoreConfig --module commonjs --target es2020 --declaration --strict --lib es2020,dom --skipLibCheck --types node --typeRoots ./node_modules/@types",
+    "test": "c8 --check-coverage --lines 100 --functions 100 --branches 100 --include '**/offlineTokenProvider.js' --exclude '**/*.spec.js' --reporter text node --test .test-build/offlineTokenProvider.spec.js",
+    "pretest": "tsc auth/offlineTokenProvider.ts auth/offlineTokenProvider.spec.ts --ignoreConfig --module commonjs --target es2020 --strict --lib es2020,dom --skipLibCheck --sourceMap --types node --typeRoots ./node_modules/@types --outDir .test-build",
+    "typecheck:examples": "tsc examples/listCallers.ts examples/loginAndListCallers.ts examples/listCallers.spec.ts --ignoreConfig --noEmit --module commonjs --target es2020 --strict --lib es2020,dom --skipLibCheck --types node --typeRoots ./node_modules/@types",
+    "pretest:examples": "tsc examples/listCallers.ts examples/listCallers.spec.ts --ignoreConfig --module commonjs --target es2020 --strict --lib es2020,dom --skipLibCheck --sourceMap --types node --typeRoots ./node_modules/@types --outDir .test-build",
+    "test:examples": "node --test .test-build/listCallers.spec.js"
   },
   "dependencies": {
     "@grpc/grpc-js": "^1.12.2",
