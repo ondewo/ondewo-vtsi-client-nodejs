@@ -19,3 +19,4 @@ package.json
 npm/
 dist/
 .test-build-examples/
+examples/environment.env
