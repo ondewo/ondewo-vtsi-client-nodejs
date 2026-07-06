@@ -111,7 +111,7 @@ export function loadConfigFromEnv(): ListCallersExampleConfig {
 		grpcTarget: requireEnv('ONDEWO_HOST') + ':' + requireEnv('ONDEWO_PORT'),
 		useSecureChannel: parseBool(process.env.ONDEWO_USE_SECURE_CHANNEL, false),
 		grpcCert,
-		vtsiProjectName: requireEnv('ONDEWO_VTSI_PROJECT_ID')
+		vtsiProjectName: requireEnv('ONDEWO_VTSI_PROJECT_NAME')
 	};
 }
 
