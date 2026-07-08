@@ -1,0 +1,13 @@
+{
+  "description": "ONDEWO Voip Telephone System Integration (VTSI) Client library for Nodejs",
+  "scripts": {
+    "test": "c8 --check-coverage --lines 100 --functions 100 --branches 100 --include '**/offlineTokenProvider.js' --exclude '**/*.spec.js' --reporter text node --test .test-build/offlineTokenProvider.spec.js",
+    "pretest": "tsc auth/offlineTokenProvider.ts auth/offlineTokenProvider.spec.ts --ignoreConfig --module commonjs --target es2020 --strict --lib es2020,dom --skipLibCheck --sourceMap --types node --typeRoots ./node_modules/@types --outDir .test-build",
+    "pretest:examples": "tsc examples/listCallers.ts examples/listCallers.spec.ts --ignoreConfig --module commonjs --target es2020 --strict --lib es2020,dom --skipLibCheck --sourceMap --types node --typeRoots ./node_modules/@types --outDir .test-build",
+    "test:examples": "node --test .test-build/listCallers.spec.js"
+  },
+  "devDependencies": {
+    "c8": "^11.0.0",
+    "typescript": "^6.0.3"
+  }
+}
