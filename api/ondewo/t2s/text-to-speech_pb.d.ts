@@ -1286,6 +1286,8 @@ export class T2sCloudServiceGoogle extends jspb.Message {
     setVolumeGainDb(value: number): T2sCloudServiceGoogle;
     getPitch(): number;
     setPitch(value: number): T2sCloudServiceGoogle;
+    getSpeakerLanguage(): string;
+    setSpeakerLanguage(value: string): T2sCloudServiceGoogle;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): T2sCloudServiceGoogle.AsObject;
@@ -1303,6 +1305,7 @@ export namespace T2sCloudServiceGoogle {
         speakingRate: number,
         volumeGainDb: number,
         pitch: number,
+        speakerLanguage: string,
     }
 }
 
@@ -1945,6 +1948,40 @@ export namespace CreateCustomPhonemizerRequest {
     export type AsObject = {
         prefix: string,
         mapsList: Array<Map.AsObject>,
+    }
+}
+
+export class VoiceCloningRequest extends jspb.Message { 
+    getSampleAudio(): Uint8Array | string;
+    getSampleAudio_asU8(): Uint8Array;
+    getSampleAudio_asB64(): string;
+    setSampleAudio(value: Uint8Array | string): VoiceCloningRequest;
+    getTranscription(): string;
+    setTranscription(value: string): VoiceCloningRequest;
+    getSpeakerName(): string;
+    setSpeakerName(value: string): VoiceCloningRequest;
+    getSpeakerLanguage(): string;
+    setSpeakerLanguage(value: string): VoiceCloningRequest;
+    getModelName(): string;
+    setModelName(value: string): VoiceCloningRequest;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): VoiceCloningRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: VoiceCloningRequest): VoiceCloningRequest.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: VoiceCloningRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): VoiceCloningRequest;
+    static deserializeBinaryFromReader(message: VoiceCloningRequest, reader: jspb.BinaryReader): VoiceCloningRequest;
+}
+
+export namespace VoiceCloningRequest {
+    export type AsObject = {
+        sampleAudio: Uint8Array | string,
+        transcription: string,
+        speakerName: string,
+        speakerLanguage: string,
+        modelName: string,
     }
 }
 

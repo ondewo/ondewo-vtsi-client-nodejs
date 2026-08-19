@@ -55,6 +55,11 @@ export class Comment extends jspb.Message {
     getModifiedBy(): string;
     setModifiedBy(value: string): Comment;
 
+    hasIsResolved(): boolean;
+    clearIsResolved(): void;
+    getIsResolved(): boolean | undefined;
+    setIsResolved(value: boolean): Comment;
+
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): Comment.AsObject;
     static toObject(includeInstance: boolean, msg: Comment): Comment.AsObject;
@@ -76,6 +81,7 @@ export namespace Comment {
         modifiedAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
         createdBy: string,
         modifiedBy: string,
+        isResolved?: boolean,
     }
 }
 
@@ -128,6 +134,8 @@ export class Notification extends jspb.Message {
     setCreatedBy(value: string): Notification;
     getModifiedBy(): string;
     setModifiedBy(value: string): Notification;
+    getLink(): string;
+    setLink(value: string): Notification;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): Notification.AsObject;
@@ -159,6 +167,7 @@ export namespace Notification {
         modifiedAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
         createdBy: string,
         modifiedBy: string,
+        link: string,
     }
 }
 
@@ -167,6 +176,11 @@ export class AddNotificationsRequest extends jspb.Message {
     getNotificationsList(): Array<Notification>;
     setNotificationsList(value: Array<Notification>): AddNotificationsRequest;
     addNotifications(value?: Notification, index?: number): Notification;
+
+    hasFieldMask(): boolean;
+    clearFieldMask(): void;
+    getFieldMask(): google_protobuf_field_mask_pb.FieldMask | undefined;
+    setFieldMask(value?: google_protobuf_field_mask_pb.FieldMask): AddNotificationsRequest;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): AddNotificationsRequest.AsObject;
@@ -181,6 +195,7 @@ export class AddNotificationsRequest extends jspb.Message {
 export namespace AddNotificationsRequest {
     export type AsObject = {
         notificationsList: Array<Notification.AsObject>,
+        fieldMask?: google_protobuf_field_mask_pb.FieldMask.AsObject,
     }
 }
 
@@ -245,6 +260,10 @@ export class NotificationFilter extends jspb.Message {
     getOriginNamesList(): Array<string>;
     setOriginNamesList(value: Array<string>): NotificationFilter;
     addOriginNames(value: string, index?: number): string;
+    clearNotificationTypesList(): void;
+    getNotificationTypesList(): Array<NotificationType>;
+    setNotificationTypesList(value: Array<NotificationType>): NotificationFilter;
+    addNotificationTypes(value: NotificationType, index?: number): NotificationType;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): NotificationFilter.AsObject;
@@ -267,6 +286,7 @@ export namespace NotificationFilter {
         latest?: google_protobuf_timestamp_pb.Timestamp.AsObject,
         userNamesList: Array<string>,
         originNamesList: Array<string>,
+        notificationTypesList: Array<NotificationType>,
     }
 }
 
@@ -334,6 +354,11 @@ export class SetNotificationsFlaggedStatusRequest extends jspb.Message {
     setFlaggedList(value: Array<boolean>): SetNotificationsFlaggedStatusRequest;
     addFlagged(value: boolean, index?: number): boolean;
 
+    hasFieldMask(): boolean;
+    clearFieldMask(): void;
+    getFieldMask(): google_protobuf_field_mask_pb.FieldMask | undefined;
+    setFieldMask(value?: google_protobuf_field_mask_pb.FieldMask): SetNotificationsFlaggedStatusRequest;
+
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): SetNotificationsFlaggedStatusRequest.AsObject;
     static toObject(includeInstance: boolean, msg: SetNotificationsFlaggedStatusRequest): SetNotificationsFlaggedStatusRequest.AsObject;
@@ -348,6 +373,7 @@ export namespace SetNotificationsFlaggedStatusRequest {
     export type AsObject = {
         notificationNamesList: Array<string>,
         flaggedList: Array<boolean>,
+        fieldMask?: google_protobuf_field_mask_pb.FieldMask.AsObject,
     }
 }
 
@@ -360,6 +386,11 @@ export class SetNotificationsReadStatusRequest extends jspb.Message {
     getFlaggedList(): Array<boolean>;
     setFlaggedList(value: Array<boolean>): SetNotificationsReadStatusRequest;
     addFlagged(value: boolean, index?: number): boolean;
+
+    hasFieldMask(): boolean;
+    clearFieldMask(): void;
+    getFieldMask(): google_protobuf_field_mask_pb.FieldMask | undefined;
+    setFieldMask(value?: google_protobuf_field_mask_pb.FieldMask): SetNotificationsReadStatusRequest;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): SetNotificationsReadStatusRequest.AsObject;
@@ -375,6 +406,116 @@ export namespace SetNotificationsReadStatusRequest {
     export type AsObject = {
         notificationNamesList: Array<string>,
         flaggedList: Array<boolean>,
+        fieldMask?: google_protobuf_field_mask_pb.FieldMask.AsObject,
+    }
+}
+
+export class GetNotificationRequest extends jspb.Message { 
+    getName(): string;
+    setName(value: string): GetNotificationRequest;
+
+    hasFieldMask(): boolean;
+    clearFieldMask(): void;
+    getFieldMask(): google_protobuf_field_mask_pb.FieldMask | undefined;
+    setFieldMask(value?: google_protobuf_field_mask_pb.FieldMask): GetNotificationRequest;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): GetNotificationRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: GetNotificationRequest): GetNotificationRequest.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: GetNotificationRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): GetNotificationRequest;
+    static deserializeBinaryFromReader(message: GetNotificationRequest, reader: jspb.BinaryReader): GetNotificationRequest;
+}
+
+export namespace GetNotificationRequest {
+    export type AsObject = {
+        name: string,
+        fieldMask?: google_protobuf_field_mask_pb.FieldMask.AsObject,
+    }
+}
+
+export class UpdateNotificationRequest extends jspb.Message { 
+
+    hasNotification(): boolean;
+    clearNotification(): void;
+    getNotification(): Notification | undefined;
+    setNotification(value?: Notification): UpdateNotificationRequest;
+
+    hasUpdateMask(): boolean;
+    clearUpdateMask(): void;
+    getUpdateMask(): google_protobuf_field_mask_pb.FieldMask | undefined;
+    setUpdateMask(value?: google_protobuf_field_mask_pb.FieldMask): UpdateNotificationRequest;
+
+    hasFieldMask(): boolean;
+    clearFieldMask(): void;
+    getFieldMask(): google_protobuf_field_mask_pb.FieldMask | undefined;
+    setFieldMask(value?: google_protobuf_field_mask_pb.FieldMask): UpdateNotificationRequest;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): UpdateNotificationRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: UpdateNotificationRequest): UpdateNotificationRequest.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: UpdateNotificationRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): UpdateNotificationRequest;
+    static deserializeBinaryFromReader(message: UpdateNotificationRequest, reader: jspb.BinaryReader): UpdateNotificationRequest;
+}
+
+export namespace UpdateNotificationRequest {
+    export type AsObject = {
+        notification?: Notification.AsObject,
+        updateMask?: google_protobuf_field_mask_pb.FieldMask.AsObject,
+        fieldMask?: google_protobuf_field_mask_pb.FieldMask.AsObject,
+    }
+}
+
+export class DeleteNotificationsRequest extends jspb.Message { 
+    clearNotificationNamesList(): void;
+    getNotificationNamesList(): Array<string>;
+    setNotificationNamesList(value: Array<string>): DeleteNotificationsRequest;
+    addNotificationNames(value: string, index?: number): string;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): DeleteNotificationsRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: DeleteNotificationsRequest): DeleteNotificationsRequest.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: DeleteNotificationsRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): DeleteNotificationsRequest;
+    static deserializeBinaryFromReader(message: DeleteNotificationsRequest, reader: jspb.BinaryReader): DeleteNotificationsRequest;
+}
+
+export namespace DeleteNotificationsRequest {
+    export type AsObject = {
+        notificationNamesList: Array<string>,
+    }
+}
+
+export class StreamNotificationsRequest extends jspb.Message { 
+
+    hasNotificationFilter(): boolean;
+    clearNotificationFilter(): void;
+    getNotificationFilter(): NotificationFilter | undefined;
+    setNotificationFilter(value?: NotificationFilter): StreamNotificationsRequest;
+    getIncludeExisting(): boolean;
+    setIncludeExisting(value: boolean): StreamNotificationsRequest;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): StreamNotificationsRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: StreamNotificationsRequest): StreamNotificationsRequest.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: StreamNotificationsRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): StreamNotificationsRequest;
+    static deserializeBinaryFromReader(message: StreamNotificationsRequest, reader: jspb.BinaryReader): StreamNotificationsRequest;
+}
+
+export namespace StreamNotificationsRequest {
+    export type AsObject = {
+        notificationFilter?: NotificationFilter.AsObject,
+        includeExisting: boolean,
     }
 }
 
@@ -552,6 +693,7 @@ export enum NotificationOrigin {
     NOTIFICATION_ORIGIN_ONDEWO_T2S = 7,
     NOTIFICATION_ORIGIN_ONDEWO_VTSI = 8,
     NOTIFICATION_ORIGIN_ONDEWO_VTSI_RABBITMQ = 9,
+    NOTIFICATION_ORIGIN_ONDEWO_SURVEY = 10,
 }
 
 export enum LogSeverity {

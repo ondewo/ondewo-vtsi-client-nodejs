@@ -1657,7 +1657,8 @@ proto.ondewo.vtsi.AsteriskConfigs.toObject = function(includeInstance, msg) {
     asteriskConfigsVariables: (f = msg.getAsteriskConfigsVariables()) && proto.ondewo.vtsi.AsteriskConfigsVariables.toObject(includeInstance, f),
     asteriskConfigsFiles: (f = msg.getAsteriskConfigsFiles()) && proto.ondewo.vtsi.AsteriskConfigsFiles.toObject(includeInstance, f),
     asteriskConfigsTargetDirectoryName: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    asteriskPort: jspb.Message.getFieldWithDefault(msg, 4, 0)
+    asteriskPort: jspb.Message.getFieldWithDefault(msg, 4, 0),
+    asteriskVersion: jspb.Message.getFieldWithDefault(msg, 5, "")
   };
 
   if (includeInstance) {
@@ -1711,6 +1712,10 @@ proto.ondewo.vtsi.AsteriskConfigs.deserializeBinaryFromReader = function(msg, re
     case 4:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setAsteriskPort(value);
+      break;
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setAsteriskVersion(value);
       break;
     default:
       reader.skipField();
@@ -1768,6 +1773,13 @@ proto.ondewo.vtsi.AsteriskConfigs.serializeBinaryToWriter = function(message, wr
   if (f !== 0) {
     writer.writeInt32(
       4,
+      f
+    );
+  }
+  f = /** @type {string} */ (jspb.Message.getField(message, 5));
+  if (f != null) {
+    writer.writeString(
+      5,
       f
     );
   }
@@ -1899,6 +1911,42 @@ proto.ondewo.vtsi.AsteriskConfigs.prototype.getAsteriskPort = function() {
  */
 proto.ondewo.vtsi.AsteriskConfigs.prototype.setAsteriskPort = function(value) {
   return jspb.Message.setProto3IntField(this, 4, value);
+};
+
+
+/**
+ * optional string asterisk_version = 5;
+ * @return {string}
+ */
+proto.ondewo.vtsi.AsteriskConfigs.prototype.getAsteriskVersion = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.vtsi.AsteriskConfigs} returns this
+ */
+proto.ondewo.vtsi.AsteriskConfigs.prototype.setAsteriskVersion = function(value) {
+  return jspb.Message.setField(this, 5, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.ondewo.vtsi.AsteriskConfigs} returns this
+ */
+proto.ondewo.vtsi.AsteriskConfigs.prototype.clearAsteriskVersion = function() {
+  return jspb.Message.setField(this, 5, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.AsteriskConfigs.prototype.hasAsteriskVersion = function() {
+  return jspb.Message.getField(this, 5) != null;
 };
 
 
