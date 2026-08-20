@@ -31,7 +31,8 @@
 //
 // File-level comment for <code>ondewo/nlu/rag.proto</code>.
 // This file contains a single service <a href="#ondewo.nlu.Rags">Rags</a>. The Rags service provides RAG (Retrieval-Augmented Generation) and web crawler functionality.
-// All message fields that are marked as <code>optional</code> are not actually optional but marked as such to enable presence tracking so that it is possible to distinguish between null and default value fields. Without the <code>optional</code> keyword it would for instance not be possible to distinguish between an integer <code>0</code> and <code>null</code>.
+// Fields marked as <code>optional</code> carry explicit presence, so that an explicitly set default value (<code>0</code>, <code>false</code>, <code>""</code>) can be distinguished from a field that was never set. Without the <code>optional</code> keyword it would for instance not be possible to distinguish between an integer <code>0</code> and <code>null</code>.
+// The marker is applied where that distinction is actually consumed — the partial-update inputs (an unset field leaves the stored value untouched, an explicit default clears it) and the retrieval overrides that are forwarded to RAGFlow (an explicit <code>0.0</code> or <code>false</code> must override the server-side default rather than fall back to it). Fields that carry no such distinction are deliberately left without the keyword, and for message-typed fields it is omitted because proto3 gives them explicit presence anyway.
 'use strict';
 var grpc = require('@grpc/grpc-js');
 var ondewo_nlu_rag_pb = require('../../ondewo/nlu/rag_pb.js');

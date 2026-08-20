@@ -146,15 +146,9 @@ export class CcaiService extends jspb.Message {
     clearHeaders(): void;
     getHeaders(): google_protobuf_struct_pb.Struct | undefined;
     setHeaders(value?: google_protobuf_struct_pb.Struct): CcaiService;
-
-    hasCcaiServiceProvider(): boolean;
-    clearCcaiServiceProvider(): void;
-    getCcaiServiceProvider(): CcaiServiceProvider | undefined;
+    getCcaiServiceProvider(): CcaiServiceProvider;
     setCcaiServiceProvider(value: CcaiServiceProvider): CcaiService;
-
-    hasServiceHierarchy(): boolean;
-    clearServiceHierarchy(): void;
-    getServiceHierarchy(): string | undefined;
+    getServiceHierarchy(): string;
     setServiceHierarchy(value: string): CcaiService;
 
     serializeBinary(): Uint8Array;
@@ -192,8 +186,8 @@ export namespace CcaiService {
         createdBy: string,
         modifiedBy: string,
         headers?: google_protobuf_struct_pb.Struct.AsObject,
-        ccaiServiceProvider?: CcaiServiceProvider,
-        serviceHierarchy?: string,
+        ccaiServiceProvider: CcaiServiceProvider,
+        serviceHierarchy: string,
     }
 }
 
@@ -252,10 +246,7 @@ export namespace CreateCcaiProjectResponse {
 export class GetCcaiProjectRequest extends jspb.Message { 
     getName(): string;
     setName(value: string): GetCcaiProjectRequest;
-
-    hasCcaiProjectView(): boolean;
-    clearCcaiProjectView(): void;
-    getCcaiProjectView(): CcaiProjectView | undefined;
+    getCcaiProjectView(): CcaiProjectView;
     setCcaiProjectView(value: CcaiProjectView): GetCcaiProjectRequest;
 
     hasCcaiServiceFilter(): boolean;
@@ -283,7 +274,7 @@ export class GetCcaiProjectRequest extends jspb.Message {
 export namespace GetCcaiProjectRequest {
     export type AsObject = {
         name: string,
-        ccaiProjectView?: CcaiProjectView,
+        ccaiProjectView: CcaiProjectView,
         ccaiServiceFilter?: CcaiServiceFilter.AsObject,
         nluProjectName: string,
         fieldMask?: google_protobuf_field_mask_pb.FieldMask.AsObject,
@@ -332,10 +323,7 @@ export class ListCcaiProjectsRequest extends jspb.Message {
     clearCcaiProjectSorting(): void;
     getCcaiProjectSorting(): CcaiProjectSorting | undefined;
     setCcaiProjectSorting(value?: CcaiProjectSorting): ListCcaiProjectsRequest;
-
-    hasPageToken(): boolean;
-    clearPageToken(): void;
-    getPageToken(): string | undefined;
+    getPageToken(): string;
     setPageToken(value: string): ListCcaiProjectsRequest;
     getNluProjectName(): string;
     setNluProjectName(value: string): ListCcaiProjectsRequest;
@@ -360,7 +348,7 @@ export namespace ListCcaiProjectsRequest {
         ccaiProjectView: CcaiProjectView,
         ccaiServiceFilter?: CcaiServiceFilter.AsObject,
         ccaiProjectSorting?: CcaiProjectSorting.AsObject,
-        pageToken?: string,
+        pageToken: string,
         nluProjectName: string,
         fieldMask?: google_protobuf_field_mask_pb.FieldMask.AsObject,
     }
@@ -392,15 +380,9 @@ export namespace ListCcaiProjectsResponse {
 }
 
 export class CcaiProjectSorting extends jspb.Message { 
-
-    hasSortingField(): boolean;
-    clearSortingField(): void;
-    getSortingField(): CcaiProjectSorting.CcaiProjectSortingField | undefined;
+    getSortingField(): CcaiProjectSorting.CcaiProjectSortingField;
     setSortingField(value: CcaiProjectSorting.CcaiProjectSortingField): CcaiProjectSorting;
-
-    hasSortingMode(): boolean;
-    clearSortingMode(): void;
-    getSortingMode(): ondewo_nlu_common_pb.SortingMode | undefined;
+    getSortingMode(): ondewo_nlu_common_pb.SortingMode;
     setSortingMode(value: ondewo_nlu_common_pb.SortingMode): CcaiProjectSorting;
 
     serializeBinary(): Uint8Array;
@@ -415,8 +397,8 @@ export class CcaiProjectSorting extends jspb.Message {
 
 export namespace CcaiProjectSorting {
     export type AsObject = {
-        sortingField?: CcaiProjectSorting.CcaiProjectSortingField,
-        sortingMode?: ondewo_nlu_common_pb.SortingMode,
+        sortingField: CcaiProjectSorting.CcaiProjectSortingField,
+        sortingMode: ondewo_nlu_common_pb.SortingMode,
     }
 
     export enum CcaiProjectSortingField {
@@ -645,6 +627,7 @@ export enum CcaiServiceProvider {
     CCAI_SERVICE_PROVIDER_OPENSEARCH = 31,
     CCAI_SERVICE_PROVIDER_GROK = 32,
     CCAI_SERVICE_PROVIDER_POSTGRES = 33,
+    CCAI_SERVICE_PROVIDER_MICROSOFT_AGENT_FRAMEWORK = 34,
 }
 
 export enum CcaiProjectView {

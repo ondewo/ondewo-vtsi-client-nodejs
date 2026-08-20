@@ -1360,15 +1360,15 @@ proto.ondewo.nlu.CcaiService.serializeBinaryToWriter = function(message, writer)
       google_protobuf_struct_pb.Struct.serializeBinaryToWriter
     );
   }
-  f = /** @type {!proto.ondewo.nlu.CcaiServiceProvider} */ (jspb.Message.getField(message, 24));
-  if (f != null) {
+  f = message.getCcaiServiceProvider();
+  if (f !== 0.0) {
     writer.writeEnum(
       24,
       f
     );
   }
-  f = /** @type {string} */ (jspb.Message.getField(message, 25));
-  if (f != null) {
+  f = message.getServiceHierarchy();
+  if (f.length > 0) {
     writer.writeString(
       25,
       f
@@ -1881,25 +1881,7 @@ proto.ondewo.nlu.CcaiService.prototype.getCcaiServiceProvider = function() {
  * @return {!proto.ondewo.nlu.CcaiService} returns this
  */
 proto.ondewo.nlu.CcaiService.prototype.setCcaiServiceProvider = function(value) {
-  return jspb.Message.setField(this, 24, value);
-};
-
-
-/**
- * Clears the field making it undefined.
- * @return {!proto.ondewo.nlu.CcaiService} returns this
- */
-proto.ondewo.nlu.CcaiService.prototype.clearCcaiServiceProvider = function() {
-  return jspb.Message.setField(this, 24, undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.ondewo.nlu.CcaiService.prototype.hasCcaiServiceProvider = function() {
-  return jspb.Message.getField(this, 24) != null;
+  return jspb.Message.setProto3EnumField(this, 24, value);
 };
 
 
@@ -1917,25 +1899,7 @@ proto.ondewo.nlu.CcaiService.prototype.getServiceHierarchy = function() {
  * @return {!proto.ondewo.nlu.CcaiService} returns this
  */
 proto.ondewo.nlu.CcaiService.prototype.setServiceHierarchy = function(value) {
-  return jspb.Message.setField(this, 25, value);
-};
-
-
-/**
- * Clears the field making it undefined.
- * @return {!proto.ondewo.nlu.CcaiService} returns this
- */
-proto.ondewo.nlu.CcaiService.prototype.clearServiceHierarchy = function() {
-  return jspb.Message.setField(this, 25, undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.ondewo.nlu.CcaiService.prototype.hasServiceHierarchy = function() {
-  return jspb.Message.getField(this, 25) != null;
+  return jspb.Message.setProto3StringField(this, 25, value);
 };
 
 
@@ -2432,8 +2396,8 @@ proto.ondewo.nlu.GetCcaiProjectRequest.serializeBinaryToWriter = function(messag
       f
     );
   }
-  f = /** @type {!proto.ondewo.nlu.CcaiProjectView} */ (jspb.Message.getField(message, 2));
-  if (f != null) {
+  f = message.getCcaiProjectView();
+  if (f !== 0.0) {
     writer.writeEnum(
       2,
       f
@@ -2497,25 +2461,7 @@ proto.ondewo.nlu.GetCcaiProjectRequest.prototype.getCcaiProjectView = function()
  * @return {!proto.ondewo.nlu.GetCcaiProjectRequest} returns this
  */
 proto.ondewo.nlu.GetCcaiProjectRequest.prototype.setCcaiProjectView = function(value) {
-  return jspb.Message.setField(this, 2, value);
-};
-
-
-/**
- * Clears the field making it undefined.
- * @return {!proto.ondewo.nlu.GetCcaiProjectRequest} returns this
- */
-proto.ondewo.nlu.GetCcaiProjectRequest.prototype.clearCcaiProjectView = function() {
-  return jspb.Message.setField(this, 2, undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.ondewo.nlu.GetCcaiProjectRequest.prototype.hasCcaiProjectView = function() {
-  return jspb.Message.getField(this, 2) != null;
+  return jspb.Message.setProto3EnumField(this, 2, value);
 };
 
 
@@ -2975,8 +2921,8 @@ proto.ondewo.nlu.ListCcaiProjectsRequest.serializeBinaryToWriter = function(mess
       proto.ondewo.nlu.CcaiProjectSorting.serializeBinaryToWriter
     );
   }
-  f = /** @type {string} */ (jspb.Message.getField(message, 4));
-  if (f != null) {
+  f = message.getPageToken();
+  if (f.length > 0) {
     writer.writeString(
       4,
       f
@@ -3106,25 +3052,7 @@ proto.ondewo.nlu.ListCcaiProjectsRequest.prototype.getPageToken = function() {
  * @return {!proto.ondewo.nlu.ListCcaiProjectsRequest} returns this
  */
 proto.ondewo.nlu.ListCcaiProjectsRequest.prototype.setPageToken = function(value) {
-  return jspb.Message.setField(this, 4, value);
-};
-
-
-/**
- * Clears the field making it undefined.
- * @return {!proto.ondewo.nlu.ListCcaiProjectsRequest} returns this
- */
-proto.ondewo.nlu.ListCcaiProjectsRequest.prototype.clearPageToken = function() {
-  return jspb.Message.setField(this, 4, undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.ondewo.nlu.ListCcaiProjectsRequest.prototype.hasPageToken = function() {
-  return jspb.Message.getField(this, 4) != null;
+  return jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
@@ -3480,15 +3408,15 @@ proto.ondewo.nlu.CcaiProjectSorting.prototype.serializeBinary = function() {
  */
 proto.ondewo.nlu.CcaiProjectSorting.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = /** @type {!proto.ondewo.nlu.CcaiProjectSorting.CcaiProjectSortingField} */ (jspb.Message.getField(message, 1));
-  if (f != null) {
+  f = message.getSortingField();
+  if (f !== 0.0) {
     writer.writeEnum(
       1,
       f
     );
   }
-  f = /** @type {!proto.ondewo.nlu.SortingMode} */ (jspb.Message.getField(message, 2));
-  if (f != null) {
+  f = message.getSortingMode();
+  if (f !== 0.0) {
     writer.writeEnum(
       2,
       f
@@ -3522,25 +3450,7 @@ proto.ondewo.nlu.CcaiProjectSorting.prototype.getSortingField = function() {
  * @return {!proto.ondewo.nlu.CcaiProjectSorting} returns this
  */
 proto.ondewo.nlu.CcaiProjectSorting.prototype.setSortingField = function(value) {
-  return jspb.Message.setField(this, 1, value);
-};
-
-
-/**
- * Clears the field making it undefined.
- * @return {!proto.ondewo.nlu.CcaiProjectSorting} returns this
- */
-proto.ondewo.nlu.CcaiProjectSorting.prototype.clearSortingField = function() {
-  return jspb.Message.setField(this, 1, undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.ondewo.nlu.CcaiProjectSorting.prototype.hasSortingField = function() {
-  return jspb.Message.getField(this, 1) != null;
+  return jspb.Message.setProto3EnumField(this, 1, value);
 };
 
 
@@ -3558,25 +3468,7 @@ proto.ondewo.nlu.CcaiProjectSorting.prototype.getSortingMode = function() {
  * @return {!proto.ondewo.nlu.CcaiProjectSorting} returns this
  */
 proto.ondewo.nlu.CcaiProjectSorting.prototype.setSortingMode = function(value) {
-  return jspb.Message.setField(this, 2, value);
-};
-
-
-/**
- * Clears the field making it undefined.
- * @return {!proto.ondewo.nlu.CcaiProjectSorting} returns this
- */
-proto.ondewo.nlu.CcaiProjectSorting.prototype.clearSortingMode = function() {
-  return jspb.Message.setField(this, 2, undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.ondewo.nlu.CcaiProjectSorting.prototype.hasSortingMode = function() {
-  return jspb.Message.getField(this, 2) != null;
+  return jspb.Message.setProto3EnumField(this, 2, value);
 };
 
 
@@ -4713,7 +4605,8 @@ proto.ondewo.nlu.CcaiServiceProvider = {
   CCAI_SERVICE_PROVIDER_MODEL_CONTEXT_PROTOCOL: 30,
   CCAI_SERVICE_PROVIDER_OPENSEARCH: 31,
   CCAI_SERVICE_PROVIDER_GROK: 32,
-  CCAI_SERVICE_PROVIDER_POSTGRES: 33
+  CCAI_SERVICE_PROVIDER_POSTGRES: 33,
+  CCAI_SERVICE_PROVIDER_MICROSOFT_AGENT_FRAMEWORK: 34
 };
 
 /**

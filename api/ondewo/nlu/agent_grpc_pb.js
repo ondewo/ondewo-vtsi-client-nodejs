@@ -48,6 +48,7 @@ var ondewo_nlu_user_pb = require('../../ondewo/nlu/user_pb.js');
 var ondewo_nlu_project_role_pb = require('../../ondewo/nlu/project_role_pb.js');
 var ondewo_nlu_operations_pb = require('../../ondewo/nlu/operations_pb.js');
 var ondewo_nlu_session_pb = require('../../ondewo/nlu/session_pb.js');
+var ondewo_nlu_ccai_project_pb = require('../../ondewo/nlu/ccai_project_pb.js');
 
 function serialize_google_protobuf_Empty(arg) {
   if (!(arg instanceof google_protobuf_empty_pb.Empty)) {
@@ -104,6 +105,28 @@ function deserialize_ondewo_nlu_CreateAgentRequest(buffer_arg) {
   return ondewo_nlu_agent_pb.CreateAgentRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_ondewo_nlu_CreateProjectTechnicalUserRequest(arg) {
+  if (!(arg instanceof ondewo_nlu_agent_pb.CreateProjectTechnicalUserRequest)) {
+    throw new Error('Expected argument of type ondewo.nlu.CreateProjectTechnicalUserRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_ondewo_nlu_CreateProjectTechnicalUserRequest(buffer_arg) {
+  return ondewo_nlu_agent_pb.CreateProjectTechnicalUserRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_ondewo_nlu_CreateProjectTechnicalUserResponse(arg) {
+  if (!(arg instanceof ondewo_nlu_agent_pb.CreateProjectTechnicalUserResponse)) {
+    throw new Error('Expected argument of type ondewo.nlu.CreateProjectTechnicalUserResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_ondewo_nlu_CreateProjectTechnicalUserResponse(buffer_arg) {
+  return ondewo_nlu_agent_pb.CreateProjectTechnicalUserResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_ondewo_nlu_DeleteAgentRequest(arg) {
   if (!(arg instanceof ondewo_nlu_agent_pb.DeleteAgentRequest)) {
     throw new Error('Expected argument of type ondewo.nlu.DeleteAgentRequest');
@@ -113,6 +136,17 @@ function serialize_ondewo_nlu_DeleteAgentRequest(arg) {
 
 function deserialize_ondewo_nlu_DeleteAgentRequest(buffer_arg) {
   return ondewo_nlu_agent_pb.DeleteAgentRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_ondewo_nlu_DeleteProjectTechnicalUserRequest(arg) {
+  if (!(arg instanceof ondewo_nlu_agent_pb.DeleteProjectTechnicalUserRequest)) {
+    throw new Error('Expected argument of type ondewo.nlu.DeleteProjectTechnicalUserRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_ondewo_nlu_DeleteProjectTechnicalUserRequest(buffer_arg) {
+  return ondewo_nlu_agent_pb.DeleteProjectTechnicalUserRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_ondewo_nlu_DeleteResourcesRequest(arg) {
@@ -390,6 +424,28 @@ function deserialize_ondewo_nlu_GetSessionsStatisticsResponse(buffer_arg) {
   return ondewo_nlu_agent_pb.GetSessionsStatisticsResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_ondewo_nlu_GetSessionsStatisticsTimeSeriesRequest(arg) {
+  if (!(arg instanceof ondewo_nlu_agent_pb.GetSessionsStatisticsTimeSeriesRequest)) {
+    throw new Error('Expected argument of type ondewo.nlu.GetSessionsStatisticsTimeSeriesRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_ondewo_nlu_GetSessionsStatisticsTimeSeriesRequest(buffer_arg) {
+  return ondewo_nlu_agent_pb.GetSessionsStatisticsTimeSeriesRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_ondewo_nlu_GetSessionsStatisticsTimeSeriesResponse(arg) {
+  if (!(arg instanceof ondewo_nlu_agent_pb.GetSessionsStatisticsTimeSeriesResponse)) {
+    throw new Error('Expected argument of type ondewo.nlu.GetSessionsStatisticsTimeSeriesResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_ondewo_nlu_GetSessionsStatisticsTimeSeriesResponse(buffer_arg) {
+  return ondewo_nlu_agent_pb.GetSessionsStatisticsTimeSeriesResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_ondewo_nlu_ImportAgentRequest(arg) {
   if (!(arg instanceof ondewo_nlu_agent_pb.ImportAgentRequest)) {
     throw new Error('Expected argument of type ondewo.nlu.ImportAgentRequest');
@@ -454,6 +510,28 @@ function serialize_ondewo_nlu_ListProjectPermissionsResponse(arg) {
 
 function deserialize_ondewo_nlu_ListProjectPermissionsResponse(buffer_arg) {
   return ondewo_nlu_agent_pb.ListProjectPermissionsResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_ondewo_nlu_ListProjectTechnicalUsersRequest(arg) {
+  if (!(arg instanceof ondewo_nlu_agent_pb.ListProjectTechnicalUsersRequest)) {
+    throw new Error('Expected argument of type ondewo.nlu.ListProjectTechnicalUsersRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_ondewo_nlu_ListProjectTechnicalUsersRequest(buffer_arg) {
+  return ondewo_nlu_agent_pb.ListProjectTechnicalUsersRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_ondewo_nlu_ListProjectTechnicalUsersResponse(arg) {
+  if (!(arg instanceof ondewo_nlu_agent_pb.ListProjectTechnicalUsersResponse)) {
+    throw new Error('Expected argument of type ondewo.nlu.ListProjectTechnicalUsersResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_ondewo_nlu_ListProjectTechnicalUsersResponse(buffer_arg) {
+  return ondewo_nlu_agent_pb.ListProjectTechnicalUsersResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_ondewo_nlu_ListUsersInProjectRequest(arg) {
@@ -555,6 +633,28 @@ function deserialize_ondewo_nlu_RestoreAgentRequest(buffer_arg) {
   return ondewo_nlu_agent_pb.RestoreAgentRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_ondewo_nlu_RotateProjectTechnicalUserPasswordRequest(arg) {
+  if (!(arg instanceof ondewo_nlu_agent_pb.RotateProjectTechnicalUserPasswordRequest)) {
+    throw new Error('Expected argument of type ondewo.nlu.RotateProjectTechnicalUserPasswordRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_ondewo_nlu_RotateProjectTechnicalUserPasswordRequest(buffer_arg) {
+  return ondewo_nlu_agent_pb.RotateProjectTechnicalUserPasswordRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_ondewo_nlu_RotateProjectTechnicalUserPasswordResponse(arg) {
+  if (!(arg instanceof ondewo_nlu_agent_pb.RotateProjectTechnicalUserPasswordResponse)) {
+    throw new Error('Expected argument of type ondewo.nlu.RotateProjectTechnicalUserPasswordResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_ondewo_nlu_RotateProjectTechnicalUserPasswordResponse(buffer_arg) {
+  return ondewo_nlu_agent_pb.RotateProjectTechnicalUserPasswordResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_ondewo_nlu_SetAgentStatusRequest(arg) {
   if (!(arg instanceof ondewo_nlu_agent_pb.SetAgentStatusRequest)) {
     throw new Error('Expected argument of type ondewo.nlu.SetAgentStatusRequest');
@@ -617,7 +717,7 @@ var AgentsService = exports.AgentsService = {
 // Examples:
 //
 // <pre>
-// grpcurl -plaintext -H 'cai-token: aimp' -d '{
+// grpcurl -plaintext -H 'Authorization: Bearer <jwt>' -d '{
 //   "agent": {
 //     "display_name": "My Pizza Bot",
 //     "default_language_code": "en",
@@ -656,7 +756,7 @@ createAgent: {
 // Examples:
 //
 // <pre>
-// grpcurl -plaintext -H 'cai-token: aimp' -d '{
+// grpcurl -plaintext -H 'Authorization: Bearer <jwt>' -d '{
 //   "agent": {
 //     "parent": "projects/76aaf4f3-a1f6-4fda-b4b3-351c64e65bc4/agent",
 //     "display_name": "Pizza Bot 2",
@@ -700,7 +800,7 @@ updateAgent: {
 // Examples:
 //
 // <pre>
-// grpcurl -plaintext -H 'cai-token: aimp' -d '{
+// grpcurl -plaintext -H 'Authorization: Bearer <jwt>' -d '{
 //   "parent": "projects/76aaf4f3-a1f6-4fda-b4b3-351c64e65bc4/agent"
 // }' localhost:50055 ondewo.nlu.Agents.GetAgent
 // </pre>
@@ -734,7 +834,7 @@ getAgent: {
 // Examples:
 //
 // <pre>
-// grpcurl -plaintext -H 'cai-token: aimp' -d '{
+// grpcurl -plaintext -H 'Authorization: Bearer <jwt>' -d '{
 //   "parent": "projects/76aaf4f3-a1f6-4fda-b4b3-351c64e65bc4/agent"
 // }' localhost:50055 ondewo.nlu.Agents.DeleteAgent
 // </pre>
@@ -755,7 +855,7 @@ deleteAgent: {
 // Examples:
 //
 // <pre>
-// grpcurl -plaintext -H 'cai-token: aimp' localhost:50055 ondewo.nlu.Agents.DeleteAllAgents
+// grpcurl -plaintext -H 'Authorization: Bearer <jwt>' localhost:50055 ondewo.nlu.Agents.DeleteAllAgents
 // </pre>
 // <samp>{}</samp>
 deleteAllAgents: {
@@ -774,7 +874,7 @@ deleteAllAgents: {
 // Examples:
 //
 // <pre>
-// grpcurl -plaintext -H 'cai-token: aimp' localhost:50055 ondewo.nlu.Agents.ListAgents
+// grpcurl -plaintext -H 'Authorization: Bearer <jwt>' localhost:50055 ondewo.nlu.Agents.ListAgents
 // </pre>
 // <samp>{
 //   "agents_with_owners": [
@@ -811,7 +911,7 @@ listAgents: {
 // Examples:
 //
 // <pre>
-// grpcurl -plaintext -H 'cai-token: aimp' localhost:50055 ondewo.nlu.Agents.ListAgentsOfUser
+// grpcurl -plaintext -H 'Authorization: Bearer <jwt>' localhost:50055 ondewo.nlu.Agents.ListAgentsOfUser
 // </pre>
 // <samp>{
 //   "agents_of_user_with_owners": [
@@ -854,7 +954,7 @@ listAgentsOfUser: {
 // Examples:
 //
 // <pre>
-// grpcurl -plaintext -H 'cai-token: aimp' localhost:50055 ondewo.nlu.Agents.ListAllAgents
+// grpcurl -plaintext -H 'Authorization: Bearer <jwt>' localhost:50055 ondewo.nlu.Agents.ListAllAgents
 // </pre>
 // <samp>{
 //   "agents_with_owners": [
@@ -1089,6 +1189,19 @@ getAgentStatistics: {
     responseSerialize: serialize_ondewo_nlu_GetSessionsStatisticsResponse,
     responseDeserialize: deserialize_ondewo_nlu_GetSessionsStatisticsResponse,
   },
+  // Gets LLM telemetry statistics for sessions bucketed over time (time series).
+// Supports LLM-typed report types (SESSION_LLM_*) only.
+getSessionsStatisticsTimeSeries: {
+    path: '/ondewo.nlu.Agents/GetSessionsStatisticsTimeSeries',
+    requestStream: false,
+    responseStream: false,
+    requestType: ondewo_nlu_agent_pb.GetSessionsStatisticsTimeSeriesRequest,
+    responseType: ondewo_nlu_agent_pb.GetSessionsStatisticsTimeSeriesResponse,
+    requestSerialize: serialize_ondewo_nlu_GetSessionsStatisticsTimeSeriesRequest,
+    requestDeserialize: deserialize_ondewo_nlu_GetSessionsStatisticsTimeSeriesRequest,
+    responseSerialize: serialize_ondewo_nlu_GetSessionsStatisticsTimeSeriesResponse,
+    responseDeserialize: deserialize_ondewo_nlu_GetSessionsStatisticsTimeSeriesResponse,
+  },
   // Sets status for the agent
 setAgentStatus: {
     path: '/ondewo.nlu.Agents/SetAgentStatus',
@@ -1304,6 +1417,59 @@ reindexAgent: {
     requestDeserialize: deserialize_ondewo_nlu_ReindexAgentRequest,
     responseSerialize: serialize_ondewo_nlu_Operation,
     responseDeserialize: deserialize_ondewo_nlu_Operation,
+  },
+  // Creates a project-scoped technical user (a normal, 2FA-exempt account holding
+// PROJECT_EXECUTOR on this one project) for headless/machine access (e.g.
+// ondewo-sip/csi/vtsi) via the ROPC login bridge. The generated password is
+// returned ONCE in the response and is not retrievable afterwards.
+createProjectTechnicalUser: {
+    path: '/ondewo.nlu.Agents/CreateProjectTechnicalUser',
+    requestStream: false,
+    responseStream: false,
+    requestType: ondewo_nlu_agent_pb.CreateProjectTechnicalUserRequest,
+    responseType: ondewo_nlu_agent_pb.CreateProjectTechnicalUserResponse,
+    requestSerialize: serialize_ondewo_nlu_CreateProjectTechnicalUserRequest,
+    requestDeserialize: deserialize_ondewo_nlu_CreateProjectTechnicalUserRequest,
+    responseSerialize: serialize_ondewo_nlu_CreateProjectTechnicalUserResponse,
+    responseDeserialize: deserialize_ondewo_nlu_CreateProjectTechnicalUserResponse,
+  },
+  // Lists the project-scoped technical users of the project (agent).
+listProjectTechnicalUsers: {
+    path: '/ondewo.nlu.Agents/ListProjectTechnicalUsers',
+    requestStream: false,
+    responseStream: false,
+    requestType: ondewo_nlu_agent_pb.ListProjectTechnicalUsersRequest,
+    responseType: ondewo_nlu_agent_pb.ListProjectTechnicalUsersResponse,
+    requestSerialize: serialize_ondewo_nlu_ListProjectTechnicalUsersRequest,
+    requestDeserialize: deserialize_ondewo_nlu_ListProjectTechnicalUsersRequest,
+    responseSerialize: serialize_ondewo_nlu_ListProjectTechnicalUsersResponse,
+    responseDeserialize: deserialize_ondewo_nlu_ListProjectTechnicalUsersResponse,
+  },
+  // Deletes a project-scoped technical user (removes the Keycloak user and the
+// project membership/projection rows).
+deleteProjectTechnicalUser: {
+    path: '/ondewo.nlu.Agents/DeleteProjectTechnicalUser',
+    requestStream: false,
+    responseStream: false,
+    requestType: ondewo_nlu_agent_pb.DeleteProjectTechnicalUserRequest,
+    responseType: google_protobuf_empty_pb.Empty,
+    requestSerialize: serialize_ondewo_nlu_DeleteProjectTechnicalUserRequest,
+    requestDeserialize: deserialize_ondewo_nlu_DeleteProjectTechnicalUserRequest,
+    responseSerialize: serialize_google_protobuf_Empty,
+    responseDeserialize: deserialize_google_protobuf_Empty,
+  },
+  // Rotates the password of a project-scoped technical user. Invalidates the old
+// password and returns the new generated password ONCE in the response.
+rotateProjectTechnicalUserPassword: {
+    path: '/ondewo.nlu.Agents/RotateProjectTechnicalUserPassword',
+    requestStream: false,
+    responseStream: false,
+    requestType: ondewo_nlu_agent_pb.RotateProjectTechnicalUserPasswordRequest,
+    responseType: ondewo_nlu_agent_pb.RotateProjectTechnicalUserPasswordResponse,
+    requestSerialize: serialize_ondewo_nlu_RotateProjectTechnicalUserPasswordRequest,
+    requestDeserialize: deserialize_ondewo_nlu_RotateProjectTechnicalUserPasswordRequest,
+    responseSerialize: serialize_ondewo_nlu_RotateProjectTechnicalUserPasswordResponse,
+    responseDeserialize: deserialize_ondewo_nlu_RotateProjectTechnicalUserPasswordResponse,
   },
 };
 

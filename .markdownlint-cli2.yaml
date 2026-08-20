@@ -27,10 +27,10 @@ config:
   # them. Keep them.
   MD053: false
 globs:
-  - "*.md"
+  - '*.md'
 ignores:
-  - "api/**"
-  - "src/ondewo-vtsi-api/**"
-  - "ondewo-proto-compiler/**"
-  - "node_modules/**"
-  - ".venv/**"
+  - 'api/**'
+  - 'src/ondewo-vtsi-api/**'
+  - 'ondewo-proto-compiler/**'
+  - 'node_modules/**'
+  - '.venv/**'
