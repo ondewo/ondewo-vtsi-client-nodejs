@@ -9,3 +9,13 @@ tmp
 .test-build/
 coverage/
 .nyc_output/
+
+# Compiled output of auth/offlineTokenProvider.ts, produced by `npm run build:auth`.
+# NOT committed, and deliberately so. Nothing consumes it: the tests compile their own copy into
+# .test-build/, the examples and spec import the .ts, `make create_npm_package` never copies auth/
+# into the published package, and eslint ignores it. It also cannot be kept in sync by a
+# regenerate-and-diff check, because the pre-commit prettier hook reformats it (single quotes, tabs)
+# while tsc emits double quotes and spaces -- so a committed copy is guaranteed to differ from a
+# fresh build. It was already drifting. CI regenerates it instead; see .github/workflows/tests.yml.
+auth/offlineTokenProvider.js
+auth/offlineTokenProvider.d.ts
