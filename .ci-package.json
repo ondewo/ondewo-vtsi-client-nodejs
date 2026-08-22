@@ -6,7 +6,9 @@
 		"pretest:examples": "tsc examples/listCallers.ts examples/listCallers.spec.ts --ignoreConfig --module commonjs --target es2020 --strict --lib es2020,dom --skipLibCheck --sourceMap --types node --typeRoots ./node_modules/@types --outDir .test-build",
 		"test:examples": "node --test .test-build/listCallers.spec.js",
 		"pretest:protos": "tsc tests/asteriskVersion.spec.ts --ignoreConfig --module commonjs --target es2020 --strict --lib es2020,dom --skipLibCheck --sourceMap --types node --typeRoots ./node_modules/@types --outDir .test-build",
-		"test:protos": "node --test .test-build/asteriskVersion.spec.js"
+		"test:protos": "node --test .test-build/asteriskVersion.spec.js",
+		"build:auth": "tsc auth/offlineTokenProvider.ts --ignoreConfig --module commonjs --target es2020 --declaration --strict --lib es2020,dom --skipLibCheck --types node --typeRoots ./node_modules/@types",
+		"typecheck:examples": "tsc examples/listCallers.ts examples/loginAndListCallers.ts examples/listCallers.spec.ts --ignoreConfig --noEmit --module commonjs --target es2020 --strict --lib es2020,dom --skipLibCheck --types node --typeRoots ./node_modules/@types"
 	},
 	"devDependencies": {
 		"c8": "^11.0.0",
