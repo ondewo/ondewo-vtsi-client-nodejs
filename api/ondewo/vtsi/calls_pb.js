@@ -10040,7 +10040,8 @@ proto.ondewo.vtsi.ListCallersResponse.prototype.toObject = function(opt_includeI
 proto.ondewo.vtsi.ListCallersResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
     callersList: jspb.Message.toObjectList(msg.getCallersList(),
-    proto.ondewo.vtsi.Caller.toObject, includeInstance)
+    proto.ondewo.vtsi.Caller.toObject, includeInstance),
+    nextPageToken: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -10082,6 +10083,10 @@ proto.ondewo.vtsi.ListCallersResponse.deserializeBinaryFromReader = function(msg
       reader.readMessage(value,proto.ondewo.vtsi.Caller.deserializeBinaryFromReader);
       msg.addCallers(value);
       break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setNextPageToken(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -10117,6 +10122,13 @@ proto.ondewo.vtsi.ListCallersResponse.serializeBinaryToWriter = function(message
       1,
       f,
       proto.ondewo.vtsi.Caller.serializeBinaryToWriter
+    );
+  }
+  f = message.getNextPageToken();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
     );
   }
 };
@@ -10157,6 +10169,24 @@ proto.ondewo.vtsi.ListCallersResponse.prototype.addCallers = function(opt_value,
  */
 proto.ondewo.vtsi.ListCallersResponse.prototype.clearCallersList = function() {
   return this.setCallersList([]);
+};
+
+
+/**
+ * optional string next_page_token = 2;
+ * @return {string}
+ */
+proto.ondewo.vtsi.ListCallersResponse.prototype.getNextPageToken = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.vtsi.ListCallersResponse} returns this
+ */
+proto.ondewo.vtsi.ListCallersResponse.prototype.setNextPageToken = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 

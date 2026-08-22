@@ -1159,6 +1159,8 @@ export class ListCallersResponse extends jspb.Message {
     getCallersList(): Array<Caller>;
     setCallersList(value: Array<Caller>): ListCallersResponse;
     addCallers(value?: Caller, index?: number): Caller;
+    getNextPageToken(): string;
+    setNextPageToken(value: string): ListCallersResponse;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): ListCallersResponse.AsObject;
@@ -1173,6 +1175,7 @@ export class ListCallersResponse extends jspb.Message {
 export namespace ListCallersResponse {
     export type AsObject = {
         callersList: Array<Caller.AsObject>,
+        nextPageToken: string,
     }
 }
 
