@@ -21,6 +21,8 @@ var global = (function() {
   return Function('return this')();
 }.call(null));
 
+var google_protobuf_field_mask_pb = require('google-protobuf/google/protobuf/field_mask_pb.js');
+goog.object.extend(proto, google_protobuf_field_mask_pb);
 var google_protobuf_struct_pb = require('google-protobuf/google/protobuf/struct_pb.js');
 goog.object.extend(proto, google_protobuf_struct_pb);
 var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js');
@@ -3186,7 +3188,8 @@ proto.ondewo.vtsi.UpdateVtsiProjectRequest.prototype.toObject = function(opt_inc
  */
 proto.ondewo.vtsi.UpdateVtsiProjectRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    vtsiProject: (f = msg.getVtsiProject()) && proto.ondewo.vtsi.VtsiProject.toObject(includeInstance, f)
+    vtsiProject: (f = msg.getVtsiProject()) && proto.ondewo.vtsi.VtsiProject.toObject(includeInstance, f),
+    updateMask: (f = msg.getUpdateMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -3228,6 +3231,11 @@ proto.ondewo.vtsi.UpdateVtsiProjectRequest.deserializeBinaryFromReader = functio
       reader.readMessage(value,proto.ondewo.vtsi.VtsiProject.deserializeBinaryFromReader);
       msg.setVtsiProject(value);
       break;
+    case 2:
+      var value = new google_protobuf_field_mask_pb.FieldMask;
+      reader.readMessage(value,google_protobuf_field_mask_pb.FieldMask.deserializeBinaryFromReader);
+      msg.setUpdateMask(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -3263,6 +3271,14 @@ proto.ondewo.vtsi.UpdateVtsiProjectRequest.serializeBinaryToWriter = function(me
       1,
       f,
       proto.ondewo.vtsi.VtsiProject.serializeBinaryToWriter
+    );
+  }
+  f = message.getUpdateMask();
+  if (f != null) {
+    writer.writeMessage(
+      2,
+      f,
+      google_protobuf_field_mask_pb.FieldMask.serializeBinaryToWriter
     );
   }
 };
@@ -3302,6 +3318,43 @@ proto.ondewo.vtsi.UpdateVtsiProjectRequest.prototype.clearVtsiProject = function
  */
 proto.ondewo.vtsi.UpdateVtsiProjectRequest.prototype.hasVtsiProject = function() {
   return jspb.Message.getField(this, 1) != null;
+};
+
+
+/**
+ * optional google.protobuf.FieldMask update_mask = 2;
+ * @return {?proto.google.protobuf.FieldMask}
+ */
+proto.ondewo.vtsi.UpdateVtsiProjectRequest.prototype.getUpdateMask = function() {
+  return /** @type{?proto.google.protobuf.FieldMask} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_field_mask_pb.FieldMask, 2));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.FieldMask|undefined} value
+ * @return {!proto.ondewo.vtsi.UpdateVtsiProjectRequest} returns this
+*/
+proto.ondewo.vtsi.UpdateVtsiProjectRequest.prototype.setUpdateMask = function(value) {
+  return jspb.Message.setWrapperField(this, 2, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.ondewo.vtsi.UpdateVtsiProjectRequest} returns this
+ */
+proto.ondewo.vtsi.UpdateVtsiProjectRequest.prototype.clearUpdateMask = function() {
+  return this.setUpdateMask(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.UpdateVtsiProjectRequest.prototype.hasUpdateMask = function() {
+  return jspb.Message.getField(this, 2) != null;
 };
 
 

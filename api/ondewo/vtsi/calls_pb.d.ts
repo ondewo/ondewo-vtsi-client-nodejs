@@ -569,7 +569,10 @@ export class CsiVtsiConfig extends jspb.Message {
     clearMessageBrokerConfig(): void;
     getMessageBrokerConfig(): MessageBrokerConfig | undefined;
     setMessageBrokerConfig(value?: MessageBrokerConfig): CsiVtsiConfig;
-    getActivateControlMessages(): boolean;
+
+    hasActivateControlMessages(): boolean;
+    clearActivateControlMessages(): void;
+    getActivateControlMessages(): boolean | undefined;
     setActivateControlMessages(value: boolean): CsiVtsiConfig;
 
     serializeBinary(): Uint8Array;
@@ -589,7 +592,7 @@ export namespace CsiVtsiConfig {
         t2sVtsiCallbacks?: T2sVtsiCallbacks.AsObject,
         audioObjectStoreConfig?: AudioObjectStorageConfig.AsObject,
         messageBrokerConfig?: MessageBrokerConfig.AsObject,
-        activateControlMessages: boolean,
+        activateControlMessages?: boolean,
     }
 }
 

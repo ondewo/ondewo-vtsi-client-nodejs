@@ -5,6 +5,7 @@
 /* eslint-disable */
 
 import * as jspb from "google-protobuf";
+import * as google_protobuf_field_mask_pb from "google-protobuf/google/protobuf/field_mask_pb";
 import * as google_protobuf_struct_pb from "google-protobuf/google/protobuf/struct_pb";
 import * as google_protobuf_timestamp_pb from "google-protobuf/google/protobuf/timestamp_pb";
 
@@ -384,6 +385,11 @@ export class UpdateVtsiProjectRequest extends jspb.Message {
     getVtsiProject(): VtsiProject | undefined;
     setVtsiProject(value?: VtsiProject): UpdateVtsiProjectRequest;
 
+    hasUpdateMask(): boolean;
+    clearUpdateMask(): void;
+    getUpdateMask(): google_protobuf_field_mask_pb.FieldMask | undefined;
+    setUpdateMask(value?: google_protobuf_field_mask_pb.FieldMask): UpdateVtsiProjectRequest;
+
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): UpdateVtsiProjectRequest.AsObject;
     static toObject(includeInstance: boolean, msg: UpdateVtsiProjectRequest): UpdateVtsiProjectRequest.AsObject;
@@ -397,6 +403,7 @@ export class UpdateVtsiProjectRequest extends jspb.Message {
 export namespace UpdateVtsiProjectRequest {
     export type AsObject = {
         vtsiProject?: VtsiProject.AsObject,
+        updateMask?: google_protobuf_field_mask_pb.FieldMask.AsObject,
     }
 }
 

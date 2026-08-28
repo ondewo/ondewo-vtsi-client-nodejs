@@ -18,6 +18,7 @@
 'use strict';
 var grpc = require('@grpc/grpc-js');
 var ondewo_vtsi_projects_pb = require('../../ondewo/vtsi/projects_pb.js');
+var google_protobuf_field_mask_pb = require('google-protobuf/google/protobuf/field_mask_pb.js');
 var google_protobuf_struct_pb = require('google-protobuf/google/protobuf/struct_pb.js');
 var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js');
 

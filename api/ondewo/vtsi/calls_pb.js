@@ -5759,8 +5759,8 @@ proto.ondewo.vtsi.CsiVtsiConfig.serializeBinaryToWriter = function(message, writ
       proto.ondewo.vtsi.MessageBrokerConfig.serializeBinaryToWriter
     );
   }
-  f = message.getActivateControlMessages();
-  if (f) {
+  f = /** @type {boolean} */ (jspb.Message.getField(message, 6));
+  if (f != null) {
     writer.writeBool(
       6,
       f
@@ -5968,7 +5968,25 @@ proto.ondewo.vtsi.CsiVtsiConfig.prototype.getActivateControlMessages = function(
  * @return {!proto.ondewo.vtsi.CsiVtsiConfig} returns this
  */
 proto.ondewo.vtsi.CsiVtsiConfig.prototype.setActivateControlMessages = function(value) {
-  return jspb.Message.setProto3BooleanField(this, 6, value);
+  return jspb.Message.setField(this, 6, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.ondewo.vtsi.CsiVtsiConfig} returns this
+ */
+proto.ondewo.vtsi.CsiVtsiConfig.prototype.clearActivateControlMessages = function() {
+  return jspb.Message.setField(this, 6, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.CsiVtsiConfig.prototype.hasActivateControlMessages = function() {
+  return jspb.Message.getField(this, 6) != null;
 };
 
 
