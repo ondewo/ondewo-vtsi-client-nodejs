@@ -50,6 +50,28 @@ function deserialize_ondewo_vtsi_Caller(buffer_arg) {
   return ondewo_vtsi_calls_pb.Caller.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_ondewo_vtsi_CancelScheduledCallerRequest(arg) {
+  if (!(arg instanceof ondewo_vtsi_calls_pb.CancelScheduledCallerRequest)) {
+    throw new Error('Expected argument of type ondewo.vtsi.CancelScheduledCallerRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_ondewo_vtsi_CancelScheduledCallerRequest(buffer_arg) {
+  return ondewo_vtsi_calls_pb.CancelScheduledCallerRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_ondewo_vtsi_CancelScheduledCallerResponse(arg) {
+  if (!(arg instanceof ondewo_vtsi_calls_pb.CancelScheduledCallerResponse)) {
+    throw new Error('Expected argument of type ondewo.vtsi.CancelScheduledCallerResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_ondewo_vtsi_CancelScheduledCallerResponse(buffer_arg) {
+  return ondewo_vtsi_calls_pb.CancelScheduledCallerResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_ondewo_vtsi_DeleteCallerRequest(arg) {
   if (!(arg instanceof ondewo_vtsi_calls_pb.DeleteCallerRequest)) {
     throw new Error('Expected argument of type ondewo.vtsi.DeleteCallerRequest');
@@ -171,6 +193,17 @@ function deserialize_ondewo_vtsi_GetListenerRequest(buffer_arg) {
   return ondewo_vtsi_calls_pb.GetListenerRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_ondewo_vtsi_GetScheduledCallerRequest(arg) {
+  if (!(arg instanceof ondewo_vtsi_calls_pb.GetScheduledCallerRequest)) {
+    throw new Error('Expected argument of type ondewo.vtsi.GetScheduledCallerRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_ondewo_vtsi_GetScheduledCallerRequest(buffer_arg) {
+  return ondewo_vtsi_calls_pb.GetScheduledCallerRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_ondewo_vtsi_ListCallersRequest(arg) {
   if (!(arg instanceof ondewo_vtsi_calls_pb.ListCallersRequest)) {
     throw new Error('Expected argument of type ondewo.vtsi.ListCallersRequest');
@@ -237,6 +270,28 @@ function deserialize_ondewo_vtsi_ListListenersResponse(buffer_arg) {
   return ondewo_vtsi_calls_pb.ListListenersResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_ondewo_vtsi_ListScheduledCallersRequest(arg) {
+  if (!(arg instanceof ondewo_vtsi_calls_pb.ListScheduledCallersRequest)) {
+    throw new Error('Expected argument of type ondewo.vtsi.ListScheduledCallersRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_ondewo_vtsi_ListScheduledCallersRequest(buffer_arg) {
+  return ondewo_vtsi_calls_pb.ListScheduledCallersRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_ondewo_vtsi_ListScheduledCallersResponse(arg) {
+  if (!(arg instanceof ondewo_vtsi_calls_pb.ListScheduledCallersResponse)) {
+    throw new Error('Expected argument of type ondewo.vtsi.ListScheduledCallersResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_ondewo_vtsi_ListScheduledCallersResponse(buffer_arg) {
+  return ondewo_vtsi_calls_pb.ListScheduledCallersResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_ondewo_vtsi_Listener(arg) {
   if (!(arg instanceof ondewo_vtsi_calls_pb.Listener)) {
     throw new Error('Expected argument of type ondewo.vtsi.Listener');
@@ -246,6 +301,17 @@ function serialize_ondewo_vtsi_Listener(arg) {
 
 function deserialize_ondewo_vtsi_Listener(buffer_arg) {
   return ondewo_vtsi_calls_pb.Listener.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_ondewo_vtsi_ScheduledCaller(arg) {
+  if (!(arg instanceof ondewo_vtsi_calls_pb.ScheduledCaller)) {
+    throw new Error('Expected argument of type ondewo.vtsi.ScheduledCaller');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_ondewo_vtsi_ScheduledCaller(buffer_arg) {
+  return ondewo_vtsi_calls_pb.ScheduledCaller.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_ondewo_vtsi_StartCallerRequest(arg) {
@@ -766,7 +832,7 @@ deleteListeners: {
     responseSerialize: serialize_ondewo_vtsi_DeleteListenersResponse,
     responseDeserialize: deserialize_ondewo_vtsi_DeleteListenersResponse,
   },
-  // <p>Start multiple ondewo-sip callers instances with schedules</p>
+  // <p>Start a single ondewo-sip caller instance at a scheduled time</p>
 startScheduledCaller: {
     path: '/ondewo.vtsi.Calls/StartScheduledCaller',
     requestStream: false,
@@ -778,7 +844,7 @@ startScheduledCaller: {
     responseSerialize: serialize_ondewo_vtsi_StartScheduledCallerResponse,
     responseDeserialize: deserialize_ondewo_vtsi_StartScheduledCallerResponse,
   },
-  // <p>Start multiple ondewo-sip callers instances with schedules</p>
+  // <p>Start multiple ondewo-sip caller instances, each at its own scheduled time</p>
 startScheduledCallers: {
     path: '/ondewo.vtsi.Calls/StartScheduledCallers',
     requestStream: false,
@@ -789,6 +855,42 @@ startScheduledCallers: {
     requestDeserialize: deserialize_ondewo_vtsi_StartScheduledCallersRequest,
     responseSerialize: serialize_ondewo_vtsi_StartScheduledCallersResponse,
     responseDeserialize: deserialize_ondewo_vtsi_StartScheduledCallersResponse,
+  },
+  // <p>Gets a scheduled caller</p>
+getScheduledCaller: {
+    path: '/ondewo.vtsi.Calls/GetScheduledCaller',
+    requestStream: false,
+    responseStream: false,
+    requestType: ondewo_vtsi_calls_pb.GetScheduledCallerRequest,
+    responseType: ondewo_vtsi_calls_pb.ScheduledCaller,
+    requestSerialize: serialize_ondewo_vtsi_GetScheduledCallerRequest,
+    requestDeserialize: deserialize_ondewo_vtsi_GetScheduledCallerRequest,
+    responseSerialize: serialize_ondewo_vtsi_ScheduledCaller,
+    responseDeserialize: deserialize_ondewo_vtsi_ScheduledCaller,
+  },
+  // <p>Lists the scheduled callers of a vtsi-project</p>
+listScheduledCallers: {
+    path: '/ondewo.vtsi.Calls/ListScheduledCallers',
+    requestStream: false,
+    responseStream: false,
+    requestType: ondewo_vtsi_calls_pb.ListScheduledCallersRequest,
+    responseType: ondewo_vtsi_calls_pb.ListScheduledCallersResponse,
+    requestSerialize: serialize_ondewo_vtsi_ListScheduledCallersRequest,
+    requestDeserialize: deserialize_ondewo_vtsi_ListScheduledCallersRequest,
+    responseSerialize: serialize_ondewo_vtsi_ListScheduledCallersResponse,
+    responseDeserialize: deserialize_ondewo_vtsi_ListScheduledCallersResponse,
+  },
+  // <p>Cancels a scheduled caller that has not fired yet</p>
+cancelScheduledCaller: {
+    path: '/ondewo.vtsi.Calls/CancelScheduledCaller',
+    requestStream: false,
+    responseStream: false,
+    requestType: ondewo_vtsi_calls_pb.CancelScheduledCallerRequest,
+    responseType: ondewo_vtsi_calls_pb.CancelScheduledCallerResponse,
+    requestSerialize: serialize_ondewo_vtsi_CancelScheduledCallerRequest,
+    requestDeserialize: deserialize_ondewo_vtsi_CancelScheduledCallerRequest,
+    responseSerialize: serialize_ondewo_vtsi_CancelScheduledCallerResponse,
+    responseDeserialize: deserialize_ondewo_vtsi_CancelScheduledCallerResponse,
   },
   // <p>Stop/kill a ondewo-sip listener or caller instance for a specific vtsi-project.</p>
 stopCall: {
