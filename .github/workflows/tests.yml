@@ -37,3 +37,8 @@ jobs:
         run: |
           npm run typecheck:examples
           npm run test:examples
+
+      # Specs that drive the GENERATED stubs (asterisk_version presence, the Campaigns / Events
+      # services and their two server streams against an in-process server). They need no backend.
+      - name: Generated-stub contract tests
+        run: npm run test:protos

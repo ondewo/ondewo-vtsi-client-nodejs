@@ -65,6 +65,17 @@ function deserialize_ondewo_sip_SipRegisterAccountRequest(buffer_arg) {
   return ondewo_sip_sip_pb.SipRegisterAccountRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_ondewo_sip_SipReportAnsweringMachineDetectedRequest(arg) {
+  if (!(arg instanceof ondewo_sip_sip_pb.SipReportAnsweringMachineDetectedRequest)) {
+    throw new Error('Expected argument of type ondewo.sip.SipReportAnsweringMachineDetectedRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_ondewo_sip_SipReportAnsweringMachineDetectedRequest(buffer_arg) {
+  return ondewo_sip_sip_pb.SipReportAnsweringMachineDetectedRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_ondewo_sip_SipStartCallRequest(arg) {
   if (!(arg instanceof ondewo_sip_sip_pb.SipStartCallRequest)) {
     throw new Error('Expected argument of type ondewo.sip.SipStartCallRequest');
@@ -252,6 +263,22 @@ sipUnMute: {
     responseType: ondewo_sip_sip_pb.SipStatus,
     requestSerialize: serialize_google_protobuf_Empty,
     requestDeserialize: deserialize_google_protobuf_Empty,
+    responseSerialize: serialize_ondewo_sip_SipStatus,
+    responseDeserialize: deserialize_ondewo_sip_SipStatus,
+  },
+  // <p>Reports that answering machine detection reached a verdict on the ongoing outgoing call. Sets the status
+// <code>OUTGOING_CALL_ANSWERING_MACHINE_DETECTED</code> carrying <code>amd_result</code>; the call stays up.</p>
+// <p>Called by the speech-to-speech pipeline (ONDEWO-CSI) inside the same container, i.e. over loopback only.
+// Refused, and the current status left untouched, when no outgoing call is connected: the returned
+// <code>SipStatus</code> then carries the refusal in <code>exception_name</code> and <code>description</code></p>
+sipReportAnsweringMachineDetected: {
+    path: '/ondewo.sip.Sip/SipReportAnsweringMachineDetected',
+    requestStream: false,
+    responseStream: false,
+    requestType: ondewo_sip_sip_pb.SipReportAnsweringMachineDetectedRequest,
+    responseType: ondewo_sip_sip_pb.SipStatus,
+    requestSerialize: serialize_ondewo_sip_SipReportAnsweringMachineDetectedRequest,
+    requestDeserialize: deserialize_ondewo_sip_SipReportAnsweringMachineDetectedRequest,
     responseSerialize: serialize_ondewo_sip_SipStatus,
     responseDeserialize: deserialize_ondewo_sip_SipStatus,
   },

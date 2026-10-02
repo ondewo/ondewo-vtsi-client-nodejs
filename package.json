@@ -24,8 +24,8 @@
     "pretest": "tsc auth/offlineTokenProvider.ts auth/offlineTokenProvider.spec.ts --ignoreConfig --module commonjs --target es2020 --strict --lib es2020,dom --skipLibCheck --sourceMap --types node --typeRoots ./node_modules/@types --outDir .test-build",
     "pretest:examples": "tsc examples/listCallers.ts examples/listCallers.spec.ts --ignoreConfig --module commonjs --target es2020 --strict --lib es2020,dom --skipLibCheck --sourceMap --types node --typeRoots ./node_modules/@types --outDir .test-build",
     "test:examples": "node --test .test-build/listCallers.spec.js",
-    "pretest:protos": "tsc tests/asteriskVersion.spec.ts --ignoreConfig --module commonjs --target es2020 --strict --lib es2020,dom --skipLibCheck --sourceMap --types node --typeRoots ./node_modules/@types --outDir .test-build",
-    "test:protos": "node --test .test-build/asteriskVersion.spec.js",
+    "pretest:protos": "tsc tests/asteriskVersion.spec.ts tests/campaignsAndEvents.spec.ts --ignoreConfig --module commonjs --target es2020 --strict --lib es2020,dom --skipLibCheck --sourceMap --types node --typeRoots ./node_modules/@types --outDir .test-build",
+    "test:protos": "node --test .test-build/asteriskVersion.spec.js .test-build/campaignsAndEvents.spec.js",
     "build:auth": "tsc auth/offlineTokenProvider.ts --ignoreConfig --module commonjs --target es2020 --declaration --strict --lib es2020,dom --skipLibCheck --types node --typeRoots ./node_modules/@types",
     "typecheck:examples": "tsc examples/listCallers.ts examples/loginAndListCallers.ts examples/listCallers.spec.ts --ignoreConfig --noEmit --module commonjs --target es2020 --strict --lib es2020,dom --skipLibCheck --types node --typeRoots ./node_modules/@types"
   },
@@ -43,12 +43,12 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.7",
     "@eslint/js": "^9.39.5",
-    "@typescript-eslint/eslint-plugin": "^8.70.0",
+    "@typescript-eslint/eslint-plugin": "^8.71.0",
     "c8": "^11.0.0",
     "eslint": "^9.39.5",
     "global": "^4.4.0",
     "husky": "^9.1.7",
-    "prettier": "^3.9.6",
+    "prettier": "^3.9.9",
     "typescript": "^6.0.3"
   }
 }

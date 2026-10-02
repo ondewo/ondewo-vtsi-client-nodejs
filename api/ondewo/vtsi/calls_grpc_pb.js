@@ -27,6 +27,7 @@ var ondewo_nlu_intent_pb = require('../../ondewo/nlu/intent_pb.js');
 var ondewo_s2t_speech$to$text_pb = require('../../ondewo/s2t/speech-to-text_pb.js');
 var ondewo_t2s_text$to$speech_pb = require('../../ondewo/t2s/text-to-speech_pb.js');
 var ondewo_sip_sip_pb = require('../../ondewo/sip/sip_pb.js');
+var ondewo_vtsi_campaigns_pb = require('../../ondewo/vtsi/campaigns_pb.js');
 
 function serialize_ondewo_vtsi_Call(arg) {
   if (!(arg instanceof ondewo_vtsi_calls_pb.Call)) {
@@ -589,6 +590,50 @@ function deserialize_ondewo_vtsi_StopListenersResponse(buffer_arg) {
   return ondewo_vtsi_calls_pb.StopListenersResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_ondewo_vtsi_StreamCallResourceStatusResponse(arg) {
+  if (!(arg instanceof ondewo_vtsi_calls_pb.StreamCallResourceStatusResponse)) {
+    throw new Error('Expected argument of type ondewo.vtsi.StreamCallResourceStatusResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_ondewo_vtsi_StreamCallResourceStatusResponse(buffer_arg) {
+  return ondewo_vtsi_calls_pb.StreamCallResourceStatusResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_ondewo_vtsi_StreamCallerStatusRequest(arg) {
+  if (!(arg instanceof ondewo_vtsi_calls_pb.StreamCallerStatusRequest)) {
+    throw new Error('Expected argument of type ondewo.vtsi.StreamCallerStatusRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_ondewo_vtsi_StreamCallerStatusRequest(buffer_arg) {
+  return ondewo_vtsi_calls_pb.StreamCallerStatusRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_ondewo_vtsi_StreamListenerStatusRequest(arg) {
+  if (!(arg instanceof ondewo_vtsi_calls_pb.StreamListenerStatusRequest)) {
+    throw new Error('Expected argument of type ondewo.vtsi.StreamListenerStatusRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_ondewo_vtsi_StreamListenerStatusRequest(buffer_arg) {
+  return ondewo_vtsi_calls_pb.StreamListenerStatusRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_ondewo_vtsi_StreamScheduledCallerStatusRequest(arg) {
+  if (!(arg instanceof ondewo_vtsi_calls_pb.StreamScheduledCallerStatusRequest)) {
+    throw new Error('Expected argument of type ondewo.vtsi.StreamScheduledCallerStatusRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_ondewo_vtsi_StreamScheduledCallerStatusRequest(buffer_arg) {
+  return ondewo_vtsi_calls_pb.StreamScheduledCallerStatusRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_ondewo_vtsi_TransferCallRequest(arg) {
   if (!(arg instanceof ondewo_vtsi_calls_pb.TransferCallRequest)) {
     throw new Error('Expected argument of type ondewo.vtsi.TransferCallRequest');
@@ -881,6 +926,11 @@ listScheduledCallers: {
     responseDeserialize: deserialize_ondewo_vtsi_ListScheduledCallersResponse,
   },
   // <p>Cancels a scheduled caller that has not fired yet</p>
+// <p>A scheduled caller of a campaign can be cancelled while its campaign call is
+// <code>CAMPAIGN_CALL_STATE_NOT_STARTED</code> or <code>CAMPAIGN_CALL_STATE_RETRY_PENDING</code>;
+// the campaign call then becomes <code>CAMPAIGN_CALL_STATE_CANCELLED</code>. While an attempt is
+// <code>DISPATCHING</code> or <code>IN_PROGRESS</code> the request is refused:
+// <code>cancelled = false</code> and the scheduled caller keeps its status.</p>
 cancelScheduledCaller: {
     path: '/ondewo.vtsi.Calls/CancelScheduledCaller',
     requestStream: false,
@@ -977,6 +1027,53 @@ listCalls: {
     requestDeserialize: deserialize_ondewo_vtsi_ListCallsRequest,
     responseSerialize: serialize_ondewo_vtsi_ListCallsResponse,
     responseDeserialize: deserialize_ondewo_vtsi_ListCallsResponse,
+  },
+  // ////////////////////////////////////////////////////////////////////////////
+// Status stream endpoints
+// ////////////////////////////////////////////////////////////////////////////
+//
+// <p>Streams the status of the callers of a project: a snapshot first
+// (<code>snapshot = true</code>), then every caller whose call or SIP status changed, plus
+// keep-alive messages. Ends when the client disconnects or at the server-side maximum stream
+// duration.</p>
+// <p>Errors: <code>NOT_FOUND</code> for an unknown project; <code>RESOURCE_EXHAUSTED</code> when
+// the server has no free stream slot.</p>
+streamCallerStatus: {
+    path: '/ondewo.vtsi.Calls/StreamCallerStatus',
+    requestStream: false,
+    responseStream: true,
+    requestType: ondewo_vtsi_calls_pb.StreamCallerStatusRequest,
+    responseType: ondewo_vtsi_calls_pb.StreamCallResourceStatusResponse,
+    requestSerialize: serialize_ondewo_vtsi_StreamCallerStatusRequest,
+    requestDeserialize: deserialize_ondewo_vtsi_StreamCallerStatusRequest,
+    responseSerialize: serialize_ondewo_vtsi_StreamCallResourceStatusResponse,
+    responseDeserialize: deserialize_ondewo_vtsi_StreamCallResourceStatusResponse,
+  },
+  // <p>Streams the status of the listeners of a project, like <code>StreamCallerStatus</code>.</p>
+streamListenerStatus: {
+    path: '/ondewo.vtsi.Calls/StreamListenerStatus',
+    requestStream: false,
+    responseStream: true,
+    requestType: ondewo_vtsi_calls_pb.StreamListenerStatusRequest,
+    responseType: ondewo_vtsi_calls_pb.StreamCallResourceStatusResponse,
+    requestSerialize: serialize_ondewo_vtsi_StreamListenerStatusRequest,
+    requestDeserialize: deserialize_ondewo_vtsi_StreamListenerStatusRequest,
+    responseSerialize: serialize_ondewo_vtsi_StreamCallResourceStatusResponse,
+    responseDeserialize: deserialize_ondewo_vtsi_StreamCallResourceStatusResponse,
+  },
+  // <p>Streams the status of the scheduled callers of a project, like
+// <code>StreamCallerStatus</code>. The snapshot holds every PENDING and FIRING scheduled caller
+// and those that finished in the last hour.</p>
+streamScheduledCallerStatus: {
+    path: '/ondewo.vtsi.Calls/StreamScheduledCallerStatus',
+    requestStream: false,
+    responseStream: true,
+    requestType: ondewo_vtsi_calls_pb.StreamScheduledCallerStatusRequest,
+    responseType: ondewo_vtsi_calls_pb.StreamCallResourceStatusResponse,
+    requestSerialize: serialize_ondewo_vtsi_StreamScheduledCallerStatusRequest,
+    requestDeserialize: deserialize_ondewo_vtsi_StreamScheduledCallerStatusRequest,
+    responseSerialize: serialize_ondewo_vtsi_StreamCallResourceStatusResponse,
+    responseDeserialize: deserialize_ondewo_vtsi_StreamCallResourceStatusResponse,
   },
 };
 

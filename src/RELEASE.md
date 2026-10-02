@@ -2,6 +2,37 @@
 
 *****************
 
+## Release ONDEWO VTSI Nodejs Client 9.0.0
+
+### Breaking changes
+
+* Built against ondewo-vtsi-api 9.0.0 (commit `7ac2e28` until that tag exists).
+  `AsteriskConfigsFiles.sip_conf_file_string` is renamed to `pjsip_conf_file_string`, so
+  `getSipConfFileString()` / `setSipConfFileString()` become `getPjsipConfFileString()` /
+  `setPjsipConfFileString()`. The field number and type are unchanged, so the wire format is too.
+* Eleven scalars in `ondewo/vtsi/calls.proto` became `optional`: ask `hasX()`, never the getter, to
+  tell "unset" from the default value (see the API release notes for the list).
+
+### New features
+
+* `CampaignsService` / `CampaignsClient` (`api/ondewo/vtsi/campaigns_*`): campaign CRUD, start, stop,
+  hard stop, resume, statistics, campaign calls with their attempts, and the server stream
+  `streamCampaignStatus`. A campaign carries `maxParallelCalls`, `maxAttempts` and `retryDelay`.
+* `StartCallersRequest` and `StartScheduledCallersRequest` gain `campaignAssignment`; their responses
+  gain `campaign` and `campaignCallNamesList`, and `ScheduledCaller` gains `campaignName`.
+* `CallsService` gains the server streams `streamCallerStatus`, `streamListenerStatus` and
+  `streamScheduledCallerStatus`.
+* `EventsService` / `EventsClient` (`api/ondewo/vtsi/events_*`): the `VtsiEvent` enum, event
+  subscription and webhook CRUD per VTSI project (custom header values are write-only),
+  `testWebhook`, and the resumable server stream `subscribeVtsiEvents`.
+* `SoftphonesService` / `SoftphonesClient`, answering machine detection on calls and the carrier TLS
+  verification fields of the API 9.0.0 line are exported too.
+* `tests/campaignsAndEvents.spec.ts` (run by `npm run test:protos`) pins the RPC descriptors, the
+  `VtsiEvent` enum against the pinned `events.proto`, the campaign assignment oneof, the webhook header
+  map, and both new streams end to end against an in-process server.
+
+*****************
+
 ## Release ONDEWO VTSI Nodejs Client 8.7.0
 
 ### Improvements

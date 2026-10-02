@@ -13,6 +13,7 @@ import * as ondewo_nlu_intent_pb from "../../ondewo/nlu/intent_pb";
 import * as ondewo_s2t_speech_to_text_pb from "../../ondewo/s2t/speech-to-text_pb";
 import * as ondewo_t2s_text_to_speech_pb from "../../ondewo/t2s/text-to-speech_pb";
 import * as ondewo_sip_sip_pb from "../../ondewo/sip/sip_pb";
+import * as ondewo_vtsi_campaigns_pb from "../../ondewo/vtsi/campaigns_pb";
 
 export class BaseServiceConfig extends jspb.Message { 
     getHost(): string;
@@ -275,6 +276,11 @@ export class VoiceInteractionConfig extends jspb.Message {
     getResponseTimingConfig(): ResponseTimingConfig | undefined;
     setResponseTimingConfig(value?: ResponseTimingConfig): VoiceInteractionConfig;
 
+    hasAnsweringMachineDetectionConfig(): boolean;
+    clearAnsweringMachineDetectionConfig(): void;
+    getAnsweringMachineDetectionConfig(): AnsweringMachineDetectionConfig | undefined;
+    setAnsweringMachineDetectionConfig(value?: AnsweringMachineDetectionConfig): VoiceInteractionConfig;
+
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): VoiceInteractionConfig.AsObject;
     static toObject(includeInstance: boolean, msg: VoiceInteractionConfig): VoiceInteractionConfig.AsObject;
@@ -290,6 +296,7 @@ export namespace VoiceInteractionConfig {
         turnDetectionConfig?: TurnDetectionConfig.AsObject,
         interruptionHandlingConfig?: InterruptionHandlingConfig.AsObject,
         responseTimingConfig?: ResponseTimingConfig.AsObject,
+        answeringMachineDetectionConfig?: AnsweringMachineDetectionConfig.AsObject,
     }
 }
 
@@ -308,9 +315,15 @@ export class TurnDetectionConfig extends jspb.Message {
     setMaxEndpointingDelaySeconds(value: number): TurnDetectionConfig;
     getTurnEagerness(): TurnDetectionConfig.TurnEagerness;
     setTurnEagerness(value: TurnDetectionConfig.TurnEagerness): TurnDetectionConfig;
-    getTurnDetectionSystemPrompt(): string;
+
+    hasTurnDetectionSystemPrompt(): boolean;
+    clearTurnDetectionSystemPrompt(): void;
+    getTurnDetectionSystemPrompt(): string | undefined;
     setTurnDetectionSystemPrompt(value: string): TurnDetectionConfig;
-    getTurnDetectionUserPrompt(): string;
+
+    hasTurnDetectionUserPrompt(): boolean;
+    clearTurnDetectionUserPrompt(): void;
+    getTurnDetectionUserPrompt(): string | undefined;
     setTurnDetectionUserPrompt(value: string): TurnDetectionConfig;
 
     serializeBinary(): Uint8Array;
@@ -329,8 +342,8 @@ export namespace TurnDetectionConfig {
         minEndpointingDelaySeconds?: number,
         maxEndpointingDelaySeconds?: number,
         turnEagerness: TurnDetectionConfig.TurnEagerness,
-        turnDetectionSystemPrompt: string,
-        turnDetectionUserPrompt: string,
+        turnDetectionSystemPrompt?: string,
+        turnDetectionUserPrompt?: string,
     }
 
     export enum TurnDetectionMode {
@@ -385,7 +398,10 @@ export class InterruptionHandlingConfig extends jspb.Message {
     clearFirstMessageProtectedSeconds(): void;
     getFirstMessageProtectedSeconds(): number | undefined;
     setFirstMessageProtectedSeconds(value: number): InterruptionHandlingConfig;
-    getTranscribeOnDisabledInterruptions(): boolean;
+
+    hasTranscribeOnDisabledInterruptions(): boolean;
+    clearTranscribeOnDisabledInterruptions(): void;
+    getTranscribeOnDisabledInterruptions(): boolean | undefined;
     setTranscribeOnDisabledInterruptions(value: boolean): InterruptionHandlingConfig;
 
     serializeBinary(): Uint8Array;
@@ -407,7 +423,7 @@ export namespace InterruptionHandlingConfig {
         resumeAfterFalseInterruption?: boolean,
         backoffSeconds?: number,
         firstMessageProtectedSeconds?: number,
-        transcribeOnDisabledInterruptions: boolean,
+        transcribeOnDisabledInterruptions?: boolean,
     }
 }
 
@@ -490,6 +506,162 @@ export namespace SoftTimeoutConfig {
         messagesList: Array<string>,
         maxPerGeneration?: number,
     }
+}
+
+export class AnsweringMachineDetectionConfig extends jspb.Message { 
+
+    hasActive(): boolean;
+    clearActive(): void;
+    getActive(): boolean | undefined;
+    setActive(value: boolean): AnsweringMachineDetectionConfig;
+
+    hasAction(): boolean;
+    clearAction(): void;
+    getAction(): AnsweringMachineDetectionConfig.AmdAction | undefined;
+    setAction(value: AnsweringMachineDetectionConfig.AmdAction): AnsweringMachineDetectionConfig;
+
+    hasSensitivity(): boolean;
+    clearSensitivity(): void;
+    getSensitivity(): AnsweringMachineDetectionConfig.AmdSensitivity | undefined;
+    setSensitivity(value: AnsweringMachineDetectionConfig.AmdSensitivity): AnsweringMachineDetectionConfig;
+
+    hasMaxDecisionTimeMs(): boolean;
+    clearMaxDecisionTimeMs(): void;
+    getMaxDecisionTimeMs(): number | undefined;
+    setMaxDecisionTimeMs(value: number): AnsweringMachineDetectionConfig;
+
+    hasMaxMachineWaitMs(): boolean;
+    clearMaxMachineWaitMs(): void;
+    getMaxMachineWaitMs(): number | undefined;
+    setMaxMachineWaitMs(value: number): AnsweringMachineDetectionConfig;
+
+    hasBeepWaitAfterGreetingMs(): boolean;
+    clearBeepWaitAfterGreetingMs(): void;
+    getBeepWaitAfterGreetingMs(): number | undefined;
+    setBeepWaitAfterGreetingMs(value: number): AnsweringMachineDetectionConfig;
+
+    hasInitialSilenceMs(): boolean;
+    clearInitialSilenceMs(): void;
+    getInitialSilenceMs(): number | undefined;
+    setInitialSilenceMs(value: number): AnsweringMachineDetectionConfig;
+
+    hasMaxHumanGreetingMs(): boolean;
+    clearMaxHumanGreetingMs(): void;
+    getMaxHumanGreetingMs(): number | undefined;
+    setMaxHumanGreetingMs(value: number): AnsweringMachineDetectionConfig;
+
+    hasGreetingEndSilenceMs(): boolean;
+    clearGreetingEndSilenceMs(): void;
+    getGreetingEndSilenceMs(): number | undefined;
+    setGreetingEndSilenceMs(value: number): AnsweringMachineDetectionConfig;
+
+    hasBeepDetectionActive(): boolean;
+    clearBeepDetectionActive(): void;
+    getBeepDetectionActive(): boolean | undefined;
+    setBeepDetectionActive(value: boolean): AnsweringMachineDetectionConfig;
+    clearAdditionalMachinePhrasesList(): void;
+    getAdditionalMachinePhrasesList(): Array<string>;
+    setAdditionalMachinePhrasesList(value: Array<string>): AnsweringMachineDetectionConfig;
+    addAdditionalMachinePhrases(value: string, index?: number): string;
+    clearAdditionalHumanPhrasesList(): void;
+    getAdditionalHumanPhrasesList(): Array<string>;
+    setAdditionalHumanPhrasesList(value: Array<string>): AnsweringMachineDetectionConfig;
+    addAdditionalHumanPhrases(value: string, index?: number): string;
+
+    hasHangUpOnFax(): boolean;
+    clearHangUpOnFax(): void;
+    getHangUpOnFax(): boolean | undefined;
+    setHangUpOnFax(value: boolean): AnsweringMachineDetectionConfig;
+
+    hasHangUpOnNetworkAnnouncement(): boolean;
+    clearHangUpOnNetworkAnnouncement(): void;
+    getHangUpOnNetworkAnnouncement(): boolean | undefined;
+    setHangUpOnNetworkAnnouncement(value: boolean): AnsweringMachineDetectionConfig;
+
+    hasHangUpOnIvr(): boolean;
+    clearHangUpOnIvr(): void;
+    getHangUpOnIvr(): boolean | undefined;
+    setHangUpOnIvr(value: boolean): AnsweringMachineDetectionConfig;
+
+    hasHangUpOnCallScreening(): boolean;
+    clearHangUpOnCallScreening(): void;
+    getHangUpOnCallScreening(): boolean | undefined;
+    setHangUpOnCallScreening(value: boolean): AnsweringMachineDetectionConfig;
+
+    hasVoiceMessageIntent(): boolean;
+    clearVoiceMessageIntent(): void;
+    getVoiceMessageIntent(): string | undefined;
+    setVoiceMessageIntent(value: string): AnsweringMachineDetectionConfig;
+
+    hasVoiceMessageMaxBeepWaitMs(): boolean;
+    clearVoiceMessageMaxBeepWaitMs(): void;
+    getVoiceMessageMaxBeepWaitMs(): number | undefined;
+    setVoiceMessageMaxBeepWaitMs(value: number): AnsweringMachineDetectionConfig;
+
+    hasVoiceMessageTimeoutMs(): boolean;
+    clearVoiceMessageTimeoutMs(): void;
+    getVoiceMessageTimeoutMs(): number | undefined;
+    setVoiceMessageTimeoutMs(value: number): AnsweringMachineDetectionConfig;
+
+    hasKeywordDetectionActive(): boolean;
+    clearKeywordDetectionActive(): void;
+    getKeywordDetectionActive(): boolean | undefined;
+    setKeywordDetectionActive(value: boolean): AnsweringMachineDetectionConfig;
+
+    hasCadenceDetectionActive(): boolean;
+    clearCadenceDetectionActive(): void;
+    getCadenceDetectionActive(): boolean | undefined;
+    setCadenceDetectionActive(value: boolean): AnsweringMachineDetectionConfig;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): AnsweringMachineDetectionConfig.AsObject;
+    static toObject(includeInstance: boolean, msg: AnsweringMachineDetectionConfig): AnsweringMachineDetectionConfig.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: AnsweringMachineDetectionConfig, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): AnsweringMachineDetectionConfig;
+    static deserializeBinaryFromReader(message: AnsweringMachineDetectionConfig, reader: jspb.BinaryReader): AnsweringMachineDetectionConfig;
+}
+
+export namespace AnsweringMachineDetectionConfig {
+    export type AsObject = {
+        active?: boolean,
+        action?: AnsweringMachineDetectionConfig.AmdAction,
+        sensitivity?: AnsweringMachineDetectionConfig.AmdSensitivity,
+        maxDecisionTimeMs?: number,
+        maxMachineWaitMs?: number,
+        beepWaitAfterGreetingMs?: number,
+        initialSilenceMs?: number,
+        maxHumanGreetingMs?: number,
+        greetingEndSilenceMs?: number,
+        beepDetectionActive?: boolean,
+        additionalMachinePhrasesList: Array<string>,
+        additionalHumanPhrasesList: Array<string>,
+        hangUpOnFax?: boolean,
+        hangUpOnNetworkAnnouncement?: boolean,
+        hangUpOnIvr?: boolean,
+        hangUpOnCallScreening?: boolean,
+        voiceMessageIntent?: string,
+        voiceMessageMaxBeepWaitMs?: number,
+        voiceMessageTimeoutMs?: number,
+        keywordDetectionActive?: boolean,
+        cadenceDetectionActive?: boolean,
+    }
+
+    export enum AmdAction {
+    AMD_ACTION_UNSPECIFIED = 0,
+    HANG_UP = 1,
+    DETECT_ONLY = 2,
+    LEAVE_VOICE_MESSAGE = 3,
+    }
+
+    export enum AmdSensitivity {
+    AMD_SENSITIVITY_UNSPECIFIED = 0,
+    LOW = 1,
+    MEDIUM = 2,
+    HIGH = 3,
+    }
+
 }
 
 export class SipBaseConfig extends jspb.Message { 
@@ -597,7 +769,10 @@ export namespace CsiVtsiConfig {
 }
 
 export class AudioObjectStorageConfig extends jspb.Message { 
-    getActivateAudioObjectStorage(): boolean;
+
+    hasActivateAudioObjectStorage(): boolean;
+    clearActivateAudioObjectStorage(): void;
+    getActivateAudioObjectStorage(): boolean | undefined;
     setActivateAudioObjectStorage(value: boolean): AudioObjectStorageConfig;
 
     hasAudioObjectStorageServicesActivationConfig(): boolean;
@@ -617,15 +792,21 @@ export class AudioObjectStorageConfig extends jspb.Message {
 
 export namespace AudioObjectStorageConfig {
     export type AsObject = {
-        activateAudioObjectStorage: boolean,
+        activateAudioObjectStorage?: boolean,
         audioObjectStorageServicesActivationConfig?: AudioObjectStorageServicesActivationConfig.AsObject,
     }
 }
 
 export class AudioObjectStorageServicesActivationConfig extends jspb.Message { 
-    getActivateS2t(): boolean;
+
+    hasActivateS2t(): boolean;
+    clearActivateS2t(): void;
+    getActivateS2t(): boolean | undefined;
     setActivateS2t(value: boolean): AudioObjectStorageServicesActivationConfig;
-    getActivateT2s(): boolean;
+
+    hasActivateT2s(): boolean;
+    clearActivateT2s(): void;
+    getActivateT2s(): boolean | undefined;
     setActivateT2s(value: boolean): AudioObjectStorageServicesActivationConfig;
 
     serializeBinary(): Uint8Array;
@@ -640,13 +821,16 @@ export class AudioObjectStorageServicesActivationConfig extends jspb.Message {
 
 export namespace AudioObjectStorageServicesActivationConfig {
     export type AsObject = {
-        activateS2t: boolean,
-        activateT2s: boolean,
+        activateS2t?: boolean,
+        activateT2s?: boolean,
     }
 }
 
 export class MessageBrokerConfig extends jspb.Message { 
-    getActivateMessageBroker(): boolean;
+
+    hasActivateMessageBroker(): boolean;
+    clearActivateMessageBroker(): void;
+    getActivateMessageBroker(): boolean | undefined;
     setActivateMessageBroker(value: boolean): MessageBrokerConfig;
 
     hasMessageBrokerServicesActivationConfig(): boolean;
@@ -673,7 +857,7 @@ export class MessageBrokerConfig extends jspb.Message {
 
 export namespace MessageBrokerConfig {
     export type AsObject = {
-        activateMessageBroker: boolean,
+        activateMessageBroker?: boolean,
         messageBrokerServicesActivationConfig?: MessageBrokerServicesActivationConfig.AsObject,
         rabbitMqConfig?: RabbitMqConfig.AsObject,
     }
@@ -686,13 +870,25 @@ export namespace MessageBrokerConfig {
 }
 
 export class MessageBrokerServicesActivationConfig extends jspb.Message { 
-    getActivateS2t(): boolean;
+
+    hasActivateS2t(): boolean;
+    clearActivateS2t(): void;
+    getActivateS2t(): boolean | undefined;
     setActivateS2t(value: boolean): MessageBrokerServicesActivationConfig;
-    getActivateNlu(): boolean;
+
+    hasActivateNlu(): boolean;
+    clearActivateNlu(): void;
+    getActivateNlu(): boolean | undefined;
     setActivateNlu(value: boolean): MessageBrokerServicesActivationConfig;
-    getActivateT2s(): boolean;
+
+    hasActivateT2s(): boolean;
+    clearActivateT2s(): void;
+    getActivateT2s(): boolean | undefined;
     setActivateT2s(value: boolean): MessageBrokerServicesActivationConfig;
-    getActivateSip(): boolean;
+
+    hasActivateSip(): boolean;
+    clearActivateSip(): void;
+    getActivateSip(): boolean | undefined;
     setActivateSip(value: boolean): MessageBrokerServicesActivationConfig;
 
     serializeBinary(): Uint8Array;
@@ -707,10 +903,10 @@ export class MessageBrokerServicesActivationConfig extends jspb.Message {
 
 export namespace MessageBrokerServicesActivationConfig {
     export type AsObject = {
-        activateS2t: boolean,
-        activateNlu: boolean,
-        activateT2s: boolean,
-        activateSip: boolean,
+        activateS2t?: boolean,
+        activateNlu?: boolean,
+        activateT2s?: boolean,
+        activateSip?: boolean,
     }
 }
 
@@ -1080,6 +1276,11 @@ export class StartCallersRequest extends jspb.Message {
     setCallerRequestsList(value: Array<StartCallerRequest>): StartCallersRequest;
     addCallerRequests(value?: StartCallerRequest, index?: number): StartCallerRequest;
 
+    hasCampaignAssignment(): boolean;
+    clearCampaignAssignment(): void;
+    getCampaignAssignment(): ondewo_vtsi_campaigns_pb.CampaignAssignment | undefined;
+    setCampaignAssignment(value?: ondewo_vtsi_campaigns_pb.CampaignAssignment): StartCallersRequest;
+
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): StartCallersRequest.AsObject;
     static toObject(includeInstance: boolean, msg: StartCallersRequest): StartCallersRequest.AsObject;
@@ -1094,6 +1295,7 @@ export namespace StartCallersRequest {
     export type AsObject = {
         vtsiProjectName: string,
         callerRequestsList: Array<StartCallerRequest.AsObject>,
+        campaignAssignment?: ondewo_vtsi_campaigns_pb.CampaignAssignment.AsObject,
     }
 }
 
@@ -1106,6 +1308,15 @@ export class StartCallersResponse extends jspb.Message {
     addCallerResponses(value?: StartCallerResponse, index?: number): StartCallerResponse;
     getErrorMessage(): string;
     setErrorMessage(value: string): StartCallersResponse;
+
+    hasCampaign(): boolean;
+    clearCampaign(): void;
+    getCampaign(): ondewo_vtsi_campaigns_pb.Campaign | undefined;
+    setCampaign(value?: ondewo_vtsi_campaigns_pb.Campaign): StartCallersResponse;
+    clearCampaignCallNamesList(): void;
+    getCampaignCallNamesList(): Array<string>;
+    setCampaignCallNamesList(value: Array<string>): StartCallersResponse;
+    addCampaignCallNames(value: string, index?: number): string;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): StartCallersResponse.AsObject;
@@ -1122,6 +1333,8 @@ export namespace StartCallersResponse {
         vtsiProjectName: string,
         callerResponsesList: Array<StartCallerResponse.AsObject>,
         errorMessage: string,
+        campaign?: ondewo_vtsi_campaigns_pb.Campaign.AsObject,
+        campaignCallNamesList: Array<string>,
     }
 }
 
@@ -1697,6 +1910,11 @@ export class StartScheduledCallersRequest extends jspb.Message {
     setScheduledCallerRequestsList(value: Array<StartScheduledCallerRequest>): StartScheduledCallersRequest;
     addScheduledCallerRequests(value?: StartScheduledCallerRequest, index?: number): StartScheduledCallerRequest;
 
+    hasCampaignAssignment(): boolean;
+    clearCampaignAssignment(): void;
+    getCampaignAssignment(): ondewo_vtsi_campaigns_pb.CampaignAssignment | undefined;
+    setCampaignAssignment(value?: ondewo_vtsi_campaigns_pb.CampaignAssignment): StartScheduledCallersRequest;
+
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): StartScheduledCallersRequest.AsObject;
     static toObject(includeInstance: boolean, msg: StartScheduledCallersRequest): StartScheduledCallersRequest.AsObject;
@@ -1711,6 +1929,7 @@ export namespace StartScheduledCallersRequest {
     export type AsObject = {
         vtsiProjectName: string,
         scheduledCallerRequestsList: Array<StartScheduledCallerRequest.AsObject>,
+        campaignAssignment?: ondewo_vtsi_campaigns_pb.CampaignAssignment.AsObject,
     }
 }
 
@@ -1721,6 +1940,15 @@ export class StartScheduledCallersResponse extends jspb.Message {
     getScheduledCallerResponsesList(): Array<StartScheduledCallerResponse>;
     setScheduledCallerResponsesList(value: Array<StartScheduledCallerResponse>): StartScheduledCallersResponse;
     addScheduledCallerResponses(value?: StartScheduledCallerResponse, index?: number): StartScheduledCallerResponse;
+
+    hasCampaign(): boolean;
+    clearCampaign(): void;
+    getCampaign(): ondewo_vtsi_campaigns_pb.Campaign | undefined;
+    setCampaign(value?: ondewo_vtsi_campaigns_pb.Campaign): StartScheduledCallersResponse;
+    clearCampaignCallNamesList(): void;
+    getCampaignCallNamesList(): Array<string>;
+    setCampaignCallNamesList(value: Array<string>): StartScheduledCallersResponse;
+    addCampaignCallNames(value: string, index?: number): string;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): StartScheduledCallersResponse.AsObject;
@@ -1736,6 +1964,8 @@ export namespace StartScheduledCallersResponse {
     export type AsObject = {
         vtsiProjectName: string,
         scheduledCallerResponsesList: Array<StartScheduledCallerResponse.AsObject>,
+        campaign?: ondewo_vtsi_campaigns_pb.Campaign.AsObject,
+        campaignCallNamesList: Array<string>,
     }
 }
 
@@ -1809,6 +2039,8 @@ export class ScheduledCaller extends jspb.Message {
     setFiredAt(value?: google_protobuf_timestamp_pb.Timestamp): ScheduledCaller;
     getErrorMessage(): string;
     setErrorMessage(value: string): ScheduledCaller;
+    getCampaignName(): string;
+    setCampaignName(value: string): ScheduledCaller;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): ScheduledCaller.AsObject;
@@ -1833,6 +2065,7 @@ export namespace ScheduledCaller {
         createdAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
         firedAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
         errorMessage: string,
+        campaignName: string,
     }
 }
 
@@ -2303,6 +2536,21 @@ export class Call extends jspb.Message {
     getPlatforms(): ondewo_nlu_intent_pb.Intent.Message.Platform | undefined;
     setPlatforms(value: ondewo_nlu_intent_pb.Intent.Message.Platform): Call;
 
+    hasRedialRecommended(): boolean;
+    clearRedialRecommended(): void;
+    getRedialRecommended(): boolean | undefined;
+    setRedialRecommended(value: boolean): Call;
+
+    hasRedialReason(): boolean;
+    clearRedialReason(): void;
+    getRedialReason(): string | undefined;
+    setRedialReason(value: string): Call;
+
+    hasAnsweringMachineDetectionEndDescription(): boolean;
+    clearAnsweringMachineDetectionEndDescription(): void;
+    getAnsweringMachineDetectionEndDescription(): string | undefined;
+    setAnsweringMachineDetectionEndDescription(value: string): Call;
+
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): Call.AsObject;
     static toObject(includeInstance: boolean, msg: Call): Call.AsObject;
@@ -2333,6 +2581,9 @@ export namespace Call {
         csiPort?: number,
         nluSessionName?: string,
         platforms?: ondewo_nlu_intent_pb.Intent.Message.Platform,
+        redialRecommended?: boolean,
+        redialReason?: string,
+        answeringMachineDetectionEndDescription?: string,
     }
 }
 
@@ -2563,6 +2814,196 @@ export namespace ServiceStatus {
     export type AsObject = {
         healthy: boolean,
         errorMessage: string,
+    }
+}
+
+export class CallResourceStatus extends jspb.Message { 
+    getResourceName(): string;
+    setResourceName(value: string): CallResourceStatus;
+    getCallType(): CallType;
+    setCallType(value: CallType): CallResourceStatus;
+    getCallName(): string;
+    setCallName(value: string): CallResourceStatus;
+    getActive(): boolean;
+    setActive(value: boolean): CallResourceStatus;
+    getSipStatusType(): ondewo_sip_sip_pb.SipStatus.StatusType;
+    setSipStatusType(value: ondewo_sip_sip_pb.SipStatus.StatusType): CallResourceStatus;
+    getSipStatusDescription(): string;
+    setSipStatusDescription(value: string): CallResourceStatus;
+
+    hasStartTime(): boolean;
+    clearStartTime(): void;
+    getStartTime(): google_protobuf_timestamp_pb.Timestamp | undefined;
+    setStartTime(value?: google_protobuf_timestamp_pb.Timestamp): CallResourceStatus;
+
+    hasEndTime(): boolean;
+    clearEndTime(): void;
+    getEndTime(): google_protobuf_timestamp_pb.Timestamp | undefined;
+    setEndTime(value?: google_protobuf_timestamp_pb.Timestamp): CallResourceStatus;
+    getPhoneNumber(): string;
+    setPhoneNumber(value: string): CallResourceStatus;
+    getScheduledCallerStatus(): ScheduledCallerStatus;
+    setScheduledCallerStatus(value: ScheduledCallerStatus): CallResourceStatus;
+
+    hasScheduledTime(): boolean;
+    clearScheduledTime(): void;
+    getScheduledTime(): google_protobuf_timestamp_pb.Timestamp | undefined;
+    setScheduledTime(value?: google_protobuf_timestamp_pb.Timestamp): CallResourceStatus;
+    getCampaignName(): string;
+    setCampaignName(value: string): CallResourceStatus;
+    getErrorMessage(): string;
+    setErrorMessage(value: string): CallResourceStatus;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): CallResourceStatus.AsObject;
+    static toObject(includeInstance: boolean, msg: CallResourceStatus): CallResourceStatus.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: CallResourceStatus, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): CallResourceStatus;
+    static deserializeBinaryFromReader(message: CallResourceStatus, reader: jspb.BinaryReader): CallResourceStatus;
+}
+
+export namespace CallResourceStatus {
+    export type AsObject = {
+        resourceName: string,
+        callType: CallType,
+        callName: string,
+        active: boolean,
+        sipStatusType: ondewo_sip_sip_pb.SipStatus.StatusType,
+        sipStatusDescription: string,
+        startTime?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+        endTime?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+        phoneNumber: string,
+        scheduledCallerStatus: ScheduledCallerStatus,
+        scheduledTime?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+        campaignName: string,
+        errorMessage: string,
+    }
+}
+
+export class StreamCallerStatusRequest extends jspb.Message { 
+    getVtsiProjectName(): string;
+    setVtsiProjectName(value: string): StreamCallerStatusRequest;
+    clearCallerNamesList(): void;
+    getCallerNamesList(): Array<string>;
+    setCallerNamesList(value: Array<string>): StreamCallerStatusRequest;
+    addCallerNames(value: string, index?: number): string;
+    getActiveOnly(): boolean;
+    setActiveOnly(value: boolean): StreamCallerStatusRequest;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): StreamCallerStatusRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: StreamCallerStatusRequest): StreamCallerStatusRequest.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: StreamCallerStatusRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): StreamCallerStatusRequest;
+    static deserializeBinaryFromReader(message: StreamCallerStatusRequest, reader: jspb.BinaryReader): StreamCallerStatusRequest;
+}
+
+export namespace StreamCallerStatusRequest {
+    export type AsObject = {
+        vtsiProjectName: string,
+        callerNamesList: Array<string>,
+        activeOnly: boolean,
+    }
+}
+
+export class StreamListenerStatusRequest extends jspb.Message { 
+    getVtsiProjectName(): string;
+    setVtsiProjectName(value: string): StreamListenerStatusRequest;
+    clearListenerNamesList(): void;
+    getListenerNamesList(): Array<string>;
+    setListenerNamesList(value: Array<string>): StreamListenerStatusRequest;
+    addListenerNames(value: string, index?: number): string;
+    getActiveOnly(): boolean;
+    setActiveOnly(value: boolean): StreamListenerStatusRequest;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): StreamListenerStatusRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: StreamListenerStatusRequest): StreamListenerStatusRequest.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: StreamListenerStatusRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): StreamListenerStatusRequest;
+    static deserializeBinaryFromReader(message: StreamListenerStatusRequest, reader: jspb.BinaryReader): StreamListenerStatusRequest;
+}
+
+export namespace StreamListenerStatusRequest {
+    export type AsObject = {
+        vtsiProjectName: string,
+        listenerNamesList: Array<string>,
+        activeOnly: boolean,
+    }
+}
+
+export class StreamScheduledCallerStatusRequest extends jspb.Message { 
+    getVtsiProjectName(): string;
+    setVtsiProjectName(value: string): StreamScheduledCallerStatusRequest;
+    clearScheduledCallerNamesList(): void;
+    getScheduledCallerNamesList(): Array<string>;
+    setScheduledCallerNamesList(value: Array<string>): StreamScheduledCallerStatusRequest;
+    addScheduledCallerNames(value: string, index?: number): string;
+    clearStatusesList(): void;
+    getStatusesList(): Array<ScheduledCallerStatus>;
+    setStatusesList(value: Array<ScheduledCallerStatus>): StreamScheduledCallerStatusRequest;
+    addStatuses(value: ScheduledCallerStatus, index?: number): ScheduledCallerStatus;
+    getCampaignName(): string;
+    setCampaignName(value: string): StreamScheduledCallerStatusRequest;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): StreamScheduledCallerStatusRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: StreamScheduledCallerStatusRequest): StreamScheduledCallerStatusRequest.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: StreamScheduledCallerStatusRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): StreamScheduledCallerStatusRequest;
+    static deserializeBinaryFromReader(message: StreamScheduledCallerStatusRequest, reader: jspb.BinaryReader): StreamScheduledCallerStatusRequest;
+}
+
+export namespace StreamScheduledCallerStatusRequest {
+    export type AsObject = {
+        vtsiProjectName: string,
+        scheduledCallerNamesList: Array<string>,
+        statusesList: Array<ScheduledCallerStatus>,
+        campaignName: string,
+    }
+}
+
+export class StreamCallResourceStatusResponse extends jspb.Message { 
+    clearStatusesList(): void;
+    getStatusesList(): Array<CallResourceStatus>;
+    setStatusesList(value: Array<CallResourceStatus>): StreamCallResourceStatusResponse;
+    addStatuses(value?: CallResourceStatus, index?: number): CallResourceStatus;
+    clearRemovedResourceNamesList(): void;
+    getRemovedResourceNamesList(): Array<string>;
+    setRemovedResourceNamesList(value: Array<string>): StreamCallResourceStatusResponse;
+    addRemovedResourceNames(value: string, index?: number): string;
+    getSnapshot(): boolean;
+    setSnapshot(value: boolean): StreamCallResourceStatusResponse;
+    getSnapshotTruncated(): boolean;
+    setSnapshotTruncated(value: boolean): StreamCallResourceStatusResponse;
+    getEndReason(): string;
+    setEndReason(value: string): StreamCallResourceStatusResponse;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): StreamCallResourceStatusResponse.AsObject;
+    static toObject(includeInstance: boolean, msg: StreamCallResourceStatusResponse): StreamCallResourceStatusResponse.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: StreamCallResourceStatusResponse, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): StreamCallResourceStatusResponse;
+    static deserializeBinaryFromReader(message: StreamCallResourceStatusResponse, reader: jspb.BinaryReader): StreamCallResourceStatusResponse;
+}
+
+export namespace StreamCallResourceStatusResponse {
+    export type AsObject = {
+        statusesList: Array<CallResourceStatus.AsObject>,
+        removedResourceNamesList: Array<string>,
+        snapshot: boolean,
+        snapshotTruncated: boolean,
+        endReason: string,
     }
 }
 

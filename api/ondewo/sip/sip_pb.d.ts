@@ -11,6 +11,13 @@ import * as google_protobuf_timestamp_pb from "google-protobuf/google/protobuf/t
 export class SipEndCallRequest extends jspb.Message { 
     getHardHangup(): boolean;
     setHardHangup(value: boolean): SipEndCallRequest;
+    getEndReason(): SipEndCallRequest.EndCallReason;
+    setEndReason(value: SipEndCallRequest.EndCallReason): SipEndCallRequest;
+
+    hasAmdResult(): boolean;
+    clearAmdResult(): void;
+    getAmdResult(): AnsweringMachineDetectionResult | undefined;
+    setAmdResult(value?: AnsweringMachineDetectionResult): SipEndCallRequest;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): SipEndCallRequest.AsObject;
@@ -25,7 +32,115 @@ export class SipEndCallRequest extends jspb.Message {
 export namespace SipEndCallRequest {
     export type AsObject = {
         hardHangup: boolean,
+        endReason: SipEndCallRequest.EndCallReason,
+        amdResult?: AnsweringMachineDetectionResult.AsObject,
     }
+
+    export enum EndCallReason {
+    END_CALL_REASON_UNSPECIFIED = 0,
+    ANSWERING_MACHINE = 1,
+    ANSWERING_MACHINE_VOICE_MESSAGE_LEFT = 2,
+    }
+
+}
+
+export class SipReportAnsweringMachineDetectedRequest extends jspb.Message { 
+
+    hasAmdResult(): boolean;
+    clearAmdResult(): void;
+    getAmdResult(): AnsweringMachineDetectionResult | undefined;
+    setAmdResult(value?: AnsweringMachineDetectionResult): SipReportAnsweringMachineDetectedRequest;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): SipReportAnsweringMachineDetectedRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: SipReportAnsweringMachineDetectedRequest): SipReportAnsweringMachineDetectedRequest.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: SipReportAnsweringMachineDetectedRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): SipReportAnsweringMachineDetectedRequest;
+    static deserializeBinaryFromReader(message: SipReportAnsweringMachineDetectedRequest, reader: jspb.BinaryReader): SipReportAnsweringMachineDetectedRequest;
+}
+
+export namespace SipReportAnsweringMachineDetectedRequest {
+    export type AsObject = {
+        amdResult?: AnsweringMachineDetectionResult.AsObject,
+    }
+}
+
+export class AnsweringMachineDetectionResult extends jspb.Message { 
+    getVerdict(): AnsweringMachineDetectionResult.Verdict;
+    setVerdict(value: AnsweringMachineDetectionResult.Verdict): AnsweringMachineDetectionResult;
+    getCause(): AnsweringMachineDetectionResult.Cause;
+    setCause(value: AnsweringMachineDetectionResult.Cause): AnsweringMachineDetectionResult;
+    getConfidence(): number;
+    setConfidence(value: number): AnsweringMachineDetectionResult;
+    getDecisionMs(): number;
+    setDecisionMs(value: number): AnsweringMachineDetectionResult;
+    getRuleId(): string;
+    setRuleId(value: string): AnsweringMachineDetectionResult;
+    clearMatchedCueIdsList(): void;
+    getMatchedCueIdsList(): Array<string>;
+    setMatchedCueIdsList(value: Array<string>): AnsweringMachineDetectionResult;
+    addMatchedCueIds(value: string, index?: number): string;
+    getActionTaken(): AnsweringMachineDetectionResult.ActionTaken;
+    setActionTaken(value: AnsweringMachineDetectionResult.ActionTaken): AnsweringMachineDetectionResult;
+    getCallId(): string;
+    setCallId(value: string): AnsweringMachineDetectionResult;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): AnsweringMachineDetectionResult.AsObject;
+    static toObject(includeInstance: boolean, msg: AnsweringMachineDetectionResult): AnsweringMachineDetectionResult.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: AnsweringMachineDetectionResult, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): AnsweringMachineDetectionResult;
+    static deserializeBinaryFromReader(message: AnsweringMachineDetectionResult, reader: jspb.BinaryReader): AnsweringMachineDetectionResult;
+}
+
+export namespace AnsweringMachineDetectionResult {
+    export type AsObject = {
+        verdict: AnsweringMachineDetectionResult.Verdict,
+        cause: AnsweringMachineDetectionResult.Cause,
+        confidence: number,
+        decisionMs: number,
+        ruleId: string,
+        matchedCueIdsList: Array<string>,
+        actionTaken: AnsweringMachineDetectionResult.ActionTaken,
+        callId: string,
+    }
+
+    export enum Verdict {
+    VERDICT_UNSPECIFIED = 0,
+    HUMAN = 1,
+    MACHINE = 2,
+    IVR = 3,
+    FAX = 4,
+    NETWORK_ANNOUNCEMENT = 5,
+    CALL_SCREENING = 6,
+    NO_SPEECH = 7,
+    UNKNOWN = 8,
+    }
+
+    export enum Cause {
+    CAUSE_UNSPECIFIED = 0,
+    CADENCE = 1,
+    KEYWORD = 2,
+    BEEP = 3,
+    TONE = 4,
+    CADENCE_AND_KEYWORD = 5,
+    CADENCE_AND_BEEP = 6,
+    TIMEOUT = 7,
+    SILENCE = 8,
+    }
+
+    export enum ActionTaken {
+    ACTION_TAKEN_UNSPECIFIED = 0,
+    HUNG_UP = 1,
+    CONTINUED = 2,
+    DETECT_ONLY = 3,
+    LEFT_VOICE_MESSAGE = 4,
+    }
+
 }
 
 export class SipStartCallRequest extends jspb.Message { 
@@ -156,6 +271,11 @@ export class SipStatus extends jspb.Message {
     getNluSessionName(): string;
     setNluSessionName(value: string): SipStatus;
 
+    hasAmdResult(): boolean;
+    clearAmdResult(): void;
+    getAmdResult(): AnsweringMachineDetectionResult | undefined;
+    setAmdResult(value?: AnsweringMachineDetectionResult): SipStatus;
+
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): SipStatus.AsObject;
     static toObject(includeInstance: boolean, msg: SipStatus): SipStatus.AsObject;
@@ -179,6 +299,7 @@ export namespace SipStatus {
         exceptionName: string,
         exceptionTraceback: string,
         nluSessionName: string,
+        amdResult?: AnsweringMachineDetectionResult.AsObject,
     }
 
     export enum StatusType {
@@ -204,6 +325,7 @@ export namespace SipStatus {
     MICROPHONE_UNMUTED = 19,
     MICROPHONE_WAV_FILES_PLAYED = 20,
     NO_ONGOING_CALL = 21,
+    OUTGOING_CALL_ANSWERING_MACHINE_DETECTED = 22,
     }
 
 }
