@@ -29,6 +29,50 @@ var ondewo_t2s_text$to$speech_pb = require('../../ondewo/t2s/text-to-speech_pb.j
 var ondewo_sip_sip_pb = require('../../ondewo/sip/sip_pb.js');
 var ondewo_vtsi_campaigns_pb = require('../../ondewo/vtsi/campaigns_pb.js');
 
+function serialize_ondewo_vtsi_AddCallersToCampaignRequest(arg) {
+  if (!(arg instanceof ondewo_vtsi_calls_pb.AddCallersToCampaignRequest)) {
+    throw new Error('Expected argument of type ondewo.vtsi.AddCallersToCampaignRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_ondewo_vtsi_AddCallersToCampaignRequest(buffer_arg) {
+  return ondewo_vtsi_calls_pb.AddCallersToCampaignRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_ondewo_vtsi_AddCallersToCampaignResponse(arg) {
+  if (!(arg instanceof ondewo_vtsi_calls_pb.AddCallersToCampaignResponse)) {
+    throw new Error('Expected argument of type ondewo.vtsi.AddCallersToCampaignResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_ondewo_vtsi_AddCallersToCampaignResponse(buffer_arg) {
+  return ondewo_vtsi_calls_pb.AddCallersToCampaignResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_ondewo_vtsi_AddScheduledCallersToCampaignRequest(arg) {
+  if (!(arg instanceof ondewo_vtsi_calls_pb.AddScheduledCallersToCampaignRequest)) {
+    throw new Error('Expected argument of type ondewo.vtsi.AddScheduledCallersToCampaignRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_ondewo_vtsi_AddScheduledCallersToCampaignRequest(buffer_arg) {
+  return ondewo_vtsi_calls_pb.AddScheduledCallersToCampaignRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_ondewo_vtsi_AddScheduledCallersToCampaignResponse(arg) {
+  if (!(arg instanceof ondewo_vtsi_calls_pb.AddScheduledCallersToCampaignResponse)) {
+    throw new Error('Expected argument of type ondewo.vtsi.AddScheduledCallersToCampaignResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_ondewo_vtsi_AddScheduledCallersToCampaignResponse(buffer_arg) {
+  return ondewo_vtsi_calls_pb.AddScheduledCallersToCampaignResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_ondewo_vtsi_Call(arg) {
   if (!(arg instanceof ondewo_vtsi_calls_pb.Call)) {
     throw new Error('Expected argument of type ondewo.vtsi.Call');
@@ -900,6 +944,36 @@ startScheduledCallers: {
     requestDeserialize: deserialize_ondewo_vtsi_StartScheduledCallersRequest,
     responseSerialize: serialize_ondewo_vtsi_StartScheduledCallersResponse,
     responseDeserialize: deserialize_ondewo_vtsi_StartScheduledCallersResponse,
+  },
+  // <p>Adds callers to a campaign instead of starting them. The campaign then starts them, at most
+// <code>max_parallel_calls</code> at a time. The request is atomic: either the campaign (when new), every
+// campaign call is stored, or nothing is. Errors are gRPC status codes (see <code>CampaignAssignment</code>).</p>
+// <p>Rolling updates: a VTSI server that predates this RPC answers <code>UNIMPLEMENTED</code> and starts
+// nothing. Do not fall back to <code>StartCallers</code> on <code>UNIMPLEMENTED</code>; retry later.</p>
+addCallersToCampaign: {
+    path: '/ondewo.vtsi.Calls/AddCallersToCampaign',
+    requestStream: false,
+    responseStream: false,
+    requestType: ondewo_vtsi_calls_pb.AddCallersToCampaignRequest,
+    responseType: ondewo_vtsi_calls_pb.AddCallersToCampaignResponse,
+    requestSerialize: serialize_ondewo_vtsi_AddCallersToCampaignRequest,
+    requestDeserialize: deserialize_ondewo_vtsi_AddCallersToCampaignRequest,
+    responseSerialize: serialize_ondewo_vtsi_AddCallersToCampaignResponse,
+    responseDeserialize: deserialize_ondewo_vtsi_AddCallersToCampaignResponse,
+  },
+  // <p>Adds scheduled callers to a campaign: each fires at or after its scheduled time AND when the campaign has a
+// free slot, and follows the campaign&apos;s retries, stop and hard stop. Same atomicity, errors and rolling-update
+// behaviour as <code>AddCallersToCampaign</code>.</p>
+addScheduledCallersToCampaign: {
+    path: '/ondewo.vtsi.Calls/AddScheduledCallersToCampaign',
+    requestStream: false,
+    responseStream: false,
+    requestType: ondewo_vtsi_calls_pb.AddScheduledCallersToCampaignRequest,
+    responseType: ondewo_vtsi_calls_pb.AddScheduledCallersToCampaignResponse,
+    requestSerialize: serialize_ondewo_vtsi_AddScheduledCallersToCampaignRequest,
+    requestDeserialize: deserialize_ondewo_vtsi_AddScheduledCallersToCampaignRequest,
+    responseSerialize: serialize_ondewo_vtsi_AddScheduledCallersToCampaignResponse,
+    responseDeserialize: deserialize_ondewo_vtsi_AddScheduledCallersToCampaignResponse,
   },
   // <p>Gets a scheduled caller</p>
 getScheduledCaller: {

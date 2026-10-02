@@ -83,7 +83,7 @@ if (goog.DEBUG && !COMPILED) {
  * @constructor
  */
 proto.ondewo.vtsi.AsteriskConfigsVariables = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.ondewo.vtsi.AsteriskConfigsVariables.repeatedFields_, null);
 };
 goog.inherits(proto.ondewo.vtsi.AsteriskConfigsVariables, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -1099,6 +1099,13 @@ proto.ondewo.vtsi.VtsiProject.prototype.setDeployedListeners = function(value) {
 
 
 
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.ondewo.vtsi.AsteriskConfigsVariables.repeatedFields_ = [11];
+
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -1139,7 +1146,8 @@ proto.ondewo.vtsi.AsteriskConfigsVariables.toObject = function(includeInstance, 
     sipTrunkTransport: jspb.Message.getFieldWithDefault(msg, 7, 0),
     sipTrunkSourceCidr: jspb.Message.getFieldWithDefault(msg, 8, ""),
     sipTrunkCaCertificatesPem: jspb.Message.getFieldWithDefault(msg, 9, ""),
-    sipTrunkVerifyServer: jspb.Message.getBooleanFieldWithDefault(msg, 10, false)
+    sipTrunkVerifyServer: jspb.Message.getBooleanFieldWithDefault(msg, 10, false),
+    softphonePermitCidrsList: (f = jspb.Message.getRepeatedField(msg, 11)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -1215,6 +1223,10 @@ proto.ondewo.vtsi.AsteriskConfigsVariables.deserializeBinaryFromReader = functio
     case 10:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setSipTrunkVerifyServer(value);
+      break;
+    case 11:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addSoftphonePermitCidrs(value);
       break;
     default:
       reader.skipField();
@@ -1312,6 +1324,13 @@ proto.ondewo.vtsi.AsteriskConfigsVariables.serializeBinaryToWriter = function(me
   if (f != null) {
     writer.writeBool(
       10,
+      f
+    );
+  }
+  f = message.getSoftphonePermitCidrsList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(
+      11,
       f
     );
   }
@@ -1549,6 +1568,43 @@ proto.ondewo.vtsi.AsteriskConfigsVariables.prototype.clearSipTrunkVerifyServer =
  */
 proto.ondewo.vtsi.AsteriskConfigsVariables.prototype.hasSipTrunkVerifyServer = function() {
   return jspb.Message.getField(this, 10) != null;
+};
+
+
+/**
+ * repeated string softphone_permit_cidrs = 11;
+ * @return {!Array<string>}
+ */
+proto.ondewo.vtsi.AsteriskConfigsVariables.prototype.getSoftphonePermitCidrsList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 11));
+};
+
+
+/**
+ * @param {!Array<string>} value
+ * @return {!proto.ondewo.vtsi.AsteriskConfigsVariables} returns this
+ */
+proto.ondewo.vtsi.AsteriskConfigsVariables.prototype.setSoftphonePermitCidrsList = function(value) {
+  return jspb.Message.setField(this, 11, value || []);
+};
+
+
+/**
+ * @param {string} value
+ * @param {number=} opt_index
+ * @return {!proto.ondewo.vtsi.AsteriskConfigsVariables} returns this
+ */
+proto.ondewo.vtsi.AsteriskConfigsVariables.prototype.addSoftphonePermitCidrs = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 11, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.ondewo.vtsi.AsteriskConfigsVariables} returns this
+ */
+proto.ondewo.vtsi.AsteriskConfigsVariables.prototype.clearSoftphonePermitCidrsList = function() {
+  return this.setSoftphonePermitCidrsList([]);
 };
 
 

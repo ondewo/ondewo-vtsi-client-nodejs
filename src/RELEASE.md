@@ -6,7 +6,7 @@
 
 ### Breaking changes
 
-* Built against ondewo-vtsi-api 9.0.0 (commit `7ac2e28` until that tag exists).
+* Built against ondewo-vtsi-api 9.0.0 (commit `cac5f44` until that tag exists).
   `AsteriskConfigsFiles.sip_conf_file_string` is renamed to `pjsip_conf_file_string`, so
   `getSipConfFileString()` / `setSipConfFileString()` become `getPjsipConfFileString()` /
   `setPjsipConfFileString()`. The field number and type are unchanged, so the wire format is too.
@@ -18,8 +18,15 @@
 * `CampaignsService` / `CampaignsClient` (`api/ondewo/vtsi/campaigns_*`): campaign CRUD, start, stop,
   hard stop, resume, statistics, campaign calls with their attempts, and the server stream
   `streamCampaignStatus`. A campaign carries `maxParallelCalls`, `maxAttempts` and `retryDelay`.
-* `StartCallersRequest` and `StartScheduledCallersRequest` gain `campaignAssignment`; their responses
-  gain `campaign` and `campaignCallNamesList`, and `ScheduledCaller` gains `campaignName`.
+* `CallsService` gains the unary RPCs `addCallersToCampaign` and `addScheduledCallersToCampaign`,
+  whose requests carry a required `campaignAssignment` and whose responses carry the `campaign` and
+  its `campaignCallNamesList`; `ScheduledCaller` gains `campaignName`. A server that predates them
+  answers `UNIMPLEMENTED` and starts nothing, so a rolling update cannot dial a whole campaign at
+  once. The campaign fields that 9.0.0 development builds put on `StartCallersRequest` /
+  `StartScheduledCallersRequest` and their responses are gone (reserved upstream): move such calls
+  to the two new RPCs.
+* `AsteriskConfigsVariables` gains `softphonePermitCidrsList`, the source allow-list of a project's
+  softphone accounts on both TLS ports, narrowed under the server's ceiling.
 * `CallsService` gains the server streams `streamCallerStatus`, `streamListenerStatus` and
   `streamScheduledCallerStatus`.
 * `EventsService` / `EventsClient` (`api/ondewo/vtsi/events_*`): the `VtsiEvent` enum, event
@@ -28,8 +35,11 @@
 * `SoftphonesService` / `SoftphonesClient`, answering machine detection on calls and the carrier TLS
   verification fields of the API 9.0.0 line are exported too.
 * `tests/campaignsAndEvents.spec.ts` (run by `npm run test:protos`) pins the RPC descriptors, the
-  `VtsiEvent` enum against the pinned `events.proto`, the campaign assignment oneof, the webhook header
-  map, and both new streams end to end against an in-process server.
+  `VtsiEvent` enum against the pinned `events.proto`, the campaign assignment oneof on the two
+  enrollment RPCs (and its absence from the `Start*` requests), the softphone allow-list, the webhook
+  header map, and both new streams end to end against an in-process server.
+* `updateWebhook` is documented: moving a webhook to another origin while custom headers are stored
+  requires re-sending `customHeaders` with real values; the server rejects the masked value there.
 
 *****************
 

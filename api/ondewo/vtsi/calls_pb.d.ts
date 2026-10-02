@@ -1276,11 +1276,6 @@ export class StartCallersRequest extends jspb.Message {
     setCallerRequestsList(value: Array<StartCallerRequest>): StartCallersRequest;
     addCallerRequests(value?: StartCallerRequest, index?: number): StartCallerRequest;
 
-    hasCampaignAssignment(): boolean;
-    clearCampaignAssignment(): void;
-    getCampaignAssignment(): ondewo_vtsi_campaigns_pb.CampaignAssignment | undefined;
-    setCampaignAssignment(value?: ondewo_vtsi_campaigns_pb.CampaignAssignment): StartCallersRequest;
-
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): StartCallersRequest.AsObject;
     static toObject(includeInstance: boolean, msg: StartCallersRequest): StartCallersRequest.AsObject;
@@ -1295,7 +1290,6 @@ export namespace StartCallersRequest {
     export type AsObject = {
         vtsiProjectName: string,
         callerRequestsList: Array<StartCallerRequest.AsObject>,
-        campaignAssignment?: ondewo_vtsi_campaigns_pb.CampaignAssignment.AsObject,
     }
 }
 
@@ -1308,15 +1302,6 @@ export class StartCallersResponse extends jspb.Message {
     addCallerResponses(value?: StartCallerResponse, index?: number): StartCallerResponse;
     getErrorMessage(): string;
     setErrorMessage(value: string): StartCallersResponse;
-
-    hasCampaign(): boolean;
-    clearCampaign(): void;
-    getCampaign(): ondewo_vtsi_campaigns_pb.Campaign | undefined;
-    setCampaign(value?: ondewo_vtsi_campaigns_pb.Campaign): StartCallersResponse;
-    clearCampaignCallNamesList(): void;
-    getCampaignCallNamesList(): Array<string>;
-    setCampaignCallNamesList(value: Array<string>): StartCallersResponse;
-    addCampaignCallNames(value: string, index?: number): string;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): StartCallersResponse.AsObject;
@@ -1333,8 +1318,6 @@ export namespace StartCallersResponse {
         vtsiProjectName: string,
         callerResponsesList: Array<StartCallerResponse.AsObject>,
         errorMessage: string,
-        campaign?: ondewo_vtsi_campaigns_pb.Campaign.AsObject,
-        campaignCallNamesList: Array<string>,
     }
 }
 
@@ -1910,11 +1893,6 @@ export class StartScheduledCallersRequest extends jspb.Message {
     setScheduledCallerRequestsList(value: Array<StartScheduledCallerRequest>): StartScheduledCallersRequest;
     addScheduledCallerRequests(value?: StartScheduledCallerRequest, index?: number): StartScheduledCallerRequest;
 
-    hasCampaignAssignment(): boolean;
-    clearCampaignAssignment(): void;
-    getCampaignAssignment(): ondewo_vtsi_campaigns_pb.CampaignAssignment | undefined;
-    setCampaignAssignment(value?: ondewo_vtsi_campaigns_pb.CampaignAssignment): StartScheduledCallersRequest;
-
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): StartScheduledCallersRequest.AsObject;
     static toObject(includeInstance: boolean, msg: StartScheduledCallersRequest): StartScheduledCallersRequest.AsObject;
@@ -1929,7 +1907,6 @@ export namespace StartScheduledCallersRequest {
     export type AsObject = {
         vtsiProjectName: string,
         scheduledCallerRequestsList: Array<StartScheduledCallerRequest.AsObject>,
-        campaignAssignment?: ondewo_vtsi_campaigns_pb.CampaignAssignment.AsObject,
     }
 }
 
@@ -1940,15 +1917,6 @@ export class StartScheduledCallersResponse extends jspb.Message {
     getScheduledCallerResponsesList(): Array<StartScheduledCallerResponse>;
     setScheduledCallerResponsesList(value: Array<StartScheduledCallerResponse>): StartScheduledCallersResponse;
     addScheduledCallerResponses(value?: StartScheduledCallerResponse, index?: number): StartScheduledCallerResponse;
-
-    hasCampaign(): boolean;
-    clearCampaign(): void;
-    getCampaign(): ondewo_vtsi_campaigns_pb.Campaign | undefined;
-    setCampaign(value?: ondewo_vtsi_campaigns_pb.Campaign): StartScheduledCallersResponse;
-    clearCampaignCallNamesList(): void;
-    getCampaignCallNamesList(): Array<string>;
-    setCampaignCallNamesList(value: Array<string>): StartScheduledCallersResponse;
-    addCampaignCallNames(value: string, index?: number): string;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): StartScheduledCallersResponse.AsObject;
@@ -1961,6 +1929,133 @@ export class StartScheduledCallersResponse extends jspb.Message {
 }
 
 export namespace StartScheduledCallersResponse {
+    export type AsObject = {
+        vtsiProjectName: string,
+        scheduledCallerResponsesList: Array<StartScheduledCallerResponse.AsObject>,
+    }
+}
+
+export class AddCallersToCampaignRequest extends jspb.Message { 
+    getVtsiProjectName(): string;
+    setVtsiProjectName(value: string): AddCallersToCampaignRequest;
+    clearCallerRequestsList(): void;
+    getCallerRequestsList(): Array<StartCallerRequest>;
+    setCallerRequestsList(value: Array<StartCallerRequest>): AddCallersToCampaignRequest;
+    addCallerRequests(value?: StartCallerRequest, index?: number): StartCallerRequest;
+
+    hasCampaignAssignment(): boolean;
+    clearCampaignAssignment(): void;
+    getCampaignAssignment(): ondewo_vtsi_campaigns_pb.CampaignAssignment | undefined;
+    setCampaignAssignment(value?: ondewo_vtsi_campaigns_pb.CampaignAssignment): AddCallersToCampaignRequest;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): AddCallersToCampaignRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: AddCallersToCampaignRequest): AddCallersToCampaignRequest.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: AddCallersToCampaignRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): AddCallersToCampaignRequest;
+    static deserializeBinaryFromReader(message: AddCallersToCampaignRequest, reader: jspb.BinaryReader): AddCallersToCampaignRequest;
+}
+
+export namespace AddCallersToCampaignRequest {
+    export type AsObject = {
+        vtsiProjectName: string,
+        callerRequestsList: Array<StartCallerRequest.AsObject>,
+        campaignAssignment?: ondewo_vtsi_campaigns_pb.CampaignAssignment.AsObject,
+    }
+}
+
+export class AddCallersToCampaignResponse extends jspb.Message { 
+    getVtsiProjectName(): string;
+    setVtsiProjectName(value: string): AddCallersToCampaignResponse;
+
+    hasCampaign(): boolean;
+    clearCampaign(): void;
+    getCampaign(): ondewo_vtsi_campaigns_pb.Campaign | undefined;
+    setCampaign(value?: ondewo_vtsi_campaigns_pb.Campaign): AddCallersToCampaignResponse;
+    clearCampaignCallNamesList(): void;
+    getCampaignCallNamesList(): Array<string>;
+    setCampaignCallNamesList(value: Array<string>): AddCallersToCampaignResponse;
+    addCampaignCallNames(value: string, index?: number): string;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): AddCallersToCampaignResponse.AsObject;
+    static toObject(includeInstance: boolean, msg: AddCallersToCampaignResponse): AddCallersToCampaignResponse.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: AddCallersToCampaignResponse, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): AddCallersToCampaignResponse;
+    static deserializeBinaryFromReader(message: AddCallersToCampaignResponse, reader: jspb.BinaryReader): AddCallersToCampaignResponse;
+}
+
+export namespace AddCallersToCampaignResponse {
+    export type AsObject = {
+        vtsiProjectName: string,
+        campaign?: ondewo_vtsi_campaigns_pb.Campaign.AsObject,
+        campaignCallNamesList: Array<string>,
+    }
+}
+
+export class AddScheduledCallersToCampaignRequest extends jspb.Message { 
+    getVtsiProjectName(): string;
+    setVtsiProjectName(value: string): AddScheduledCallersToCampaignRequest;
+    clearScheduledCallerRequestsList(): void;
+    getScheduledCallerRequestsList(): Array<StartScheduledCallerRequest>;
+    setScheduledCallerRequestsList(value: Array<StartScheduledCallerRequest>): AddScheduledCallersToCampaignRequest;
+    addScheduledCallerRequests(value?: StartScheduledCallerRequest, index?: number): StartScheduledCallerRequest;
+
+    hasCampaignAssignment(): boolean;
+    clearCampaignAssignment(): void;
+    getCampaignAssignment(): ondewo_vtsi_campaigns_pb.CampaignAssignment | undefined;
+    setCampaignAssignment(value?: ondewo_vtsi_campaigns_pb.CampaignAssignment): AddScheduledCallersToCampaignRequest;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): AddScheduledCallersToCampaignRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: AddScheduledCallersToCampaignRequest): AddScheduledCallersToCampaignRequest.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: AddScheduledCallersToCampaignRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): AddScheduledCallersToCampaignRequest;
+    static deserializeBinaryFromReader(message: AddScheduledCallersToCampaignRequest, reader: jspb.BinaryReader): AddScheduledCallersToCampaignRequest;
+}
+
+export namespace AddScheduledCallersToCampaignRequest {
+    export type AsObject = {
+        vtsiProjectName: string,
+        scheduledCallerRequestsList: Array<StartScheduledCallerRequest.AsObject>,
+        campaignAssignment?: ondewo_vtsi_campaigns_pb.CampaignAssignment.AsObject,
+    }
+}
+
+export class AddScheduledCallersToCampaignResponse extends jspb.Message { 
+    getVtsiProjectName(): string;
+    setVtsiProjectName(value: string): AddScheduledCallersToCampaignResponse;
+    clearScheduledCallerResponsesList(): void;
+    getScheduledCallerResponsesList(): Array<StartScheduledCallerResponse>;
+    setScheduledCallerResponsesList(value: Array<StartScheduledCallerResponse>): AddScheduledCallersToCampaignResponse;
+    addScheduledCallerResponses(value?: StartScheduledCallerResponse, index?: number): StartScheduledCallerResponse;
+
+    hasCampaign(): boolean;
+    clearCampaign(): void;
+    getCampaign(): ondewo_vtsi_campaigns_pb.Campaign | undefined;
+    setCampaign(value?: ondewo_vtsi_campaigns_pb.Campaign): AddScheduledCallersToCampaignResponse;
+    clearCampaignCallNamesList(): void;
+    getCampaignCallNamesList(): Array<string>;
+    setCampaignCallNamesList(value: Array<string>): AddScheduledCallersToCampaignResponse;
+    addCampaignCallNames(value: string, index?: number): string;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): AddScheduledCallersToCampaignResponse.AsObject;
+    static toObject(includeInstance: boolean, msg: AddScheduledCallersToCampaignResponse): AddScheduledCallersToCampaignResponse.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: AddScheduledCallersToCampaignResponse, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): AddScheduledCallersToCampaignResponse;
+    static deserializeBinaryFromReader(message: AddScheduledCallersToCampaignResponse, reader: jspb.BinaryReader): AddScheduledCallersToCampaignResponse;
+}
+
+export namespace AddScheduledCallersToCampaignResponse {
     export type AsObject = {
         vtsiProjectName: string,
         scheduledCallerResponsesList: Array<StartScheduledCallerResponse.AsObject>,

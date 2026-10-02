@@ -115,6 +115,10 @@ export class AsteriskConfigsVariables extends jspb.Message {
     clearSipTrunkVerifyServer(): void;
     getSipTrunkVerifyServer(): boolean | undefined;
     setSipTrunkVerifyServer(value: boolean): AsteriskConfigsVariables;
+    clearSoftphonePermitCidrsList(): void;
+    getSoftphonePermitCidrsList(): Array<string>;
+    setSoftphonePermitCidrsList(value: Array<string>): AsteriskConfigsVariables;
+    addSoftphonePermitCidrs(value: string, index?: number): string;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): AsteriskConfigsVariables.AsObject;
@@ -138,6 +142,7 @@ export namespace AsteriskConfigsVariables {
         sipTrunkSourceCidr?: string,
         sipTrunkCaCertificatesPem?: string,
         sipTrunkVerifyServer?: boolean,
+        softphonePermitCidrsList: Array<string>,
     }
 }
 

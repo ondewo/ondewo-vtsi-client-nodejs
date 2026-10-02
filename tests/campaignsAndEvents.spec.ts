@@ -12,8 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-// The Campaigns and Events services, the campaign assignment of StartCallers /
-// StartScheduledCallers and the Calls status streams, as GENERATED for this client.
+// The Campaigns and Events services, campaign enrollment through AddCallersToCampaign /
+// AddScheduledCallersToCampaign, the Calls status streams and the softphone source allow-list
+// of AsteriskConfigsVariables, as GENERATED for this client.
 //
 // The assertions drive the generated stubs directly: a renamed field or a dropped RPC fails to
 // compile, a server stream that became unary fails the descriptor checks, and the two stream
@@ -37,7 +38,12 @@ import {
 
 import { Duration } from '../api/google/protobuf/duration_pb';
 import { CallsService } from '../api/ondewo/vtsi/calls_grpc_pb';
-import { StartCallersRequest, StartScheduledCallersRequest } from '../api/ondewo/vtsi/calls_pb';
+import {
+	AddCallersToCampaignRequest,
+	AddScheduledCallersToCampaignRequest,
+	StartCallersRequest,
+	StartScheduledCallersRequest
+} from '../api/ondewo/vtsi/calls_pb';
 import { CampaignsClient, CampaignsService } from '../api/ondewo/vtsi/campaigns_grpc_pb';
 import {
 	Campaign,
@@ -49,6 +55,7 @@ import {
 	StreamCampaignStatusRequest,
 	StreamCampaignStatusResponse
 } from '../api/ondewo/vtsi/campaigns_pb';
+import { AsteriskConfigsVariables } from '../api/ondewo/vtsi/projects_pb';
 import { EventsClient, EventsService } from '../api/ondewo/vtsi/events_grpc_pb';
 import {
 	SubscribeVtsiEventsRequest,
@@ -122,6 +129,26 @@ nodeTest('the Calls service gains the three resource status streams', (): void =
 	}
 });
 
+nodeTest(
+	'campaign enrollment is two unary Calls RPCs, and the Start* requests carry no campaign any more',
+	(): void => {
+		// An old server answers these two paths UNIMPLEMENTED and starts nothing, which is what keeps a
+		// rolling update from dialling a whole campaign at once. The campaign fields the 9.0.0
+		// development builds put on StartCallers / StartScheduledCallers are reserved upstream, so the
+		// generated Start* messages must not expose them.
+		const streams: Record<string, boolean> = serverStreamsByPath(CallsService);
+		assert.equal(streams['/ondewo.vtsi.Calls/AddCallersToCampaign'], false);
+		assert.equal(streams['/ondewo.vtsi.Calls/AddScheduledCallersToCampaign'], false);
+		for (const request of [new StartCallersRequest(), new StartScheduledCallersRequest()]) {
+			assert.equal(
+				(request as unknown as Record<string, unknown>)['setCampaignAssignment'],
+				undefined,
+				`${request.constructor.name} must not carry a campaign assignment`
+			);
+		}
+	}
+);
+
 nodeTest('the generated VtsiEvent enum is exactly the enum of the pinned events.proto', (): void => {
 	// Parsed from the proto the submodule pins, so a value added upstream without a regeneration
 	// -- or a regeneration against a different api commit -- fails here by name.
@@ -152,8 +179,8 @@ nodeTest('a campaign assignment selects exactly one campaign, and the selector s
 	assert.equal(assignment.getCampaignSelectorCase(), CampaignAssignment.CampaignSelectorCase.NEW_CAMPAIGN);
 	assert.equal(assignment.getCampaignName(), '');
 
-	const sent: StartCallersRequest = new StartCallersRequest().setCampaignAssignment(assignment);
-	const received: CampaignAssignment | undefined = StartCallersRequest.deserializeBinary(
+	const sent: AddCallersToCampaignRequest = new AddCallersToCampaignRequest().setCampaignAssignment(assignment);
+	const received: CampaignAssignment | undefined = AddCallersToCampaignRequest.deserializeBinary(
 		sent.serializeBinary()
 	).getCampaignAssignment();
 	assert.ok(received);
@@ -165,17 +192,28 @@ nodeTest('a campaign assignment selects exactly one campaign, and the selector s
 	assert.equal(campaign.getMaxAttempts(), 3);
 	assert.equal(campaign.getRetryDelay()?.getSeconds(), 120);
 
-	const byDisplayName: StartScheduledCallersRequest = new StartScheduledCallersRequest().setCampaignAssignment(
-		new CampaignAssignment().setCampaignDisplayName(
-			new CampaignDisplayName().setVtsiProjectName('projects/p').setDisplayName('autumn outreach')
-		)
-	);
+	const byDisplayName: AddScheduledCallersToCampaignRequest =
+		new AddScheduledCallersToCampaignRequest().setCampaignAssignment(
+			new CampaignAssignment().setCampaignDisplayName(
+				new CampaignDisplayName().setVtsiProjectName('projects/p').setDisplayName('autumn outreach')
+			)
+		);
 	assert.equal(
-		StartScheduledCallersRequest.deserializeBinary(byDisplayName.serializeBinary())
+		AddScheduledCallersToCampaignRequest.deserializeBinary(byDisplayName.serializeBinary())
 			.getCampaignAssignment()
 			?.getCampaignSelectorCase(),
 		CampaignAssignment.CampaignSelectorCase.CAMPAIGN_DISPLAY_NAME
 	);
+});
+
+nodeTest('the softphone source allow-list round-trips as an ordered repeated string', (): void => {
+	const sent: AsteriskConfigsVariables = new AsteriskConfigsVariables().setSoftphonePermitCidrsList([
+		'10.20.0.0/16',
+		'fd00:1::/64'
+	]);
+	const received: AsteriskConfigsVariables = AsteriskConfigsVariables.deserializeBinary(sent.serializeBinary());
+	assert.deepEqual(received.getSoftphonePermitCidrsList(), ['10.20.0.0/16', 'fd00:1::/64']);
+	assert.deepEqual(new AsteriskConfigsVariables().getSoftphonePermitCidrsList(), []);
 });
 
 nodeTest('webhook custom headers round-trip as a map', (): void => {
