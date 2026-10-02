@@ -40,6 +40,9 @@
   header map, and both new streams end to end against an in-process server.
 * `updateWebhook` is documented: moving a webhook to another origin while custom headers are stored
   requires re-sending `customHeaders` with real values; the server rejects the masked value there.
+* `BaseServiceConfig.setGrpcCert()` is now required for the S2T, NLU and T2S configs of a call unless the
+  VTSI server runs with `ONDEWO_VTSI_ALLOW_INSECURE_UPSTREAM=True` (lab and CI only): an empty certificate is
+  refused with `FAILED_PRECONDITION` (`UPSTREAM_TLS_REQUIRED`). Server behaviour, no wire change.
 
 *****************
 
