@@ -6,7 +6,7 @@
 
 ### Breaking changes
 
-* Built against ondewo-vtsi-api 9.0.0 (commit `cac5f44` until that tag exists).
+* Built against ondewo-vtsi-api 9.0.0 (commit `8ae9487` until that tag exists).
   `AsteriskConfigsFiles.sip_conf_file_string` is renamed to `pjsip_conf_file_string`, so
   `getSipConfFileString()` / `setSipConfFileString()` become `getPjsipConfFileString()` /
   `setPjsipConfFileString()`. The field number and type are unchanged, so the wire format is too.
@@ -25,6 +25,14 @@
   once. The campaign fields that 9.0.0 development builds put on `StartCallersRequest` /
   `StartScheduledCallersRequest` and their responses are gone (reserved upstream): move such calls
   to the two new RPCs.
+* `StartCallersRequest`, `StartListenersRequest`, `StartScheduledCallersRequest`,
+  `AddCallersToCampaignRequest` and `AddScheduledCallersToCampaignRequest` gain an optional
+  `idempotencyKey` (at most 255 printable ASCII characters, no whitespace; empty means no dedupe).
+  A retry with the same key returns the response of the first successful attempt, on whichever
+  replica serves it, scoped to the project and the RPC and retained for 24 h by default. The same key
+  with a different request is `INVALID_ARGUMENT`; a retry while the first attempt is still running is
+  `ABORTED` (retry later); a failed first attempt stores nothing; a replayed response carries no
+  `commonServicesConfig`. The single-resource RPCs take no key: send a batch of one.
 * `AsteriskConfigsVariables` gains `softphonePermitCidrsList`, the source allow-list of a project's
   softphone accounts on both TLS ports, narrowed under the server's ceiling.
 * `CallsService` gains the server streams `streamCallerStatus`, `streamListenerStatus` and
@@ -36,8 +44,9 @@
   verification fields of the API 9.0.0 line are exported too.
 * `tests/campaignsAndEvents.spec.ts` (run by `npm run test:protos`) pins the RPC descriptors, the
   `VtsiEvent` enum against the pinned `events.proto`, the campaign assignment oneof on the two
-  enrollment RPCs (and its absence from the `Start*` requests), the softphone allow-list, the webhook
-  header map, and both new streams end to end against an in-process server.
+  enrollment RPCs (and its absence from the `Start*` requests), the idempotency key of the five
+  batch-creating requests at its field number, the softphone allow-list, the webhook header map, and
+  both new streams end to end against an in-process server.
 * `updateWebhook` is documented: moving a webhook to another origin while custom headers are stored
   requires re-sending `customHeaders` with real values; the server rejects the masked value there.
 * `BaseServiceConfig.setGrpcCert()` is now required for the S2T, NLU and T2S configs of a call unless the

@@ -10291,7 +10291,8 @@ proto.ondewo.vtsi.StartListenersRequest.toObject = function(includeInstance, msg
   var f, obj = {
     vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 1, ""),
     listenerRequestsList: jspb.Message.toObjectList(msg.getListenerRequestsList(),
-    proto.ondewo.vtsi.StartListenerRequest.toObject, includeInstance)
+    proto.ondewo.vtsi.StartListenerRequest.toObject, includeInstance),
+    idempotencyKey: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -10337,6 +10338,10 @@ proto.ondewo.vtsi.StartListenersRequest.deserializeBinaryFromReader = function(m
       reader.readMessage(value,proto.ondewo.vtsi.StartListenerRequest.deserializeBinaryFromReader);
       msg.addListenerRequests(value);
       break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setIdempotencyKey(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -10379,6 +10384,13 @@ proto.ondewo.vtsi.StartListenersRequest.serializeBinaryToWriter = function(messa
       2,
       f,
       proto.ondewo.vtsi.StartListenerRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getIdempotencyKey();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
+      f
     );
   }
 };
@@ -10437,6 +10449,24 @@ proto.ondewo.vtsi.StartListenersRequest.prototype.addListenerRequests = function
  */
 proto.ondewo.vtsi.StartListenersRequest.prototype.clearListenerRequestsList = function() {
   return this.setListenerRequestsList([]);
+};
+
+
+/**
+ * optional string idempotency_key = 3;
+ * @return {string}
+ */
+proto.ondewo.vtsi.StartListenersRequest.prototype.getIdempotencyKey = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.vtsi.StartListenersRequest} returns this
+ */
+proto.ondewo.vtsi.StartListenersRequest.prototype.setIdempotencyKey = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
@@ -11144,7 +11174,8 @@ proto.ondewo.vtsi.StartCallersRequest.toObject = function(includeInstance, msg) 
   var f, obj = {
     vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 1, ""),
     callerRequestsList: jspb.Message.toObjectList(msg.getCallerRequestsList(),
-    proto.ondewo.vtsi.StartCallerRequest.toObject, includeInstance)
+    proto.ondewo.vtsi.StartCallerRequest.toObject, includeInstance),
+    idempotencyKey: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
 
   if (includeInstance) {
@@ -11190,6 +11221,10 @@ proto.ondewo.vtsi.StartCallersRequest.deserializeBinaryFromReader = function(msg
       reader.readMessage(value,proto.ondewo.vtsi.StartCallerRequest.deserializeBinaryFromReader);
       msg.addCallerRequests(value);
       break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setIdempotencyKey(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -11232,6 +11267,13 @@ proto.ondewo.vtsi.StartCallersRequest.serializeBinaryToWriter = function(message
       2,
       f,
       proto.ondewo.vtsi.StartCallerRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getIdempotencyKey();
+  if (f.length > 0) {
+    writer.writeString(
+      4,
+      f
     );
   }
 };
@@ -11290,6 +11332,24 @@ proto.ondewo.vtsi.StartCallersRequest.prototype.addCallerRequests = function(opt
  */
 proto.ondewo.vtsi.StartCallersRequest.prototype.clearCallerRequestsList = function() {
   return this.setCallerRequestsList([]);
+};
+
+
+/**
+ * optional string idempotency_key = 4;
+ * @return {string}
+ */
+proto.ondewo.vtsi.StartCallersRequest.prototype.getIdempotencyKey = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.vtsi.StartCallersRequest} returns this
+ */
+proto.ondewo.vtsi.StartCallersRequest.prototype.setIdempotencyKey = function(value) {
+  return jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
@@ -15578,7 +15638,8 @@ proto.ondewo.vtsi.StartScheduledCallersRequest.toObject = function(includeInstan
   var f, obj = {
     vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 1, ""),
     scheduledCallerRequestsList: jspb.Message.toObjectList(msg.getScheduledCallerRequestsList(),
-    proto.ondewo.vtsi.StartScheduledCallerRequest.toObject, includeInstance)
+    proto.ondewo.vtsi.StartScheduledCallerRequest.toObject, includeInstance),
+    idempotencyKey: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
 
   if (includeInstance) {
@@ -15624,6 +15685,10 @@ proto.ondewo.vtsi.StartScheduledCallersRequest.deserializeBinaryFromReader = fun
       reader.readMessage(value,proto.ondewo.vtsi.StartScheduledCallerRequest.deserializeBinaryFromReader);
       msg.addScheduledCallerRequests(value);
       break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setIdempotencyKey(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -15666,6 +15731,13 @@ proto.ondewo.vtsi.StartScheduledCallersRequest.serializeBinaryToWriter = functio
       2,
       f,
       proto.ondewo.vtsi.StartScheduledCallerRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getIdempotencyKey();
+  if (f.length > 0) {
+    writer.writeString(
+      4,
+      f
     );
   }
 };
@@ -15724,6 +15796,24 @@ proto.ondewo.vtsi.StartScheduledCallersRequest.prototype.addScheduledCallerReque
  */
 proto.ondewo.vtsi.StartScheduledCallersRequest.prototype.clearScheduledCallerRequestsList = function() {
   return this.setScheduledCallerRequestsList([]);
+};
+
+
+/**
+ * optional string idempotency_key = 4;
+ * @return {string}
+ */
+proto.ondewo.vtsi.StartScheduledCallersRequest.prototype.getIdempotencyKey = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.vtsi.StartScheduledCallersRequest} returns this
+ */
+proto.ondewo.vtsi.StartScheduledCallersRequest.prototype.setIdempotencyKey = function(value) {
+  return jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
@@ -15959,7 +16049,8 @@ proto.ondewo.vtsi.AddCallersToCampaignRequest.toObject = function(includeInstanc
     vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 1, ""),
     callerRequestsList: jspb.Message.toObjectList(msg.getCallerRequestsList(),
     proto.ondewo.vtsi.StartCallerRequest.toObject, includeInstance),
-    campaignAssignment: (f = msg.getCampaignAssignment()) && ondewo_vtsi_campaigns_pb.CampaignAssignment.toObject(includeInstance, f)
+    campaignAssignment: (f = msg.getCampaignAssignment()) && ondewo_vtsi_campaigns_pb.CampaignAssignment.toObject(includeInstance, f),
+    idempotencyKey: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
 
   if (includeInstance) {
@@ -16009,6 +16100,10 @@ proto.ondewo.vtsi.AddCallersToCampaignRequest.deserializeBinaryFromReader = func
       var value = new ondewo_vtsi_campaigns_pb.CampaignAssignment;
       reader.readMessage(value,ondewo_vtsi_campaigns_pb.CampaignAssignment.deserializeBinaryFromReader);
       msg.setCampaignAssignment(value);
+      break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setIdempotencyKey(value);
       break;
     default:
       reader.skipField();
@@ -16060,6 +16155,13 @@ proto.ondewo.vtsi.AddCallersToCampaignRequest.serializeBinaryToWriter = function
       3,
       f,
       ondewo_vtsi_campaigns_pb.CampaignAssignment.serializeBinaryToWriter
+    );
+  }
+  f = message.getIdempotencyKey();
+  if (f.length > 0) {
+    writer.writeString(
+      4,
+      f
     );
   }
 };
@@ -16155,6 +16257,24 @@ proto.ondewo.vtsi.AddCallersToCampaignRequest.prototype.clearCampaignAssignment 
  */
 proto.ondewo.vtsi.AddCallersToCampaignRequest.prototype.hasCampaignAssignment = function() {
   return jspb.Message.getField(this, 3) != null;
+};
+
+
+/**
+ * optional string idempotency_key = 4;
+ * @return {string}
+ */
+proto.ondewo.vtsi.AddCallersToCampaignRequest.prototype.getIdempotencyKey = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.vtsi.AddCallersToCampaignRequest} returns this
+ */
+proto.ondewo.vtsi.AddCallersToCampaignRequest.prototype.setIdempotencyKey = function(value) {
+  return jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
@@ -16437,7 +16557,8 @@ proto.ondewo.vtsi.AddScheduledCallersToCampaignRequest.toObject = function(inclu
     vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 1, ""),
     scheduledCallerRequestsList: jspb.Message.toObjectList(msg.getScheduledCallerRequestsList(),
     proto.ondewo.vtsi.StartScheduledCallerRequest.toObject, includeInstance),
-    campaignAssignment: (f = msg.getCampaignAssignment()) && ondewo_vtsi_campaigns_pb.CampaignAssignment.toObject(includeInstance, f)
+    campaignAssignment: (f = msg.getCampaignAssignment()) && ondewo_vtsi_campaigns_pb.CampaignAssignment.toObject(includeInstance, f),
+    idempotencyKey: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
 
   if (includeInstance) {
@@ -16487,6 +16608,10 @@ proto.ondewo.vtsi.AddScheduledCallersToCampaignRequest.deserializeBinaryFromRead
       var value = new ondewo_vtsi_campaigns_pb.CampaignAssignment;
       reader.readMessage(value,ondewo_vtsi_campaigns_pb.CampaignAssignment.deserializeBinaryFromReader);
       msg.setCampaignAssignment(value);
+      break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setIdempotencyKey(value);
       break;
     default:
       reader.skipField();
@@ -16538,6 +16663,13 @@ proto.ondewo.vtsi.AddScheduledCallersToCampaignRequest.serializeBinaryToWriter =
       3,
       f,
       ondewo_vtsi_campaigns_pb.CampaignAssignment.serializeBinaryToWriter
+    );
+  }
+  f = message.getIdempotencyKey();
+  if (f.length > 0) {
+    writer.writeString(
+      4,
+      f
     );
   }
 };
@@ -16633,6 +16765,24 @@ proto.ondewo.vtsi.AddScheduledCallersToCampaignRequest.prototype.clearCampaignAs
  */
 proto.ondewo.vtsi.AddScheduledCallersToCampaignRequest.prototype.hasCampaignAssignment = function() {
   return jspb.Message.getField(this, 3) != null;
+};
+
+
+/**
+ * optional string idempotency_key = 4;
+ * @return {string}
+ */
+proto.ondewo.vtsi.AddScheduledCallersToCampaignRequest.prototype.getIdempotencyKey = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.vtsi.AddScheduledCallersToCampaignRequest} returns this
+ */
+proto.ondewo.vtsi.AddScheduledCallersToCampaignRequest.prototype.setIdempotencyKey = function(value) {
+  return jspb.Message.setProto3StringField(this, 4, value);
 };
 
 

@@ -1161,6 +1161,8 @@ export class StartListenersRequest extends jspb.Message {
     getListenerRequestsList(): Array<StartListenerRequest>;
     setListenerRequestsList(value: Array<StartListenerRequest>): StartListenersRequest;
     addListenerRequests(value?: StartListenerRequest, index?: number): StartListenerRequest;
+    getIdempotencyKey(): string;
+    setIdempotencyKey(value: string): StartListenersRequest;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): StartListenersRequest.AsObject;
@@ -1176,6 +1178,7 @@ export namespace StartListenersRequest {
     export type AsObject = {
         vtsiProjectName: string,
         listenerRequestsList: Array<StartListenerRequest.AsObject>,
+        idempotencyKey: string,
     }
 }
 
@@ -1275,6 +1278,8 @@ export class StartCallersRequest extends jspb.Message {
     getCallerRequestsList(): Array<StartCallerRequest>;
     setCallerRequestsList(value: Array<StartCallerRequest>): StartCallersRequest;
     addCallerRequests(value?: StartCallerRequest, index?: number): StartCallerRequest;
+    getIdempotencyKey(): string;
+    setIdempotencyKey(value: string): StartCallersRequest;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): StartCallersRequest.AsObject;
@@ -1290,6 +1295,7 @@ export namespace StartCallersRequest {
     export type AsObject = {
         vtsiProjectName: string,
         callerRequestsList: Array<StartCallerRequest.AsObject>,
+        idempotencyKey: string,
     }
 }
 
@@ -1892,6 +1898,8 @@ export class StartScheduledCallersRequest extends jspb.Message {
     getScheduledCallerRequestsList(): Array<StartScheduledCallerRequest>;
     setScheduledCallerRequestsList(value: Array<StartScheduledCallerRequest>): StartScheduledCallersRequest;
     addScheduledCallerRequests(value?: StartScheduledCallerRequest, index?: number): StartScheduledCallerRequest;
+    getIdempotencyKey(): string;
+    setIdempotencyKey(value: string): StartScheduledCallersRequest;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): StartScheduledCallersRequest.AsObject;
@@ -1907,6 +1915,7 @@ export namespace StartScheduledCallersRequest {
     export type AsObject = {
         vtsiProjectName: string,
         scheduledCallerRequestsList: Array<StartScheduledCallerRequest.AsObject>,
+        idempotencyKey: string,
     }
 }
 
@@ -1947,6 +1956,8 @@ export class AddCallersToCampaignRequest extends jspb.Message {
     clearCampaignAssignment(): void;
     getCampaignAssignment(): ondewo_vtsi_campaigns_pb.CampaignAssignment | undefined;
     setCampaignAssignment(value?: ondewo_vtsi_campaigns_pb.CampaignAssignment): AddCallersToCampaignRequest;
+    getIdempotencyKey(): string;
+    setIdempotencyKey(value: string): AddCallersToCampaignRequest;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): AddCallersToCampaignRequest.AsObject;
@@ -1963,6 +1974,7 @@ export namespace AddCallersToCampaignRequest {
         vtsiProjectName: string,
         callerRequestsList: Array<StartCallerRequest.AsObject>,
         campaignAssignment?: ondewo_vtsi_campaigns_pb.CampaignAssignment.AsObject,
+        idempotencyKey: string,
     }
 }
 
@@ -2009,6 +2021,8 @@ export class AddScheduledCallersToCampaignRequest extends jspb.Message {
     clearCampaignAssignment(): void;
     getCampaignAssignment(): ondewo_vtsi_campaigns_pb.CampaignAssignment | undefined;
     setCampaignAssignment(value?: ondewo_vtsi_campaigns_pb.CampaignAssignment): AddScheduledCallersToCampaignRequest;
+    getIdempotencyKey(): string;
+    setIdempotencyKey(value: string): AddScheduledCallersToCampaignRequest;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): AddScheduledCallersToCampaignRequest.AsObject;
@@ -2025,6 +2039,7 @@ export namespace AddScheduledCallersToCampaignRequest {
         vtsiProjectName: string,
         scheduledCallerRequestsList: Array<StartScheduledCallerRequest.AsObject>,
         campaignAssignment?: ondewo_vtsi_campaigns_pb.CampaignAssignment.AsObject,
+        idempotencyKey: string,
     }
 }
 

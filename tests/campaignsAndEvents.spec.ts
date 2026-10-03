@@ -13,8 +13,9 @@
 // limitations under the License.
 //
 // The Campaigns and Events services, campaign enrollment through AddCallersToCampaign /
-// AddScheduledCallersToCampaign, the Calls status streams and the softphone source allow-list
-// of AsteriskConfigsVariables, as GENERATED for this client.
+// AddScheduledCallersToCampaign, the idempotency key of the five batch-creating Calls requests,
+// the Calls status streams and the softphone source allow-list of AsteriskConfigsVariables, as
+// GENERATED for this client.
 //
 // The assertions drive the generated stubs directly: a renamed field or a dropped RPC fails to
 // compile, a server stream that became unary fails the descriptor checks, and the two stream
@@ -42,6 +43,7 @@ import {
 	AddCallersToCampaignRequest,
 	AddScheduledCallersToCampaignRequest,
 	StartCallersRequest,
+	StartListenersRequest,
 	StartScheduledCallersRequest
 } from '../api/ondewo/vtsi/calls_pb';
 import { CampaignsClient, CampaignsService } from '../api/ondewo/vtsi/campaigns_grpc_pb';
@@ -148,6 +150,64 @@ nodeTest(
 		}
 	}
 );
+
+/** A batch-creating request, its idempotency_key field number, and how to decode the key back. */
+type IdempotencyCase = [
+	string,
+	number,
+	{ setIdempotencyKey(value: string): unknown; serializeBinary(): Uint8Array },
+	(bytes: Uint8Array) => string
+];
+
+nodeTest('the five batch-creating Calls requests carry an idempotency key at its pinned field number', (): void => {
+	// The server dedupes a retry by this key, so it must reach the wire under the field number the
+	// pinned calls.proto gives it; the empty default means "no dedupe" and must not be serialised.
+	const key: string = 'retry-7f3a';
+	const cases: IdempotencyCase[] = [
+		[
+			'StartCallersRequest',
+			4,
+			new StartCallersRequest(),
+			(b: Uint8Array): string => StartCallersRequest.deserializeBinary(b).getIdempotencyKey()
+		],
+		[
+			'StartListenersRequest',
+			3,
+			new StartListenersRequest(),
+			(b: Uint8Array): string => StartListenersRequest.deserializeBinary(b).getIdempotencyKey()
+		],
+		[
+			'StartScheduledCallersRequest',
+			4,
+			new StartScheduledCallersRequest(),
+			(b: Uint8Array): string => StartScheduledCallersRequest.deserializeBinary(b).getIdempotencyKey()
+		],
+		[
+			'AddCallersToCampaignRequest',
+			4,
+			new AddCallersToCampaignRequest(),
+			(b: Uint8Array): string => AddCallersToCampaignRequest.deserializeBinary(b).getIdempotencyKey()
+		],
+		[
+			'AddScheduledCallersToCampaignRequest',
+			4,
+			new AddScheduledCallersToCampaignRequest(),
+			(b: Uint8Array): string => AddScheduledCallersToCampaignRequest.deserializeBinary(b).getIdempotencyKey()
+		]
+	];
+	for (const [name, fieldNumber, request, decode] of cases) {
+		assert.equal(request.serializeBinary().length, 0, `${name}: an empty key must not be serialised`);
+		request.setIdempotencyKey(key);
+		const bytes: Uint8Array = request.serializeBinary();
+		// Length-delimited wire type 2, one-byte tag for field numbers below 16.
+		assert.deepEqual(
+			Array.from(bytes),
+			[(fieldNumber << 3) | 2, key.length, ...Array.from(Buffer.from(key, 'ascii'))],
+			`${name}: idempotency_key must be field ${fieldNumber}`
+		);
+		assert.equal(decode(bytes), key, `${name}: the key must survive the wire`);
+	}
+});
 
 nodeTest('the generated VtsiEvent enum is exactly the enum of the pinned events.proto', (): void => {
 	// Parsed from the proto the submodule pins, so a value added upstream without a regeneration
