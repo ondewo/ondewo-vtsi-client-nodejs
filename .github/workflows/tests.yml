@@ -11,6 +11,13 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
+      - name: Check out the ondewo-vtsi-api submodule
+        # Not `submodules: recursive` on the checkout above: ondewo-proto-compiler is an SSH remote no runner
+        # can clone. ondewo-vtsi-api is public, but .gitmodules names it by its SSH URL too, so it is fetched
+        # over HTTPS here. Without it `test:protos` fails: campaignsAndEvents.spec reads the pinned
+        # events.proto to check the generated VtsiEvent enum against it (red since 2026-10-02).
+        run: git -c url."https://github.com/".insteadOf="git@github.com:" submodule update --init src/ondewo-vtsi-api
+
       - name: Set up Node.js 20
         uses: actions/setup-node@v5
         with:
