@@ -234,12 +234,16 @@ create_npm_package: ## Create NPM Package for Release
 	rm -rf npm
 	mkdir npm
 	cp -R api npm
+	cp -R auth npm
+	rm -f npm/auth/*.spec.* npm/auth/*.test.*
 	cp public-api.d.ts npm
 	cp public-api.js npm
 	cp package.json npm
 	cp package-lock.json npm
 	cp LICENSE npm
 	cp README.md npm
+	# the published tarball is ./npm, so the ROOT .npmignore is never consulted: write one here too
+	printf '%s\n' '*.spec.*' '*.test.*' > npm/.npmignore
 
 install_dependencies: ## Installs npm dev dependencies
 	npm i --save-dev \
