@@ -7,17 +7,27 @@ on:
 
 jobs:
   unit-tests:
+    name: tests (node ${{ matrix.node-version }})
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # Same matrix as ondewo-nlu-client-nodejs: 20 is the floor of the toolchain, 22 the current
+        # LTS, 24 the newest release.
+        node-version: ['20', '22', '24']
     steps:
       - uses: actions/checkout@v5
 
-      - name: Set up Node.js 20
+      - name: Set up Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v5
         with:
-          node-version: '20'
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm' # caches ~/.npm, keyed on package-lock.json
 
-      - name: Install dependencies
-        run: npm install --no-audit --no-fund
+      # `npm ci`, never `npm install`: it installs exactly the lockfile and fails if package.json and
+      # package-lock.json disagree, instead of silently re-resolving.
+      - name: Install dependencies from the lockfile
+        run: npm ci --no-audit --no-fund
 
       # The repo is ~95% generated gRPC/protobuf stubs; coverage is gated on the HAND-WRITTEN surface
       # (auth/offlineTokenProvider.ts and the auth/grpcChannel.ts TLS helper, 100% lines/branches/
@@ -39,3 +49,8 @@ jobs:
         run: |
           npm run typecheck:examples
           npm run test:examples
+
+      # tests/asteriskVersion.spec.ts drives the GENERATED projects_pb stub: AsteriskConfigs.asteriskVersion
+      # must keep explicit presence (has/clear), so regenerating from a .proto without `optional` fails here.
+      - name: Generated proto stubs keep the field presence the server relies on
+        run: npm run test:protos
