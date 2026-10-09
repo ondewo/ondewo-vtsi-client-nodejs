@@ -333,3 +333,11 @@ number over it; wait and re-check.
 ```bash
 npm view <pkg> version ; git tag --list <version> ; gh release view <version> --json body --jq '.body|length'
 ```
+
+## Package entry point (ondewo-proto-compiler >= 5.15.5)
+
+- `public-api.js` (the package `main`) is a generated CommonJS barrel (`reexport(require('./api/...'))`, first stub
+  keeps a shared name); `public-api.d.ts` keeps `export *` lines. Compiler <= 5.15.4 emitted `export * from` in the
+  `.js`, so `require('@ondewo/vtsi-client-nodejs')` failed with ERR_MODULE_NOT_FOUND. `tests/entryPoint.spec.ts`
+  `require()`s the package root in a child process on every CI Node version; do not regenerate with an older compiler.
+  Both barrels are generated, so eslint and prettier ignore them like `api/`.
