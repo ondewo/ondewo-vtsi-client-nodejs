@@ -172,7 +172,7 @@ npm
 
 ## TLS, mutual TLS and certificates
 
-gRPC encrypts with **TLS** ("SSL" in names such as `credentials.createSsl` or `grpc.ssl_target_name_override` is legacy naming). The package ships a channel helper, `auth/grpcChannel`, that builds the `@grpc/grpc-js` credentials and channel options for every generated client:
+gRPC encrypts with **TLS** ("SSL" in names such as `credentials.createSsl` or `grpc.ssl_target_name_override` is legacy naming). The package ships a channel helper, `auth/grpcChannel` (exported from the package root), that builds the `@grpc/grpc-js` credentials and channel options for every generated client:
 
 | Mode                                    | `useSecureChannel` | Config fields                                                   |
 |-----------------------------------------|--------------------|-----------------------------------------------------------------|
@@ -194,8 +194,7 @@ Rules the code enforces:
 import { readFileSync } from 'fs';
 
 import * as grpc from '@grpc/grpc-js';
-import { createChannelCredentials, createGrpcClient, GrpcClientConfig } from '@ondewo/vtsi-client-nodejs/auth/grpcChannel';
-import { CallsClient } from '@ondewo/vtsi-client-nodejs/api/ondewo/vtsi/calls_grpc_pb';
+import { CallsClient, createChannelCredentials, createGrpcClient, GrpcClientConfig } from '@ondewo/vtsi-client-nodejs';
 
 const config = new GrpcClientConfig({
   host: '10.0.0.5',
