@@ -180,3 +180,5 @@ export * from './api/google/type/dayofweek_grpc_pb';
 export * from './api/google/type/date_grpc_pb';
 export * from './api/google/type/date_pb';
 export * from './api/google/type/dayofweek_pb';
+export * from './auth/grpcChannel';
+export * from './auth/offlineTokenProvider';

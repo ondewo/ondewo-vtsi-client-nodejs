@@ -115,3 +115,5 @@ export * from './api/google/type/dayofweek_pb.d';
 export * from './api/google/type/date_pb.d';
 export * from './api/google/type/latlng_pb.d';
 export * from './api/google/type/timeofday_pb.d';
+export * from './auth/grpcChannel';
+export * from './auth/offlineTokenProvider';
