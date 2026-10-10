@@ -54,6 +54,29 @@ function exportedNames(): string[] {
 	return JSON.parse(execFileSync(process.execPath, ['-e', script], { encoding: 'utf8', env })) as string[];
 }
 
+/**
+ * `require()` the package root in a fresh Node process and evaluate one expression against it.
+ *
+ * @param expression - JavaScript expression over `m`, the loaded package root; its value must be JSON.
+ * @returns The JSON-decoded value of the expression.
+ */
+function evaluateOnPackage(expression: string): unknown {
+	const script: string = `const m = require(${JSON.stringify(REPO_ROOT)}); process.stdout.write(JSON.stringify(${expression}))`;
+	const env: NodeJS.ProcessEnv = { ...process.env };
+	env.NODE_V8_COVERAGE = '';
+	return JSON.parse(execFileSync(process.execPath, ['-e', script], { encoding: 'utf8', env })) as unknown;
+}
+
+/**
+ * List the RPCs of one generated client exported from the package root.
+ *
+ * @param client - Name of the generated client.
+ * @returns The method names of the client's service definition, sorted.
+ */
+function serviceMethods(client: string): string[] {
+	return (evaluateOnPackage(`Object.keys(m[${JSON.stringify(client)}].service)`) as string[]).sort();
+}
+
 describe('package entry point', () => {
 	it('package.json main is the CommonJS public-api.js', () => {
 		const manifest: { main?: string } = JSON.parse(readFileSync(join(REPO_ROOT, 'package.json'), 'utf8')) as {
@@ -72,6 +95,14 @@ describe('package entry point', () => {
 		for (const name of [
 			'CallsClient',
 			'StartListenerRequest',
+			'CampaignsClient',
+			'EventsClient',
+			'SoftphonesClient',
+			'AddCallersToCampaignRequest',
+			'AnsweringMachineDetectionConfig',
+			'SetCallMediaControlRequest',
+			'VtsiEventMessage',
+			'SoftphoneAccount',
 			'login',
 			'OfflineTokenProvider',
 			'createGrpcClient',
@@ -80,5 +111,75 @@ describe('package entry point', () => {
 		]) {
 			assert.ok(names.includes(name), `${name} is not exported from the package root`);
 		}
+	});
+
+	it('the new ondewo-vtsi-api 9.0.0 services carry every RPC of their proto', () => {
+		assert.deepEqual(serviceMethods('CampaignsClient'), [
+			'createCampaign',
+			'deleteCampaign',
+			'getCampaign',
+			'getCampaignStatistics',
+			'hardStopCampaign',
+			'listCampaignCalls',
+			'listCampaigns',
+			'resumeCampaign',
+			'startCampaign',
+			'stopCampaign',
+			'streamCampaignStatus',
+			'updateCampaign'
+		]);
+		assert.deepEqual(serviceMethods('EventsClient'), [
+			'createVtsiEventSubscription',
+			'createWebhook',
+			'deleteVtsiEventSubscription',
+			'deleteWebhook',
+			'getVtsiEventSubscription',
+			'getWebhook',
+			'listVtsiEventSubscriptions',
+			'listWebhooks',
+			'subscribeVtsiEvents',
+			'testWebhook',
+			'updateVtsiEventSubscription',
+			'updateWebhook'
+		]);
+		assert.deepEqual(serviceMethods('SoftphonesClient'), [
+			'createSoftphoneAccount',
+			'deleteSoftphoneAccount',
+			'getSoftphoneAccount',
+			'getSoftphoneCertificate',
+			'getSoftphoneProvisioning',
+			'listSoftphoneAccounts',
+			'listSoftphoneCertificates',
+			'revokeSoftphoneCertificate',
+			'rotateSoftphoneCredentials',
+			'updateSoftphoneAccount'
+		]);
+	});
+
+	it('CallsClient carries the RPCs ondewo-vtsi-api 9.0.0 added', () => {
+		const methods: string[] = serviceMethods('CallsClient');
+		for (const name of [
+			'addCallersToCampaign',
+			'addScheduledCallersToCampaign',
+			'streamCallerStatus',
+			'streamListenerStatus',
+			'streamScheduledCallerStatus',
+			'inviteToCall',
+			'removeCallParticipant',
+			'setCallMediaControl',
+			'streamCallAudio',
+			'listenCallAudio'
+		]) {
+			assert.ok(methods.includes(name), `CallsClient has no ${name}`);
+		}
+	});
+
+	it('AsteriskConfigsFiles exposes pjsip_conf_file_string and no longer sip_conf_file_string (9.0.0 rename)', () => {
+		assert.deepEqual(
+			evaluateOnPackage(
+				"['getPjsipConfFileString', 'setPjsipConfFileString', 'getSipConfFileString', 'setSipConfFileString'].map((n) => typeof m.AsteriskConfigsFiles.prototype[n])"
+			),
+			['function', 'function', 'undefined', 'undefined']
+		);
 	});
 });

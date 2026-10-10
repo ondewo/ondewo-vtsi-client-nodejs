@@ -14,6 +14,7 @@ import * as ondewo_nlu_intent_pb from "../../ondewo/nlu/intent_pb";
 import * as ondewo_s2t_speech_to_text_pb from "../../ondewo/s2t/speech-to-text_pb";
 import * as ondewo_t2s_text_to_speech_pb from "../../ondewo/t2s/text-to-speech_pb";
 import * as ondewo_sip_sip_pb from "../../ondewo/sip/sip_pb";
+import * as ondewo_vtsi_campaigns_pb from "../../ondewo/vtsi/campaigns_pb";
 
 interface ICallsService extends grpc.ServiceDefinition<grpc.UntypedServiceImplementation> {
     startCaller: ICallsService_IStartCaller;
@@ -34,6 +35,8 @@ interface ICallsService extends grpc.ServiceDefinition<grpc.UntypedServiceImplem
     deleteListeners: ICallsService_IDeleteListeners;
     startScheduledCaller: ICallsService_IStartScheduledCaller;
     startScheduledCallers: ICallsService_IStartScheduledCallers;
+    addCallersToCampaign: ICallsService_IAddCallersToCampaign;
+    addScheduledCallersToCampaign: ICallsService_IAddScheduledCallersToCampaign;
     getScheduledCaller: ICallsService_IGetScheduledCaller;
     listScheduledCallers: ICallsService_IListScheduledCallers;
     cancelScheduledCaller: ICallsService_ICancelScheduledCaller;
@@ -44,6 +47,14 @@ interface ICallsService extends grpc.ServiceDefinition<grpc.UntypedServiceImplem
     transferCalls: ICallsService_ITransferCalls;
     getCall: ICallsService_IGetCall;
     listCalls: ICallsService_IListCalls;
+    streamCallerStatus: ICallsService_IStreamCallerStatus;
+    streamListenerStatus: ICallsService_IStreamListenerStatus;
+    streamScheduledCallerStatus: ICallsService_IStreamScheduledCallerStatus;
+    inviteToCall: ICallsService_IInviteToCall;
+    removeCallParticipant: ICallsService_IRemoveCallParticipant;
+    setCallMediaControl: ICallsService_ISetCallMediaControl;
+    streamCallAudio: ICallsService_IStreamCallAudio;
+    listenCallAudio: ICallsService_IListenCallAudio;
 }
 
 interface ICallsService_IStartCaller extends grpc.MethodDefinition<ondewo_vtsi_calls_pb.StartCallerRequest, ondewo_vtsi_calls_pb.StartCallerResponse> {
@@ -208,6 +219,24 @@ interface ICallsService_IStartScheduledCallers extends grpc.MethodDefinition<ond
     responseSerialize: grpc.serialize<ondewo_vtsi_calls_pb.StartScheduledCallersResponse>;
     responseDeserialize: grpc.deserialize<ondewo_vtsi_calls_pb.StartScheduledCallersResponse>;
 }
+interface ICallsService_IAddCallersToCampaign extends grpc.MethodDefinition<ondewo_vtsi_calls_pb.AddCallersToCampaignRequest, ondewo_vtsi_calls_pb.AddCallersToCampaignResponse> {
+    path: "/ondewo.vtsi.Calls/AddCallersToCampaign";
+    requestStream: false;
+    responseStream: false;
+    requestSerialize: grpc.serialize<ondewo_vtsi_calls_pb.AddCallersToCampaignRequest>;
+    requestDeserialize: grpc.deserialize<ondewo_vtsi_calls_pb.AddCallersToCampaignRequest>;
+    responseSerialize: grpc.serialize<ondewo_vtsi_calls_pb.AddCallersToCampaignResponse>;
+    responseDeserialize: grpc.deserialize<ondewo_vtsi_calls_pb.AddCallersToCampaignResponse>;
+}
+interface ICallsService_IAddScheduledCallersToCampaign extends grpc.MethodDefinition<ondewo_vtsi_calls_pb.AddScheduledCallersToCampaignRequest, ondewo_vtsi_calls_pb.AddScheduledCallersToCampaignResponse> {
+    path: "/ondewo.vtsi.Calls/AddScheduledCallersToCampaign";
+    requestStream: false;
+    responseStream: false;
+    requestSerialize: grpc.serialize<ondewo_vtsi_calls_pb.AddScheduledCallersToCampaignRequest>;
+    requestDeserialize: grpc.deserialize<ondewo_vtsi_calls_pb.AddScheduledCallersToCampaignRequest>;
+    responseSerialize: grpc.serialize<ondewo_vtsi_calls_pb.AddScheduledCallersToCampaignResponse>;
+    responseDeserialize: grpc.deserialize<ondewo_vtsi_calls_pb.AddScheduledCallersToCampaignResponse>;
+}
 interface ICallsService_IGetScheduledCaller extends grpc.MethodDefinition<ondewo_vtsi_calls_pb.GetScheduledCallerRequest, ondewo_vtsi_calls_pb.ScheduledCaller> {
     path: "/ondewo.vtsi.Calls/GetScheduledCaller";
     requestStream: false;
@@ -298,6 +327,78 @@ interface ICallsService_IListCalls extends grpc.MethodDefinition<ondewo_vtsi_cal
     responseSerialize: grpc.serialize<ondewo_vtsi_calls_pb.ListCallsResponse>;
     responseDeserialize: grpc.deserialize<ondewo_vtsi_calls_pb.ListCallsResponse>;
 }
+interface ICallsService_IStreamCallerStatus extends grpc.MethodDefinition<ondewo_vtsi_calls_pb.StreamCallerStatusRequest, ondewo_vtsi_calls_pb.StreamCallResourceStatusResponse> {
+    path: "/ondewo.vtsi.Calls/StreamCallerStatus";
+    requestStream: false;
+    responseStream: true;
+    requestSerialize: grpc.serialize<ondewo_vtsi_calls_pb.StreamCallerStatusRequest>;
+    requestDeserialize: grpc.deserialize<ondewo_vtsi_calls_pb.StreamCallerStatusRequest>;
+    responseSerialize: grpc.serialize<ondewo_vtsi_calls_pb.StreamCallResourceStatusResponse>;
+    responseDeserialize: grpc.deserialize<ondewo_vtsi_calls_pb.StreamCallResourceStatusResponse>;
+}
+interface ICallsService_IStreamListenerStatus extends grpc.MethodDefinition<ondewo_vtsi_calls_pb.StreamListenerStatusRequest, ondewo_vtsi_calls_pb.StreamCallResourceStatusResponse> {
+    path: "/ondewo.vtsi.Calls/StreamListenerStatus";
+    requestStream: false;
+    responseStream: true;
+    requestSerialize: grpc.serialize<ondewo_vtsi_calls_pb.StreamListenerStatusRequest>;
+    requestDeserialize: grpc.deserialize<ondewo_vtsi_calls_pb.StreamListenerStatusRequest>;
+    responseSerialize: grpc.serialize<ondewo_vtsi_calls_pb.StreamCallResourceStatusResponse>;
+    responseDeserialize: grpc.deserialize<ondewo_vtsi_calls_pb.StreamCallResourceStatusResponse>;
+}
+interface ICallsService_IStreamScheduledCallerStatus extends grpc.MethodDefinition<ondewo_vtsi_calls_pb.StreamScheduledCallerStatusRequest, ondewo_vtsi_calls_pb.StreamCallResourceStatusResponse> {
+    path: "/ondewo.vtsi.Calls/StreamScheduledCallerStatus";
+    requestStream: false;
+    responseStream: true;
+    requestSerialize: grpc.serialize<ondewo_vtsi_calls_pb.StreamScheduledCallerStatusRequest>;
+    requestDeserialize: grpc.deserialize<ondewo_vtsi_calls_pb.StreamScheduledCallerStatusRequest>;
+    responseSerialize: grpc.serialize<ondewo_vtsi_calls_pb.StreamCallResourceStatusResponse>;
+    responseDeserialize: grpc.deserialize<ondewo_vtsi_calls_pb.StreamCallResourceStatusResponse>;
+}
+interface ICallsService_IInviteToCall extends grpc.MethodDefinition<ondewo_vtsi_calls_pb.InviteToCallRequest, ondewo_vtsi_calls_pb.InviteToCallResponse> {
+    path: "/ondewo.vtsi.Calls/InviteToCall";
+    requestStream: false;
+    responseStream: false;
+    requestSerialize: grpc.serialize<ondewo_vtsi_calls_pb.InviteToCallRequest>;
+    requestDeserialize: grpc.deserialize<ondewo_vtsi_calls_pb.InviteToCallRequest>;
+    responseSerialize: grpc.serialize<ondewo_vtsi_calls_pb.InviteToCallResponse>;
+    responseDeserialize: grpc.deserialize<ondewo_vtsi_calls_pb.InviteToCallResponse>;
+}
+interface ICallsService_IRemoveCallParticipant extends grpc.MethodDefinition<ondewo_vtsi_calls_pb.RemoveCallParticipantRequest, ondewo_vtsi_calls_pb.RemoveCallParticipantResponse> {
+    path: "/ondewo.vtsi.Calls/RemoveCallParticipant";
+    requestStream: false;
+    responseStream: false;
+    requestSerialize: grpc.serialize<ondewo_vtsi_calls_pb.RemoveCallParticipantRequest>;
+    requestDeserialize: grpc.deserialize<ondewo_vtsi_calls_pb.RemoveCallParticipantRequest>;
+    responseSerialize: grpc.serialize<ondewo_vtsi_calls_pb.RemoveCallParticipantResponse>;
+    responseDeserialize: grpc.deserialize<ondewo_vtsi_calls_pb.RemoveCallParticipantResponse>;
+}
+interface ICallsService_ISetCallMediaControl extends grpc.MethodDefinition<ondewo_vtsi_calls_pb.SetCallMediaControlRequest, ondewo_vtsi_calls_pb.SetCallMediaControlResponse> {
+    path: "/ondewo.vtsi.Calls/SetCallMediaControl";
+    requestStream: false;
+    responseStream: false;
+    requestSerialize: grpc.serialize<ondewo_vtsi_calls_pb.SetCallMediaControlRequest>;
+    requestDeserialize: grpc.deserialize<ondewo_vtsi_calls_pb.SetCallMediaControlRequest>;
+    responseSerialize: grpc.serialize<ondewo_vtsi_calls_pb.SetCallMediaControlResponse>;
+    responseDeserialize: grpc.deserialize<ondewo_vtsi_calls_pb.SetCallMediaControlResponse>;
+}
+interface ICallsService_IStreamCallAudio extends grpc.MethodDefinition<ondewo_vtsi_calls_pb.StreamCallAudioRequest, ondewo_vtsi_calls_pb.StreamCallAudioResponse> {
+    path: "/ondewo.vtsi.Calls/StreamCallAudio";
+    requestStream: true;
+    responseStream: true;
+    requestSerialize: grpc.serialize<ondewo_vtsi_calls_pb.StreamCallAudioRequest>;
+    requestDeserialize: grpc.deserialize<ondewo_vtsi_calls_pb.StreamCallAudioRequest>;
+    responseSerialize: grpc.serialize<ondewo_vtsi_calls_pb.StreamCallAudioResponse>;
+    responseDeserialize: grpc.deserialize<ondewo_vtsi_calls_pb.StreamCallAudioResponse>;
+}
+interface ICallsService_IListenCallAudio extends grpc.MethodDefinition<ondewo_vtsi_calls_pb.ListenCallAudioRequest, ondewo_vtsi_calls_pb.StreamCallAudioResponse> {
+    path: "/ondewo.vtsi.Calls/ListenCallAudio";
+    requestStream: false;
+    responseStream: true;
+    requestSerialize: grpc.serialize<ondewo_vtsi_calls_pb.ListenCallAudioRequest>;
+    requestDeserialize: grpc.deserialize<ondewo_vtsi_calls_pb.ListenCallAudioRequest>;
+    responseSerialize: grpc.serialize<ondewo_vtsi_calls_pb.StreamCallAudioResponse>;
+    responseDeserialize: grpc.deserialize<ondewo_vtsi_calls_pb.StreamCallAudioResponse>;
+}
 
 export const CallsService: ICallsService;
 
@@ -320,6 +421,8 @@ export interface ICallsServer {
     deleteListeners: grpc.handleUnaryCall<ondewo_vtsi_calls_pb.DeleteListenersRequest, ondewo_vtsi_calls_pb.DeleteListenersResponse>;
     startScheduledCaller: grpc.handleUnaryCall<ondewo_vtsi_calls_pb.StartScheduledCallerRequest, ondewo_vtsi_calls_pb.StartScheduledCallerResponse>;
     startScheduledCallers: grpc.handleUnaryCall<ondewo_vtsi_calls_pb.StartScheduledCallersRequest, ondewo_vtsi_calls_pb.StartScheduledCallersResponse>;
+    addCallersToCampaign: grpc.handleUnaryCall<ondewo_vtsi_calls_pb.AddCallersToCampaignRequest, ondewo_vtsi_calls_pb.AddCallersToCampaignResponse>;
+    addScheduledCallersToCampaign: grpc.handleUnaryCall<ondewo_vtsi_calls_pb.AddScheduledCallersToCampaignRequest, ondewo_vtsi_calls_pb.AddScheduledCallersToCampaignResponse>;
     getScheduledCaller: grpc.handleUnaryCall<ondewo_vtsi_calls_pb.GetScheduledCallerRequest, ondewo_vtsi_calls_pb.ScheduledCaller>;
     listScheduledCallers: grpc.handleUnaryCall<ondewo_vtsi_calls_pb.ListScheduledCallersRequest, ondewo_vtsi_calls_pb.ListScheduledCallersResponse>;
     cancelScheduledCaller: grpc.handleUnaryCall<ondewo_vtsi_calls_pb.CancelScheduledCallerRequest, ondewo_vtsi_calls_pb.CancelScheduledCallerResponse>;
@@ -330,6 +433,14 @@ export interface ICallsServer {
     transferCalls: grpc.handleUnaryCall<ondewo_vtsi_calls_pb.TransferCallsRequest, ondewo_vtsi_calls_pb.TransferCallsResponse>;
     getCall: grpc.handleUnaryCall<ondewo_vtsi_calls_pb.GetCallRequest, ondewo_vtsi_calls_pb.Call>;
     listCalls: grpc.handleUnaryCall<ondewo_vtsi_calls_pb.ListCallsRequest, ondewo_vtsi_calls_pb.ListCallsResponse>;
+    streamCallerStatus: grpc.handleServerStreamingCall<ondewo_vtsi_calls_pb.StreamCallerStatusRequest, ondewo_vtsi_calls_pb.StreamCallResourceStatusResponse>;
+    streamListenerStatus: grpc.handleServerStreamingCall<ondewo_vtsi_calls_pb.StreamListenerStatusRequest, ondewo_vtsi_calls_pb.StreamCallResourceStatusResponse>;
+    streamScheduledCallerStatus: grpc.handleServerStreamingCall<ondewo_vtsi_calls_pb.StreamScheduledCallerStatusRequest, ondewo_vtsi_calls_pb.StreamCallResourceStatusResponse>;
+    inviteToCall: grpc.handleUnaryCall<ondewo_vtsi_calls_pb.InviteToCallRequest, ondewo_vtsi_calls_pb.InviteToCallResponse>;
+    removeCallParticipant: grpc.handleUnaryCall<ondewo_vtsi_calls_pb.RemoveCallParticipantRequest, ondewo_vtsi_calls_pb.RemoveCallParticipantResponse>;
+    setCallMediaControl: grpc.handleUnaryCall<ondewo_vtsi_calls_pb.SetCallMediaControlRequest, ondewo_vtsi_calls_pb.SetCallMediaControlResponse>;
+    streamCallAudio: grpc.handleBidiStreamingCall<ondewo_vtsi_calls_pb.StreamCallAudioRequest, ondewo_vtsi_calls_pb.StreamCallAudioResponse>;
+    listenCallAudio: grpc.handleServerStreamingCall<ondewo_vtsi_calls_pb.ListenCallAudioRequest, ondewo_vtsi_calls_pb.StreamCallAudioResponse>;
 }
 
 export interface ICallsClient {
@@ -387,6 +498,12 @@ export interface ICallsClient {
     startScheduledCallers(request: ondewo_vtsi_calls_pb.StartScheduledCallersRequest, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_calls_pb.StartScheduledCallersResponse) => void): grpc.ClientUnaryCall;
     startScheduledCallers(request: ondewo_vtsi_calls_pb.StartScheduledCallersRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_calls_pb.StartScheduledCallersResponse) => void): grpc.ClientUnaryCall;
     startScheduledCallers(request: ondewo_vtsi_calls_pb.StartScheduledCallersRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_calls_pb.StartScheduledCallersResponse) => void): grpc.ClientUnaryCall;
+    addCallersToCampaign(request: ondewo_vtsi_calls_pb.AddCallersToCampaignRequest, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_calls_pb.AddCallersToCampaignResponse) => void): grpc.ClientUnaryCall;
+    addCallersToCampaign(request: ondewo_vtsi_calls_pb.AddCallersToCampaignRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_calls_pb.AddCallersToCampaignResponse) => void): grpc.ClientUnaryCall;
+    addCallersToCampaign(request: ondewo_vtsi_calls_pb.AddCallersToCampaignRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_calls_pb.AddCallersToCampaignResponse) => void): grpc.ClientUnaryCall;
+    addScheduledCallersToCampaign(request: ondewo_vtsi_calls_pb.AddScheduledCallersToCampaignRequest, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_calls_pb.AddScheduledCallersToCampaignResponse) => void): grpc.ClientUnaryCall;
+    addScheduledCallersToCampaign(request: ondewo_vtsi_calls_pb.AddScheduledCallersToCampaignRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_calls_pb.AddScheduledCallersToCampaignResponse) => void): grpc.ClientUnaryCall;
+    addScheduledCallersToCampaign(request: ondewo_vtsi_calls_pb.AddScheduledCallersToCampaignRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_calls_pb.AddScheduledCallersToCampaignResponse) => void): grpc.ClientUnaryCall;
     getScheduledCaller(request: ondewo_vtsi_calls_pb.GetScheduledCallerRequest, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_calls_pb.ScheduledCaller) => void): grpc.ClientUnaryCall;
     getScheduledCaller(request: ondewo_vtsi_calls_pb.GetScheduledCallerRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_calls_pb.ScheduledCaller) => void): grpc.ClientUnaryCall;
     getScheduledCaller(request: ondewo_vtsi_calls_pb.GetScheduledCallerRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_calls_pb.ScheduledCaller) => void): grpc.ClientUnaryCall;
@@ -417,6 +534,26 @@ export interface ICallsClient {
     listCalls(request: ondewo_vtsi_calls_pb.ListCallsRequest, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_calls_pb.ListCallsResponse) => void): grpc.ClientUnaryCall;
     listCalls(request: ondewo_vtsi_calls_pb.ListCallsRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_calls_pb.ListCallsResponse) => void): grpc.ClientUnaryCall;
     listCalls(request: ondewo_vtsi_calls_pb.ListCallsRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_calls_pb.ListCallsResponse) => void): grpc.ClientUnaryCall;
+    streamCallerStatus(request: ondewo_vtsi_calls_pb.StreamCallerStatusRequest, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<ondewo_vtsi_calls_pb.StreamCallResourceStatusResponse>;
+    streamCallerStatus(request: ondewo_vtsi_calls_pb.StreamCallerStatusRequest, metadata?: grpc.Metadata, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<ondewo_vtsi_calls_pb.StreamCallResourceStatusResponse>;
+    streamListenerStatus(request: ondewo_vtsi_calls_pb.StreamListenerStatusRequest, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<ondewo_vtsi_calls_pb.StreamCallResourceStatusResponse>;
+    streamListenerStatus(request: ondewo_vtsi_calls_pb.StreamListenerStatusRequest, metadata?: grpc.Metadata, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<ondewo_vtsi_calls_pb.StreamCallResourceStatusResponse>;
+    streamScheduledCallerStatus(request: ondewo_vtsi_calls_pb.StreamScheduledCallerStatusRequest, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<ondewo_vtsi_calls_pb.StreamCallResourceStatusResponse>;
+    streamScheduledCallerStatus(request: ondewo_vtsi_calls_pb.StreamScheduledCallerStatusRequest, metadata?: grpc.Metadata, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<ondewo_vtsi_calls_pb.StreamCallResourceStatusResponse>;
+    inviteToCall(request: ondewo_vtsi_calls_pb.InviteToCallRequest, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_calls_pb.InviteToCallResponse) => void): grpc.ClientUnaryCall;
+    inviteToCall(request: ondewo_vtsi_calls_pb.InviteToCallRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_calls_pb.InviteToCallResponse) => void): grpc.ClientUnaryCall;
+    inviteToCall(request: ondewo_vtsi_calls_pb.InviteToCallRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_calls_pb.InviteToCallResponse) => void): grpc.ClientUnaryCall;
+    removeCallParticipant(request: ondewo_vtsi_calls_pb.RemoveCallParticipantRequest, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_calls_pb.RemoveCallParticipantResponse) => void): grpc.ClientUnaryCall;
+    removeCallParticipant(request: ondewo_vtsi_calls_pb.RemoveCallParticipantRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_calls_pb.RemoveCallParticipantResponse) => void): grpc.ClientUnaryCall;
+    removeCallParticipant(request: ondewo_vtsi_calls_pb.RemoveCallParticipantRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_calls_pb.RemoveCallParticipantResponse) => void): grpc.ClientUnaryCall;
+    setCallMediaControl(request: ondewo_vtsi_calls_pb.SetCallMediaControlRequest, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_calls_pb.SetCallMediaControlResponse) => void): grpc.ClientUnaryCall;
+    setCallMediaControl(request: ondewo_vtsi_calls_pb.SetCallMediaControlRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_calls_pb.SetCallMediaControlResponse) => void): grpc.ClientUnaryCall;
+    setCallMediaControl(request: ondewo_vtsi_calls_pb.SetCallMediaControlRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_calls_pb.SetCallMediaControlResponse) => void): grpc.ClientUnaryCall;
+    streamCallAudio(): grpc.ClientDuplexStream<ondewo_vtsi_calls_pb.StreamCallAudioRequest, ondewo_vtsi_calls_pb.StreamCallAudioResponse>;
+    streamCallAudio(options: Partial<grpc.CallOptions>): grpc.ClientDuplexStream<ondewo_vtsi_calls_pb.StreamCallAudioRequest, ondewo_vtsi_calls_pb.StreamCallAudioResponse>;
+    streamCallAudio(metadata: grpc.Metadata, options?: Partial<grpc.CallOptions>): grpc.ClientDuplexStream<ondewo_vtsi_calls_pb.StreamCallAudioRequest, ondewo_vtsi_calls_pb.StreamCallAudioResponse>;
+    listenCallAudio(request: ondewo_vtsi_calls_pb.ListenCallAudioRequest, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<ondewo_vtsi_calls_pb.StreamCallAudioResponse>;
+    listenCallAudio(request: ondewo_vtsi_calls_pb.ListenCallAudioRequest, metadata?: grpc.Metadata, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<ondewo_vtsi_calls_pb.StreamCallAudioResponse>;
 }
 
 export class CallsClient extends grpc.Client implements ICallsClient {
@@ -475,6 +612,12 @@ export class CallsClient extends grpc.Client implements ICallsClient {
     public startScheduledCallers(request: ondewo_vtsi_calls_pb.StartScheduledCallersRequest, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_calls_pb.StartScheduledCallersResponse) => void): grpc.ClientUnaryCall;
     public startScheduledCallers(request: ondewo_vtsi_calls_pb.StartScheduledCallersRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_calls_pb.StartScheduledCallersResponse) => void): grpc.ClientUnaryCall;
     public startScheduledCallers(request: ondewo_vtsi_calls_pb.StartScheduledCallersRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_calls_pb.StartScheduledCallersResponse) => void): grpc.ClientUnaryCall;
+    public addCallersToCampaign(request: ondewo_vtsi_calls_pb.AddCallersToCampaignRequest, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_calls_pb.AddCallersToCampaignResponse) => void): grpc.ClientUnaryCall;
+    public addCallersToCampaign(request: ondewo_vtsi_calls_pb.AddCallersToCampaignRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_calls_pb.AddCallersToCampaignResponse) => void): grpc.ClientUnaryCall;
+    public addCallersToCampaign(request: ondewo_vtsi_calls_pb.AddCallersToCampaignRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_calls_pb.AddCallersToCampaignResponse) => void): grpc.ClientUnaryCall;
+    public addScheduledCallersToCampaign(request: ondewo_vtsi_calls_pb.AddScheduledCallersToCampaignRequest, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_calls_pb.AddScheduledCallersToCampaignResponse) => void): grpc.ClientUnaryCall;
+    public addScheduledCallersToCampaign(request: ondewo_vtsi_calls_pb.AddScheduledCallersToCampaignRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_calls_pb.AddScheduledCallersToCampaignResponse) => void): grpc.ClientUnaryCall;
+    public addScheduledCallersToCampaign(request: ondewo_vtsi_calls_pb.AddScheduledCallersToCampaignRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_calls_pb.AddScheduledCallersToCampaignResponse) => void): grpc.ClientUnaryCall;
     public getScheduledCaller(request: ondewo_vtsi_calls_pb.GetScheduledCallerRequest, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_calls_pb.ScheduledCaller) => void): grpc.ClientUnaryCall;
     public getScheduledCaller(request: ondewo_vtsi_calls_pb.GetScheduledCallerRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_calls_pb.ScheduledCaller) => void): grpc.ClientUnaryCall;
     public getScheduledCaller(request: ondewo_vtsi_calls_pb.GetScheduledCallerRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_calls_pb.ScheduledCaller) => void): grpc.ClientUnaryCall;
@@ -505,4 +648,23 @@ export class CallsClient extends grpc.Client implements ICallsClient {
     public listCalls(request: ondewo_vtsi_calls_pb.ListCallsRequest, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_calls_pb.ListCallsResponse) => void): grpc.ClientUnaryCall;
     public listCalls(request: ondewo_vtsi_calls_pb.ListCallsRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_calls_pb.ListCallsResponse) => void): grpc.ClientUnaryCall;
     public listCalls(request: ondewo_vtsi_calls_pb.ListCallsRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_calls_pb.ListCallsResponse) => void): grpc.ClientUnaryCall;
+    public streamCallerStatus(request: ondewo_vtsi_calls_pb.StreamCallerStatusRequest, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<ondewo_vtsi_calls_pb.StreamCallResourceStatusResponse>;
+    public streamCallerStatus(request: ondewo_vtsi_calls_pb.StreamCallerStatusRequest, metadata?: grpc.Metadata, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<ondewo_vtsi_calls_pb.StreamCallResourceStatusResponse>;
+    public streamListenerStatus(request: ondewo_vtsi_calls_pb.StreamListenerStatusRequest, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<ondewo_vtsi_calls_pb.StreamCallResourceStatusResponse>;
+    public streamListenerStatus(request: ondewo_vtsi_calls_pb.StreamListenerStatusRequest, metadata?: grpc.Metadata, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<ondewo_vtsi_calls_pb.StreamCallResourceStatusResponse>;
+    public streamScheduledCallerStatus(request: ondewo_vtsi_calls_pb.StreamScheduledCallerStatusRequest, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<ondewo_vtsi_calls_pb.StreamCallResourceStatusResponse>;
+    public streamScheduledCallerStatus(request: ondewo_vtsi_calls_pb.StreamScheduledCallerStatusRequest, metadata?: grpc.Metadata, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<ondewo_vtsi_calls_pb.StreamCallResourceStatusResponse>;
+    public inviteToCall(request: ondewo_vtsi_calls_pb.InviteToCallRequest, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_calls_pb.InviteToCallResponse) => void): grpc.ClientUnaryCall;
+    public inviteToCall(request: ondewo_vtsi_calls_pb.InviteToCallRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_calls_pb.InviteToCallResponse) => void): grpc.ClientUnaryCall;
+    public inviteToCall(request: ondewo_vtsi_calls_pb.InviteToCallRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_calls_pb.InviteToCallResponse) => void): grpc.ClientUnaryCall;
+    public removeCallParticipant(request: ondewo_vtsi_calls_pb.RemoveCallParticipantRequest, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_calls_pb.RemoveCallParticipantResponse) => void): grpc.ClientUnaryCall;
+    public removeCallParticipant(request: ondewo_vtsi_calls_pb.RemoveCallParticipantRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_calls_pb.RemoveCallParticipantResponse) => void): grpc.ClientUnaryCall;
+    public removeCallParticipant(request: ondewo_vtsi_calls_pb.RemoveCallParticipantRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_calls_pb.RemoveCallParticipantResponse) => void): grpc.ClientUnaryCall;
+    public setCallMediaControl(request: ondewo_vtsi_calls_pb.SetCallMediaControlRequest, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_calls_pb.SetCallMediaControlResponse) => void): grpc.ClientUnaryCall;
+    public setCallMediaControl(request: ondewo_vtsi_calls_pb.SetCallMediaControlRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_calls_pb.SetCallMediaControlResponse) => void): grpc.ClientUnaryCall;
+    public setCallMediaControl(request: ondewo_vtsi_calls_pb.SetCallMediaControlRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_calls_pb.SetCallMediaControlResponse) => void): grpc.ClientUnaryCall;
+    public streamCallAudio(options?: Partial<grpc.CallOptions>): grpc.ClientDuplexStream<ondewo_vtsi_calls_pb.StreamCallAudioRequest, ondewo_vtsi_calls_pb.StreamCallAudioResponse>;
+    public streamCallAudio(metadata?: grpc.Metadata, options?: Partial<grpc.CallOptions>): grpc.ClientDuplexStream<ondewo_vtsi_calls_pb.StreamCallAudioRequest, ondewo_vtsi_calls_pb.StreamCallAudioResponse>;
+    public listenCallAudio(request: ondewo_vtsi_calls_pb.ListenCallAudioRequest, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<ondewo_vtsi_calls_pb.StreamCallAudioResponse>;
+    public listenCallAudio(request: ondewo_vtsi_calls_pb.ListenCallAudioRequest, metadata?: grpc.Metadata, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<ondewo_vtsi_calls_pb.StreamCallAudioResponse>;
 }
