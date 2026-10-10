@@ -2,6 +2,26 @@
 
 *****************
 
+## Release ONDEWO VTSI Nodejs Client 9.0.0
+
+### Breaking Changes
+
+* [[OND211-2443]](https://ondewo.atlassian.net/browse/OND211-2443) Tracking API Version [9.0.0](https://github.com/ondewo/ondewo-vtsi-api/releases/tag/9.0.0) ( [Documentation](https://ondewo.github.io/ondewo-vtsi-api/) ), a major API release: binary wire-compatible in both directions, source-breaking.
+* [[OND211-2443]](https://ondewo.atlassian.net/browse/OND211-2443) `AsteriskConfigsFiles.sip_conf_file_string` is renamed to `pjsip_conf_file_string` (field number and type unchanged). **Migration:** replace `getSipConfFileString()` / `setSipConfFileString()` with `getPjsipConfFileString()` / `setPjsipConfFileString()`, and the `sipConfFileString` key of `toObject()` / JSON mappings with `pjsipConfFileString`.
+* [[OND211-2443]](https://ondewo.atlassian.net/browse/OND211-2443) Eleven scalars in `ondewo/vtsi/calls.proto` gained explicit presence (`optional`): `InterruptionHandlingConfig.transcribe_on_disabled_interruptions`, `TurnDetectionConfig.turn_detection_system_prompt` / `turn_detection_user_prompt`, `AudioObjectStorageConfig.activate_audio_object_storage`, `AudioObjectStorageServicesActivationConfig.activate_s2t` / `activate_t2s`, `MessageBrokerConfig.activate_message_broker` and `MessageBrokerServicesActivationConfig.activate_s2t` / `activate_nlu` / `activate_t2s` / `activate_sip`. Getters and setters keep their names and gain `has…()` / `clear…()`; in the typings the getters now return `boolean | undefined` / `string | undefined`. **Migration:** handle `undefined` where a getter result is used as a plain `boolean` / `string`; a value set explicitly to its default (`false`, `""`) is now sent on the wire and read by the server as set; call `clear…()` (or do not call the setter) to leave a field unset. An 8.7.x client that sets a default still sends nothing, so regenerate before relying on an explicit default reaching the server.
+
+### New Features
+
+* [[OND211-2443]](https://ondewo.atlassian.net/browse/OND211-2443) New generated clients, exported from the package root: `CampaignsClient` (service `Campaigns`, `ondewo/vtsi/campaigns.proto`: campaign CRUD, start / stop / hard stop / resume, statistics, campaign calls and the `StreamCampaignStatus` stream), `EventsClient` (service `Events`, `ondewo/vtsi/events.proto`: `VtsiEvent` subscriptions, webhooks incl. `TestWebhook`, and the `SubscribeVtsiEvents` stream) and `SoftphonesClient` (service `Softphones`, `ondewo/vtsi/softphones.proto`: softphone accounts, credential rotation, certificates and provisioning). They take the same `createGrpcClient` / `createChannelCredentials` TLS and mutual TLS setup as the existing clients.
+* [[OND211-2443]](https://ondewo.atlassian.net/browse/OND211-2443) `CallsClient` gains `AddCallersToCampaign`, `AddScheduledCallersToCampaign`, the status streams `StreamCallerStatus` / `StreamListenerStatus` / `StreamScheduledCallerStatus`, and call control: `InviteToCall`, `RemoveCallParticipant`, `SetCallMediaControl`, `StreamCallAudio` and `ListenCallAudio`. Typed, truthful transfers (`TransferCallRequest.target` / `mode` / `headers` / `ring_timeout_s`, `TransferCallResponse.outcome`), `idempotency_key` on the five batch-creating `Calls` requests, answering machine detection (`VoiceInteractionConfig.answering_machine_detection_config`) and the redial marker on `Call`, plus `Call.media_control` / `participants` / `last_transfer` / `sip_call_id`.
+* [[OND211-2443]](https://ondewo.atlassian.net/browse/OND211-2443) `AsteriskConfigsVariables` gains the SIP trunk transport (`sip_trunk_transport`, `sip_trunk_source_cidr`), carrier certificate verification (`sip_trunk_ca_certificates_pem`, `sip_trunk_verify_server`) and `softphone_permit_cidrs`; `VtsiProject` gains `transfer_phone_number_allowlist`.
+* [[OND211-2443]](https://ondewo.atlassian.net/browse/OND211-2443) The vendored `ondewo/sip` stubs follow ondewo-sip-api 5.5.0 (byte-identical to `@ondewo/sip-client-nodejs` 5.5.0): answering machine detection, call-id scoping, `SipSetCallMediaControl`, `SipStreamCallAudio` and truthful transfers.
+* [[OND211-2443]](https://ondewo.atlassian.net/browse/OND211-2443) Regenerated with ondewo-proto-compiler 5.15.5. `tests/entryPoint.spec.ts` pins the three new clients and every RPC of their protos, the new `Calls` RPCs and the `pjsip_conf_file_string` rename; the README package structure lists the generated `vtsi` files.
+
+Server-side requirements of the new RPCs (roles, auth mode, rolling-update behaviour) are described in the [API release notes](https://github.com/ondewo/ondewo-vtsi-api/releases/tag/9.0.0).
+
+*****************
+
 ## Release ONDEWO VTSI Nodejs Client 8.7.1
 
 ### Improvements
