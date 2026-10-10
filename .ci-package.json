@@ -1,8 +1,8 @@
 {
 	"description": "ONDEWO Voip Telephone System Integration (VTSI) Client library for Nodejs",
 	"scripts": {
-		"test": "c8 --check-coverage --lines 100 --functions 100 --branches 100 --include '**/offlineTokenProvider.js' --include '**/grpcChannel.js' --exclude '**/*.spec.js' --reporter text node --test .test-build/auth/offlineTokenProvider.spec.js .test-build/auth/grpcChannel.spec.js .test-build/tests/releaseNotes.spec.js .test-build/tests/entryPoint.spec.js",
-		"pretest": "tsc auth/offlineTokenProvider.ts auth/offlineTokenProvider.spec.ts auth/grpcChannel.ts auth/grpcChannel.spec.ts tests/releaseNotes.spec.ts tests/entryPoint.spec.ts --ignoreConfig --module commonjs --target es2020 --strict --lib es2020,dom --skipLibCheck --sourceMap --types node --typeRoots ./node_modules/@types --outDir .test-build",
+		"test": "c8 --check-coverage --lines 100 --functions 100 --branches 100 --include '**/offlineTokenProvider.js' --include '**/grpcChannel.js' --exclude '**/*.spec.js' --reporter text node --test .test-build/auth/offlineTokenProvider.spec.js .test-build/auth/grpcChannel.spec.js .test-build/tests/releaseNotes.spec.js .test-build/tests/releaseCredentials.spec.js .test-build/tests/entryPoint.spec.js",
+		"pretest": "tsc auth/offlineTokenProvider.ts auth/offlineTokenProvider.spec.ts auth/grpcChannel.ts auth/grpcChannel.spec.ts tests/releaseNotes.spec.ts tests/releaseCredentials.spec.ts tests/entryPoint.spec.ts --ignoreConfig --module commonjs --target es2020 --strict --lib es2020,dom --skipLibCheck --sourceMap --types node --typeRoots ./node_modules/@types --outDir .test-build",
 		"pretest:examples": "tsc examples/listCallers.ts examples/listCallers.spec.ts --ignoreConfig --module commonjs --target es2020 --strict --lib es2020,dom --skipLibCheck --sourceMap --types node --typeRoots ./node_modules/@types --outDir .test-build",
 		"test:examples": "node --test .test-build/listCallers.spec.js",
 		"pretest:protos": "tsc tests/asteriskVersion.spec.ts --ignoreConfig --module commonjs --target es2020 --strict --lib es2020,dom --skipLibCheck --sourceMap --types node --typeRoots ./node_modules/@types --outDir .test-build",
