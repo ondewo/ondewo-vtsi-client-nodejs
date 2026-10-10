@@ -159,10 +159,30 @@ npm
 │       │   ├── text-to-speech_pb.d.ts
 │       │   └── text-to-speech_pb.js
 │       └── vtsi
-│           ├── voip_grpc_pb.d.ts
-│           ├── voip_grpc_pb.js
-│           ├── voip_pb.d.ts
-│           └── voip_pb.js
+│           ├── calls_grpc_pb.d.ts
+│           ├── calls_grpc_pb.js
+│           ├── calls_pb.d.ts
+│           ├── calls_pb.js
+│           ├── campaigns_grpc_pb.d.ts
+│           ├── campaigns_grpc_pb.js
+│           ├── campaigns_pb.d.ts
+│           ├── campaigns_pb.js
+│           ├── events_grpc_pb.d.ts
+│           ├── events_grpc_pb.js
+│           ├── events_pb.d.ts
+│           ├── events_pb.js
+│           ├── logs_grpc_pb.d.ts
+│           ├── logs_grpc_pb.js
+│           ├── logs_pb.d.ts
+│           ├── logs_pb.js
+│           ├── projects_grpc_pb.d.ts
+│           ├── projects_grpc_pb.js
+│           ├── projects_pb.d.ts
+│           ├── projects_pb.js
+│           ├── softphones_grpc_pb.d.ts
+│           ├── softphones_grpc_pb.js
+│           ├── softphones_pb.d.ts
+│           └── softphones_pb.js
 ├── LICENSE
 ├── package.json
 ├── public-api.d.ts

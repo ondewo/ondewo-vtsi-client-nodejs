@@ -39,14 +39,37 @@ var ondewo_t2s_text$to$speech_pb = require('../../ondewo/t2s/text-to-speech_pb.j
 goog.object.extend(proto, ondewo_t2s_text$to$speech_pb);
 var ondewo_sip_sip_pb = require('../../ondewo/sip/sip_pb.js');
 goog.object.extend(proto, ondewo_sip_sip_pb);
+var ondewo_vtsi_campaigns_pb = require('../../ondewo/vtsi/campaigns_pb.js');
+goog.object.extend(proto, ondewo_vtsi_campaigns_pb);
+goog.exportSymbol('proto.ondewo.vtsi.AddCallersToCampaignRequest', null, global);
+goog.exportSymbol('proto.ondewo.vtsi.AddCallersToCampaignResponse', null, global);
+goog.exportSymbol('proto.ondewo.vtsi.AddScheduledCallersToCampaignRequest', null, global);
+goog.exportSymbol('proto.ondewo.vtsi.AddScheduledCallersToCampaignResponse', null, global);
 goog.exportSymbol('proto.ondewo.vtsi.AllServicesStatuses', null, global);
+goog.exportSymbol('proto.ondewo.vtsi.AnsweringMachineDetectionConfig', null, global);
+goog.exportSymbol('proto.ondewo.vtsi.AnsweringMachineDetectionConfig.AmdAction', null, global);
+goog.exportSymbol('proto.ondewo.vtsi.AnsweringMachineDetectionConfig.AmdSensitivity', null, global);
 goog.exportSymbol('proto.ondewo.vtsi.AsteriskConfig', null, global);
 goog.exportSymbol('proto.ondewo.vtsi.AudioObjectStorageConfig', null, global);
 goog.exportSymbol('proto.ondewo.vtsi.AudioObjectStorageServicesActivationConfig', null, global);
 goog.exportSymbol('proto.ondewo.vtsi.BaseServiceConfig', null, global);
+goog.exportSymbol('proto.ondewo.vtsi.BotPolicyOnJoin', null, global);
 goog.exportSymbol('proto.ondewo.vtsi.Call', null, global);
+goog.exportSymbol('proto.ondewo.vtsi.CallAudioEndReason', null, global);
+goog.exportSymbol('proto.ondewo.vtsi.CallAudioEnded', null, global);
+goog.exportSymbol('proto.ondewo.vtsi.CallAudioFrame', null, global);
+goog.exportSymbol('proto.ondewo.vtsi.CallAudioMode', null, global);
+goog.exportSymbol('proto.ondewo.vtsi.CallAudioStarted', null, global);
+goog.exportSymbol('proto.ondewo.vtsi.CallAudioStats', null, global);
 goog.exportSymbol('proto.ondewo.vtsi.CallFilter', null, global);
+goog.exportSymbol('proto.ondewo.vtsi.CallMediaControlState', null, global);
+goog.exportSymbol('proto.ondewo.vtsi.CallMediaSetting', null, global);
+goog.exportSymbol('proto.ondewo.vtsi.CallParticipant', null, global);
+goog.exportSymbol('proto.ondewo.vtsi.CallResourceStatus', null, global);
 goog.exportSymbol('proto.ondewo.vtsi.CallStatus', null, global);
+goog.exportSymbol('proto.ondewo.vtsi.CallTarget', null, global);
+goog.exportSymbol('proto.ondewo.vtsi.CallTarget.TargetCase', null, global);
+goog.exportSymbol('proto.ondewo.vtsi.CallTransferRecord', null, global);
 goog.exportSymbol('proto.ondewo.vtsi.CallType', null, global);
 goog.exportSymbol('proto.ondewo.vtsi.CallView', null, global);
 goog.exportSymbol('proto.ondewo.vtsi.Caller', null, global);
@@ -68,6 +91,8 @@ goog.exportSymbol('proto.ondewo.vtsi.GetCallerRequest', null, global);
 goog.exportSymbol('proto.ondewo.vtsi.GetListenerRequest', null, global);
 goog.exportSymbol('proto.ondewo.vtsi.GetScheduledCallerRequest', null, global);
 goog.exportSymbol('proto.ondewo.vtsi.InterruptionHandlingConfig', null, global);
+goog.exportSymbol('proto.ondewo.vtsi.InviteToCallRequest', null, global);
+goog.exportSymbol('proto.ondewo.vtsi.InviteToCallResponse', null, global);
 goog.exportSymbol('proto.ondewo.vtsi.ListCallersRequest', null, global);
 goog.exportSymbol('proto.ondewo.vtsi.ListCallersResponse', null, global);
 goog.exportSymbol('proto.ondewo.vtsi.ListCallsRequest', null, global);
@@ -76,20 +101,28 @@ goog.exportSymbol('proto.ondewo.vtsi.ListListenersRequest', null, global);
 goog.exportSymbol('proto.ondewo.vtsi.ListListenersResponse', null, global);
 goog.exportSymbol('proto.ondewo.vtsi.ListScheduledCallersRequest', null, global);
 goog.exportSymbol('proto.ondewo.vtsi.ListScheduledCallersResponse', null, global);
+goog.exportSymbol('proto.ondewo.vtsi.ListenCallAudioRequest', null, global);
 goog.exportSymbol('proto.ondewo.vtsi.Listener', null, global);
+goog.exportSymbol('proto.ondewo.vtsi.ListenerQueueTarget', null, global);
 goog.exportSymbol('proto.ondewo.vtsi.MessageBrokerConfig', null, global);
 goog.exportSymbol('proto.ondewo.vtsi.MessageBrokerConfig.MessageBrokerConfigCase', null, global);
 goog.exportSymbol('proto.ondewo.vtsi.MessageBrokerServicesActivationConfig', null, global);
 goog.exportSymbol('proto.ondewo.vtsi.NluVtsiCallbacks', null, global);
 goog.exportSymbol('proto.ondewo.vtsi.NluVtsiConfig', null, global);
 goog.exportSymbol('proto.ondewo.vtsi.NluVtsiConfig.AuthenticationCase', null, global);
+goog.exportSymbol('proto.ondewo.vtsi.ParticipantMode', null, global);
+goog.exportSymbol('proto.ondewo.vtsi.ParticipantState', null, global);
 goog.exportSymbol('proto.ondewo.vtsi.RabbitMqConfig', null, global);
+goog.exportSymbol('proto.ondewo.vtsi.RemoveCallParticipantRequest', null, global);
+goog.exportSymbol('proto.ondewo.vtsi.RemoveCallParticipantResponse', null, global);
 goog.exportSymbol('proto.ondewo.vtsi.ResponseTimingConfig', null, global);
 goog.exportSymbol('proto.ondewo.vtsi.S2tVtsiCallbacks', null, global);
 goog.exportSymbol('proto.ondewo.vtsi.S2tVtsiConfig', null, global);
 goog.exportSymbol('proto.ondewo.vtsi.ScheduledCaller', null, global);
 goog.exportSymbol('proto.ondewo.vtsi.ScheduledCallerStatus', null, global);
 goog.exportSymbol('proto.ondewo.vtsi.ServiceStatus', null, global);
+goog.exportSymbol('proto.ondewo.vtsi.SetCallMediaControlRequest', null, global);
+goog.exportSymbol('proto.ondewo.vtsi.SetCallMediaControlResponse', null, global);
 goog.exportSymbol('proto.ondewo.vtsi.SipBaseConfig', null, global);
 goog.exportSymbol('proto.ondewo.vtsi.SipCallerConfig', null, global);
 goog.exportSymbol('proto.ondewo.vtsi.SoftTimeoutConfig', null, global);
@@ -118,12 +151,23 @@ goog.exportSymbol('proto.ondewo.vtsi.StopListenerRequest', null, global);
 goog.exportSymbol('proto.ondewo.vtsi.StopListenerResponse', null, global);
 goog.exportSymbol('proto.ondewo.vtsi.StopListenersRequest', null, global);
 goog.exportSymbol('proto.ondewo.vtsi.StopListenersResponse', null, global);
+goog.exportSymbol('proto.ondewo.vtsi.StreamCallAudioConfig', null, global);
+goog.exportSymbol('proto.ondewo.vtsi.StreamCallAudioRequest', null, global);
+goog.exportSymbol('proto.ondewo.vtsi.StreamCallAudioRequest.RequestCase', null, global);
+goog.exportSymbol('proto.ondewo.vtsi.StreamCallAudioResponse', null, global);
+goog.exportSymbol('proto.ondewo.vtsi.StreamCallAudioResponse.ResponseCase', null, global);
+goog.exportSymbol('proto.ondewo.vtsi.StreamCallResourceStatusResponse', null, global);
+goog.exportSymbol('proto.ondewo.vtsi.StreamCallerStatusRequest', null, global);
+goog.exportSymbol('proto.ondewo.vtsi.StreamListenerStatusRequest', null, global);
+goog.exportSymbol('proto.ondewo.vtsi.StreamScheduledCallerStatusRequest', null, global);
 goog.exportSymbol('proto.ondewo.vtsi.T2sVtsiCallbacks', null, global);
 goog.exportSymbol('proto.ondewo.vtsi.T2sVtsiConfig', null, global);
 goog.exportSymbol('proto.ondewo.vtsi.TransferCallRequest', null, global);
 goog.exportSymbol('proto.ondewo.vtsi.TransferCallResponse', null, global);
 goog.exportSymbol('proto.ondewo.vtsi.TransferCallsRequest', null, global);
 goog.exportSymbol('proto.ondewo.vtsi.TransferCallsResponse', null, global);
+goog.exportSymbol('proto.ondewo.vtsi.TransferMode', null, global);
+goog.exportSymbol('proto.ondewo.vtsi.TransferOutcome', null, global);
 goog.exportSymbol('proto.ondewo.vtsi.TurnDetectionConfig', null, global);
 goog.exportSymbol('proto.ondewo.vtsi.TurnDetectionConfig.TurnDetectionMode', null, global);
 goog.exportSymbol('proto.ondewo.vtsi.TurnDetectionConfig.TurnEagerness', null, global);
@@ -379,6 +423,27 @@ if (goog.DEBUG && !COMPILED) {
    * @override
    */
   proto.ondewo.vtsi.SoftTimeoutConfig.displayName = 'proto.ondewo.vtsi.SoftTimeoutConfig';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.ondewo.vtsi.AnsweringMachineDetectionConfig.repeatedFields_, null);
+};
+goog.inherits(proto.ondewo.vtsi.AnsweringMachineDetectionConfig, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.ondewo.vtsi.AnsweringMachineDetectionConfig.displayName = 'proto.ondewo.vtsi.AnsweringMachineDetectionConfig';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -1356,6 +1421,90 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
+proto.ondewo.vtsi.AddCallersToCampaignRequest = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.ondewo.vtsi.AddCallersToCampaignRequest.repeatedFields_, null);
+};
+goog.inherits(proto.ondewo.vtsi.AddCallersToCampaignRequest, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.ondewo.vtsi.AddCallersToCampaignRequest.displayName = 'proto.ondewo.vtsi.AddCallersToCampaignRequest';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.ondewo.vtsi.AddCallersToCampaignResponse = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.ondewo.vtsi.AddCallersToCampaignResponse.repeatedFields_, null);
+};
+goog.inherits(proto.ondewo.vtsi.AddCallersToCampaignResponse, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.ondewo.vtsi.AddCallersToCampaignResponse.displayName = 'proto.ondewo.vtsi.AddCallersToCampaignResponse';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.ondewo.vtsi.AddScheduledCallersToCampaignRequest = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.ondewo.vtsi.AddScheduledCallersToCampaignRequest.repeatedFields_, null);
+};
+goog.inherits(proto.ondewo.vtsi.AddScheduledCallersToCampaignRequest, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.ondewo.vtsi.AddScheduledCallersToCampaignRequest.displayName = 'proto.ondewo.vtsi.AddScheduledCallersToCampaignRequest';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.ondewo.vtsi.AddScheduledCallersToCampaignResponse = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.ondewo.vtsi.AddScheduledCallersToCampaignResponse.repeatedFields_, null);
+};
+goog.inherits(proto.ondewo.vtsi.AddScheduledCallersToCampaignResponse, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.ondewo.vtsi.AddScheduledCallersToCampaignResponse.displayName = 'proto.ondewo.vtsi.AddScheduledCallersToCampaignResponse';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
 proto.ondewo.vtsi.StartScheduledCallerResponse = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
@@ -1629,6 +1778,48 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
+proto.ondewo.vtsi.CallTarget = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, proto.ondewo.vtsi.CallTarget.oneofGroups_);
+};
+goog.inherits(proto.ondewo.vtsi.CallTarget, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.ondewo.vtsi.CallTarget.displayName = 'proto.ondewo.vtsi.CallTarget';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.ondewo.vtsi.ListenerQueueTarget = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.ondewo.vtsi.ListenerQueueTarget, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.ondewo.vtsi.ListenerQueueTarget.displayName = 'proto.ondewo.vtsi.ListenerQueueTarget';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
 proto.ondewo.vtsi.TransferCallResponse = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
@@ -1639,6 +1830,363 @@ if (goog.DEBUG && !COMPILED) {
    * @override
    */
   proto.ondewo.vtsi.TransferCallResponse.displayName = 'proto.ondewo.vtsi.TransferCallResponse';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.ondewo.vtsi.CallTransferRecord = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.ondewo.vtsi.CallTransferRecord, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.ondewo.vtsi.CallTransferRecord.displayName = 'proto.ondewo.vtsi.CallTransferRecord';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.ondewo.vtsi.CallMediaControlState = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.ondewo.vtsi.CallMediaControlState, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.ondewo.vtsi.CallMediaControlState.displayName = 'proto.ondewo.vtsi.CallMediaControlState';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.ondewo.vtsi.CallParticipant = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.ondewo.vtsi.CallParticipant, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.ondewo.vtsi.CallParticipant.displayName = 'proto.ondewo.vtsi.CallParticipant';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.ondewo.vtsi.InviteToCallRequest = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.ondewo.vtsi.InviteToCallRequest, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.ondewo.vtsi.InviteToCallRequest.displayName = 'proto.ondewo.vtsi.InviteToCallRequest';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.ondewo.vtsi.InviteToCallResponse = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.ondewo.vtsi.InviteToCallResponse, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.ondewo.vtsi.InviteToCallResponse.displayName = 'proto.ondewo.vtsi.InviteToCallResponse';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.ondewo.vtsi.RemoveCallParticipantRequest = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.ondewo.vtsi.RemoveCallParticipantRequest, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.ondewo.vtsi.RemoveCallParticipantRequest.displayName = 'proto.ondewo.vtsi.RemoveCallParticipantRequest';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.ondewo.vtsi.RemoveCallParticipantResponse = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.ondewo.vtsi.RemoveCallParticipantResponse, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.ondewo.vtsi.RemoveCallParticipantResponse.displayName = 'proto.ondewo.vtsi.RemoveCallParticipantResponse';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.ondewo.vtsi.SetCallMediaControlRequest = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.ondewo.vtsi.SetCallMediaControlRequest, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.ondewo.vtsi.SetCallMediaControlRequest.displayName = 'proto.ondewo.vtsi.SetCallMediaControlRequest';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.ondewo.vtsi.SetCallMediaControlResponse = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.ondewo.vtsi.SetCallMediaControlResponse, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.ondewo.vtsi.SetCallMediaControlResponse.displayName = 'proto.ondewo.vtsi.SetCallMediaControlResponse';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.ondewo.vtsi.StreamCallAudioConfig = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.ondewo.vtsi.StreamCallAudioConfig, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.ondewo.vtsi.StreamCallAudioConfig.displayName = 'proto.ondewo.vtsi.StreamCallAudioConfig';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.ondewo.vtsi.CallAudioFrame = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.ondewo.vtsi.CallAudioFrame, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.ondewo.vtsi.CallAudioFrame.displayName = 'proto.ondewo.vtsi.CallAudioFrame';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.ondewo.vtsi.StreamCallAudioRequest = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, proto.ondewo.vtsi.StreamCallAudioRequest.oneofGroups_);
+};
+goog.inherits(proto.ondewo.vtsi.StreamCallAudioRequest, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.ondewo.vtsi.StreamCallAudioRequest.displayName = 'proto.ondewo.vtsi.StreamCallAudioRequest';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.ondewo.vtsi.CallAudioStarted = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.ondewo.vtsi.CallAudioStarted, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.ondewo.vtsi.CallAudioStarted.displayName = 'proto.ondewo.vtsi.CallAudioStarted';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.ondewo.vtsi.CallAudioStats = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.ondewo.vtsi.CallAudioStats, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.ondewo.vtsi.CallAudioStats.displayName = 'proto.ondewo.vtsi.CallAudioStats';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.ondewo.vtsi.CallAudioEnded = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.ondewo.vtsi.CallAudioEnded, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.ondewo.vtsi.CallAudioEnded.displayName = 'proto.ondewo.vtsi.CallAudioEnded';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.ondewo.vtsi.StreamCallAudioResponse = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, proto.ondewo.vtsi.StreamCallAudioResponse.oneofGroups_);
+};
+goog.inherits(proto.ondewo.vtsi.StreamCallAudioResponse, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.ondewo.vtsi.StreamCallAudioResponse.displayName = 'proto.ondewo.vtsi.StreamCallAudioResponse';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.ondewo.vtsi.ListenCallAudioRequest = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.ondewo.vtsi.ListenCallAudioRequest, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.ondewo.vtsi.ListenCallAudioRequest.displayName = 'proto.ondewo.vtsi.ListenCallAudioRequest';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -1714,7 +2262,7 @@ if (goog.DEBUG && !COMPILED) {
  * @constructor
  */
 proto.ondewo.vtsi.Call = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.ondewo.vtsi.Call.repeatedFields_, null);
 };
 goog.inherits(proto.ondewo.vtsi.Call, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -1828,6 +2376,111 @@ if (goog.DEBUG && !COMPILED) {
    * @override
    */
   proto.ondewo.vtsi.ServiceStatus.displayName = 'proto.ondewo.vtsi.ServiceStatus';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.ondewo.vtsi.CallResourceStatus = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.ondewo.vtsi.CallResourceStatus, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.ondewo.vtsi.CallResourceStatus.displayName = 'proto.ondewo.vtsi.CallResourceStatus';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.ondewo.vtsi.StreamCallerStatusRequest = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.ondewo.vtsi.StreamCallerStatusRequest.repeatedFields_, null);
+};
+goog.inherits(proto.ondewo.vtsi.StreamCallerStatusRequest, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.ondewo.vtsi.StreamCallerStatusRequest.displayName = 'proto.ondewo.vtsi.StreamCallerStatusRequest';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.ondewo.vtsi.StreamListenerStatusRequest = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.ondewo.vtsi.StreamListenerStatusRequest.repeatedFields_, null);
+};
+goog.inherits(proto.ondewo.vtsi.StreamListenerStatusRequest, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.ondewo.vtsi.StreamListenerStatusRequest.displayName = 'proto.ondewo.vtsi.StreamListenerStatusRequest';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.ondewo.vtsi.StreamScheduledCallerStatusRequest = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.ondewo.vtsi.StreamScheduledCallerStatusRequest.repeatedFields_, null);
+};
+goog.inherits(proto.ondewo.vtsi.StreamScheduledCallerStatusRequest, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.ondewo.vtsi.StreamScheduledCallerStatusRequest.displayName = 'proto.ondewo.vtsi.StreamScheduledCallerStatusRequest';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.ondewo.vtsi.StreamCallResourceStatusResponse = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.ondewo.vtsi.StreamCallResourceStatusResponse.repeatedFields_, null);
+};
+goog.inherits(proto.ondewo.vtsi.StreamCallResourceStatusResponse, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.ondewo.vtsi.StreamCallResourceStatusResponse.displayName = 'proto.ondewo.vtsi.StreamCallResourceStatusResponse';
 }
 
 
@@ -3627,7 +4280,8 @@ proto.ondewo.vtsi.VoiceInteractionConfig.toObject = function(includeInstance, ms
   var f, obj = {
     turnDetectionConfig: (f = msg.getTurnDetectionConfig()) && proto.ondewo.vtsi.TurnDetectionConfig.toObject(includeInstance, f),
     interruptionHandlingConfig: (f = msg.getInterruptionHandlingConfig()) && proto.ondewo.vtsi.InterruptionHandlingConfig.toObject(includeInstance, f),
-    responseTimingConfig: (f = msg.getResponseTimingConfig()) && proto.ondewo.vtsi.ResponseTimingConfig.toObject(includeInstance, f)
+    responseTimingConfig: (f = msg.getResponseTimingConfig()) && proto.ondewo.vtsi.ResponseTimingConfig.toObject(includeInstance, f),
+    answeringMachineDetectionConfig: (f = msg.getAnsweringMachineDetectionConfig()) && proto.ondewo.vtsi.AnsweringMachineDetectionConfig.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -3678,6 +4332,11 @@ proto.ondewo.vtsi.VoiceInteractionConfig.deserializeBinaryFromReader = function(
       var value = new proto.ondewo.vtsi.ResponseTimingConfig;
       reader.readMessage(value,proto.ondewo.vtsi.ResponseTimingConfig.deserializeBinaryFromReader);
       msg.setResponseTimingConfig(value);
+      break;
+    case 4:
+      var value = new proto.ondewo.vtsi.AnsweringMachineDetectionConfig;
+      reader.readMessage(value,proto.ondewo.vtsi.AnsweringMachineDetectionConfig.deserializeBinaryFromReader);
+      msg.setAnsweringMachineDetectionConfig(value);
       break;
     default:
       reader.skipField();
@@ -3730,6 +4389,14 @@ proto.ondewo.vtsi.VoiceInteractionConfig.serializeBinaryToWriter = function(mess
       3,
       f,
       proto.ondewo.vtsi.ResponseTimingConfig.serializeBinaryToWriter
+    );
+  }
+  f = message.getAnsweringMachineDetectionConfig();
+  if (f != null) {
+    writer.writeMessage(
+      4,
+      f,
+      proto.ondewo.vtsi.AnsweringMachineDetectionConfig.serializeBinaryToWriter
     );
   }
 };
@@ -3843,6 +4510,43 @@ proto.ondewo.vtsi.VoiceInteractionConfig.prototype.clearResponseTimingConfig = f
  */
 proto.ondewo.vtsi.VoiceInteractionConfig.prototype.hasResponseTimingConfig = function() {
   return jspb.Message.getField(this, 3) != null;
+};
+
+
+/**
+ * optional AnsweringMachineDetectionConfig answering_machine_detection_config = 4;
+ * @return {?proto.ondewo.vtsi.AnsweringMachineDetectionConfig}
+ */
+proto.ondewo.vtsi.VoiceInteractionConfig.prototype.getAnsweringMachineDetectionConfig = function() {
+  return /** @type{?proto.ondewo.vtsi.AnsweringMachineDetectionConfig} */ (
+    jspb.Message.getWrapperField(this, proto.ondewo.vtsi.AnsweringMachineDetectionConfig, 4));
+};
+
+
+/**
+ * @param {?proto.ondewo.vtsi.AnsweringMachineDetectionConfig|undefined} value
+ * @return {!proto.ondewo.vtsi.VoiceInteractionConfig} returns this
+*/
+proto.ondewo.vtsi.VoiceInteractionConfig.prototype.setAnsweringMachineDetectionConfig = function(value) {
+  return jspb.Message.setWrapperField(this, 4, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.ondewo.vtsi.VoiceInteractionConfig} returns this
+ */
+proto.ondewo.vtsi.VoiceInteractionConfig.prototype.clearAnsweringMachineDetectionConfig = function() {
+  return this.setAnsweringMachineDetectionConfig(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.VoiceInteractionConfig.prototype.hasAnsweringMachineDetectionConfig = function() {
+  return jspb.Message.getField(this, 4) != null;
 };
 
 
@@ -4001,15 +4705,15 @@ proto.ondewo.vtsi.TurnDetectionConfig.serializeBinaryToWriter = function(message
       f
     );
   }
-  f = message.getTurnDetectionSystemPrompt();
-  if (f.length > 0) {
+  f = /** @type {string} */ (jspb.Message.getField(message, 5));
+  if (f != null) {
     writer.writeString(
       5,
       f
     );
   }
-  f = message.getTurnDetectionUserPrompt();
-  if (f.length > 0) {
+  f = /** @type {string} */ (jspb.Message.getField(message, 6));
+  if (f != null) {
     writer.writeString(
       6,
       f
@@ -4160,7 +4864,25 @@ proto.ondewo.vtsi.TurnDetectionConfig.prototype.getTurnDetectionSystemPrompt = f
  * @return {!proto.ondewo.vtsi.TurnDetectionConfig} returns this
  */
 proto.ondewo.vtsi.TurnDetectionConfig.prototype.setTurnDetectionSystemPrompt = function(value) {
-  return jspb.Message.setProto3StringField(this, 5, value);
+  return jspb.Message.setField(this, 5, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.ondewo.vtsi.TurnDetectionConfig} returns this
+ */
+proto.ondewo.vtsi.TurnDetectionConfig.prototype.clearTurnDetectionSystemPrompt = function() {
+  return jspb.Message.setField(this, 5, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.TurnDetectionConfig.prototype.hasTurnDetectionSystemPrompt = function() {
+  return jspb.Message.getField(this, 5) != null;
 };
 
 
@@ -4178,7 +4900,25 @@ proto.ondewo.vtsi.TurnDetectionConfig.prototype.getTurnDetectionUserPrompt = fun
  * @return {!proto.ondewo.vtsi.TurnDetectionConfig} returns this
  */
 proto.ondewo.vtsi.TurnDetectionConfig.prototype.setTurnDetectionUserPrompt = function(value) {
-  return jspb.Message.setProto3StringField(this, 6, value);
+  return jspb.Message.setField(this, 6, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.ondewo.vtsi.TurnDetectionConfig} returns this
+ */
+proto.ondewo.vtsi.TurnDetectionConfig.prototype.clearTurnDetectionUserPrompt = function() {
+  return jspb.Message.setField(this, 6, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.TurnDetectionConfig.prototype.hasTurnDetectionUserPrompt = function() {
+  return jspb.Message.getField(this, 6) != null;
 };
 
 
@@ -4368,8 +5108,8 @@ proto.ondewo.vtsi.InterruptionHandlingConfig.serializeBinaryToWriter = function(
       f
     );
   }
-  f = message.getTranscribeOnDisabledInterruptions();
-  if (f) {
+  f = /** @type {boolean} */ (jspb.Message.getField(message, 8));
+  if (f != null) {
     writer.writeBool(
       8,
       f
@@ -4644,7 +5384,25 @@ proto.ondewo.vtsi.InterruptionHandlingConfig.prototype.getTranscribeOnDisabledIn
  * @return {!proto.ondewo.vtsi.InterruptionHandlingConfig} returns this
  */
 proto.ondewo.vtsi.InterruptionHandlingConfig.prototype.setTranscribeOnDisabledInterruptions = function(value) {
-  return jspb.Message.setProto3BooleanField(this, 8, value);
+  return jspb.Message.setField(this, 8, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.ondewo.vtsi.InterruptionHandlingConfig} returns this
+ */
+proto.ondewo.vtsi.InterruptionHandlingConfig.prototype.clearTranscribeOnDisabledInterruptions = function() {
+  return jspb.Message.setField(this, 8, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.InterruptionHandlingConfig.prototype.hasTranscribeOnDisabledInterruptions = function() {
+  return jspb.Message.getField(this, 8) != null;
 };
 
 
@@ -5240,6 +5998,1143 @@ proto.ondewo.vtsi.SoftTimeoutConfig.prototype.clearMaxPerGeneration = function()
  */
 proto.ondewo.vtsi.SoftTimeoutConfig.prototype.hasMaxPerGeneration = function() {
   return jspb.Message.getField(this, 3) != null;
+};
+
+
+
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.repeatedFields_ = [11,12];
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.toObject = function(opt_includeInstance) {
+  return proto.ondewo.vtsi.AnsweringMachineDetectionConfig.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.ondewo.vtsi.AnsweringMachineDetectionConfig} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    active: jspb.Message.getBooleanFieldWithDefault(msg, 1, false),
+    action: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    sensitivity: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    maxDecisionTimeMs: jspb.Message.getFieldWithDefault(msg, 4, 0),
+    maxMachineWaitMs: jspb.Message.getFieldWithDefault(msg, 5, 0),
+    beepWaitAfterGreetingMs: jspb.Message.getFieldWithDefault(msg, 6, 0),
+    initialSilenceMs: jspb.Message.getFieldWithDefault(msg, 7, 0),
+    maxHumanGreetingMs: jspb.Message.getFieldWithDefault(msg, 8, 0),
+    greetingEndSilenceMs: jspb.Message.getFieldWithDefault(msg, 9, 0),
+    beepDetectionActive: jspb.Message.getBooleanFieldWithDefault(msg, 10, false),
+    additionalMachinePhrasesList: (f = jspb.Message.getRepeatedField(msg, 11)) == null ? undefined : f,
+    additionalHumanPhrasesList: (f = jspb.Message.getRepeatedField(msg, 12)) == null ? undefined : f,
+    hangUpOnFax: jspb.Message.getBooleanFieldWithDefault(msg, 13, false),
+    hangUpOnNetworkAnnouncement: jspb.Message.getBooleanFieldWithDefault(msg, 14, false),
+    hangUpOnIvr: jspb.Message.getBooleanFieldWithDefault(msg, 15, false),
+    hangUpOnCallScreening: jspb.Message.getBooleanFieldWithDefault(msg, 16, false),
+    voiceMessageIntent: jspb.Message.getFieldWithDefault(msg, 17, ""),
+    voiceMessageMaxBeepWaitMs: jspb.Message.getFieldWithDefault(msg, 18, 0),
+    voiceMessageTimeoutMs: jspb.Message.getFieldWithDefault(msg, 19, 0),
+    keywordDetectionActive: jspb.Message.getBooleanFieldWithDefault(msg, 20, false),
+    cadenceDetectionActive: jspb.Message.getBooleanFieldWithDefault(msg, 21, false)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.ondewo.vtsi.AnsweringMachineDetectionConfig}
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.ondewo.vtsi.AnsweringMachineDetectionConfig;
+  return proto.ondewo.vtsi.AnsweringMachineDetectionConfig.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.ondewo.vtsi.AnsweringMachineDetectionConfig} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.ondewo.vtsi.AnsweringMachineDetectionConfig}
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setActive(value);
+      break;
+    case 2:
+      var value = /** @type {!proto.ondewo.vtsi.AnsweringMachineDetectionConfig.AmdAction} */ (reader.readEnum());
+      msg.setAction(value);
+      break;
+    case 3:
+      var value = /** @type {!proto.ondewo.vtsi.AnsweringMachineDetectionConfig.AmdSensitivity} */ (reader.readEnum());
+      msg.setSensitivity(value);
+      break;
+    case 4:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setMaxDecisionTimeMs(value);
+      break;
+    case 5:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setMaxMachineWaitMs(value);
+      break;
+    case 6:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setBeepWaitAfterGreetingMs(value);
+      break;
+    case 7:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setInitialSilenceMs(value);
+      break;
+    case 8:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setMaxHumanGreetingMs(value);
+      break;
+    case 9:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setGreetingEndSilenceMs(value);
+      break;
+    case 10:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setBeepDetectionActive(value);
+      break;
+    case 11:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addAdditionalMachinePhrases(value);
+      break;
+    case 12:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addAdditionalHumanPhrases(value);
+      break;
+    case 13:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setHangUpOnFax(value);
+      break;
+    case 14:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setHangUpOnNetworkAnnouncement(value);
+      break;
+    case 15:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setHangUpOnIvr(value);
+      break;
+    case 16:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setHangUpOnCallScreening(value);
+      break;
+    case 17:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setVoiceMessageIntent(value);
+      break;
+    case 18:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setVoiceMessageMaxBeepWaitMs(value);
+      break;
+    case 19:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setVoiceMessageTimeoutMs(value);
+      break;
+    case 20:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setKeywordDetectionActive(value);
+      break;
+    case 21:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setCadenceDetectionActive(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.ondewo.vtsi.AnsweringMachineDetectionConfig.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.ondewo.vtsi.AnsweringMachineDetectionConfig} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = /** @type {boolean} */ (jspb.Message.getField(message, 1));
+  if (f != null) {
+    writer.writeBool(
+      1,
+      f
+    );
+  }
+  f = /** @type {!proto.ondewo.vtsi.AnsweringMachineDetectionConfig.AmdAction} */ (jspb.Message.getField(message, 2));
+  if (f != null) {
+    writer.writeEnum(
+      2,
+      f
+    );
+  }
+  f = /** @type {!proto.ondewo.vtsi.AnsweringMachineDetectionConfig.AmdSensitivity} */ (jspb.Message.getField(message, 3));
+  if (f != null) {
+    writer.writeEnum(
+      3,
+      f
+    );
+  }
+  f = /** @type {number} */ (jspb.Message.getField(message, 4));
+  if (f != null) {
+    writer.writeInt32(
+      4,
+      f
+    );
+  }
+  f = /** @type {number} */ (jspb.Message.getField(message, 5));
+  if (f != null) {
+    writer.writeInt32(
+      5,
+      f
+    );
+  }
+  f = /** @type {number} */ (jspb.Message.getField(message, 6));
+  if (f != null) {
+    writer.writeInt32(
+      6,
+      f
+    );
+  }
+  f = /** @type {number} */ (jspb.Message.getField(message, 7));
+  if (f != null) {
+    writer.writeInt32(
+      7,
+      f
+    );
+  }
+  f = /** @type {number} */ (jspb.Message.getField(message, 8));
+  if (f != null) {
+    writer.writeInt32(
+      8,
+      f
+    );
+  }
+  f = /** @type {number} */ (jspb.Message.getField(message, 9));
+  if (f != null) {
+    writer.writeInt32(
+      9,
+      f
+    );
+  }
+  f = /** @type {boolean} */ (jspb.Message.getField(message, 10));
+  if (f != null) {
+    writer.writeBool(
+      10,
+      f
+    );
+  }
+  f = message.getAdditionalMachinePhrasesList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(
+      11,
+      f
+    );
+  }
+  f = message.getAdditionalHumanPhrasesList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(
+      12,
+      f
+    );
+  }
+  f = /** @type {boolean} */ (jspb.Message.getField(message, 13));
+  if (f != null) {
+    writer.writeBool(
+      13,
+      f
+    );
+  }
+  f = /** @type {boolean} */ (jspb.Message.getField(message, 14));
+  if (f != null) {
+    writer.writeBool(
+      14,
+      f
+    );
+  }
+  f = /** @type {boolean} */ (jspb.Message.getField(message, 15));
+  if (f != null) {
+    writer.writeBool(
+      15,
+      f
+    );
+  }
+  f = /** @type {boolean} */ (jspb.Message.getField(message, 16));
+  if (f != null) {
+    writer.writeBool(
+      16,
+      f
+    );
+  }
+  f = /** @type {string} */ (jspb.Message.getField(message, 17));
+  if (f != null) {
+    writer.writeString(
+      17,
+      f
+    );
+  }
+  f = /** @type {number} */ (jspb.Message.getField(message, 18));
+  if (f != null) {
+    writer.writeInt32(
+      18,
+      f
+    );
+  }
+  f = /** @type {number} */ (jspb.Message.getField(message, 19));
+  if (f != null) {
+    writer.writeInt32(
+      19,
+      f
+    );
+  }
+  f = /** @type {boolean} */ (jspb.Message.getField(message, 20));
+  if (f != null) {
+    writer.writeBool(
+      20,
+      f
+    );
+  }
+  f = /** @type {boolean} */ (jspb.Message.getField(message, 21));
+  if (f != null) {
+    writer.writeBool(
+      21,
+      f
+    );
+  }
+};
+
+
+/**
+ * @enum {number}
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.AmdAction = {
+  AMD_ACTION_UNSPECIFIED: 0,
+  HANG_UP: 1,
+  DETECT_ONLY: 2,
+  LEAVE_VOICE_MESSAGE: 3
+};
+
+/**
+ * @enum {number}
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.AmdSensitivity = {
+  AMD_SENSITIVITY_UNSPECIFIED: 0,
+  LOW: 1,
+  MEDIUM: 2,
+  HIGH: 3
+};
+
+/**
+ * optional bool active = 1;
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.getActive = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 1, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.ondewo.vtsi.AnsweringMachineDetectionConfig} returns this
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.setActive = function(value) {
+  return jspb.Message.setField(this, 1, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.ondewo.vtsi.AnsweringMachineDetectionConfig} returns this
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.clearActive = function() {
+  return jspb.Message.setField(this, 1, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.hasActive = function() {
+  return jspb.Message.getField(this, 1) != null;
+};
+
+
+/**
+ * optional AmdAction action = 2;
+ * @return {!proto.ondewo.vtsi.AnsweringMachineDetectionConfig.AmdAction}
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.getAction = function() {
+  return /** @type {!proto.ondewo.vtsi.AnsweringMachineDetectionConfig.AmdAction} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+};
+
+
+/**
+ * @param {!proto.ondewo.vtsi.AnsweringMachineDetectionConfig.AmdAction} value
+ * @return {!proto.ondewo.vtsi.AnsweringMachineDetectionConfig} returns this
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.setAction = function(value) {
+  return jspb.Message.setField(this, 2, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.ondewo.vtsi.AnsweringMachineDetectionConfig} returns this
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.clearAction = function() {
+  return jspb.Message.setField(this, 2, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.hasAction = function() {
+  return jspb.Message.getField(this, 2) != null;
+};
+
+
+/**
+ * optional AmdSensitivity sensitivity = 3;
+ * @return {!proto.ondewo.vtsi.AnsweringMachineDetectionConfig.AmdSensitivity}
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.getSensitivity = function() {
+  return /** @type {!proto.ondewo.vtsi.AnsweringMachineDetectionConfig.AmdSensitivity} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+};
+
+
+/**
+ * @param {!proto.ondewo.vtsi.AnsweringMachineDetectionConfig.AmdSensitivity} value
+ * @return {!proto.ondewo.vtsi.AnsweringMachineDetectionConfig} returns this
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.setSensitivity = function(value) {
+  return jspb.Message.setField(this, 3, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.ondewo.vtsi.AnsweringMachineDetectionConfig} returns this
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.clearSensitivity = function() {
+  return jspb.Message.setField(this, 3, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.hasSensitivity = function() {
+  return jspb.Message.getField(this, 3) != null;
+};
+
+
+/**
+ * optional int32 max_decision_time_ms = 4;
+ * @return {number}
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.getMaxDecisionTimeMs = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.ondewo.vtsi.AnsweringMachineDetectionConfig} returns this
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.setMaxDecisionTimeMs = function(value) {
+  return jspb.Message.setField(this, 4, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.ondewo.vtsi.AnsweringMachineDetectionConfig} returns this
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.clearMaxDecisionTimeMs = function() {
+  return jspb.Message.setField(this, 4, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.hasMaxDecisionTimeMs = function() {
+  return jspb.Message.getField(this, 4) != null;
+};
+
+
+/**
+ * optional int32 max_machine_wait_ms = 5;
+ * @return {number}
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.getMaxMachineWaitMs = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.ondewo.vtsi.AnsweringMachineDetectionConfig} returns this
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.setMaxMachineWaitMs = function(value) {
+  return jspb.Message.setField(this, 5, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.ondewo.vtsi.AnsweringMachineDetectionConfig} returns this
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.clearMaxMachineWaitMs = function() {
+  return jspb.Message.setField(this, 5, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.hasMaxMachineWaitMs = function() {
+  return jspb.Message.getField(this, 5) != null;
+};
+
+
+/**
+ * optional int32 beep_wait_after_greeting_ms = 6;
+ * @return {number}
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.getBeepWaitAfterGreetingMs = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 6, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.ondewo.vtsi.AnsweringMachineDetectionConfig} returns this
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.setBeepWaitAfterGreetingMs = function(value) {
+  return jspb.Message.setField(this, 6, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.ondewo.vtsi.AnsweringMachineDetectionConfig} returns this
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.clearBeepWaitAfterGreetingMs = function() {
+  return jspb.Message.setField(this, 6, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.hasBeepWaitAfterGreetingMs = function() {
+  return jspb.Message.getField(this, 6) != null;
+};
+
+
+/**
+ * optional int32 initial_silence_ms = 7;
+ * @return {number}
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.getInitialSilenceMs = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 7, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.ondewo.vtsi.AnsweringMachineDetectionConfig} returns this
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.setInitialSilenceMs = function(value) {
+  return jspb.Message.setField(this, 7, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.ondewo.vtsi.AnsweringMachineDetectionConfig} returns this
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.clearInitialSilenceMs = function() {
+  return jspb.Message.setField(this, 7, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.hasInitialSilenceMs = function() {
+  return jspb.Message.getField(this, 7) != null;
+};
+
+
+/**
+ * optional int32 max_human_greeting_ms = 8;
+ * @return {number}
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.getMaxHumanGreetingMs = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 8, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.ondewo.vtsi.AnsweringMachineDetectionConfig} returns this
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.setMaxHumanGreetingMs = function(value) {
+  return jspb.Message.setField(this, 8, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.ondewo.vtsi.AnsweringMachineDetectionConfig} returns this
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.clearMaxHumanGreetingMs = function() {
+  return jspb.Message.setField(this, 8, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.hasMaxHumanGreetingMs = function() {
+  return jspb.Message.getField(this, 8) != null;
+};
+
+
+/**
+ * optional int32 greeting_end_silence_ms = 9;
+ * @return {number}
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.getGreetingEndSilenceMs = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 9, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.ondewo.vtsi.AnsweringMachineDetectionConfig} returns this
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.setGreetingEndSilenceMs = function(value) {
+  return jspb.Message.setField(this, 9, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.ondewo.vtsi.AnsweringMachineDetectionConfig} returns this
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.clearGreetingEndSilenceMs = function() {
+  return jspb.Message.setField(this, 9, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.hasGreetingEndSilenceMs = function() {
+  return jspb.Message.getField(this, 9) != null;
+};
+
+
+/**
+ * optional bool beep_detection_active = 10;
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.getBeepDetectionActive = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 10, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.ondewo.vtsi.AnsweringMachineDetectionConfig} returns this
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.setBeepDetectionActive = function(value) {
+  return jspb.Message.setField(this, 10, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.ondewo.vtsi.AnsweringMachineDetectionConfig} returns this
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.clearBeepDetectionActive = function() {
+  return jspb.Message.setField(this, 10, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.hasBeepDetectionActive = function() {
+  return jspb.Message.getField(this, 10) != null;
+};
+
+
+/**
+ * repeated string additional_machine_phrases = 11;
+ * @return {!Array<string>}
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.getAdditionalMachinePhrasesList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 11));
+};
+
+
+/**
+ * @param {!Array<string>} value
+ * @return {!proto.ondewo.vtsi.AnsweringMachineDetectionConfig} returns this
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.setAdditionalMachinePhrasesList = function(value) {
+  return jspb.Message.setField(this, 11, value || []);
+};
+
+
+/**
+ * @param {string} value
+ * @param {number=} opt_index
+ * @return {!proto.ondewo.vtsi.AnsweringMachineDetectionConfig} returns this
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.addAdditionalMachinePhrases = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 11, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.ondewo.vtsi.AnsweringMachineDetectionConfig} returns this
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.clearAdditionalMachinePhrasesList = function() {
+  return this.setAdditionalMachinePhrasesList([]);
+};
+
+
+/**
+ * repeated string additional_human_phrases = 12;
+ * @return {!Array<string>}
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.getAdditionalHumanPhrasesList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 12));
+};
+
+
+/**
+ * @param {!Array<string>} value
+ * @return {!proto.ondewo.vtsi.AnsweringMachineDetectionConfig} returns this
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.setAdditionalHumanPhrasesList = function(value) {
+  return jspb.Message.setField(this, 12, value || []);
+};
+
+
+/**
+ * @param {string} value
+ * @param {number=} opt_index
+ * @return {!proto.ondewo.vtsi.AnsweringMachineDetectionConfig} returns this
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.addAdditionalHumanPhrases = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 12, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.ondewo.vtsi.AnsweringMachineDetectionConfig} returns this
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.clearAdditionalHumanPhrasesList = function() {
+  return this.setAdditionalHumanPhrasesList([]);
+};
+
+
+/**
+ * optional bool hang_up_on_fax = 13;
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.getHangUpOnFax = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 13, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.ondewo.vtsi.AnsweringMachineDetectionConfig} returns this
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.setHangUpOnFax = function(value) {
+  return jspb.Message.setField(this, 13, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.ondewo.vtsi.AnsweringMachineDetectionConfig} returns this
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.clearHangUpOnFax = function() {
+  return jspb.Message.setField(this, 13, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.hasHangUpOnFax = function() {
+  return jspb.Message.getField(this, 13) != null;
+};
+
+
+/**
+ * optional bool hang_up_on_network_announcement = 14;
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.getHangUpOnNetworkAnnouncement = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 14, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.ondewo.vtsi.AnsweringMachineDetectionConfig} returns this
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.setHangUpOnNetworkAnnouncement = function(value) {
+  return jspb.Message.setField(this, 14, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.ondewo.vtsi.AnsweringMachineDetectionConfig} returns this
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.clearHangUpOnNetworkAnnouncement = function() {
+  return jspb.Message.setField(this, 14, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.hasHangUpOnNetworkAnnouncement = function() {
+  return jspb.Message.getField(this, 14) != null;
+};
+
+
+/**
+ * optional bool hang_up_on_ivr = 15;
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.getHangUpOnIvr = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 15, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.ondewo.vtsi.AnsweringMachineDetectionConfig} returns this
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.setHangUpOnIvr = function(value) {
+  return jspb.Message.setField(this, 15, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.ondewo.vtsi.AnsweringMachineDetectionConfig} returns this
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.clearHangUpOnIvr = function() {
+  return jspb.Message.setField(this, 15, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.hasHangUpOnIvr = function() {
+  return jspb.Message.getField(this, 15) != null;
+};
+
+
+/**
+ * optional bool hang_up_on_call_screening = 16;
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.getHangUpOnCallScreening = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 16, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.ondewo.vtsi.AnsweringMachineDetectionConfig} returns this
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.setHangUpOnCallScreening = function(value) {
+  return jspb.Message.setField(this, 16, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.ondewo.vtsi.AnsweringMachineDetectionConfig} returns this
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.clearHangUpOnCallScreening = function() {
+  return jspb.Message.setField(this, 16, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.hasHangUpOnCallScreening = function() {
+  return jspb.Message.getField(this, 16) != null;
+};
+
+
+/**
+ * optional string voice_message_intent = 17;
+ * @return {string}
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.getVoiceMessageIntent = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 17, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.vtsi.AnsweringMachineDetectionConfig} returns this
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.setVoiceMessageIntent = function(value) {
+  return jspb.Message.setField(this, 17, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.ondewo.vtsi.AnsweringMachineDetectionConfig} returns this
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.clearVoiceMessageIntent = function() {
+  return jspb.Message.setField(this, 17, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.hasVoiceMessageIntent = function() {
+  return jspb.Message.getField(this, 17) != null;
+};
+
+
+/**
+ * optional int32 voice_message_max_beep_wait_ms = 18;
+ * @return {number}
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.getVoiceMessageMaxBeepWaitMs = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 18, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.ondewo.vtsi.AnsweringMachineDetectionConfig} returns this
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.setVoiceMessageMaxBeepWaitMs = function(value) {
+  return jspb.Message.setField(this, 18, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.ondewo.vtsi.AnsweringMachineDetectionConfig} returns this
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.clearVoiceMessageMaxBeepWaitMs = function() {
+  return jspb.Message.setField(this, 18, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.hasVoiceMessageMaxBeepWaitMs = function() {
+  return jspb.Message.getField(this, 18) != null;
+};
+
+
+/**
+ * optional int32 voice_message_timeout_ms = 19;
+ * @return {number}
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.getVoiceMessageTimeoutMs = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 19, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.ondewo.vtsi.AnsweringMachineDetectionConfig} returns this
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.setVoiceMessageTimeoutMs = function(value) {
+  return jspb.Message.setField(this, 19, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.ondewo.vtsi.AnsweringMachineDetectionConfig} returns this
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.clearVoiceMessageTimeoutMs = function() {
+  return jspb.Message.setField(this, 19, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.hasVoiceMessageTimeoutMs = function() {
+  return jspb.Message.getField(this, 19) != null;
+};
+
+
+/**
+ * optional bool keyword_detection_active = 20;
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.getKeywordDetectionActive = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 20, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.ondewo.vtsi.AnsweringMachineDetectionConfig} returns this
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.setKeywordDetectionActive = function(value) {
+  return jspb.Message.setField(this, 20, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.ondewo.vtsi.AnsweringMachineDetectionConfig} returns this
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.clearKeywordDetectionActive = function() {
+  return jspb.Message.setField(this, 20, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.hasKeywordDetectionActive = function() {
+  return jspb.Message.getField(this, 20) != null;
+};
+
+
+/**
+ * optional bool cadence_detection_active = 21;
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.getCadenceDetectionActive = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 21, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.ondewo.vtsi.AnsweringMachineDetectionConfig} returns this
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.setCadenceDetectionActive = function(value) {
+  return jspb.Message.setField(this, 21, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.ondewo.vtsi.AnsweringMachineDetectionConfig} returns this
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.clearCadenceDetectionActive = function() {
+  return jspb.Message.setField(this, 21, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.AnsweringMachineDetectionConfig.prototype.hasCadenceDetectionActive = function() {
+  return jspb.Message.getField(this, 21) != null;
 };
 
 
@@ -6098,8 +7993,8 @@ proto.ondewo.vtsi.AudioObjectStorageConfig.prototype.serializeBinary = function(
  */
 proto.ondewo.vtsi.AudioObjectStorageConfig.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getActivateAudioObjectStorage();
-  if (f) {
+  f = /** @type {boolean} */ (jspb.Message.getField(message, 1));
+  if (f != null) {
     writer.writeBool(
       1,
       f
@@ -6130,7 +8025,25 @@ proto.ondewo.vtsi.AudioObjectStorageConfig.prototype.getActivateAudioObjectStora
  * @return {!proto.ondewo.vtsi.AudioObjectStorageConfig} returns this
  */
 proto.ondewo.vtsi.AudioObjectStorageConfig.prototype.setActivateAudioObjectStorage = function(value) {
-  return jspb.Message.setProto3BooleanField(this, 1, value);
+  return jspb.Message.setField(this, 1, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.ondewo.vtsi.AudioObjectStorageConfig} returns this
+ */
+proto.ondewo.vtsi.AudioObjectStorageConfig.prototype.clearActivateAudioObjectStorage = function() {
+  return jspb.Message.setField(this, 1, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.AudioObjectStorageConfig.prototype.hasActivateAudioObjectStorage = function() {
+  return jspb.Message.getField(this, 1) != null;
 };
 
 
@@ -6278,15 +8191,15 @@ proto.ondewo.vtsi.AudioObjectStorageServicesActivationConfig.prototype.serialize
  */
 proto.ondewo.vtsi.AudioObjectStorageServicesActivationConfig.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getActivateS2t();
-  if (f) {
+  f = /** @type {boolean} */ (jspb.Message.getField(message, 1));
+  if (f != null) {
     writer.writeBool(
       1,
       f
     );
   }
-  f = message.getActivateT2s();
-  if (f) {
+  f = /** @type {boolean} */ (jspb.Message.getField(message, 2));
+  if (f != null) {
     writer.writeBool(
       2,
       f
@@ -6309,7 +8222,25 @@ proto.ondewo.vtsi.AudioObjectStorageServicesActivationConfig.prototype.getActiva
  * @return {!proto.ondewo.vtsi.AudioObjectStorageServicesActivationConfig} returns this
  */
 proto.ondewo.vtsi.AudioObjectStorageServicesActivationConfig.prototype.setActivateS2t = function(value) {
-  return jspb.Message.setProto3BooleanField(this, 1, value);
+  return jspb.Message.setField(this, 1, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.ondewo.vtsi.AudioObjectStorageServicesActivationConfig} returns this
+ */
+proto.ondewo.vtsi.AudioObjectStorageServicesActivationConfig.prototype.clearActivateS2t = function() {
+  return jspb.Message.setField(this, 1, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.AudioObjectStorageServicesActivationConfig.prototype.hasActivateS2t = function() {
+  return jspb.Message.getField(this, 1) != null;
 };
 
 
@@ -6327,7 +8258,25 @@ proto.ondewo.vtsi.AudioObjectStorageServicesActivationConfig.prototype.getActiva
  * @return {!proto.ondewo.vtsi.AudioObjectStorageServicesActivationConfig} returns this
  */
 proto.ondewo.vtsi.AudioObjectStorageServicesActivationConfig.prototype.setActivateT2s = function(value) {
-  return jspb.Message.setProto3BooleanField(this, 2, value);
+  return jspb.Message.setField(this, 2, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.ondewo.vtsi.AudioObjectStorageServicesActivationConfig} returns this
+ */
+proto.ondewo.vtsi.AudioObjectStorageServicesActivationConfig.prototype.clearActivateT2s = function() {
+  return jspb.Message.setField(this, 2, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.AudioObjectStorageServicesActivationConfig.prototype.hasActivateT2s = function() {
+  return jspb.Message.getField(this, 2) != null;
 };
 
 
@@ -6470,8 +8419,8 @@ proto.ondewo.vtsi.MessageBrokerConfig.prototype.serializeBinary = function() {
  */
 proto.ondewo.vtsi.MessageBrokerConfig.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getActivateMessageBroker();
-  if (f) {
+  f = /** @type {boolean} */ (jspb.Message.getField(message, 1));
+  if (f != null) {
     writer.writeBool(
       1,
       f
@@ -6510,7 +8459,25 @@ proto.ondewo.vtsi.MessageBrokerConfig.prototype.getActivateMessageBroker = funct
  * @return {!proto.ondewo.vtsi.MessageBrokerConfig} returns this
  */
 proto.ondewo.vtsi.MessageBrokerConfig.prototype.setActivateMessageBroker = function(value) {
-  return jspb.Message.setProto3BooleanField(this, 1, value);
+  return jspb.Message.setField(this, 1, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.ondewo.vtsi.MessageBrokerConfig} returns this
+ */
+proto.ondewo.vtsi.MessageBrokerConfig.prototype.clearActivateMessageBroker = function() {
+  return jspb.Message.setField(this, 1, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.MessageBrokerConfig.prototype.hasActivateMessageBroker = function() {
+  return jspb.Message.getField(this, 1) != null;
 };
 
 
@@ -6705,29 +8672,29 @@ proto.ondewo.vtsi.MessageBrokerServicesActivationConfig.prototype.serializeBinar
  */
 proto.ondewo.vtsi.MessageBrokerServicesActivationConfig.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getActivateS2t();
-  if (f) {
+  f = /** @type {boolean} */ (jspb.Message.getField(message, 1));
+  if (f != null) {
     writer.writeBool(
       1,
       f
     );
   }
-  f = message.getActivateNlu();
-  if (f) {
+  f = /** @type {boolean} */ (jspb.Message.getField(message, 2));
+  if (f != null) {
     writer.writeBool(
       2,
       f
     );
   }
-  f = message.getActivateT2s();
-  if (f) {
+  f = /** @type {boolean} */ (jspb.Message.getField(message, 3));
+  if (f != null) {
     writer.writeBool(
       3,
       f
     );
   }
-  f = message.getActivateSip();
-  if (f) {
+  f = /** @type {boolean} */ (jspb.Message.getField(message, 4));
+  if (f != null) {
     writer.writeBool(
       4,
       f
@@ -6750,7 +8717,25 @@ proto.ondewo.vtsi.MessageBrokerServicesActivationConfig.prototype.getActivateS2t
  * @return {!proto.ondewo.vtsi.MessageBrokerServicesActivationConfig} returns this
  */
 proto.ondewo.vtsi.MessageBrokerServicesActivationConfig.prototype.setActivateS2t = function(value) {
-  return jspb.Message.setProto3BooleanField(this, 1, value);
+  return jspb.Message.setField(this, 1, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.ondewo.vtsi.MessageBrokerServicesActivationConfig} returns this
+ */
+proto.ondewo.vtsi.MessageBrokerServicesActivationConfig.prototype.clearActivateS2t = function() {
+  return jspb.Message.setField(this, 1, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.MessageBrokerServicesActivationConfig.prototype.hasActivateS2t = function() {
+  return jspb.Message.getField(this, 1) != null;
 };
 
 
@@ -6768,7 +8753,25 @@ proto.ondewo.vtsi.MessageBrokerServicesActivationConfig.prototype.getActivateNlu
  * @return {!proto.ondewo.vtsi.MessageBrokerServicesActivationConfig} returns this
  */
 proto.ondewo.vtsi.MessageBrokerServicesActivationConfig.prototype.setActivateNlu = function(value) {
-  return jspb.Message.setProto3BooleanField(this, 2, value);
+  return jspb.Message.setField(this, 2, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.ondewo.vtsi.MessageBrokerServicesActivationConfig} returns this
+ */
+proto.ondewo.vtsi.MessageBrokerServicesActivationConfig.prototype.clearActivateNlu = function() {
+  return jspb.Message.setField(this, 2, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.MessageBrokerServicesActivationConfig.prototype.hasActivateNlu = function() {
+  return jspb.Message.getField(this, 2) != null;
 };
 
 
@@ -6786,7 +8789,25 @@ proto.ondewo.vtsi.MessageBrokerServicesActivationConfig.prototype.getActivateT2s
  * @return {!proto.ondewo.vtsi.MessageBrokerServicesActivationConfig} returns this
  */
 proto.ondewo.vtsi.MessageBrokerServicesActivationConfig.prototype.setActivateT2s = function(value) {
-  return jspb.Message.setProto3BooleanField(this, 3, value);
+  return jspb.Message.setField(this, 3, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.ondewo.vtsi.MessageBrokerServicesActivationConfig} returns this
+ */
+proto.ondewo.vtsi.MessageBrokerServicesActivationConfig.prototype.clearActivateT2s = function() {
+  return jspb.Message.setField(this, 3, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.MessageBrokerServicesActivationConfig.prototype.hasActivateT2s = function() {
+  return jspb.Message.getField(this, 3) != null;
 };
 
 
@@ -6804,7 +8825,25 @@ proto.ondewo.vtsi.MessageBrokerServicesActivationConfig.prototype.getActivateSip
  * @return {!proto.ondewo.vtsi.MessageBrokerServicesActivationConfig} returns this
  */
 proto.ondewo.vtsi.MessageBrokerServicesActivationConfig.prototype.setActivateSip = function(value) {
-  return jspb.Message.setProto3BooleanField(this, 4, value);
+  return jspb.Message.setField(this, 4, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.ondewo.vtsi.MessageBrokerServicesActivationConfig} returns this
+ */
+proto.ondewo.vtsi.MessageBrokerServicesActivationConfig.prototype.clearActivateSip = function() {
+  return jspb.Message.setField(this, 4, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.MessageBrokerServicesActivationConfig.prototype.hasActivateSip = function() {
+  return jspb.Message.getField(this, 4) != null;
 };
 
 
@@ -8681,7 +10720,8 @@ proto.ondewo.vtsi.StartListenersRequest.toObject = function(includeInstance, msg
   var f, obj = {
     vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 1, ""),
     listenerRequestsList: jspb.Message.toObjectList(msg.getListenerRequestsList(),
-    proto.ondewo.vtsi.StartListenerRequest.toObject, includeInstance)
+    proto.ondewo.vtsi.StartListenerRequest.toObject, includeInstance),
+    idempotencyKey: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -8727,6 +10767,10 @@ proto.ondewo.vtsi.StartListenersRequest.deserializeBinaryFromReader = function(m
       reader.readMessage(value,proto.ondewo.vtsi.StartListenerRequest.deserializeBinaryFromReader);
       msg.addListenerRequests(value);
       break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setIdempotencyKey(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -8769,6 +10813,13 @@ proto.ondewo.vtsi.StartListenersRequest.serializeBinaryToWriter = function(messa
       2,
       f,
       proto.ondewo.vtsi.StartListenerRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getIdempotencyKey();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
+      f
     );
   }
 };
@@ -8827,6 +10878,24 @@ proto.ondewo.vtsi.StartListenersRequest.prototype.addListenerRequests = function
  */
 proto.ondewo.vtsi.StartListenersRequest.prototype.clearListenerRequestsList = function() {
   return this.setListenerRequestsList([]);
+};
+
+
+/**
+ * optional string idempotency_key = 3;
+ * @return {string}
+ */
+proto.ondewo.vtsi.StartListenersRequest.prototype.getIdempotencyKey = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.vtsi.StartListenersRequest} returns this
+ */
+proto.ondewo.vtsi.StartListenersRequest.prototype.setIdempotencyKey = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
@@ -9534,7 +11603,8 @@ proto.ondewo.vtsi.StartCallersRequest.toObject = function(includeInstance, msg) 
   var f, obj = {
     vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 1, ""),
     callerRequestsList: jspb.Message.toObjectList(msg.getCallerRequestsList(),
-    proto.ondewo.vtsi.StartCallerRequest.toObject, includeInstance)
+    proto.ondewo.vtsi.StartCallerRequest.toObject, includeInstance),
+    idempotencyKey: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
 
   if (includeInstance) {
@@ -9580,6 +11650,10 @@ proto.ondewo.vtsi.StartCallersRequest.deserializeBinaryFromReader = function(msg
       reader.readMessage(value,proto.ondewo.vtsi.StartCallerRequest.deserializeBinaryFromReader);
       msg.addCallerRequests(value);
       break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setIdempotencyKey(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -9622,6 +11696,13 @@ proto.ondewo.vtsi.StartCallersRequest.serializeBinaryToWriter = function(message
       2,
       f,
       proto.ondewo.vtsi.StartCallerRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getIdempotencyKey();
+  if (f.length > 0) {
+    writer.writeString(
+      4,
+      f
     );
   }
 };
@@ -9680,6 +11761,24 @@ proto.ondewo.vtsi.StartCallersRequest.prototype.addCallerRequests = function(opt
  */
 proto.ondewo.vtsi.StartCallersRequest.prototype.clearCallerRequestsList = function() {
   return this.setCallerRequestsList([]);
+};
+
+
+/**
+ * optional string idempotency_key = 4;
+ * @return {string}
+ */
+proto.ondewo.vtsi.StartCallersRequest.prototype.getIdempotencyKey = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.vtsi.StartCallersRequest} returns this
+ */
+proto.ondewo.vtsi.StartCallersRequest.prototype.setIdempotencyKey = function(value) {
+  return jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
@@ -13968,7 +16067,8 @@ proto.ondewo.vtsi.StartScheduledCallersRequest.toObject = function(includeInstan
   var f, obj = {
     vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 1, ""),
     scheduledCallerRequestsList: jspb.Message.toObjectList(msg.getScheduledCallerRequestsList(),
-    proto.ondewo.vtsi.StartScheduledCallerRequest.toObject, includeInstance)
+    proto.ondewo.vtsi.StartScheduledCallerRequest.toObject, includeInstance),
+    idempotencyKey: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
 
   if (includeInstance) {
@@ -14014,6 +16114,10 @@ proto.ondewo.vtsi.StartScheduledCallersRequest.deserializeBinaryFromReader = fun
       reader.readMessage(value,proto.ondewo.vtsi.StartScheduledCallerRequest.deserializeBinaryFromReader);
       msg.addScheduledCallerRequests(value);
       break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setIdempotencyKey(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -14056,6 +16160,13 @@ proto.ondewo.vtsi.StartScheduledCallersRequest.serializeBinaryToWriter = functio
       2,
       f,
       proto.ondewo.vtsi.StartScheduledCallerRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getIdempotencyKey();
+  if (f.length > 0) {
+    writer.writeString(
+      4,
+      f
     );
   }
 };
@@ -14114,6 +16225,24 @@ proto.ondewo.vtsi.StartScheduledCallersRequest.prototype.addScheduledCallerReque
  */
 proto.ondewo.vtsi.StartScheduledCallersRequest.prototype.clearScheduledCallerRequestsList = function() {
   return this.setScheduledCallerRequestsList([]);
+};
+
+
+/**
+ * optional string idempotency_key = 4;
+ * @return {string}
+ */
+proto.ondewo.vtsi.StartScheduledCallersRequest.prototype.getIdempotencyKey = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.vtsi.StartScheduledCallersRequest} returns this
+ */
+proto.ondewo.vtsi.StartScheduledCallersRequest.prototype.setIdempotencyKey = function(value) {
+  return jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
@@ -14304,6 +16433,1075 @@ proto.ondewo.vtsi.StartScheduledCallersResponse.prototype.addScheduledCallerResp
  */
 proto.ondewo.vtsi.StartScheduledCallersResponse.prototype.clearScheduledCallerResponsesList = function() {
   return this.setScheduledCallerResponsesList([]);
+};
+
+
+
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.ondewo.vtsi.AddCallersToCampaignRequest.repeatedFields_ = [2];
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.ondewo.vtsi.AddCallersToCampaignRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.ondewo.vtsi.AddCallersToCampaignRequest.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.ondewo.vtsi.AddCallersToCampaignRequest} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.vtsi.AddCallersToCampaignRequest.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    callerRequestsList: jspb.Message.toObjectList(msg.getCallerRequestsList(),
+    proto.ondewo.vtsi.StartCallerRequest.toObject, includeInstance),
+    campaignAssignment: (f = msg.getCampaignAssignment()) && ondewo_vtsi_campaigns_pb.CampaignAssignment.toObject(includeInstance, f),
+    idempotencyKey: jspb.Message.getFieldWithDefault(msg, 4, "")
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.ondewo.vtsi.AddCallersToCampaignRequest}
+ */
+proto.ondewo.vtsi.AddCallersToCampaignRequest.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.ondewo.vtsi.AddCallersToCampaignRequest;
+  return proto.ondewo.vtsi.AddCallersToCampaignRequest.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.ondewo.vtsi.AddCallersToCampaignRequest} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.ondewo.vtsi.AddCallersToCampaignRequest}
+ */
+proto.ondewo.vtsi.AddCallersToCampaignRequest.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setVtsiProjectName(value);
+      break;
+    case 2:
+      var value = new proto.ondewo.vtsi.StartCallerRequest;
+      reader.readMessage(value,proto.ondewo.vtsi.StartCallerRequest.deserializeBinaryFromReader);
+      msg.addCallerRequests(value);
+      break;
+    case 3:
+      var value = new ondewo_vtsi_campaigns_pb.CampaignAssignment;
+      reader.readMessage(value,ondewo_vtsi_campaigns_pb.CampaignAssignment.deserializeBinaryFromReader);
+      msg.setCampaignAssignment(value);
+      break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setIdempotencyKey(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.ondewo.vtsi.AddCallersToCampaignRequest.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.ondewo.vtsi.AddCallersToCampaignRequest.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.ondewo.vtsi.AddCallersToCampaignRequest} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.vtsi.AddCallersToCampaignRequest.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getVtsiProjectName();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getCallerRequestsList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      2,
+      f,
+      proto.ondewo.vtsi.StartCallerRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getCampaignAssignment();
+  if (f != null) {
+    writer.writeMessage(
+      3,
+      f,
+      ondewo_vtsi_campaigns_pb.CampaignAssignment.serializeBinaryToWriter
+    );
+  }
+  f = message.getIdempotencyKey();
+  if (f.length > 0) {
+    writer.writeString(
+      4,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string vtsi_project_name = 1;
+ * @return {string}
+ */
+proto.ondewo.vtsi.AddCallersToCampaignRequest.prototype.getVtsiProjectName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.vtsi.AddCallersToCampaignRequest} returns this
+ */
+proto.ondewo.vtsi.AddCallersToCampaignRequest.prototype.setVtsiProjectName = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * repeated StartCallerRequest caller_requests = 2;
+ * @return {!Array<!proto.ondewo.vtsi.StartCallerRequest>}
+ */
+proto.ondewo.vtsi.AddCallersToCampaignRequest.prototype.getCallerRequestsList = function() {
+  return /** @type{!Array<!proto.ondewo.vtsi.StartCallerRequest>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.ondewo.vtsi.StartCallerRequest, 2));
+};
+
+
+/**
+ * @param {!Array<!proto.ondewo.vtsi.StartCallerRequest>} value
+ * @return {!proto.ondewo.vtsi.AddCallersToCampaignRequest} returns this
+*/
+proto.ondewo.vtsi.AddCallersToCampaignRequest.prototype.setCallerRequestsList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 2, value);
+};
+
+
+/**
+ * @param {!proto.ondewo.vtsi.StartCallerRequest=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.ondewo.vtsi.StartCallerRequest}
+ */
+proto.ondewo.vtsi.AddCallersToCampaignRequest.prototype.addCallerRequests = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 2, opt_value, proto.ondewo.vtsi.StartCallerRequest, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.ondewo.vtsi.AddCallersToCampaignRequest} returns this
+ */
+proto.ondewo.vtsi.AddCallersToCampaignRequest.prototype.clearCallerRequestsList = function() {
+  return this.setCallerRequestsList([]);
+};
+
+
+/**
+ * optional CampaignAssignment campaign_assignment = 3;
+ * @return {?proto.ondewo.vtsi.CampaignAssignment}
+ */
+proto.ondewo.vtsi.AddCallersToCampaignRequest.prototype.getCampaignAssignment = function() {
+  return /** @type{?proto.ondewo.vtsi.CampaignAssignment} */ (
+    jspb.Message.getWrapperField(this, ondewo_vtsi_campaigns_pb.CampaignAssignment, 3));
+};
+
+
+/**
+ * @param {?proto.ondewo.vtsi.CampaignAssignment|undefined} value
+ * @return {!proto.ondewo.vtsi.AddCallersToCampaignRequest} returns this
+*/
+proto.ondewo.vtsi.AddCallersToCampaignRequest.prototype.setCampaignAssignment = function(value) {
+  return jspb.Message.setWrapperField(this, 3, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.ondewo.vtsi.AddCallersToCampaignRequest} returns this
+ */
+proto.ondewo.vtsi.AddCallersToCampaignRequest.prototype.clearCampaignAssignment = function() {
+  return this.setCampaignAssignment(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.AddCallersToCampaignRequest.prototype.hasCampaignAssignment = function() {
+  return jspb.Message.getField(this, 3) != null;
+};
+
+
+/**
+ * optional string idempotency_key = 4;
+ * @return {string}
+ */
+proto.ondewo.vtsi.AddCallersToCampaignRequest.prototype.getIdempotencyKey = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.vtsi.AddCallersToCampaignRequest} returns this
+ */
+proto.ondewo.vtsi.AddCallersToCampaignRequest.prototype.setIdempotencyKey = function(value) {
+  return jspb.Message.setProto3StringField(this, 4, value);
+};
+
+
+
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.ondewo.vtsi.AddCallersToCampaignResponse.repeatedFields_ = [3];
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.ondewo.vtsi.AddCallersToCampaignResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.ondewo.vtsi.AddCallersToCampaignResponse.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.ondewo.vtsi.AddCallersToCampaignResponse} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.vtsi.AddCallersToCampaignResponse.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    campaign: (f = msg.getCampaign()) && ondewo_vtsi_campaigns_pb.Campaign.toObject(includeInstance, f),
+    campaignCallNamesList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.ondewo.vtsi.AddCallersToCampaignResponse}
+ */
+proto.ondewo.vtsi.AddCallersToCampaignResponse.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.ondewo.vtsi.AddCallersToCampaignResponse;
+  return proto.ondewo.vtsi.AddCallersToCampaignResponse.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.ondewo.vtsi.AddCallersToCampaignResponse} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.ondewo.vtsi.AddCallersToCampaignResponse}
+ */
+proto.ondewo.vtsi.AddCallersToCampaignResponse.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setVtsiProjectName(value);
+      break;
+    case 2:
+      var value = new ondewo_vtsi_campaigns_pb.Campaign;
+      reader.readMessage(value,ondewo_vtsi_campaigns_pb.Campaign.deserializeBinaryFromReader);
+      msg.setCampaign(value);
+      break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addCampaignCallNames(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.ondewo.vtsi.AddCallersToCampaignResponse.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.ondewo.vtsi.AddCallersToCampaignResponse.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.ondewo.vtsi.AddCallersToCampaignResponse} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.vtsi.AddCallersToCampaignResponse.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getVtsiProjectName();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getCampaign();
+  if (f != null) {
+    writer.writeMessage(
+      2,
+      f,
+      ondewo_vtsi_campaigns_pb.Campaign.serializeBinaryToWriter
+    );
+  }
+  f = message.getCampaignCallNamesList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(
+      3,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string vtsi_project_name = 1;
+ * @return {string}
+ */
+proto.ondewo.vtsi.AddCallersToCampaignResponse.prototype.getVtsiProjectName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.vtsi.AddCallersToCampaignResponse} returns this
+ */
+proto.ondewo.vtsi.AddCallersToCampaignResponse.prototype.setVtsiProjectName = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional Campaign campaign = 2;
+ * @return {?proto.ondewo.vtsi.Campaign}
+ */
+proto.ondewo.vtsi.AddCallersToCampaignResponse.prototype.getCampaign = function() {
+  return /** @type{?proto.ondewo.vtsi.Campaign} */ (
+    jspb.Message.getWrapperField(this, ondewo_vtsi_campaigns_pb.Campaign, 2));
+};
+
+
+/**
+ * @param {?proto.ondewo.vtsi.Campaign|undefined} value
+ * @return {!proto.ondewo.vtsi.AddCallersToCampaignResponse} returns this
+*/
+proto.ondewo.vtsi.AddCallersToCampaignResponse.prototype.setCampaign = function(value) {
+  return jspb.Message.setWrapperField(this, 2, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.ondewo.vtsi.AddCallersToCampaignResponse} returns this
+ */
+proto.ondewo.vtsi.AddCallersToCampaignResponse.prototype.clearCampaign = function() {
+  return this.setCampaign(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.AddCallersToCampaignResponse.prototype.hasCampaign = function() {
+  return jspb.Message.getField(this, 2) != null;
+};
+
+
+/**
+ * repeated string campaign_call_names = 3;
+ * @return {!Array<string>}
+ */
+proto.ondewo.vtsi.AddCallersToCampaignResponse.prototype.getCampaignCallNamesList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 3));
+};
+
+
+/**
+ * @param {!Array<string>} value
+ * @return {!proto.ondewo.vtsi.AddCallersToCampaignResponse} returns this
+ */
+proto.ondewo.vtsi.AddCallersToCampaignResponse.prototype.setCampaignCallNamesList = function(value) {
+  return jspb.Message.setField(this, 3, value || []);
+};
+
+
+/**
+ * @param {string} value
+ * @param {number=} opt_index
+ * @return {!proto.ondewo.vtsi.AddCallersToCampaignResponse} returns this
+ */
+proto.ondewo.vtsi.AddCallersToCampaignResponse.prototype.addCampaignCallNames = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 3, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.ondewo.vtsi.AddCallersToCampaignResponse} returns this
+ */
+proto.ondewo.vtsi.AddCallersToCampaignResponse.prototype.clearCampaignCallNamesList = function() {
+  return this.setCampaignCallNamesList([]);
+};
+
+
+
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.ondewo.vtsi.AddScheduledCallersToCampaignRequest.repeatedFields_ = [2];
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.ondewo.vtsi.AddScheduledCallersToCampaignRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.ondewo.vtsi.AddScheduledCallersToCampaignRequest.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.ondewo.vtsi.AddScheduledCallersToCampaignRequest} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.vtsi.AddScheduledCallersToCampaignRequest.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    scheduledCallerRequestsList: jspb.Message.toObjectList(msg.getScheduledCallerRequestsList(),
+    proto.ondewo.vtsi.StartScheduledCallerRequest.toObject, includeInstance),
+    campaignAssignment: (f = msg.getCampaignAssignment()) && ondewo_vtsi_campaigns_pb.CampaignAssignment.toObject(includeInstance, f),
+    idempotencyKey: jspb.Message.getFieldWithDefault(msg, 4, "")
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.ondewo.vtsi.AddScheduledCallersToCampaignRequest}
+ */
+proto.ondewo.vtsi.AddScheduledCallersToCampaignRequest.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.ondewo.vtsi.AddScheduledCallersToCampaignRequest;
+  return proto.ondewo.vtsi.AddScheduledCallersToCampaignRequest.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.ondewo.vtsi.AddScheduledCallersToCampaignRequest} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.ondewo.vtsi.AddScheduledCallersToCampaignRequest}
+ */
+proto.ondewo.vtsi.AddScheduledCallersToCampaignRequest.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setVtsiProjectName(value);
+      break;
+    case 2:
+      var value = new proto.ondewo.vtsi.StartScheduledCallerRequest;
+      reader.readMessage(value,proto.ondewo.vtsi.StartScheduledCallerRequest.deserializeBinaryFromReader);
+      msg.addScheduledCallerRequests(value);
+      break;
+    case 3:
+      var value = new ondewo_vtsi_campaigns_pb.CampaignAssignment;
+      reader.readMessage(value,ondewo_vtsi_campaigns_pb.CampaignAssignment.deserializeBinaryFromReader);
+      msg.setCampaignAssignment(value);
+      break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setIdempotencyKey(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.ondewo.vtsi.AddScheduledCallersToCampaignRequest.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.ondewo.vtsi.AddScheduledCallersToCampaignRequest.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.ondewo.vtsi.AddScheduledCallersToCampaignRequest} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.vtsi.AddScheduledCallersToCampaignRequest.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getVtsiProjectName();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getScheduledCallerRequestsList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      2,
+      f,
+      proto.ondewo.vtsi.StartScheduledCallerRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getCampaignAssignment();
+  if (f != null) {
+    writer.writeMessage(
+      3,
+      f,
+      ondewo_vtsi_campaigns_pb.CampaignAssignment.serializeBinaryToWriter
+    );
+  }
+  f = message.getIdempotencyKey();
+  if (f.length > 0) {
+    writer.writeString(
+      4,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string vtsi_project_name = 1;
+ * @return {string}
+ */
+proto.ondewo.vtsi.AddScheduledCallersToCampaignRequest.prototype.getVtsiProjectName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.vtsi.AddScheduledCallersToCampaignRequest} returns this
+ */
+proto.ondewo.vtsi.AddScheduledCallersToCampaignRequest.prototype.setVtsiProjectName = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * repeated StartScheduledCallerRequest scheduled_caller_requests = 2;
+ * @return {!Array<!proto.ondewo.vtsi.StartScheduledCallerRequest>}
+ */
+proto.ondewo.vtsi.AddScheduledCallersToCampaignRequest.prototype.getScheduledCallerRequestsList = function() {
+  return /** @type{!Array<!proto.ondewo.vtsi.StartScheduledCallerRequest>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.ondewo.vtsi.StartScheduledCallerRequest, 2));
+};
+
+
+/**
+ * @param {!Array<!proto.ondewo.vtsi.StartScheduledCallerRequest>} value
+ * @return {!proto.ondewo.vtsi.AddScheduledCallersToCampaignRequest} returns this
+*/
+proto.ondewo.vtsi.AddScheduledCallersToCampaignRequest.prototype.setScheduledCallerRequestsList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 2, value);
+};
+
+
+/**
+ * @param {!proto.ondewo.vtsi.StartScheduledCallerRequest=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.ondewo.vtsi.StartScheduledCallerRequest}
+ */
+proto.ondewo.vtsi.AddScheduledCallersToCampaignRequest.prototype.addScheduledCallerRequests = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 2, opt_value, proto.ondewo.vtsi.StartScheduledCallerRequest, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.ondewo.vtsi.AddScheduledCallersToCampaignRequest} returns this
+ */
+proto.ondewo.vtsi.AddScheduledCallersToCampaignRequest.prototype.clearScheduledCallerRequestsList = function() {
+  return this.setScheduledCallerRequestsList([]);
+};
+
+
+/**
+ * optional CampaignAssignment campaign_assignment = 3;
+ * @return {?proto.ondewo.vtsi.CampaignAssignment}
+ */
+proto.ondewo.vtsi.AddScheduledCallersToCampaignRequest.prototype.getCampaignAssignment = function() {
+  return /** @type{?proto.ondewo.vtsi.CampaignAssignment} */ (
+    jspb.Message.getWrapperField(this, ondewo_vtsi_campaigns_pb.CampaignAssignment, 3));
+};
+
+
+/**
+ * @param {?proto.ondewo.vtsi.CampaignAssignment|undefined} value
+ * @return {!proto.ondewo.vtsi.AddScheduledCallersToCampaignRequest} returns this
+*/
+proto.ondewo.vtsi.AddScheduledCallersToCampaignRequest.prototype.setCampaignAssignment = function(value) {
+  return jspb.Message.setWrapperField(this, 3, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.ondewo.vtsi.AddScheduledCallersToCampaignRequest} returns this
+ */
+proto.ondewo.vtsi.AddScheduledCallersToCampaignRequest.prototype.clearCampaignAssignment = function() {
+  return this.setCampaignAssignment(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.AddScheduledCallersToCampaignRequest.prototype.hasCampaignAssignment = function() {
+  return jspb.Message.getField(this, 3) != null;
+};
+
+
+/**
+ * optional string idempotency_key = 4;
+ * @return {string}
+ */
+proto.ondewo.vtsi.AddScheduledCallersToCampaignRequest.prototype.getIdempotencyKey = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.vtsi.AddScheduledCallersToCampaignRequest} returns this
+ */
+proto.ondewo.vtsi.AddScheduledCallersToCampaignRequest.prototype.setIdempotencyKey = function(value) {
+  return jspb.Message.setProto3StringField(this, 4, value);
+};
+
+
+
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.ondewo.vtsi.AddScheduledCallersToCampaignResponse.repeatedFields_ = [2,4];
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.ondewo.vtsi.AddScheduledCallersToCampaignResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.ondewo.vtsi.AddScheduledCallersToCampaignResponse.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.ondewo.vtsi.AddScheduledCallersToCampaignResponse} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.vtsi.AddScheduledCallersToCampaignResponse.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    scheduledCallerResponsesList: jspb.Message.toObjectList(msg.getScheduledCallerResponsesList(),
+    proto.ondewo.vtsi.StartScheduledCallerResponse.toObject, includeInstance),
+    campaign: (f = msg.getCampaign()) && ondewo_vtsi_campaigns_pb.Campaign.toObject(includeInstance, f),
+    campaignCallNamesList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.ondewo.vtsi.AddScheduledCallersToCampaignResponse}
+ */
+proto.ondewo.vtsi.AddScheduledCallersToCampaignResponse.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.ondewo.vtsi.AddScheduledCallersToCampaignResponse;
+  return proto.ondewo.vtsi.AddScheduledCallersToCampaignResponse.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.ondewo.vtsi.AddScheduledCallersToCampaignResponse} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.ondewo.vtsi.AddScheduledCallersToCampaignResponse}
+ */
+proto.ondewo.vtsi.AddScheduledCallersToCampaignResponse.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setVtsiProjectName(value);
+      break;
+    case 2:
+      var value = new proto.ondewo.vtsi.StartScheduledCallerResponse;
+      reader.readMessage(value,proto.ondewo.vtsi.StartScheduledCallerResponse.deserializeBinaryFromReader);
+      msg.addScheduledCallerResponses(value);
+      break;
+    case 3:
+      var value = new ondewo_vtsi_campaigns_pb.Campaign;
+      reader.readMessage(value,ondewo_vtsi_campaigns_pb.Campaign.deserializeBinaryFromReader);
+      msg.setCampaign(value);
+      break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addCampaignCallNames(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.ondewo.vtsi.AddScheduledCallersToCampaignResponse.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.ondewo.vtsi.AddScheduledCallersToCampaignResponse.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.ondewo.vtsi.AddScheduledCallersToCampaignResponse} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.vtsi.AddScheduledCallersToCampaignResponse.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getVtsiProjectName();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getScheduledCallerResponsesList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      2,
+      f,
+      proto.ondewo.vtsi.StartScheduledCallerResponse.serializeBinaryToWriter
+    );
+  }
+  f = message.getCampaign();
+  if (f != null) {
+    writer.writeMessage(
+      3,
+      f,
+      ondewo_vtsi_campaigns_pb.Campaign.serializeBinaryToWriter
+    );
+  }
+  f = message.getCampaignCallNamesList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(
+      4,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string vtsi_project_name = 1;
+ * @return {string}
+ */
+proto.ondewo.vtsi.AddScheduledCallersToCampaignResponse.prototype.getVtsiProjectName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.vtsi.AddScheduledCallersToCampaignResponse} returns this
+ */
+proto.ondewo.vtsi.AddScheduledCallersToCampaignResponse.prototype.setVtsiProjectName = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * repeated StartScheduledCallerResponse scheduled_caller_responses = 2;
+ * @return {!Array<!proto.ondewo.vtsi.StartScheduledCallerResponse>}
+ */
+proto.ondewo.vtsi.AddScheduledCallersToCampaignResponse.prototype.getScheduledCallerResponsesList = function() {
+  return /** @type{!Array<!proto.ondewo.vtsi.StartScheduledCallerResponse>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.ondewo.vtsi.StartScheduledCallerResponse, 2));
+};
+
+
+/**
+ * @param {!Array<!proto.ondewo.vtsi.StartScheduledCallerResponse>} value
+ * @return {!proto.ondewo.vtsi.AddScheduledCallersToCampaignResponse} returns this
+*/
+proto.ondewo.vtsi.AddScheduledCallersToCampaignResponse.prototype.setScheduledCallerResponsesList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 2, value);
+};
+
+
+/**
+ * @param {!proto.ondewo.vtsi.StartScheduledCallerResponse=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.ondewo.vtsi.StartScheduledCallerResponse}
+ */
+proto.ondewo.vtsi.AddScheduledCallersToCampaignResponse.prototype.addScheduledCallerResponses = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 2, opt_value, proto.ondewo.vtsi.StartScheduledCallerResponse, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.ondewo.vtsi.AddScheduledCallersToCampaignResponse} returns this
+ */
+proto.ondewo.vtsi.AddScheduledCallersToCampaignResponse.prototype.clearScheduledCallerResponsesList = function() {
+  return this.setScheduledCallerResponsesList([]);
+};
+
+
+/**
+ * optional Campaign campaign = 3;
+ * @return {?proto.ondewo.vtsi.Campaign}
+ */
+proto.ondewo.vtsi.AddScheduledCallersToCampaignResponse.prototype.getCampaign = function() {
+  return /** @type{?proto.ondewo.vtsi.Campaign} */ (
+    jspb.Message.getWrapperField(this, ondewo_vtsi_campaigns_pb.Campaign, 3));
+};
+
+
+/**
+ * @param {?proto.ondewo.vtsi.Campaign|undefined} value
+ * @return {!proto.ondewo.vtsi.AddScheduledCallersToCampaignResponse} returns this
+*/
+proto.ondewo.vtsi.AddScheduledCallersToCampaignResponse.prototype.setCampaign = function(value) {
+  return jspb.Message.setWrapperField(this, 3, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.ondewo.vtsi.AddScheduledCallersToCampaignResponse} returns this
+ */
+proto.ondewo.vtsi.AddScheduledCallersToCampaignResponse.prototype.clearCampaign = function() {
+  return this.setCampaign(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.AddScheduledCallersToCampaignResponse.prototype.hasCampaign = function() {
+  return jspb.Message.getField(this, 3) != null;
+};
+
+
+/**
+ * repeated string campaign_call_names = 4;
+ * @return {!Array<string>}
+ */
+proto.ondewo.vtsi.AddScheduledCallersToCampaignResponse.prototype.getCampaignCallNamesList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 4));
+};
+
+
+/**
+ * @param {!Array<string>} value
+ * @return {!proto.ondewo.vtsi.AddScheduledCallersToCampaignResponse} returns this
+ */
+proto.ondewo.vtsi.AddScheduledCallersToCampaignResponse.prototype.setCampaignCallNamesList = function(value) {
+  return jspb.Message.setField(this, 4, value || []);
+};
+
+
+/**
+ * @param {string} value
+ * @param {number=} opt_index
+ * @return {!proto.ondewo.vtsi.AddScheduledCallersToCampaignResponse} returns this
+ */
+proto.ondewo.vtsi.AddScheduledCallersToCampaignResponse.prototype.addCampaignCallNames = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 4, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.ondewo.vtsi.AddScheduledCallersToCampaignResponse} returns this
+ */
+proto.ondewo.vtsi.AddScheduledCallersToCampaignResponse.prototype.clearCampaignCallNamesList = function() {
+  return this.setCampaignCallNamesList([]);
 };
 
 
@@ -14560,7 +17758,8 @@ proto.ondewo.vtsi.ScheduledCaller.toObject = function(includeInstance, msg) {
     vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 8, ""),
     createdAt: (f = msg.getCreatedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     firedAt: (f = msg.getFiredAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    errorMessage: jspb.Message.getFieldWithDefault(msg, 11, "")
+    errorMessage: jspb.Message.getFieldWithDefault(msg, 11, ""),
+    campaignName: jspb.Message.getFieldWithDefault(msg, 12, "")
   };
 
   if (includeInstance) {
@@ -14646,6 +17845,10 @@ proto.ondewo.vtsi.ScheduledCaller.deserializeBinaryFromReader = function(msg, re
     case 11:
       var value = /** @type {string} */ (reader.readString());
       msg.setErrorMessage(value);
+      break;
+    case 12:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setCampaignName(value);
       break;
     default:
       reader.skipField();
@@ -14756,6 +17959,13 @@ proto.ondewo.vtsi.ScheduledCaller.serializeBinaryToWriter = function(message, wr
   if (f.length > 0) {
     writer.writeString(
       11,
+      f
+    );
+  }
+  f = message.getCampaignName();
+  if (f.length > 0) {
+    writer.writeString(
+      12,
       f
     );
   }
@@ -15071,6 +18281,24 @@ proto.ondewo.vtsi.ScheduledCaller.prototype.getErrorMessage = function() {
  */
 proto.ondewo.vtsi.ScheduledCaller.prototype.setErrorMessage = function(value) {
   return jspb.Message.setProto3StringField(this, 11, value);
+};
+
+
+/**
+ * optional string campaign_name = 12;
+ * @return {string}
+ */
+proto.ondewo.vtsi.ScheduledCaller.prototype.getCampaignName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 12, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.vtsi.ScheduledCaller} returns this
+ */
+proto.ondewo.vtsi.ScheduledCaller.prototype.setCampaignName = function(value) {
+  return jspb.Message.setProto3StringField(this, 12, value);
 };
 
 
@@ -17026,7 +20254,11 @@ proto.ondewo.vtsi.TransferCallRequest.toObject = function(includeInstance, msg) 
   var f, obj = {
     vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 1, ""),
     callName: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    transferId: jspb.Message.getFieldWithDefault(msg, 3, "")
+    transferId: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    target: (f = msg.getTarget()) && proto.ondewo.vtsi.CallTarget.toObject(includeInstance, f),
+    mode: jspb.Message.getFieldWithDefault(msg, 5, 0),
+    headersMap: (f = msg.getHeadersMap()) ? f.toObject(includeInstance, undefined) : [],
+    ringTimeoutS: jspb.Message.getFieldWithDefault(msg, 7, 0)
   };
 
   if (includeInstance) {
@@ -17075,6 +20307,25 @@ proto.ondewo.vtsi.TransferCallRequest.deserializeBinaryFromReader = function(msg
       var value = /** @type {string} */ (reader.readString());
       msg.setTransferId(value);
       break;
+    case 4:
+      var value = new proto.ondewo.vtsi.CallTarget;
+      reader.readMessage(value,proto.ondewo.vtsi.CallTarget.deserializeBinaryFromReader);
+      msg.setTarget(value);
+      break;
+    case 5:
+      var value = /** @type {!proto.ondewo.vtsi.TransferMode} */ (reader.readEnum());
+      msg.setMode(value);
+      break;
+    case 6:
+      var value = msg.getHeadersMap();
+      reader.readMessage(value, function(message, reader) {
+        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString, null, "", "");
+         });
+      break;
+    case 7:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setRingTimeoutS(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -17122,6 +20373,32 @@ proto.ondewo.vtsi.TransferCallRequest.serializeBinaryToWriter = function(message
   if (f.length > 0) {
     writer.writeString(
       3,
+      f
+    );
+  }
+  f = message.getTarget();
+  if (f != null) {
+    writer.writeMessage(
+      4,
+      f,
+      proto.ondewo.vtsi.CallTarget.serializeBinaryToWriter
+    );
+  }
+  f = message.getMode();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      5,
+      f
+    );
+  }
+  f = message.getHeadersMap(true);
+  if (f && f.getLength() > 0) {
+    f.serializeBinary(6, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeString);
+  }
+  f = message.getRingTimeoutS();
+  if (f !== 0) {
+    writer.writeInt32(
+      7,
       f
     );
   }
@@ -17182,6 +20459,525 @@ proto.ondewo.vtsi.TransferCallRequest.prototype.setTransferId = function(value) 
 };
 
 
+/**
+ * optional CallTarget target = 4;
+ * @return {?proto.ondewo.vtsi.CallTarget}
+ */
+proto.ondewo.vtsi.TransferCallRequest.prototype.getTarget = function() {
+  return /** @type{?proto.ondewo.vtsi.CallTarget} */ (
+    jspb.Message.getWrapperField(this, proto.ondewo.vtsi.CallTarget, 4));
+};
+
+
+/**
+ * @param {?proto.ondewo.vtsi.CallTarget|undefined} value
+ * @return {!proto.ondewo.vtsi.TransferCallRequest} returns this
+*/
+proto.ondewo.vtsi.TransferCallRequest.prototype.setTarget = function(value) {
+  return jspb.Message.setWrapperField(this, 4, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.ondewo.vtsi.TransferCallRequest} returns this
+ */
+proto.ondewo.vtsi.TransferCallRequest.prototype.clearTarget = function() {
+  return this.setTarget(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.TransferCallRequest.prototype.hasTarget = function() {
+  return jspb.Message.getField(this, 4) != null;
+};
+
+
+/**
+ * optional TransferMode mode = 5;
+ * @return {!proto.ondewo.vtsi.TransferMode}
+ */
+proto.ondewo.vtsi.TransferCallRequest.prototype.getMode = function() {
+  return /** @type {!proto.ondewo.vtsi.TransferMode} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
+};
+
+
+/**
+ * @param {!proto.ondewo.vtsi.TransferMode} value
+ * @return {!proto.ondewo.vtsi.TransferCallRequest} returns this
+ */
+proto.ondewo.vtsi.TransferCallRequest.prototype.setMode = function(value) {
+  return jspb.Message.setProto3EnumField(this, 5, value);
+};
+
+
+/**
+ * map<string, string> headers = 6;
+ * @param {boolean=} opt_noLazyCreate Do not create the map if
+ * empty, instead returning `undefined`
+ * @return {!jspb.Map<string,string>}
+ */
+proto.ondewo.vtsi.TransferCallRequest.prototype.getHeadersMap = function(opt_noLazyCreate) {
+  return /** @type {!jspb.Map<string,string>} */ (
+      jspb.Message.getMapField(this, 6, opt_noLazyCreate,
+      null));
+};
+
+
+/**
+ * Clears values from the map. The map will be non-null.
+ * @return {!proto.ondewo.vtsi.TransferCallRequest} returns this
+ */
+proto.ondewo.vtsi.TransferCallRequest.prototype.clearHeadersMap = function() {
+  this.getHeadersMap().clear();
+  return this;};
+
+
+/**
+ * optional int32 ring_timeout_s = 7;
+ * @return {number}
+ */
+proto.ondewo.vtsi.TransferCallRequest.prototype.getRingTimeoutS = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 7, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.ondewo.vtsi.TransferCallRequest} returns this
+ */
+proto.ondewo.vtsi.TransferCallRequest.prototype.setRingTimeoutS = function(value) {
+  return jspb.Message.setProto3IntField(this, 7, value);
+};
+
+
+
+/**
+ * Oneof group definitions for this message. Each group defines the field
+ * numbers belonging to that group. When of these fields' value is set, all
+ * other fields in the group are cleared. During deserialization, if multiple
+ * fields are encountered for a group, only the last value seen will be kept.
+ * @private {!Array<!Array<number>>}
+ * @const
+ */
+proto.ondewo.vtsi.CallTarget.oneofGroups_ = [[1,2,3,4]];
+
+/**
+ * @enum {number}
+ */
+proto.ondewo.vtsi.CallTarget.TargetCase = {
+  TARGET_NOT_SET: 0,
+  PHONE_NUMBER: 1,
+  SOFTPHONE_ACCOUNT_NAME: 2,
+  LISTENER_NAME: 3,
+  LISTENER_QUEUE: 4
+};
+
+/**
+ * @return {proto.ondewo.vtsi.CallTarget.TargetCase}
+ */
+proto.ondewo.vtsi.CallTarget.prototype.getTargetCase = function() {
+  return /** @type {proto.ondewo.vtsi.CallTarget.TargetCase} */(jspb.Message.computeOneofCase(this, proto.ondewo.vtsi.CallTarget.oneofGroups_[0]));
+};
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.ondewo.vtsi.CallTarget.prototype.toObject = function(opt_includeInstance) {
+  return proto.ondewo.vtsi.CallTarget.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.ondewo.vtsi.CallTarget} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.vtsi.CallTarget.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    phoneNumber: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    softphoneAccountName: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    listenerName: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    listenerQueue: (f = msg.getListenerQueue()) && proto.ondewo.vtsi.ListenerQueueTarget.toObject(includeInstance, f)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.ondewo.vtsi.CallTarget}
+ */
+proto.ondewo.vtsi.CallTarget.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.ondewo.vtsi.CallTarget;
+  return proto.ondewo.vtsi.CallTarget.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.ondewo.vtsi.CallTarget} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.ondewo.vtsi.CallTarget}
+ */
+proto.ondewo.vtsi.CallTarget.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setPhoneNumber(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setSoftphoneAccountName(value);
+      break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setListenerName(value);
+      break;
+    case 4:
+      var value = new proto.ondewo.vtsi.ListenerQueueTarget;
+      reader.readMessage(value,proto.ondewo.vtsi.ListenerQueueTarget.deserializeBinaryFromReader);
+      msg.setListenerQueue(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.ondewo.vtsi.CallTarget.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.ondewo.vtsi.CallTarget.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.ondewo.vtsi.CallTarget} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.vtsi.CallTarget.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = /** @type {string} */ (jspb.Message.getField(message, 1));
+  if (f != null) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = /** @type {string} */ (jspb.Message.getField(message, 2));
+  if (f != null) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+  f = /** @type {string} */ (jspb.Message.getField(message, 3));
+  if (f != null) {
+    writer.writeString(
+      3,
+      f
+    );
+  }
+  f = message.getListenerQueue();
+  if (f != null) {
+    writer.writeMessage(
+      4,
+      f,
+      proto.ondewo.vtsi.ListenerQueueTarget.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * optional string phone_number = 1;
+ * @return {string}
+ */
+proto.ondewo.vtsi.CallTarget.prototype.getPhoneNumber = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.vtsi.CallTarget} returns this
+ */
+proto.ondewo.vtsi.CallTarget.prototype.setPhoneNumber = function(value) {
+  return jspb.Message.setOneofField(this, 1, proto.ondewo.vtsi.CallTarget.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.ondewo.vtsi.CallTarget} returns this
+ */
+proto.ondewo.vtsi.CallTarget.prototype.clearPhoneNumber = function() {
+  return jspb.Message.setOneofField(this, 1, proto.ondewo.vtsi.CallTarget.oneofGroups_[0], undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.CallTarget.prototype.hasPhoneNumber = function() {
+  return jspb.Message.getField(this, 1) != null;
+};
+
+
+/**
+ * optional string softphone_account_name = 2;
+ * @return {string}
+ */
+proto.ondewo.vtsi.CallTarget.prototype.getSoftphoneAccountName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.vtsi.CallTarget} returns this
+ */
+proto.ondewo.vtsi.CallTarget.prototype.setSoftphoneAccountName = function(value) {
+  return jspb.Message.setOneofField(this, 2, proto.ondewo.vtsi.CallTarget.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.ondewo.vtsi.CallTarget} returns this
+ */
+proto.ondewo.vtsi.CallTarget.prototype.clearSoftphoneAccountName = function() {
+  return jspb.Message.setOneofField(this, 2, proto.ondewo.vtsi.CallTarget.oneofGroups_[0], undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.CallTarget.prototype.hasSoftphoneAccountName = function() {
+  return jspb.Message.getField(this, 2) != null;
+};
+
+
+/**
+ * optional string listener_name = 3;
+ * @return {string}
+ */
+proto.ondewo.vtsi.CallTarget.prototype.getListenerName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.vtsi.CallTarget} returns this
+ */
+proto.ondewo.vtsi.CallTarget.prototype.setListenerName = function(value) {
+  return jspb.Message.setOneofField(this, 3, proto.ondewo.vtsi.CallTarget.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.ondewo.vtsi.CallTarget} returns this
+ */
+proto.ondewo.vtsi.CallTarget.prototype.clearListenerName = function() {
+  return jspb.Message.setOneofField(this, 3, proto.ondewo.vtsi.CallTarget.oneofGroups_[0], undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.CallTarget.prototype.hasListenerName = function() {
+  return jspb.Message.getField(this, 3) != null;
+};
+
+
+/**
+ * optional ListenerQueueTarget listener_queue = 4;
+ * @return {?proto.ondewo.vtsi.ListenerQueueTarget}
+ */
+proto.ondewo.vtsi.CallTarget.prototype.getListenerQueue = function() {
+  return /** @type{?proto.ondewo.vtsi.ListenerQueueTarget} */ (
+    jspb.Message.getWrapperField(this, proto.ondewo.vtsi.ListenerQueueTarget, 4));
+};
+
+
+/**
+ * @param {?proto.ondewo.vtsi.ListenerQueueTarget|undefined} value
+ * @return {!proto.ondewo.vtsi.CallTarget} returns this
+*/
+proto.ondewo.vtsi.CallTarget.prototype.setListenerQueue = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 4, proto.ondewo.vtsi.CallTarget.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.ondewo.vtsi.CallTarget} returns this
+ */
+proto.ondewo.vtsi.CallTarget.prototype.clearListenerQueue = function() {
+  return this.setListenerQueue(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.CallTarget.prototype.hasListenerQueue = function() {
+  return jspb.Message.getField(this, 4) != null;
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.ondewo.vtsi.ListenerQueueTarget.prototype.toObject = function(opt_includeInstance) {
+  return proto.ondewo.vtsi.ListenerQueueTarget.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.ondewo.vtsi.ListenerQueueTarget} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.vtsi.ListenerQueueTarget.toObject = function(includeInstance, msg) {
+  var f, obj = {
+
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.ondewo.vtsi.ListenerQueueTarget}
+ */
+proto.ondewo.vtsi.ListenerQueueTarget.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.ondewo.vtsi.ListenerQueueTarget;
+  return proto.ondewo.vtsi.ListenerQueueTarget.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.ondewo.vtsi.ListenerQueueTarget} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.ondewo.vtsi.ListenerQueueTarget}
+ */
+proto.ondewo.vtsi.ListenerQueueTarget.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.ondewo.vtsi.ListenerQueueTarget.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.ondewo.vtsi.ListenerQueueTarget.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.ondewo.vtsi.ListenerQueueTarget} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.vtsi.ListenerQueueTarget.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+};
+
+
 
 
 
@@ -17217,7 +21013,11 @@ proto.ondewo.vtsi.TransferCallResponse.toObject = function(includeInstance, msg)
     vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 1, ""),
     callName: jspb.Message.getFieldWithDefault(msg, 2, ""),
     transferId: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    errorMessage: jspb.Message.getFieldWithDefault(msg, 4, "")
+    errorMessage: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    outcome: jspb.Message.getFieldWithDefault(msg, 5, 0),
+    resolvedTarget: jspb.Message.getFieldWithDefault(msg, 6, ""),
+    sipResponseCode: jspb.Message.getFieldWithDefault(msg, 7, 0),
+    errorReason: jspb.Message.getFieldWithDefault(msg, 8, "")
   };
 
   if (includeInstance) {
@@ -17269,6 +21069,22 @@ proto.ondewo.vtsi.TransferCallResponse.deserializeBinaryFromReader = function(ms
     case 4:
       var value = /** @type {string} */ (reader.readString());
       msg.setErrorMessage(value);
+      break;
+    case 5:
+      var value = /** @type {!proto.ondewo.vtsi.TransferOutcome} */ (reader.readEnum());
+      msg.setOutcome(value);
+      break;
+    case 6:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setResolvedTarget(value);
+      break;
+    case 7:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setSipResponseCode(value);
+      break;
+    case 8:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setErrorReason(value);
       break;
     default:
       reader.skipField();
@@ -17324,6 +21140,34 @@ proto.ondewo.vtsi.TransferCallResponse.serializeBinaryToWriter = function(messag
   if (f.length > 0) {
     writer.writeString(
       4,
+      f
+    );
+  }
+  f = message.getOutcome();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      5,
+      f
+    );
+  }
+  f = message.getResolvedTarget();
+  if (f.length > 0) {
+    writer.writeString(
+      6,
+      f
+    );
+  }
+  f = message.getSipResponseCode();
+  if (f !== 0) {
+    writer.writeInt32(
+      7,
+      f
+    );
+  }
+  f = message.getErrorReason();
+  if (f.length > 0) {
+    writer.writeString(
+      8,
       f
     );
   }
@@ -17399,6 +21243,4440 @@ proto.ondewo.vtsi.TransferCallResponse.prototype.getErrorMessage = function() {
  */
 proto.ondewo.vtsi.TransferCallResponse.prototype.setErrorMessage = function(value) {
   return jspb.Message.setProto3StringField(this, 4, value);
+};
+
+
+/**
+ * optional TransferOutcome outcome = 5;
+ * @return {!proto.ondewo.vtsi.TransferOutcome}
+ */
+proto.ondewo.vtsi.TransferCallResponse.prototype.getOutcome = function() {
+  return /** @type {!proto.ondewo.vtsi.TransferOutcome} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
+};
+
+
+/**
+ * @param {!proto.ondewo.vtsi.TransferOutcome} value
+ * @return {!proto.ondewo.vtsi.TransferCallResponse} returns this
+ */
+proto.ondewo.vtsi.TransferCallResponse.prototype.setOutcome = function(value) {
+  return jspb.Message.setProto3EnumField(this, 5, value);
+};
+
+
+/**
+ * optional string resolved_target = 6;
+ * @return {string}
+ */
+proto.ondewo.vtsi.TransferCallResponse.prototype.getResolvedTarget = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.vtsi.TransferCallResponse} returns this
+ */
+proto.ondewo.vtsi.TransferCallResponse.prototype.setResolvedTarget = function(value) {
+  return jspb.Message.setProto3StringField(this, 6, value);
+};
+
+
+/**
+ * optional int32 sip_response_code = 7;
+ * @return {number}
+ */
+proto.ondewo.vtsi.TransferCallResponse.prototype.getSipResponseCode = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 7, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.ondewo.vtsi.TransferCallResponse} returns this
+ */
+proto.ondewo.vtsi.TransferCallResponse.prototype.setSipResponseCode = function(value) {
+  return jspb.Message.setProto3IntField(this, 7, value);
+};
+
+
+/**
+ * optional string error_reason = 8;
+ * @return {string}
+ */
+proto.ondewo.vtsi.TransferCallResponse.prototype.getErrorReason = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.vtsi.TransferCallResponse} returns this
+ */
+proto.ondewo.vtsi.TransferCallResponse.prototype.setErrorReason = function(value) {
+  return jspb.Message.setProto3StringField(this, 8, value);
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.ondewo.vtsi.CallTransferRecord.prototype.toObject = function(opt_includeInstance) {
+  return proto.ondewo.vtsi.CallTransferRecord.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.ondewo.vtsi.CallTransferRecord} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.vtsi.CallTransferRecord.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    target: (f = msg.getTarget()) && proto.ondewo.vtsi.CallTarget.toObject(includeInstance, f),
+    resolvedTarget: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    mode: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    outcome: jspb.Message.getFieldWithDefault(msg, 4, 0),
+    sipResponseCode: jspb.Message.getFieldWithDefault(msg, 5, 0),
+    time: (f = msg.getTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.ondewo.vtsi.CallTransferRecord}
+ */
+proto.ondewo.vtsi.CallTransferRecord.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.ondewo.vtsi.CallTransferRecord;
+  return proto.ondewo.vtsi.CallTransferRecord.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.ondewo.vtsi.CallTransferRecord} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.ondewo.vtsi.CallTransferRecord}
+ */
+proto.ondewo.vtsi.CallTransferRecord.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = new proto.ondewo.vtsi.CallTarget;
+      reader.readMessage(value,proto.ondewo.vtsi.CallTarget.deserializeBinaryFromReader);
+      msg.setTarget(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setResolvedTarget(value);
+      break;
+    case 3:
+      var value = /** @type {!proto.ondewo.vtsi.TransferMode} */ (reader.readEnum());
+      msg.setMode(value);
+      break;
+    case 4:
+      var value = /** @type {!proto.ondewo.vtsi.TransferOutcome} */ (reader.readEnum());
+      msg.setOutcome(value);
+      break;
+    case 5:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setSipResponseCode(value);
+      break;
+    case 6:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setTime(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.ondewo.vtsi.CallTransferRecord.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.ondewo.vtsi.CallTransferRecord.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.ondewo.vtsi.CallTransferRecord} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.vtsi.CallTransferRecord.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getTarget();
+  if (f != null) {
+    writer.writeMessage(
+      1,
+      f,
+      proto.ondewo.vtsi.CallTarget.serializeBinaryToWriter
+    );
+  }
+  f = message.getResolvedTarget();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+  f = message.getMode();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      3,
+      f
+    );
+  }
+  f = message.getOutcome();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      4,
+      f
+    );
+  }
+  f = message.getSipResponseCode();
+  if (f !== 0) {
+    writer.writeInt32(
+      5,
+      f
+    );
+  }
+  f = message.getTime();
+  if (f != null) {
+    writer.writeMessage(
+      6,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * optional CallTarget target = 1;
+ * @return {?proto.ondewo.vtsi.CallTarget}
+ */
+proto.ondewo.vtsi.CallTransferRecord.prototype.getTarget = function() {
+  return /** @type{?proto.ondewo.vtsi.CallTarget} */ (
+    jspb.Message.getWrapperField(this, proto.ondewo.vtsi.CallTarget, 1));
+};
+
+
+/**
+ * @param {?proto.ondewo.vtsi.CallTarget|undefined} value
+ * @return {!proto.ondewo.vtsi.CallTransferRecord} returns this
+*/
+proto.ondewo.vtsi.CallTransferRecord.prototype.setTarget = function(value) {
+  return jspb.Message.setWrapperField(this, 1, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.ondewo.vtsi.CallTransferRecord} returns this
+ */
+proto.ondewo.vtsi.CallTransferRecord.prototype.clearTarget = function() {
+  return this.setTarget(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.CallTransferRecord.prototype.hasTarget = function() {
+  return jspb.Message.getField(this, 1) != null;
+};
+
+
+/**
+ * optional string resolved_target = 2;
+ * @return {string}
+ */
+proto.ondewo.vtsi.CallTransferRecord.prototype.getResolvedTarget = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.vtsi.CallTransferRecord} returns this
+ */
+proto.ondewo.vtsi.CallTransferRecord.prototype.setResolvedTarget = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional TransferMode mode = 3;
+ * @return {!proto.ondewo.vtsi.TransferMode}
+ */
+proto.ondewo.vtsi.CallTransferRecord.prototype.getMode = function() {
+  return /** @type {!proto.ondewo.vtsi.TransferMode} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+};
+
+
+/**
+ * @param {!proto.ondewo.vtsi.TransferMode} value
+ * @return {!proto.ondewo.vtsi.CallTransferRecord} returns this
+ */
+proto.ondewo.vtsi.CallTransferRecord.prototype.setMode = function(value) {
+  return jspb.Message.setProto3EnumField(this, 3, value);
+};
+
+
+/**
+ * optional TransferOutcome outcome = 4;
+ * @return {!proto.ondewo.vtsi.TransferOutcome}
+ */
+proto.ondewo.vtsi.CallTransferRecord.prototype.getOutcome = function() {
+  return /** @type {!proto.ondewo.vtsi.TransferOutcome} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
+};
+
+
+/**
+ * @param {!proto.ondewo.vtsi.TransferOutcome} value
+ * @return {!proto.ondewo.vtsi.CallTransferRecord} returns this
+ */
+proto.ondewo.vtsi.CallTransferRecord.prototype.setOutcome = function(value) {
+  return jspb.Message.setProto3EnumField(this, 4, value);
+};
+
+
+/**
+ * optional int32 sip_response_code = 5;
+ * @return {number}
+ */
+proto.ondewo.vtsi.CallTransferRecord.prototype.getSipResponseCode = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.ondewo.vtsi.CallTransferRecord} returns this
+ */
+proto.ondewo.vtsi.CallTransferRecord.prototype.setSipResponseCode = function(value) {
+  return jspb.Message.setProto3IntField(this, 5, value);
+};
+
+
+/**
+ * optional google.protobuf.Timestamp time = 6;
+ * @return {?proto.google.protobuf.Timestamp}
+ */
+proto.ondewo.vtsi.CallTransferRecord.prototype.getTime = function() {
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 6));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Timestamp|undefined} value
+ * @return {!proto.ondewo.vtsi.CallTransferRecord} returns this
+*/
+proto.ondewo.vtsi.CallTransferRecord.prototype.setTime = function(value) {
+  return jspb.Message.setWrapperField(this, 6, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.ondewo.vtsi.CallTransferRecord} returns this
+ */
+proto.ondewo.vtsi.CallTransferRecord.prototype.clearTime = function() {
+  return this.setTime(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.CallTransferRecord.prototype.hasTime = function() {
+  return jspb.Message.getField(this, 6) != null;
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.ondewo.vtsi.CallMediaControlState.prototype.toObject = function(opt_includeInstance) {
+  return proto.ondewo.vtsi.CallMediaControlState.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.ondewo.vtsi.CallMediaControlState} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.vtsi.CallMediaControlState.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    botMuted: jspb.Message.getBooleanFieldWithDefault(msg, 1, false),
+    listeningPaused: jspb.Message.getBooleanFieldWithDefault(msg, 2, false),
+    connectedAudioStreams: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    joinedParticipants: jspb.Message.getFieldWithDefault(msg, 4, 0)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.ondewo.vtsi.CallMediaControlState}
+ */
+proto.ondewo.vtsi.CallMediaControlState.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.ondewo.vtsi.CallMediaControlState;
+  return proto.ondewo.vtsi.CallMediaControlState.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.ondewo.vtsi.CallMediaControlState} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.ondewo.vtsi.CallMediaControlState}
+ */
+proto.ondewo.vtsi.CallMediaControlState.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setBotMuted(value);
+      break;
+    case 2:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setListeningPaused(value);
+      break;
+    case 3:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setConnectedAudioStreams(value);
+      break;
+    case 4:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setJoinedParticipants(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.ondewo.vtsi.CallMediaControlState.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.ondewo.vtsi.CallMediaControlState.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.ondewo.vtsi.CallMediaControlState} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.vtsi.CallMediaControlState.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getBotMuted();
+  if (f) {
+    writer.writeBool(
+      1,
+      f
+    );
+  }
+  f = message.getListeningPaused();
+  if (f) {
+    writer.writeBool(
+      2,
+      f
+    );
+  }
+  f = message.getConnectedAudioStreams();
+  if (f !== 0) {
+    writer.writeInt32(
+      3,
+      f
+    );
+  }
+  f = message.getJoinedParticipants();
+  if (f !== 0) {
+    writer.writeInt32(
+      4,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional bool bot_muted = 1;
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.CallMediaControlState.prototype.getBotMuted = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 1, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.ondewo.vtsi.CallMediaControlState} returns this
+ */
+proto.ondewo.vtsi.CallMediaControlState.prototype.setBotMuted = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 1, value);
+};
+
+
+/**
+ * optional bool listening_paused = 2;
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.CallMediaControlState.prototype.getListeningPaused = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 2, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.ondewo.vtsi.CallMediaControlState} returns this
+ */
+proto.ondewo.vtsi.CallMediaControlState.prototype.setListeningPaused = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 2, value);
+};
+
+
+/**
+ * optional int32 connected_audio_streams = 3;
+ * @return {number}
+ */
+proto.ondewo.vtsi.CallMediaControlState.prototype.getConnectedAudioStreams = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.ondewo.vtsi.CallMediaControlState} returns this
+ */
+proto.ondewo.vtsi.CallMediaControlState.prototype.setConnectedAudioStreams = function(value) {
+  return jspb.Message.setProto3IntField(this, 3, value);
+};
+
+
+/**
+ * optional int32 joined_participants = 4;
+ * @return {number}
+ */
+proto.ondewo.vtsi.CallMediaControlState.prototype.getJoinedParticipants = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.ondewo.vtsi.CallMediaControlState} returns this
+ */
+proto.ondewo.vtsi.CallMediaControlState.prototype.setJoinedParticipants = function(value) {
+  return jspb.Message.setProto3IntField(this, 4, value);
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.ondewo.vtsi.CallParticipant.prototype.toObject = function(opt_includeInstance) {
+  return proto.ondewo.vtsi.CallParticipant.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.ondewo.vtsi.CallParticipant} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.vtsi.CallParticipant.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    participantId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    softphoneAccountName: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    mode: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    state: jspb.Message.getFieldWithDefault(msg, 4, 0),
+    invitedAt: (f = msg.getInvitedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    joinedAt: (f = msg.getJoinedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    leftAt: (f = msg.getLeftAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    endReason: jspb.Message.getFieldWithDefault(msg, 8, ""),
+    invitedBy: jspb.Message.getFieldWithDefault(msg, 9, ""),
+    botPolicy: jspb.Message.getFieldWithDefault(msg, 10, 0)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.ondewo.vtsi.CallParticipant}
+ */
+proto.ondewo.vtsi.CallParticipant.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.ondewo.vtsi.CallParticipant;
+  return proto.ondewo.vtsi.CallParticipant.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.ondewo.vtsi.CallParticipant} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.ondewo.vtsi.CallParticipant}
+ */
+proto.ondewo.vtsi.CallParticipant.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setParticipantId(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setSoftphoneAccountName(value);
+      break;
+    case 3:
+      var value = /** @type {!proto.ondewo.vtsi.ParticipantMode} */ (reader.readEnum());
+      msg.setMode(value);
+      break;
+    case 4:
+      var value = /** @type {!proto.ondewo.vtsi.ParticipantState} */ (reader.readEnum());
+      msg.setState(value);
+      break;
+    case 5:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setInvitedAt(value);
+      break;
+    case 6:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setJoinedAt(value);
+      break;
+    case 7:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setLeftAt(value);
+      break;
+    case 8:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setEndReason(value);
+      break;
+    case 9:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setInvitedBy(value);
+      break;
+    case 10:
+      var value = /** @type {!proto.ondewo.vtsi.BotPolicyOnJoin} */ (reader.readEnum());
+      msg.setBotPolicy(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.ondewo.vtsi.CallParticipant.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.ondewo.vtsi.CallParticipant.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.ondewo.vtsi.CallParticipant} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.vtsi.CallParticipant.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getParticipantId();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getSoftphoneAccountName();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+  f = message.getMode();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      3,
+      f
+    );
+  }
+  f = message.getState();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      4,
+      f
+    );
+  }
+  f = message.getInvitedAt();
+  if (f != null) {
+    writer.writeMessage(
+      5,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+  f = message.getJoinedAt();
+  if (f != null) {
+    writer.writeMessage(
+      6,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+  f = message.getLeftAt();
+  if (f != null) {
+    writer.writeMessage(
+      7,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+  f = message.getEndReason();
+  if (f.length > 0) {
+    writer.writeString(
+      8,
+      f
+    );
+  }
+  f = message.getInvitedBy();
+  if (f.length > 0) {
+    writer.writeString(
+      9,
+      f
+    );
+  }
+  f = message.getBotPolicy();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      10,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string participant_id = 1;
+ * @return {string}
+ */
+proto.ondewo.vtsi.CallParticipant.prototype.getParticipantId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.vtsi.CallParticipant} returns this
+ */
+proto.ondewo.vtsi.CallParticipant.prototype.setParticipantId = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional string softphone_account_name = 2;
+ * @return {string}
+ */
+proto.ondewo.vtsi.CallParticipant.prototype.getSoftphoneAccountName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.vtsi.CallParticipant} returns this
+ */
+proto.ondewo.vtsi.CallParticipant.prototype.setSoftphoneAccountName = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional ParticipantMode mode = 3;
+ * @return {!proto.ondewo.vtsi.ParticipantMode}
+ */
+proto.ondewo.vtsi.CallParticipant.prototype.getMode = function() {
+  return /** @type {!proto.ondewo.vtsi.ParticipantMode} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+};
+
+
+/**
+ * @param {!proto.ondewo.vtsi.ParticipantMode} value
+ * @return {!proto.ondewo.vtsi.CallParticipant} returns this
+ */
+proto.ondewo.vtsi.CallParticipant.prototype.setMode = function(value) {
+  return jspb.Message.setProto3EnumField(this, 3, value);
+};
+
+
+/**
+ * optional ParticipantState state = 4;
+ * @return {!proto.ondewo.vtsi.ParticipantState}
+ */
+proto.ondewo.vtsi.CallParticipant.prototype.getState = function() {
+  return /** @type {!proto.ondewo.vtsi.ParticipantState} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
+};
+
+
+/**
+ * @param {!proto.ondewo.vtsi.ParticipantState} value
+ * @return {!proto.ondewo.vtsi.CallParticipant} returns this
+ */
+proto.ondewo.vtsi.CallParticipant.prototype.setState = function(value) {
+  return jspb.Message.setProto3EnumField(this, 4, value);
+};
+
+
+/**
+ * optional google.protobuf.Timestamp invited_at = 5;
+ * @return {?proto.google.protobuf.Timestamp}
+ */
+proto.ondewo.vtsi.CallParticipant.prototype.getInvitedAt = function() {
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 5));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Timestamp|undefined} value
+ * @return {!proto.ondewo.vtsi.CallParticipant} returns this
+*/
+proto.ondewo.vtsi.CallParticipant.prototype.setInvitedAt = function(value) {
+  return jspb.Message.setWrapperField(this, 5, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.ondewo.vtsi.CallParticipant} returns this
+ */
+proto.ondewo.vtsi.CallParticipant.prototype.clearInvitedAt = function() {
+  return this.setInvitedAt(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.CallParticipant.prototype.hasInvitedAt = function() {
+  return jspb.Message.getField(this, 5) != null;
+};
+
+
+/**
+ * optional google.protobuf.Timestamp joined_at = 6;
+ * @return {?proto.google.protobuf.Timestamp}
+ */
+proto.ondewo.vtsi.CallParticipant.prototype.getJoinedAt = function() {
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 6));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Timestamp|undefined} value
+ * @return {!proto.ondewo.vtsi.CallParticipant} returns this
+*/
+proto.ondewo.vtsi.CallParticipant.prototype.setJoinedAt = function(value) {
+  return jspb.Message.setWrapperField(this, 6, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.ondewo.vtsi.CallParticipant} returns this
+ */
+proto.ondewo.vtsi.CallParticipant.prototype.clearJoinedAt = function() {
+  return this.setJoinedAt(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.CallParticipant.prototype.hasJoinedAt = function() {
+  return jspb.Message.getField(this, 6) != null;
+};
+
+
+/**
+ * optional google.protobuf.Timestamp left_at = 7;
+ * @return {?proto.google.protobuf.Timestamp}
+ */
+proto.ondewo.vtsi.CallParticipant.prototype.getLeftAt = function() {
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 7));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Timestamp|undefined} value
+ * @return {!proto.ondewo.vtsi.CallParticipant} returns this
+*/
+proto.ondewo.vtsi.CallParticipant.prototype.setLeftAt = function(value) {
+  return jspb.Message.setWrapperField(this, 7, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.ondewo.vtsi.CallParticipant} returns this
+ */
+proto.ondewo.vtsi.CallParticipant.prototype.clearLeftAt = function() {
+  return this.setLeftAt(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.CallParticipant.prototype.hasLeftAt = function() {
+  return jspb.Message.getField(this, 7) != null;
+};
+
+
+/**
+ * optional string end_reason = 8;
+ * @return {string}
+ */
+proto.ondewo.vtsi.CallParticipant.prototype.getEndReason = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.vtsi.CallParticipant} returns this
+ */
+proto.ondewo.vtsi.CallParticipant.prototype.setEndReason = function(value) {
+  return jspb.Message.setProto3StringField(this, 8, value);
+};
+
+
+/**
+ * optional string invited_by = 9;
+ * @return {string}
+ */
+proto.ondewo.vtsi.CallParticipant.prototype.getInvitedBy = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 9, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.vtsi.CallParticipant} returns this
+ */
+proto.ondewo.vtsi.CallParticipant.prototype.setInvitedBy = function(value) {
+  return jspb.Message.setProto3StringField(this, 9, value);
+};
+
+
+/**
+ * optional BotPolicyOnJoin bot_policy = 10;
+ * @return {!proto.ondewo.vtsi.BotPolicyOnJoin}
+ */
+proto.ondewo.vtsi.CallParticipant.prototype.getBotPolicy = function() {
+  return /** @type {!proto.ondewo.vtsi.BotPolicyOnJoin} */ (jspb.Message.getFieldWithDefault(this, 10, 0));
+};
+
+
+/**
+ * @param {!proto.ondewo.vtsi.BotPolicyOnJoin} value
+ * @return {!proto.ondewo.vtsi.CallParticipant} returns this
+ */
+proto.ondewo.vtsi.CallParticipant.prototype.setBotPolicy = function(value) {
+  return jspb.Message.setProto3EnumField(this, 10, value);
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.ondewo.vtsi.InviteToCallRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.ondewo.vtsi.InviteToCallRequest.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.ondewo.vtsi.InviteToCallRequest} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.vtsi.InviteToCallRequest.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    callName: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    softphoneAccountName: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    mode: jspb.Message.getFieldWithDefault(msg, 4, 0),
+    ringTimeoutS: jspb.Message.getFieldWithDefault(msg, 5, 0),
+    botPolicy: jspb.Message.getFieldWithDefault(msg, 6, 0),
+    callerIdDisplayName: jspb.Message.getFieldWithDefault(msg, 7, ""),
+    requestId: jspb.Message.getFieldWithDefault(msg, 8, "")
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.ondewo.vtsi.InviteToCallRequest}
+ */
+proto.ondewo.vtsi.InviteToCallRequest.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.ondewo.vtsi.InviteToCallRequest;
+  return proto.ondewo.vtsi.InviteToCallRequest.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.ondewo.vtsi.InviteToCallRequest} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.ondewo.vtsi.InviteToCallRequest}
+ */
+proto.ondewo.vtsi.InviteToCallRequest.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setVtsiProjectName(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setCallName(value);
+      break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setSoftphoneAccountName(value);
+      break;
+    case 4:
+      var value = /** @type {!proto.ondewo.vtsi.ParticipantMode} */ (reader.readEnum());
+      msg.setMode(value);
+      break;
+    case 5:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setRingTimeoutS(value);
+      break;
+    case 6:
+      var value = /** @type {!proto.ondewo.vtsi.BotPolicyOnJoin} */ (reader.readEnum());
+      msg.setBotPolicy(value);
+      break;
+    case 7:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setCallerIdDisplayName(value);
+      break;
+    case 8:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setRequestId(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.ondewo.vtsi.InviteToCallRequest.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.ondewo.vtsi.InviteToCallRequest.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.ondewo.vtsi.InviteToCallRequest} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.vtsi.InviteToCallRequest.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getVtsiProjectName();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getCallName();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+  f = message.getSoftphoneAccountName();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
+      f
+    );
+  }
+  f = message.getMode();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      4,
+      f
+    );
+  }
+  f = message.getRingTimeoutS();
+  if (f !== 0) {
+    writer.writeInt32(
+      5,
+      f
+    );
+  }
+  f = message.getBotPolicy();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      6,
+      f
+    );
+  }
+  f = message.getCallerIdDisplayName();
+  if (f.length > 0) {
+    writer.writeString(
+      7,
+      f
+    );
+  }
+  f = message.getRequestId();
+  if (f.length > 0) {
+    writer.writeString(
+      8,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string vtsi_project_name = 1;
+ * @return {string}
+ */
+proto.ondewo.vtsi.InviteToCallRequest.prototype.getVtsiProjectName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.vtsi.InviteToCallRequest} returns this
+ */
+proto.ondewo.vtsi.InviteToCallRequest.prototype.setVtsiProjectName = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional string call_name = 2;
+ * @return {string}
+ */
+proto.ondewo.vtsi.InviteToCallRequest.prototype.getCallName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.vtsi.InviteToCallRequest} returns this
+ */
+proto.ondewo.vtsi.InviteToCallRequest.prototype.setCallName = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional string softphone_account_name = 3;
+ * @return {string}
+ */
+proto.ondewo.vtsi.InviteToCallRequest.prototype.getSoftphoneAccountName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.vtsi.InviteToCallRequest} returns this
+ */
+proto.ondewo.vtsi.InviteToCallRequest.prototype.setSoftphoneAccountName = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
+};
+
+
+/**
+ * optional ParticipantMode mode = 4;
+ * @return {!proto.ondewo.vtsi.ParticipantMode}
+ */
+proto.ondewo.vtsi.InviteToCallRequest.prototype.getMode = function() {
+  return /** @type {!proto.ondewo.vtsi.ParticipantMode} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
+};
+
+
+/**
+ * @param {!proto.ondewo.vtsi.ParticipantMode} value
+ * @return {!proto.ondewo.vtsi.InviteToCallRequest} returns this
+ */
+proto.ondewo.vtsi.InviteToCallRequest.prototype.setMode = function(value) {
+  return jspb.Message.setProto3EnumField(this, 4, value);
+};
+
+
+/**
+ * optional int32 ring_timeout_s = 5;
+ * @return {number}
+ */
+proto.ondewo.vtsi.InviteToCallRequest.prototype.getRingTimeoutS = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.ondewo.vtsi.InviteToCallRequest} returns this
+ */
+proto.ondewo.vtsi.InviteToCallRequest.prototype.setRingTimeoutS = function(value) {
+  return jspb.Message.setProto3IntField(this, 5, value);
+};
+
+
+/**
+ * optional BotPolicyOnJoin bot_policy = 6;
+ * @return {!proto.ondewo.vtsi.BotPolicyOnJoin}
+ */
+proto.ondewo.vtsi.InviteToCallRequest.prototype.getBotPolicy = function() {
+  return /** @type {!proto.ondewo.vtsi.BotPolicyOnJoin} */ (jspb.Message.getFieldWithDefault(this, 6, 0));
+};
+
+
+/**
+ * @param {!proto.ondewo.vtsi.BotPolicyOnJoin} value
+ * @return {!proto.ondewo.vtsi.InviteToCallRequest} returns this
+ */
+proto.ondewo.vtsi.InviteToCallRequest.prototype.setBotPolicy = function(value) {
+  return jspb.Message.setProto3EnumField(this, 6, value);
+};
+
+
+/**
+ * optional string caller_id_display_name = 7;
+ * @return {string}
+ */
+proto.ondewo.vtsi.InviteToCallRequest.prototype.getCallerIdDisplayName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.vtsi.InviteToCallRequest} returns this
+ */
+proto.ondewo.vtsi.InviteToCallRequest.prototype.setCallerIdDisplayName = function(value) {
+  return jspb.Message.setProto3StringField(this, 7, value);
+};
+
+
+/**
+ * optional string request_id = 8;
+ * @return {string}
+ */
+proto.ondewo.vtsi.InviteToCallRequest.prototype.getRequestId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.vtsi.InviteToCallRequest} returns this
+ */
+proto.ondewo.vtsi.InviteToCallRequest.prototype.setRequestId = function(value) {
+  return jspb.Message.setProto3StringField(this, 8, value);
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.ondewo.vtsi.InviteToCallResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.ondewo.vtsi.InviteToCallResponse.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.ondewo.vtsi.InviteToCallResponse} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.vtsi.InviteToCallResponse.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    callName: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    participant: (f = msg.getParticipant()) && proto.ondewo.vtsi.CallParticipant.toObject(includeInstance, f),
+    errorMessage: jspb.Message.getFieldWithDefault(msg, 4, "")
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.ondewo.vtsi.InviteToCallResponse}
+ */
+proto.ondewo.vtsi.InviteToCallResponse.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.ondewo.vtsi.InviteToCallResponse;
+  return proto.ondewo.vtsi.InviteToCallResponse.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.ondewo.vtsi.InviteToCallResponse} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.ondewo.vtsi.InviteToCallResponse}
+ */
+proto.ondewo.vtsi.InviteToCallResponse.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setVtsiProjectName(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setCallName(value);
+      break;
+    case 3:
+      var value = new proto.ondewo.vtsi.CallParticipant;
+      reader.readMessage(value,proto.ondewo.vtsi.CallParticipant.deserializeBinaryFromReader);
+      msg.setParticipant(value);
+      break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setErrorMessage(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.ondewo.vtsi.InviteToCallResponse.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.ondewo.vtsi.InviteToCallResponse.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.ondewo.vtsi.InviteToCallResponse} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.vtsi.InviteToCallResponse.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getVtsiProjectName();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getCallName();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+  f = message.getParticipant();
+  if (f != null) {
+    writer.writeMessage(
+      3,
+      f,
+      proto.ondewo.vtsi.CallParticipant.serializeBinaryToWriter
+    );
+  }
+  f = message.getErrorMessage();
+  if (f.length > 0) {
+    writer.writeString(
+      4,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string vtsi_project_name = 1;
+ * @return {string}
+ */
+proto.ondewo.vtsi.InviteToCallResponse.prototype.getVtsiProjectName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.vtsi.InviteToCallResponse} returns this
+ */
+proto.ondewo.vtsi.InviteToCallResponse.prototype.setVtsiProjectName = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional string call_name = 2;
+ * @return {string}
+ */
+proto.ondewo.vtsi.InviteToCallResponse.prototype.getCallName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.vtsi.InviteToCallResponse} returns this
+ */
+proto.ondewo.vtsi.InviteToCallResponse.prototype.setCallName = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional CallParticipant participant = 3;
+ * @return {?proto.ondewo.vtsi.CallParticipant}
+ */
+proto.ondewo.vtsi.InviteToCallResponse.prototype.getParticipant = function() {
+  return /** @type{?proto.ondewo.vtsi.CallParticipant} */ (
+    jspb.Message.getWrapperField(this, proto.ondewo.vtsi.CallParticipant, 3));
+};
+
+
+/**
+ * @param {?proto.ondewo.vtsi.CallParticipant|undefined} value
+ * @return {!proto.ondewo.vtsi.InviteToCallResponse} returns this
+*/
+proto.ondewo.vtsi.InviteToCallResponse.prototype.setParticipant = function(value) {
+  return jspb.Message.setWrapperField(this, 3, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.ondewo.vtsi.InviteToCallResponse} returns this
+ */
+proto.ondewo.vtsi.InviteToCallResponse.prototype.clearParticipant = function() {
+  return this.setParticipant(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.InviteToCallResponse.prototype.hasParticipant = function() {
+  return jspb.Message.getField(this, 3) != null;
+};
+
+
+/**
+ * optional string error_message = 4;
+ * @return {string}
+ */
+proto.ondewo.vtsi.InviteToCallResponse.prototype.getErrorMessage = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.vtsi.InviteToCallResponse} returns this
+ */
+proto.ondewo.vtsi.InviteToCallResponse.prototype.setErrorMessage = function(value) {
+  return jspb.Message.setProto3StringField(this, 4, value);
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.ondewo.vtsi.RemoveCallParticipantRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.ondewo.vtsi.RemoveCallParticipantRequest.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.ondewo.vtsi.RemoveCallParticipantRequest} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.vtsi.RemoveCallParticipantRequest.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    callName: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    participantId: jspb.Message.getFieldWithDefault(msg, 3, "")
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.ondewo.vtsi.RemoveCallParticipantRequest}
+ */
+proto.ondewo.vtsi.RemoveCallParticipantRequest.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.ondewo.vtsi.RemoveCallParticipantRequest;
+  return proto.ondewo.vtsi.RemoveCallParticipantRequest.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.ondewo.vtsi.RemoveCallParticipantRequest} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.ondewo.vtsi.RemoveCallParticipantRequest}
+ */
+proto.ondewo.vtsi.RemoveCallParticipantRequest.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setVtsiProjectName(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setCallName(value);
+      break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setParticipantId(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.ondewo.vtsi.RemoveCallParticipantRequest.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.ondewo.vtsi.RemoveCallParticipantRequest.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.ondewo.vtsi.RemoveCallParticipantRequest} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.vtsi.RemoveCallParticipantRequest.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getVtsiProjectName();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getCallName();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+  f = message.getParticipantId();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string vtsi_project_name = 1;
+ * @return {string}
+ */
+proto.ondewo.vtsi.RemoveCallParticipantRequest.prototype.getVtsiProjectName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.vtsi.RemoveCallParticipantRequest} returns this
+ */
+proto.ondewo.vtsi.RemoveCallParticipantRequest.prototype.setVtsiProjectName = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional string call_name = 2;
+ * @return {string}
+ */
+proto.ondewo.vtsi.RemoveCallParticipantRequest.prototype.getCallName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.vtsi.RemoveCallParticipantRequest} returns this
+ */
+proto.ondewo.vtsi.RemoveCallParticipantRequest.prototype.setCallName = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional string participant_id = 3;
+ * @return {string}
+ */
+proto.ondewo.vtsi.RemoveCallParticipantRequest.prototype.getParticipantId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.vtsi.RemoveCallParticipantRequest} returns this
+ */
+proto.ondewo.vtsi.RemoveCallParticipantRequest.prototype.setParticipantId = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.ondewo.vtsi.RemoveCallParticipantResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.ondewo.vtsi.RemoveCallParticipantResponse.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.ondewo.vtsi.RemoveCallParticipantResponse} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.vtsi.RemoveCallParticipantResponse.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    callName: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    participant: (f = msg.getParticipant()) && proto.ondewo.vtsi.CallParticipant.toObject(includeInstance, f),
+    errorMessage: jspb.Message.getFieldWithDefault(msg, 4, "")
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.ondewo.vtsi.RemoveCallParticipantResponse}
+ */
+proto.ondewo.vtsi.RemoveCallParticipantResponse.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.ondewo.vtsi.RemoveCallParticipantResponse;
+  return proto.ondewo.vtsi.RemoveCallParticipantResponse.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.ondewo.vtsi.RemoveCallParticipantResponse} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.ondewo.vtsi.RemoveCallParticipantResponse}
+ */
+proto.ondewo.vtsi.RemoveCallParticipantResponse.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setVtsiProjectName(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setCallName(value);
+      break;
+    case 3:
+      var value = new proto.ondewo.vtsi.CallParticipant;
+      reader.readMessage(value,proto.ondewo.vtsi.CallParticipant.deserializeBinaryFromReader);
+      msg.setParticipant(value);
+      break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setErrorMessage(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.ondewo.vtsi.RemoveCallParticipantResponse.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.ondewo.vtsi.RemoveCallParticipantResponse.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.ondewo.vtsi.RemoveCallParticipantResponse} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.vtsi.RemoveCallParticipantResponse.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getVtsiProjectName();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getCallName();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+  f = message.getParticipant();
+  if (f != null) {
+    writer.writeMessage(
+      3,
+      f,
+      proto.ondewo.vtsi.CallParticipant.serializeBinaryToWriter
+    );
+  }
+  f = message.getErrorMessage();
+  if (f.length > 0) {
+    writer.writeString(
+      4,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string vtsi_project_name = 1;
+ * @return {string}
+ */
+proto.ondewo.vtsi.RemoveCallParticipantResponse.prototype.getVtsiProjectName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.vtsi.RemoveCallParticipantResponse} returns this
+ */
+proto.ondewo.vtsi.RemoveCallParticipantResponse.prototype.setVtsiProjectName = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional string call_name = 2;
+ * @return {string}
+ */
+proto.ondewo.vtsi.RemoveCallParticipantResponse.prototype.getCallName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.vtsi.RemoveCallParticipantResponse} returns this
+ */
+proto.ondewo.vtsi.RemoveCallParticipantResponse.prototype.setCallName = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional CallParticipant participant = 3;
+ * @return {?proto.ondewo.vtsi.CallParticipant}
+ */
+proto.ondewo.vtsi.RemoveCallParticipantResponse.prototype.getParticipant = function() {
+  return /** @type{?proto.ondewo.vtsi.CallParticipant} */ (
+    jspb.Message.getWrapperField(this, proto.ondewo.vtsi.CallParticipant, 3));
+};
+
+
+/**
+ * @param {?proto.ondewo.vtsi.CallParticipant|undefined} value
+ * @return {!proto.ondewo.vtsi.RemoveCallParticipantResponse} returns this
+*/
+proto.ondewo.vtsi.RemoveCallParticipantResponse.prototype.setParticipant = function(value) {
+  return jspb.Message.setWrapperField(this, 3, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.ondewo.vtsi.RemoveCallParticipantResponse} returns this
+ */
+proto.ondewo.vtsi.RemoveCallParticipantResponse.prototype.clearParticipant = function() {
+  return this.setParticipant(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.RemoveCallParticipantResponse.prototype.hasParticipant = function() {
+  return jspb.Message.getField(this, 3) != null;
+};
+
+
+/**
+ * optional string error_message = 4;
+ * @return {string}
+ */
+proto.ondewo.vtsi.RemoveCallParticipantResponse.prototype.getErrorMessage = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.vtsi.RemoveCallParticipantResponse} returns this
+ */
+proto.ondewo.vtsi.RemoveCallParticipantResponse.prototype.setErrorMessage = function(value) {
+  return jspb.Message.setProto3StringField(this, 4, value);
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.ondewo.vtsi.SetCallMediaControlRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.ondewo.vtsi.SetCallMediaControlRequest.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.ondewo.vtsi.SetCallMediaControlRequest} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.vtsi.SetCallMediaControlRequest.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    callName: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    botVoice: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    botListening: jspb.Message.getFieldWithDefault(msg, 4, 0)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.ondewo.vtsi.SetCallMediaControlRequest}
+ */
+proto.ondewo.vtsi.SetCallMediaControlRequest.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.ondewo.vtsi.SetCallMediaControlRequest;
+  return proto.ondewo.vtsi.SetCallMediaControlRequest.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.ondewo.vtsi.SetCallMediaControlRequest} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.ondewo.vtsi.SetCallMediaControlRequest}
+ */
+proto.ondewo.vtsi.SetCallMediaControlRequest.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setVtsiProjectName(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setCallName(value);
+      break;
+    case 3:
+      var value = /** @type {!proto.ondewo.vtsi.CallMediaSetting} */ (reader.readEnum());
+      msg.setBotVoice(value);
+      break;
+    case 4:
+      var value = /** @type {!proto.ondewo.vtsi.CallMediaSetting} */ (reader.readEnum());
+      msg.setBotListening(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.ondewo.vtsi.SetCallMediaControlRequest.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.ondewo.vtsi.SetCallMediaControlRequest.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.ondewo.vtsi.SetCallMediaControlRequest} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.vtsi.SetCallMediaControlRequest.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getVtsiProjectName();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getCallName();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+  f = message.getBotVoice();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      3,
+      f
+    );
+  }
+  f = message.getBotListening();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      4,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string vtsi_project_name = 1;
+ * @return {string}
+ */
+proto.ondewo.vtsi.SetCallMediaControlRequest.prototype.getVtsiProjectName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.vtsi.SetCallMediaControlRequest} returns this
+ */
+proto.ondewo.vtsi.SetCallMediaControlRequest.prototype.setVtsiProjectName = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional string call_name = 2;
+ * @return {string}
+ */
+proto.ondewo.vtsi.SetCallMediaControlRequest.prototype.getCallName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.vtsi.SetCallMediaControlRequest} returns this
+ */
+proto.ondewo.vtsi.SetCallMediaControlRequest.prototype.setCallName = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional CallMediaSetting bot_voice = 3;
+ * @return {!proto.ondewo.vtsi.CallMediaSetting}
+ */
+proto.ondewo.vtsi.SetCallMediaControlRequest.prototype.getBotVoice = function() {
+  return /** @type {!proto.ondewo.vtsi.CallMediaSetting} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+};
+
+
+/**
+ * @param {!proto.ondewo.vtsi.CallMediaSetting} value
+ * @return {!proto.ondewo.vtsi.SetCallMediaControlRequest} returns this
+ */
+proto.ondewo.vtsi.SetCallMediaControlRequest.prototype.setBotVoice = function(value) {
+  return jspb.Message.setProto3EnumField(this, 3, value);
+};
+
+
+/**
+ * optional CallMediaSetting bot_listening = 4;
+ * @return {!proto.ondewo.vtsi.CallMediaSetting}
+ */
+proto.ondewo.vtsi.SetCallMediaControlRequest.prototype.getBotListening = function() {
+  return /** @type {!proto.ondewo.vtsi.CallMediaSetting} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
+};
+
+
+/**
+ * @param {!proto.ondewo.vtsi.CallMediaSetting} value
+ * @return {!proto.ondewo.vtsi.SetCallMediaControlRequest} returns this
+ */
+proto.ondewo.vtsi.SetCallMediaControlRequest.prototype.setBotListening = function(value) {
+  return jspb.Message.setProto3EnumField(this, 4, value);
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.ondewo.vtsi.SetCallMediaControlResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.ondewo.vtsi.SetCallMediaControlResponse.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.ondewo.vtsi.SetCallMediaControlResponse} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.vtsi.SetCallMediaControlResponse.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    callName: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    state: (f = msg.getState()) && proto.ondewo.vtsi.CallMediaControlState.toObject(includeInstance, f),
+    changed: jspb.Message.getBooleanFieldWithDefault(msg, 4, false),
+    errorMessage: jspb.Message.getFieldWithDefault(msg, 5, "")
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.ondewo.vtsi.SetCallMediaControlResponse}
+ */
+proto.ondewo.vtsi.SetCallMediaControlResponse.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.ondewo.vtsi.SetCallMediaControlResponse;
+  return proto.ondewo.vtsi.SetCallMediaControlResponse.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.ondewo.vtsi.SetCallMediaControlResponse} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.ondewo.vtsi.SetCallMediaControlResponse}
+ */
+proto.ondewo.vtsi.SetCallMediaControlResponse.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setVtsiProjectName(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setCallName(value);
+      break;
+    case 3:
+      var value = new proto.ondewo.vtsi.CallMediaControlState;
+      reader.readMessage(value,proto.ondewo.vtsi.CallMediaControlState.deserializeBinaryFromReader);
+      msg.setState(value);
+      break;
+    case 4:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setChanged(value);
+      break;
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setErrorMessage(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.ondewo.vtsi.SetCallMediaControlResponse.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.ondewo.vtsi.SetCallMediaControlResponse.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.ondewo.vtsi.SetCallMediaControlResponse} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.vtsi.SetCallMediaControlResponse.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getVtsiProjectName();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getCallName();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+  f = message.getState();
+  if (f != null) {
+    writer.writeMessage(
+      3,
+      f,
+      proto.ondewo.vtsi.CallMediaControlState.serializeBinaryToWriter
+    );
+  }
+  f = message.getChanged();
+  if (f) {
+    writer.writeBool(
+      4,
+      f
+    );
+  }
+  f = message.getErrorMessage();
+  if (f.length > 0) {
+    writer.writeString(
+      5,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string vtsi_project_name = 1;
+ * @return {string}
+ */
+proto.ondewo.vtsi.SetCallMediaControlResponse.prototype.getVtsiProjectName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.vtsi.SetCallMediaControlResponse} returns this
+ */
+proto.ondewo.vtsi.SetCallMediaControlResponse.prototype.setVtsiProjectName = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional string call_name = 2;
+ * @return {string}
+ */
+proto.ondewo.vtsi.SetCallMediaControlResponse.prototype.getCallName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.vtsi.SetCallMediaControlResponse} returns this
+ */
+proto.ondewo.vtsi.SetCallMediaControlResponse.prototype.setCallName = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional CallMediaControlState state = 3;
+ * @return {?proto.ondewo.vtsi.CallMediaControlState}
+ */
+proto.ondewo.vtsi.SetCallMediaControlResponse.prototype.getState = function() {
+  return /** @type{?proto.ondewo.vtsi.CallMediaControlState} */ (
+    jspb.Message.getWrapperField(this, proto.ondewo.vtsi.CallMediaControlState, 3));
+};
+
+
+/**
+ * @param {?proto.ondewo.vtsi.CallMediaControlState|undefined} value
+ * @return {!proto.ondewo.vtsi.SetCallMediaControlResponse} returns this
+*/
+proto.ondewo.vtsi.SetCallMediaControlResponse.prototype.setState = function(value) {
+  return jspb.Message.setWrapperField(this, 3, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.ondewo.vtsi.SetCallMediaControlResponse} returns this
+ */
+proto.ondewo.vtsi.SetCallMediaControlResponse.prototype.clearState = function() {
+  return this.setState(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.SetCallMediaControlResponse.prototype.hasState = function() {
+  return jspb.Message.getField(this, 3) != null;
+};
+
+
+/**
+ * optional bool changed = 4;
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.SetCallMediaControlResponse.prototype.getChanged = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 4, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.ondewo.vtsi.SetCallMediaControlResponse} returns this
+ */
+proto.ondewo.vtsi.SetCallMediaControlResponse.prototype.setChanged = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 4, value);
+};
+
+
+/**
+ * optional string error_message = 5;
+ * @return {string}
+ */
+proto.ondewo.vtsi.SetCallMediaControlResponse.prototype.getErrorMessage = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.vtsi.SetCallMediaControlResponse} returns this
+ */
+proto.ondewo.vtsi.SetCallMediaControlResponse.prototype.setErrorMessage = function(value) {
+  return jspb.Message.setProto3StringField(this, 5, value);
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.ondewo.vtsi.StreamCallAudioConfig.prototype.toObject = function(opt_includeInstance) {
+  return proto.ondewo.vtsi.StreamCallAudioConfig.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.ondewo.vtsi.StreamCallAudioConfig} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.vtsi.StreamCallAudioConfig.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    callName: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    mode: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    sampleRateHz: jspb.Message.getFieldWithDefault(msg, 4, 0),
+    takeOver: jspb.Message.getBooleanFieldWithDefault(msg, 5, false),
+    maxDurationS: jspb.Message.getFieldWithDefault(msg, 6, 0)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.ondewo.vtsi.StreamCallAudioConfig}
+ */
+proto.ondewo.vtsi.StreamCallAudioConfig.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.ondewo.vtsi.StreamCallAudioConfig;
+  return proto.ondewo.vtsi.StreamCallAudioConfig.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.ondewo.vtsi.StreamCallAudioConfig} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.ondewo.vtsi.StreamCallAudioConfig}
+ */
+proto.ondewo.vtsi.StreamCallAudioConfig.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setVtsiProjectName(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setCallName(value);
+      break;
+    case 3:
+      var value = /** @type {!proto.ondewo.vtsi.CallAudioMode} */ (reader.readEnum());
+      msg.setMode(value);
+      break;
+    case 4:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setSampleRateHz(value);
+      break;
+    case 5:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setTakeOver(value);
+      break;
+    case 6:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setMaxDurationS(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.ondewo.vtsi.StreamCallAudioConfig.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.ondewo.vtsi.StreamCallAudioConfig.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.ondewo.vtsi.StreamCallAudioConfig} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.vtsi.StreamCallAudioConfig.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getVtsiProjectName();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getCallName();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+  f = message.getMode();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      3,
+      f
+    );
+  }
+  f = message.getSampleRateHz();
+  if (f !== 0) {
+    writer.writeInt32(
+      4,
+      f
+    );
+  }
+  f = message.getTakeOver();
+  if (f) {
+    writer.writeBool(
+      5,
+      f
+    );
+  }
+  f = message.getMaxDurationS();
+  if (f !== 0) {
+    writer.writeInt32(
+      6,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string vtsi_project_name = 1;
+ * @return {string}
+ */
+proto.ondewo.vtsi.StreamCallAudioConfig.prototype.getVtsiProjectName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.vtsi.StreamCallAudioConfig} returns this
+ */
+proto.ondewo.vtsi.StreamCallAudioConfig.prototype.setVtsiProjectName = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional string call_name = 2;
+ * @return {string}
+ */
+proto.ondewo.vtsi.StreamCallAudioConfig.prototype.getCallName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.vtsi.StreamCallAudioConfig} returns this
+ */
+proto.ondewo.vtsi.StreamCallAudioConfig.prototype.setCallName = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional CallAudioMode mode = 3;
+ * @return {!proto.ondewo.vtsi.CallAudioMode}
+ */
+proto.ondewo.vtsi.StreamCallAudioConfig.prototype.getMode = function() {
+  return /** @type {!proto.ondewo.vtsi.CallAudioMode} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+};
+
+
+/**
+ * @param {!proto.ondewo.vtsi.CallAudioMode} value
+ * @return {!proto.ondewo.vtsi.StreamCallAudioConfig} returns this
+ */
+proto.ondewo.vtsi.StreamCallAudioConfig.prototype.setMode = function(value) {
+  return jspb.Message.setProto3EnumField(this, 3, value);
+};
+
+
+/**
+ * optional int32 sample_rate_hz = 4;
+ * @return {number}
+ */
+proto.ondewo.vtsi.StreamCallAudioConfig.prototype.getSampleRateHz = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.ondewo.vtsi.StreamCallAudioConfig} returns this
+ */
+proto.ondewo.vtsi.StreamCallAudioConfig.prototype.setSampleRateHz = function(value) {
+  return jspb.Message.setProto3IntField(this, 4, value);
+};
+
+
+/**
+ * optional bool take_over = 5;
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.StreamCallAudioConfig.prototype.getTakeOver = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 5, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.ondewo.vtsi.StreamCallAudioConfig} returns this
+ */
+proto.ondewo.vtsi.StreamCallAudioConfig.prototype.setTakeOver = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 5, value);
+};
+
+
+/**
+ * optional int32 max_duration_s = 6;
+ * @return {number}
+ */
+proto.ondewo.vtsi.StreamCallAudioConfig.prototype.getMaxDurationS = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 6, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.ondewo.vtsi.StreamCallAudioConfig} returns this
+ */
+proto.ondewo.vtsi.StreamCallAudioConfig.prototype.setMaxDurationS = function(value) {
+  return jspb.Message.setProto3IntField(this, 6, value);
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.ondewo.vtsi.CallAudioFrame.prototype.toObject = function(opt_includeInstance) {
+  return proto.ondewo.vtsi.CallAudioFrame.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.ondewo.vtsi.CallAudioFrame} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.vtsi.CallAudioFrame.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    pcmS16le: msg.getPcmS16le_asB64(),
+    sequence: jspb.Message.getFieldWithDefault(msg, 2, 0)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.ondewo.vtsi.CallAudioFrame}
+ */
+proto.ondewo.vtsi.CallAudioFrame.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.ondewo.vtsi.CallAudioFrame;
+  return proto.ondewo.vtsi.CallAudioFrame.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.ondewo.vtsi.CallAudioFrame} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.ondewo.vtsi.CallAudioFrame}
+ */
+proto.ondewo.vtsi.CallAudioFrame.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setPcmS16le(value);
+      break;
+    case 2:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setSequence(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.ondewo.vtsi.CallAudioFrame.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.ondewo.vtsi.CallAudioFrame.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.ondewo.vtsi.CallAudioFrame} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.vtsi.CallAudioFrame.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getPcmS16le_asU8();
+  if (f.length > 0) {
+    writer.writeBytes(
+      1,
+      f
+    );
+  }
+  f = message.getSequence();
+  if (f !== 0) {
+    writer.writeUint64(
+      2,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional bytes pcm_s16le = 1;
+ * @return {!(string|Uint8Array)}
+ */
+proto.ondewo.vtsi.CallAudioFrame.prototype.getPcmS16le = function() {
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * optional bytes pcm_s16le = 1;
+ * This is a type-conversion wrapper around `getPcmS16le()`
+ * @return {string}
+ */
+proto.ondewo.vtsi.CallAudioFrame.prototype.getPcmS16le_asB64 = function() {
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getPcmS16le()));
+};
+
+
+/**
+ * optional bytes pcm_s16le = 1;
+ * Note that Uint8Array is not supported on all browsers.
+ * @see http://caniuse.com/Uint8Array
+ * This is a type-conversion wrapper around `getPcmS16le()`
+ * @return {!Uint8Array}
+ */
+proto.ondewo.vtsi.CallAudioFrame.prototype.getPcmS16le_asU8 = function() {
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getPcmS16le()));
+};
+
+
+/**
+ * @param {!(string|Uint8Array)} value
+ * @return {!proto.ondewo.vtsi.CallAudioFrame} returns this
+ */
+proto.ondewo.vtsi.CallAudioFrame.prototype.setPcmS16le = function(value) {
+  return jspb.Message.setProto3BytesField(this, 1, value);
+};
+
+
+/**
+ * optional uint64 sequence = 2;
+ * @return {number}
+ */
+proto.ondewo.vtsi.CallAudioFrame.prototype.getSequence = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.ondewo.vtsi.CallAudioFrame} returns this
+ */
+proto.ondewo.vtsi.CallAudioFrame.prototype.setSequence = function(value) {
+  return jspb.Message.setProto3IntField(this, 2, value);
+};
+
+
+
+/**
+ * Oneof group definitions for this message. Each group defines the field
+ * numbers belonging to that group. When of these fields' value is set, all
+ * other fields in the group are cleared. During deserialization, if multiple
+ * fields are encountered for a group, only the last value seen will be kept.
+ * @private {!Array<!Array<number>>}
+ * @const
+ */
+proto.ondewo.vtsi.StreamCallAudioRequest.oneofGroups_ = [[1,2,3]];
+
+/**
+ * @enum {number}
+ */
+proto.ondewo.vtsi.StreamCallAudioRequest.RequestCase = {
+  REQUEST_NOT_SET: 0,
+  CONFIG: 1,
+  AUDIO: 2,
+  AGENT_MUTED: 3
+};
+
+/**
+ * @return {proto.ondewo.vtsi.StreamCallAudioRequest.RequestCase}
+ */
+proto.ondewo.vtsi.StreamCallAudioRequest.prototype.getRequestCase = function() {
+  return /** @type {proto.ondewo.vtsi.StreamCallAudioRequest.RequestCase} */(jspb.Message.computeOneofCase(this, proto.ondewo.vtsi.StreamCallAudioRequest.oneofGroups_[0]));
+};
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.ondewo.vtsi.StreamCallAudioRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.ondewo.vtsi.StreamCallAudioRequest.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.ondewo.vtsi.StreamCallAudioRequest} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.vtsi.StreamCallAudioRequest.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    config: (f = msg.getConfig()) && proto.ondewo.vtsi.StreamCallAudioConfig.toObject(includeInstance, f),
+    audio: (f = msg.getAudio()) && proto.ondewo.vtsi.CallAudioFrame.toObject(includeInstance, f),
+    agentMuted: jspb.Message.getBooleanFieldWithDefault(msg, 3, false)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.ondewo.vtsi.StreamCallAudioRequest}
+ */
+proto.ondewo.vtsi.StreamCallAudioRequest.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.ondewo.vtsi.StreamCallAudioRequest;
+  return proto.ondewo.vtsi.StreamCallAudioRequest.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.ondewo.vtsi.StreamCallAudioRequest} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.ondewo.vtsi.StreamCallAudioRequest}
+ */
+proto.ondewo.vtsi.StreamCallAudioRequest.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = new proto.ondewo.vtsi.StreamCallAudioConfig;
+      reader.readMessage(value,proto.ondewo.vtsi.StreamCallAudioConfig.deserializeBinaryFromReader);
+      msg.setConfig(value);
+      break;
+    case 2:
+      var value = new proto.ondewo.vtsi.CallAudioFrame;
+      reader.readMessage(value,proto.ondewo.vtsi.CallAudioFrame.deserializeBinaryFromReader);
+      msg.setAudio(value);
+      break;
+    case 3:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setAgentMuted(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.ondewo.vtsi.StreamCallAudioRequest.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.ondewo.vtsi.StreamCallAudioRequest.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.ondewo.vtsi.StreamCallAudioRequest} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.vtsi.StreamCallAudioRequest.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getConfig();
+  if (f != null) {
+    writer.writeMessage(
+      1,
+      f,
+      proto.ondewo.vtsi.StreamCallAudioConfig.serializeBinaryToWriter
+    );
+  }
+  f = message.getAudio();
+  if (f != null) {
+    writer.writeMessage(
+      2,
+      f,
+      proto.ondewo.vtsi.CallAudioFrame.serializeBinaryToWriter
+    );
+  }
+  f = /** @type {boolean} */ (jspb.Message.getField(message, 3));
+  if (f != null) {
+    writer.writeBool(
+      3,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional StreamCallAudioConfig config = 1;
+ * @return {?proto.ondewo.vtsi.StreamCallAudioConfig}
+ */
+proto.ondewo.vtsi.StreamCallAudioRequest.prototype.getConfig = function() {
+  return /** @type{?proto.ondewo.vtsi.StreamCallAudioConfig} */ (
+    jspb.Message.getWrapperField(this, proto.ondewo.vtsi.StreamCallAudioConfig, 1));
+};
+
+
+/**
+ * @param {?proto.ondewo.vtsi.StreamCallAudioConfig|undefined} value
+ * @return {!proto.ondewo.vtsi.StreamCallAudioRequest} returns this
+*/
+proto.ondewo.vtsi.StreamCallAudioRequest.prototype.setConfig = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 1, proto.ondewo.vtsi.StreamCallAudioRequest.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.ondewo.vtsi.StreamCallAudioRequest} returns this
+ */
+proto.ondewo.vtsi.StreamCallAudioRequest.prototype.clearConfig = function() {
+  return this.setConfig(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.StreamCallAudioRequest.prototype.hasConfig = function() {
+  return jspb.Message.getField(this, 1) != null;
+};
+
+
+/**
+ * optional CallAudioFrame audio = 2;
+ * @return {?proto.ondewo.vtsi.CallAudioFrame}
+ */
+proto.ondewo.vtsi.StreamCallAudioRequest.prototype.getAudio = function() {
+  return /** @type{?proto.ondewo.vtsi.CallAudioFrame} */ (
+    jspb.Message.getWrapperField(this, proto.ondewo.vtsi.CallAudioFrame, 2));
+};
+
+
+/**
+ * @param {?proto.ondewo.vtsi.CallAudioFrame|undefined} value
+ * @return {!proto.ondewo.vtsi.StreamCallAudioRequest} returns this
+*/
+proto.ondewo.vtsi.StreamCallAudioRequest.prototype.setAudio = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 2, proto.ondewo.vtsi.StreamCallAudioRequest.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.ondewo.vtsi.StreamCallAudioRequest} returns this
+ */
+proto.ondewo.vtsi.StreamCallAudioRequest.prototype.clearAudio = function() {
+  return this.setAudio(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.StreamCallAudioRequest.prototype.hasAudio = function() {
+  return jspb.Message.getField(this, 2) != null;
+};
+
+
+/**
+ * optional bool agent_muted = 3;
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.StreamCallAudioRequest.prototype.getAgentMuted = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 3, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.ondewo.vtsi.StreamCallAudioRequest} returns this
+ */
+proto.ondewo.vtsi.StreamCallAudioRequest.prototype.setAgentMuted = function(value) {
+  return jspb.Message.setOneofField(this, 3, proto.ondewo.vtsi.StreamCallAudioRequest.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.ondewo.vtsi.StreamCallAudioRequest} returns this
+ */
+proto.ondewo.vtsi.StreamCallAudioRequest.prototype.clearAgentMuted = function() {
+  return jspb.Message.setOneofField(this, 3, proto.ondewo.vtsi.StreamCallAudioRequest.oneofGroups_[0], undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.StreamCallAudioRequest.prototype.hasAgentMuted = function() {
+  return jspb.Message.getField(this, 3) != null;
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.ondewo.vtsi.CallAudioStarted.prototype.toObject = function(opt_includeInstance) {
+  return proto.ondewo.vtsi.CallAudioStarted.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.ondewo.vtsi.CallAudioStarted} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.vtsi.CallAudioStarted.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    streamId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    sampleRateHz: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    frameMs: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    mode: jspb.Message.getFieldWithDefault(msg, 4, 0)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.ondewo.vtsi.CallAudioStarted}
+ */
+proto.ondewo.vtsi.CallAudioStarted.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.ondewo.vtsi.CallAudioStarted;
+  return proto.ondewo.vtsi.CallAudioStarted.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.ondewo.vtsi.CallAudioStarted} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.ondewo.vtsi.CallAudioStarted}
+ */
+proto.ondewo.vtsi.CallAudioStarted.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setStreamId(value);
+      break;
+    case 2:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setSampleRateHz(value);
+      break;
+    case 3:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setFrameMs(value);
+      break;
+    case 4:
+      var value = /** @type {!proto.ondewo.vtsi.CallAudioMode} */ (reader.readEnum());
+      msg.setMode(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.ondewo.vtsi.CallAudioStarted.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.ondewo.vtsi.CallAudioStarted.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.ondewo.vtsi.CallAudioStarted} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.vtsi.CallAudioStarted.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getStreamId();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getSampleRateHz();
+  if (f !== 0) {
+    writer.writeInt32(
+      2,
+      f
+    );
+  }
+  f = message.getFrameMs();
+  if (f !== 0) {
+    writer.writeInt32(
+      3,
+      f
+    );
+  }
+  f = message.getMode();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      4,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string stream_id = 1;
+ * @return {string}
+ */
+proto.ondewo.vtsi.CallAudioStarted.prototype.getStreamId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.vtsi.CallAudioStarted} returns this
+ */
+proto.ondewo.vtsi.CallAudioStarted.prototype.setStreamId = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional int32 sample_rate_hz = 2;
+ * @return {number}
+ */
+proto.ondewo.vtsi.CallAudioStarted.prototype.getSampleRateHz = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.ondewo.vtsi.CallAudioStarted} returns this
+ */
+proto.ondewo.vtsi.CallAudioStarted.prototype.setSampleRateHz = function(value) {
+  return jspb.Message.setProto3IntField(this, 2, value);
+};
+
+
+/**
+ * optional int32 frame_ms = 3;
+ * @return {number}
+ */
+proto.ondewo.vtsi.CallAudioStarted.prototype.getFrameMs = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.ondewo.vtsi.CallAudioStarted} returns this
+ */
+proto.ondewo.vtsi.CallAudioStarted.prototype.setFrameMs = function(value) {
+  return jspb.Message.setProto3IntField(this, 3, value);
+};
+
+
+/**
+ * optional CallAudioMode mode = 4;
+ * @return {!proto.ondewo.vtsi.CallAudioMode}
+ */
+proto.ondewo.vtsi.CallAudioStarted.prototype.getMode = function() {
+  return /** @type {!proto.ondewo.vtsi.CallAudioMode} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
+};
+
+
+/**
+ * @param {!proto.ondewo.vtsi.CallAudioMode} value
+ * @return {!proto.ondewo.vtsi.CallAudioStarted} returns this
+ */
+proto.ondewo.vtsi.CallAudioStarted.prototype.setMode = function(value) {
+  return jspb.Message.setProto3EnumField(this, 4, value);
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.ondewo.vtsi.CallAudioStats.prototype.toObject = function(opt_includeInstance) {
+  return proto.ondewo.vtsi.CallAudioStats.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.ondewo.vtsi.CallAudioStats} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.vtsi.CallAudioStats.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    framesSent: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    framesDropped: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    framesReceived: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    underruns: jspb.Message.getFieldWithDefault(msg, 4, 0),
+    framesDiscarded: jspb.Message.getFieldWithDefault(msg, 5, 0)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.ondewo.vtsi.CallAudioStats}
+ */
+proto.ondewo.vtsi.CallAudioStats.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.ondewo.vtsi.CallAudioStats;
+  return proto.ondewo.vtsi.CallAudioStats.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.ondewo.vtsi.CallAudioStats} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.ondewo.vtsi.CallAudioStats}
+ */
+proto.ondewo.vtsi.CallAudioStats.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setFramesSent(value);
+      break;
+    case 2:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setFramesDropped(value);
+      break;
+    case 3:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setFramesReceived(value);
+      break;
+    case 4:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setUnderruns(value);
+      break;
+    case 5:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setFramesDiscarded(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.ondewo.vtsi.CallAudioStats.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.ondewo.vtsi.CallAudioStats.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.ondewo.vtsi.CallAudioStats} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.vtsi.CallAudioStats.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getFramesSent();
+  if (f !== 0) {
+    writer.writeUint64(
+      1,
+      f
+    );
+  }
+  f = message.getFramesDropped();
+  if (f !== 0) {
+    writer.writeUint64(
+      2,
+      f
+    );
+  }
+  f = message.getFramesReceived();
+  if (f !== 0) {
+    writer.writeUint64(
+      3,
+      f
+    );
+  }
+  f = message.getUnderruns();
+  if (f !== 0) {
+    writer.writeUint64(
+      4,
+      f
+    );
+  }
+  f = message.getFramesDiscarded();
+  if (f !== 0) {
+    writer.writeUint64(
+      5,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional uint64 frames_sent = 1;
+ * @return {number}
+ */
+proto.ondewo.vtsi.CallAudioStats.prototype.getFramesSent = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.ondewo.vtsi.CallAudioStats} returns this
+ */
+proto.ondewo.vtsi.CallAudioStats.prototype.setFramesSent = function(value) {
+  return jspb.Message.setProto3IntField(this, 1, value);
+};
+
+
+/**
+ * optional uint64 frames_dropped = 2;
+ * @return {number}
+ */
+proto.ondewo.vtsi.CallAudioStats.prototype.getFramesDropped = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.ondewo.vtsi.CallAudioStats} returns this
+ */
+proto.ondewo.vtsi.CallAudioStats.prototype.setFramesDropped = function(value) {
+  return jspb.Message.setProto3IntField(this, 2, value);
+};
+
+
+/**
+ * optional uint64 frames_received = 3;
+ * @return {number}
+ */
+proto.ondewo.vtsi.CallAudioStats.prototype.getFramesReceived = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.ondewo.vtsi.CallAudioStats} returns this
+ */
+proto.ondewo.vtsi.CallAudioStats.prototype.setFramesReceived = function(value) {
+  return jspb.Message.setProto3IntField(this, 3, value);
+};
+
+
+/**
+ * optional uint64 underruns = 4;
+ * @return {number}
+ */
+proto.ondewo.vtsi.CallAudioStats.prototype.getUnderruns = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.ondewo.vtsi.CallAudioStats} returns this
+ */
+proto.ondewo.vtsi.CallAudioStats.prototype.setUnderruns = function(value) {
+  return jspb.Message.setProto3IntField(this, 4, value);
+};
+
+
+/**
+ * optional uint64 frames_discarded = 5;
+ * @return {number}
+ */
+proto.ondewo.vtsi.CallAudioStats.prototype.getFramesDiscarded = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.ondewo.vtsi.CallAudioStats} returns this
+ */
+proto.ondewo.vtsi.CallAudioStats.prototype.setFramesDiscarded = function(value) {
+  return jspb.Message.setProto3IntField(this, 5, value);
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.ondewo.vtsi.CallAudioEnded.prototype.toObject = function(opt_includeInstance) {
+  return proto.ondewo.vtsi.CallAudioEnded.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.ondewo.vtsi.CallAudioEnded} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.vtsi.CallAudioEnded.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    reason: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    detail: jspb.Message.getFieldWithDefault(msg, 2, "")
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.ondewo.vtsi.CallAudioEnded}
+ */
+proto.ondewo.vtsi.CallAudioEnded.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.ondewo.vtsi.CallAudioEnded;
+  return proto.ondewo.vtsi.CallAudioEnded.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.ondewo.vtsi.CallAudioEnded} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.ondewo.vtsi.CallAudioEnded}
+ */
+proto.ondewo.vtsi.CallAudioEnded.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {!proto.ondewo.vtsi.CallAudioEndReason} */ (reader.readEnum());
+      msg.setReason(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setDetail(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.ondewo.vtsi.CallAudioEnded.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.ondewo.vtsi.CallAudioEnded.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.ondewo.vtsi.CallAudioEnded} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.vtsi.CallAudioEnded.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getReason();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      1,
+      f
+    );
+  }
+  f = message.getDetail();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional CallAudioEndReason reason = 1;
+ * @return {!proto.ondewo.vtsi.CallAudioEndReason}
+ */
+proto.ondewo.vtsi.CallAudioEnded.prototype.getReason = function() {
+  return /** @type {!proto.ondewo.vtsi.CallAudioEndReason} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+};
+
+
+/**
+ * @param {!proto.ondewo.vtsi.CallAudioEndReason} value
+ * @return {!proto.ondewo.vtsi.CallAudioEnded} returns this
+ */
+proto.ondewo.vtsi.CallAudioEnded.prototype.setReason = function(value) {
+  return jspb.Message.setProto3EnumField(this, 1, value);
+};
+
+
+/**
+ * optional string detail = 2;
+ * @return {string}
+ */
+proto.ondewo.vtsi.CallAudioEnded.prototype.getDetail = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.vtsi.CallAudioEnded} returns this
+ */
+proto.ondewo.vtsi.CallAudioEnded.prototype.setDetail = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+
+/**
+ * Oneof group definitions for this message. Each group defines the field
+ * numbers belonging to that group. When of these fields' value is set, all
+ * other fields in the group are cleared. During deserialization, if multiple
+ * fields are encountered for a group, only the last value seen will be kept.
+ * @private {!Array<!Array<number>>}
+ * @const
+ */
+proto.ondewo.vtsi.StreamCallAudioResponse.oneofGroups_ = [[1,2,3,4]];
+
+/**
+ * @enum {number}
+ */
+proto.ondewo.vtsi.StreamCallAudioResponse.ResponseCase = {
+  RESPONSE_NOT_SET: 0,
+  STARTED: 1,
+  AUDIO: 2,
+  STATS: 3,
+  ENDED: 4
+};
+
+/**
+ * @return {proto.ondewo.vtsi.StreamCallAudioResponse.ResponseCase}
+ */
+proto.ondewo.vtsi.StreamCallAudioResponse.prototype.getResponseCase = function() {
+  return /** @type {proto.ondewo.vtsi.StreamCallAudioResponse.ResponseCase} */(jspb.Message.computeOneofCase(this, proto.ondewo.vtsi.StreamCallAudioResponse.oneofGroups_[0]));
+};
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.ondewo.vtsi.StreamCallAudioResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.ondewo.vtsi.StreamCallAudioResponse.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.ondewo.vtsi.StreamCallAudioResponse} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.vtsi.StreamCallAudioResponse.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    started: (f = msg.getStarted()) && proto.ondewo.vtsi.CallAudioStarted.toObject(includeInstance, f),
+    audio: (f = msg.getAudio()) && proto.ondewo.vtsi.CallAudioFrame.toObject(includeInstance, f),
+    stats: (f = msg.getStats()) && proto.ondewo.vtsi.CallAudioStats.toObject(includeInstance, f),
+    ended: (f = msg.getEnded()) && proto.ondewo.vtsi.CallAudioEnded.toObject(includeInstance, f)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.ondewo.vtsi.StreamCallAudioResponse}
+ */
+proto.ondewo.vtsi.StreamCallAudioResponse.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.ondewo.vtsi.StreamCallAudioResponse;
+  return proto.ondewo.vtsi.StreamCallAudioResponse.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.ondewo.vtsi.StreamCallAudioResponse} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.ondewo.vtsi.StreamCallAudioResponse}
+ */
+proto.ondewo.vtsi.StreamCallAudioResponse.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = new proto.ondewo.vtsi.CallAudioStarted;
+      reader.readMessage(value,proto.ondewo.vtsi.CallAudioStarted.deserializeBinaryFromReader);
+      msg.setStarted(value);
+      break;
+    case 2:
+      var value = new proto.ondewo.vtsi.CallAudioFrame;
+      reader.readMessage(value,proto.ondewo.vtsi.CallAudioFrame.deserializeBinaryFromReader);
+      msg.setAudio(value);
+      break;
+    case 3:
+      var value = new proto.ondewo.vtsi.CallAudioStats;
+      reader.readMessage(value,proto.ondewo.vtsi.CallAudioStats.deserializeBinaryFromReader);
+      msg.setStats(value);
+      break;
+    case 4:
+      var value = new proto.ondewo.vtsi.CallAudioEnded;
+      reader.readMessage(value,proto.ondewo.vtsi.CallAudioEnded.deserializeBinaryFromReader);
+      msg.setEnded(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.ondewo.vtsi.StreamCallAudioResponse.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.ondewo.vtsi.StreamCallAudioResponse.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.ondewo.vtsi.StreamCallAudioResponse} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.vtsi.StreamCallAudioResponse.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getStarted();
+  if (f != null) {
+    writer.writeMessage(
+      1,
+      f,
+      proto.ondewo.vtsi.CallAudioStarted.serializeBinaryToWriter
+    );
+  }
+  f = message.getAudio();
+  if (f != null) {
+    writer.writeMessage(
+      2,
+      f,
+      proto.ondewo.vtsi.CallAudioFrame.serializeBinaryToWriter
+    );
+  }
+  f = message.getStats();
+  if (f != null) {
+    writer.writeMessage(
+      3,
+      f,
+      proto.ondewo.vtsi.CallAudioStats.serializeBinaryToWriter
+    );
+  }
+  f = message.getEnded();
+  if (f != null) {
+    writer.writeMessage(
+      4,
+      f,
+      proto.ondewo.vtsi.CallAudioEnded.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * optional CallAudioStarted started = 1;
+ * @return {?proto.ondewo.vtsi.CallAudioStarted}
+ */
+proto.ondewo.vtsi.StreamCallAudioResponse.prototype.getStarted = function() {
+  return /** @type{?proto.ondewo.vtsi.CallAudioStarted} */ (
+    jspb.Message.getWrapperField(this, proto.ondewo.vtsi.CallAudioStarted, 1));
+};
+
+
+/**
+ * @param {?proto.ondewo.vtsi.CallAudioStarted|undefined} value
+ * @return {!proto.ondewo.vtsi.StreamCallAudioResponse} returns this
+*/
+proto.ondewo.vtsi.StreamCallAudioResponse.prototype.setStarted = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 1, proto.ondewo.vtsi.StreamCallAudioResponse.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.ondewo.vtsi.StreamCallAudioResponse} returns this
+ */
+proto.ondewo.vtsi.StreamCallAudioResponse.prototype.clearStarted = function() {
+  return this.setStarted(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.StreamCallAudioResponse.prototype.hasStarted = function() {
+  return jspb.Message.getField(this, 1) != null;
+};
+
+
+/**
+ * optional CallAudioFrame audio = 2;
+ * @return {?proto.ondewo.vtsi.CallAudioFrame}
+ */
+proto.ondewo.vtsi.StreamCallAudioResponse.prototype.getAudio = function() {
+  return /** @type{?proto.ondewo.vtsi.CallAudioFrame} */ (
+    jspb.Message.getWrapperField(this, proto.ondewo.vtsi.CallAudioFrame, 2));
+};
+
+
+/**
+ * @param {?proto.ondewo.vtsi.CallAudioFrame|undefined} value
+ * @return {!proto.ondewo.vtsi.StreamCallAudioResponse} returns this
+*/
+proto.ondewo.vtsi.StreamCallAudioResponse.prototype.setAudio = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 2, proto.ondewo.vtsi.StreamCallAudioResponse.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.ondewo.vtsi.StreamCallAudioResponse} returns this
+ */
+proto.ondewo.vtsi.StreamCallAudioResponse.prototype.clearAudio = function() {
+  return this.setAudio(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.StreamCallAudioResponse.prototype.hasAudio = function() {
+  return jspb.Message.getField(this, 2) != null;
+};
+
+
+/**
+ * optional CallAudioStats stats = 3;
+ * @return {?proto.ondewo.vtsi.CallAudioStats}
+ */
+proto.ondewo.vtsi.StreamCallAudioResponse.prototype.getStats = function() {
+  return /** @type{?proto.ondewo.vtsi.CallAudioStats} */ (
+    jspb.Message.getWrapperField(this, proto.ondewo.vtsi.CallAudioStats, 3));
+};
+
+
+/**
+ * @param {?proto.ondewo.vtsi.CallAudioStats|undefined} value
+ * @return {!proto.ondewo.vtsi.StreamCallAudioResponse} returns this
+*/
+proto.ondewo.vtsi.StreamCallAudioResponse.prototype.setStats = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 3, proto.ondewo.vtsi.StreamCallAudioResponse.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.ondewo.vtsi.StreamCallAudioResponse} returns this
+ */
+proto.ondewo.vtsi.StreamCallAudioResponse.prototype.clearStats = function() {
+  return this.setStats(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.StreamCallAudioResponse.prototype.hasStats = function() {
+  return jspb.Message.getField(this, 3) != null;
+};
+
+
+/**
+ * optional CallAudioEnded ended = 4;
+ * @return {?proto.ondewo.vtsi.CallAudioEnded}
+ */
+proto.ondewo.vtsi.StreamCallAudioResponse.prototype.getEnded = function() {
+  return /** @type{?proto.ondewo.vtsi.CallAudioEnded} */ (
+    jspb.Message.getWrapperField(this, proto.ondewo.vtsi.CallAudioEnded, 4));
+};
+
+
+/**
+ * @param {?proto.ondewo.vtsi.CallAudioEnded|undefined} value
+ * @return {!proto.ondewo.vtsi.StreamCallAudioResponse} returns this
+*/
+proto.ondewo.vtsi.StreamCallAudioResponse.prototype.setEnded = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 4, proto.ondewo.vtsi.StreamCallAudioResponse.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.ondewo.vtsi.StreamCallAudioResponse} returns this
+ */
+proto.ondewo.vtsi.StreamCallAudioResponse.prototype.clearEnded = function() {
+  return this.setEnded(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.StreamCallAudioResponse.prototype.hasEnded = function() {
+  return jspb.Message.getField(this, 4) != null;
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.ondewo.vtsi.ListenCallAudioRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.ondewo.vtsi.ListenCallAudioRequest.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.ondewo.vtsi.ListenCallAudioRequest} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.vtsi.ListenCallAudioRequest.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    config: (f = msg.getConfig()) && proto.ondewo.vtsi.StreamCallAudioConfig.toObject(includeInstance, f)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.ondewo.vtsi.ListenCallAudioRequest}
+ */
+proto.ondewo.vtsi.ListenCallAudioRequest.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.ondewo.vtsi.ListenCallAudioRequest;
+  return proto.ondewo.vtsi.ListenCallAudioRequest.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.ondewo.vtsi.ListenCallAudioRequest} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.ondewo.vtsi.ListenCallAudioRequest}
+ */
+proto.ondewo.vtsi.ListenCallAudioRequest.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = new proto.ondewo.vtsi.StreamCallAudioConfig;
+      reader.readMessage(value,proto.ondewo.vtsi.StreamCallAudioConfig.deserializeBinaryFromReader);
+      msg.setConfig(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.ondewo.vtsi.ListenCallAudioRequest.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.ondewo.vtsi.ListenCallAudioRequest.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.ondewo.vtsi.ListenCallAudioRequest} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.vtsi.ListenCallAudioRequest.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getConfig();
+  if (f != null) {
+    writer.writeMessage(
+      1,
+      f,
+      proto.ondewo.vtsi.StreamCallAudioConfig.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * optional StreamCallAudioConfig config = 1;
+ * @return {?proto.ondewo.vtsi.StreamCallAudioConfig}
+ */
+proto.ondewo.vtsi.ListenCallAudioRequest.prototype.getConfig = function() {
+  return /** @type{?proto.ondewo.vtsi.StreamCallAudioConfig} */ (
+    jspb.Message.getWrapperField(this, proto.ondewo.vtsi.StreamCallAudioConfig, 1));
+};
+
+
+/**
+ * @param {?proto.ondewo.vtsi.StreamCallAudioConfig|undefined} value
+ * @return {!proto.ondewo.vtsi.ListenCallAudioRequest} returns this
+*/
+proto.ondewo.vtsi.ListenCallAudioRequest.prototype.setConfig = function(value) {
+  return jspb.Message.setWrapperField(this, 1, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.ondewo.vtsi.ListenCallAudioRequest} returns this
+ */
+proto.ondewo.vtsi.ListenCallAudioRequest.prototype.clearConfig = function() {
+  return this.setConfig(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.ListenCallAudioRequest.prototype.hasConfig = function() {
+  return jspb.Message.getField(this, 1) != null;
 };
 
 
@@ -18021,6 +26299,13 @@ proto.ondewo.vtsi.GetCallRequest.prototype.hasCallView = function() {
 
 
 
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.ondewo.vtsi.Call.repeatedFields_ = [23];
+
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -18069,7 +26354,15 @@ proto.ondewo.vtsi.Call.toObject = function(includeInstance, msg) {
     sipPort: jspb.Message.getFieldWithDefault(msg, 15, 0),
     csiPort: jspb.Message.getFieldWithDefault(msg, 16, 0),
     nluSessionName: jspb.Message.getFieldWithDefault(msg, 17, ""),
-    platforms: jspb.Message.getFieldWithDefault(msg, 18, 0)
+    platforms: jspb.Message.getFieldWithDefault(msg, 18, 0),
+    redialRecommended: jspb.Message.getBooleanFieldWithDefault(msg, 19, false),
+    redialReason: jspb.Message.getFieldWithDefault(msg, 20, ""),
+    answeringMachineDetectionEndDescription: jspb.Message.getFieldWithDefault(msg, 21, ""),
+    mediaControl: (f = msg.getMediaControl()) && proto.ondewo.vtsi.CallMediaControlState.toObject(includeInstance, f),
+    participantsList: jspb.Message.toObjectList(msg.getParticipantsList(),
+    proto.ondewo.vtsi.CallParticipant.toObject, includeInstance),
+    lastTransfer: (f = msg.getLastTransfer()) && proto.ondewo.vtsi.CallTransferRecord.toObject(includeInstance, f),
+    sipCallId: jspb.Message.getFieldWithDefault(msg, 25, "")
   };
 
   if (includeInstance) {
@@ -18183,6 +26476,37 @@ proto.ondewo.vtsi.Call.deserializeBinaryFromReader = function(msg, reader) {
     case 18:
       var value = /** @type {!proto.ondewo.nlu.Intent.Message.Platform} */ (reader.readEnum());
       msg.setPlatforms(value);
+      break;
+    case 19:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setRedialRecommended(value);
+      break;
+    case 20:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setRedialReason(value);
+      break;
+    case 21:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setAnsweringMachineDetectionEndDescription(value);
+      break;
+    case 22:
+      var value = new proto.ondewo.vtsi.CallMediaControlState;
+      reader.readMessage(value,proto.ondewo.vtsi.CallMediaControlState.deserializeBinaryFromReader);
+      msg.setMediaControl(value);
+      break;
+    case 23:
+      var value = new proto.ondewo.vtsi.CallParticipant;
+      reader.readMessage(value,proto.ondewo.vtsi.CallParticipant.deserializeBinaryFromReader);
+      msg.addParticipants(value);
+      break;
+    case 24:
+      var value = new proto.ondewo.vtsi.CallTransferRecord;
+      reader.readMessage(value,proto.ondewo.vtsi.CallTransferRecord.deserializeBinaryFromReader);
+      msg.setLastTransfer(value);
+      break;
+    case 25:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setSipCallId(value);
       break;
     default:
       reader.skipField();
@@ -18342,6 +26666,58 @@ proto.ondewo.vtsi.Call.serializeBinaryToWriter = function(message, writer) {
   if (f != null) {
     writer.writeEnum(
       18,
+      f
+    );
+  }
+  f = /** @type {boolean} */ (jspb.Message.getField(message, 19));
+  if (f != null) {
+    writer.writeBool(
+      19,
+      f
+    );
+  }
+  f = /** @type {string} */ (jspb.Message.getField(message, 20));
+  if (f != null) {
+    writer.writeString(
+      20,
+      f
+    );
+  }
+  f = /** @type {string} */ (jspb.Message.getField(message, 21));
+  if (f != null) {
+    writer.writeString(
+      21,
+      f
+    );
+  }
+  f = message.getMediaControl();
+  if (f != null) {
+    writer.writeMessage(
+      22,
+      f,
+      proto.ondewo.vtsi.CallMediaControlState.serializeBinaryToWriter
+    );
+  }
+  f = message.getParticipantsList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      23,
+      f,
+      proto.ondewo.vtsi.CallParticipant.serializeBinaryToWriter
+    );
+  }
+  f = message.getLastTransfer();
+  if (f != null) {
+    writer.writeMessage(
+      24,
+      f,
+      proto.ondewo.vtsi.CallTransferRecord.serializeBinaryToWriter
+    );
+  }
+  f = message.getSipCallId();
+  if (f.length > 0) {
+    writer.writeString(
+      25,
       f
     );
   }
@@ -18855,6 +27231,244 @@ proto.ondewo.vtsi.Call.prototype.clearPlatforms = function() {
  */
 proto.ondewo.vtsi.Call.prototype.hasPlatforms = function() {
   return jspb.Message.getField(this, 18) != null;
+};
+
+
+/**
+ * optional bool redial_recommended = 19;
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.Call.prototype.getRedialRecommended = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 19, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.ondewo.vtsi.Call} returns this
+ */
+proto.ondewo.vtsi.Call.prototype.setRedialRecommended = function(value) {
+  return jspb.Message.setField(this, 19, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.ondewo.vtsi.Call} returns this
+ */
+proto.ondewo.vtsi.Call.prototype.clearRedialRecommended = function() {
+  return jspb.Message.setField(this, 19, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.Call.prototype.hasRedialRecommended = function() {
+  return jspb.Message.getField(this, 19) != null;
+};
+
+
+/**
+ * optional string redial_reason = 20;
+ * @return {string}
+ */
+proto.ondewo.vtsi.Call.prototype.getRedialReason = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 20, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.vtsi.Call} returns this
+ */
+proto.ondewo.vtsi.Call.prototype.setRedialReason = function(value) {
+  return jspb.Message.setField(this, 20, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.ondewo.vtsi.Call} returns this
+ */
+proto.ondewo.vtsi.Call.prototype.clearRedialReason = function() {
+  return jspb.Message.setField(this, 20, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.Call.prototype.hasRedialReason = function() {
+  return jspb.Message.getField(this, 20) != null;
+};
+
+
+/**
+ * optional string answering_machine_detection_end_description = 21;
+ * @return {string}
+ */
+proto.ondewo.vtsi.Call.prototype.getAnsweringMachineDetectionEndDescription = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 21, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.vtsi.Call} returns this
+ */
+proto.ondewo.vtsi.Call.prototype.setAnsweringMachineDetectionEndDescription = function(value) {
+  return jspb.Message.setField(this, 21, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.ondewo.vtsi.Call} returns this
+ */
+proto.ondewo.vtsi.Call.prototype.clearAnsweringMachineDetectionEndDescription = function() {
+  return jspb.Message.setField(this, 21, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.Call.prototype.hasAnsweringMachineDetectionEndDescription = function() {
+  return jspb.Message.getField(this, 21) != null;
+};
+
+
+/**
+ * optional CallMediaControlState media_control = 22;
+ * @return {?proto.ondewo.vtsi.CallMediaControlState}
+ */
+proto.ondewo.vtsi.Call.prototype.getMediaControl = function() {
+  return /** @type{?proto.ondewo.vtsi.CallMediaControlState} */ (
+    jspb.Message.getWrapperField(this, proto.ondewo.vtsi.CallMediaControlState, 22));
+};
+
+
+/**
+ * @param {?proto.ondewo.vtsi.CallMediaControlState|undefined} value
+ * @return {!proto.ondewo.vtsi.Call} returns this
+*/
+proto.ondewo.vtsi.Call.prototype.setMediaControl = function(value) {
+  return jspb.Message.setWrapperField(this, 22, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.ondewo.vtsi.Call} returns this
+ */
+proto.ondewo.vtsi.Call.prototype.clearMediaControl = function() {
+  return this.setMediaControl(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.Call.prototype.hasMediaControl = function() {
+  return jspb.Message.getField(this, 22) != null;
+};
+
+
+/**
+ * repeated CallParticipant participants = 23;
+ * @return {!Array<!proto.ondewo.vtsi.CallParticipant>}
+ */
+proto.ondewo.vtsi.Call.prototype.getParticipantsList = function() {
+  return /** @type{!Array<!proto.ondewo.vtsi.CallParticipant>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.ondewo.vtsi.CallParticipant, 23));
+};
+
+
+/**
+ * @param {!Array<!proto.ondewo.vtsi.CallParticipant>} value
+ * @return {!proto.ondewo.vtsi.Call} returns this
+*/
+proto.ondewo.vtsi.Call.prototype.setParticipantsList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 23, value);
+};
+
+
+/**
+ * @param {!proto.ondewo.vtsi.CallParticipant=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.ondewo.vtsi.CallParticipant}
+ */
+proto.ondewo.vtsi.Call.prototype.addParticipants = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 23, opt_value, proto.ondewo.vtsi.CallParticipant, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.ondewo.vtsi.Call} returns this
+ */
+proto.ondewo.vtsi.Call.prototype.clearParticipantsList = function() {
+  return this.setParticipantsList([]);
+};
+
+
+/**
+ * optional CallTransferRecord last_transfer = 24;
+ * @return {?proto.ondewo.vtsi.CallTransferRecord}
+ */
+proto.ondewo.vtsi.Call.prototype.getLastTransfer = function() {
+  return /** @type{?proto.ondewo.vtsi.CallTransferRecord} */ (
+    jspb.Message.getWrapperField(this, proto.ondewo.vtsi.CallTransferRecord, 24));
+};
+
+
+/**
+ * @param {?proto.ondewo.vtsi.CallTransferRecord|undefined} value
+ * @return {!proto.ondewo.vtsi.Call} returns this
+*/
+proto.ondewo.vtsi.Call.prototype.setLastTransfer = function(value) {
+  return jspb.Message.setWrapperField(this, 24, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.ondewo.vtsi.Call} returns this
+ */
+proto.ondewo.vtsi.Call.prototype.clearLastTransfer = function() {
+  return this.setLastTransfer(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.Call.prototype.hasLastTransfer = function() {
+  return jspb.Message.getField(this, 24) != null;
+};
+
+
+/**
+ * optional string sip_call_id = 25;
+ * @return {string}
+ */
+proto.ondewo.vtsi.Call.prototype.getSipCallId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 25, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.vtsi.Call} returns this
+ */
+proto.ondewo.vtsi.Call.prototype.setSipCallId = function(value) {
+  return jspb.Message.setProto3StringField(this, 25, value);
 };
 
 
@@ -20689,6 +29303,1557 @@ proto.ondewo.vtsi.ServiceStatus.prototype.setErrorMessage = function(value) {
 };
 
 
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.ondewo.vtsi.CallResourceStatus.prototype.toObject = function(opt_includeInstance) {
+  return proto.ondewo.vtsi.CallResourceStatus.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.ondewo.vtsi.CallResourceStatus} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.vtsi.CallResourceStatus.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    resourceName: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    callType: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    callName: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    active: jspb.Message.getBooleanFieldWithDefault(msg, 4, false),
+    sipStatusType: jspb.Message.getFieldWithDefault(msg, 5, 0),
+    sipStatusDescription: jspb.Message.getFieldWithDefault(msg, 6, ""),
+    startTime: (f = msg.getStartTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    endTime: (f = msg.getEndTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    phoneNumber: jspb.Message.getFieldWithDefault(msg, 9, ""),
+    scheduledCallerStatus: jspb.Message.getFieldWithDefault(msg, 10, 0),
+    scheduledTime: (f = msg.getScheduledTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    campaignName: jspb.Message.getFieldWithDefault(msg, 12, ""),
+    errorMessage: jspb.Message.getFieldWithDefault(msg, 13, "")
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.ondewo.vtsi.CallResourceStatus}
+ */
+proto.ondewo.vtsi.CallResourceStatus.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.ondewo.vtsi.CallResourceStatus;
+  return proto.ondewo.vtsi.CallResourceStatus.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.ondewo.vtsi.CallResourceStatus} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.ondewo.vtsi.CallResourceStatus}
+ */
+proto.ondewo.vtsi.CallResourceStatus.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setResourceName(value);
+      break;
+    case 2:
+      var value = /** @type {!proto.ondewo.vtsi.CallType} */ (reader.readEnum());
+      msg.setCallType(value);
+      break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setCallName(value);
+      break;
+    case 4:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setActive(value);
+      break;
+    case 5:
+      var value = /** @type {!proto.ondewo.sip.SipStatus.StatusType} */ (reader.readEnum());
+      msg.setSipStatusType(value);
+      break;
+    case 6:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setSipStatusDescription(value);
+      break;
+    case 7:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setStartTime(value);
+      break;
+    case 8:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setEndTime(value);
+      break;
+    case 9:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setPhoneNumber(value);
+      break;
+    case 10:
+      var value = /** @type {!proto.ondewo.vtsi.ScheduledCallerStatus} */ (reader.readEnum());
+      msg.setScheduledCallerStatus(value);
+      break;
+    case 11:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setScheduledTime(value);
+      break;
+    case 12:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setCampaignName(value);
+      break;
+    case 13:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setErrorMessage(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.ondewo.vtsi.CallResourceStatus.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.ondewo.vtsi.CallResourceStatus.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.ondewo.vtsi.CallResourceStatus} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.vtsi.CallResourceStatus.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getResourceName();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getCallType();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      2,
+      f
+    );
+  }
+  f = message.getCallName();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
+      f
+    );
+  }
+  f = message.getActive();
+  if (f) {
+    writer.writeBool(
+      4,
+      f
+    );
+  }
+  f = message.getSipStatusType();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      5,
+      f
+    );
+  }
+  f = message.getSipStatusDescription();
+  if (f.length > 0) {
+    writer.writeString(
+      6,
+      f
+    );
+  }
+  f = message.getStartTime();
+  if (f != null) {
+    writer.writeMessage(
+      7,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+  f = message.getEndTime();
+  if (f != null) {
+    writer.writeMessage(
+      8,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+  f = message.getPhoneNumber();
+  if (f.length > 0) {
+    writer.writeString(
+      9,
+      f
+    );
+  }
+  f = message.getScheduledCallerStatus();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      10,
+      f
+    );
+  }
+  f = message.getScheduledTime();
+  if (f != null) {
+    writer.writeMessage(
+      11,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+  f = message.getCampaignName();
+  if (f.length > 0) {
+    writer.writeString(
+      12,
+      f
+    );
+  }
+  f = message.getErrorMessage();
+  if (f.length > 0) {
+    writer.writeString(
+      13,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string resource_name = 1;
+ * @return {string}
+ */
+proto.ondewo.vtsi.CallResourceStatus.prototype.getResourceName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.vtsi.CallResourceStatus} returns this
+ */
+proto.ondewo.vtsi.CallResourceStatus.prototype.setResourceName = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional CallType call_type = 2;
+ * @return {!proto.ondewo.vtsi.CallType}
+ */
+proto.ondewo.vtsi.CallResourceStatus.prototype.getCallType = function() {
+  return /** @type {!proto.ondewo.vtsi.CallType} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+};
+
+
+/**
+ * @param {!proto.ondewo.vtsi.CallType} value
+ * @return {!proto.ondewo.vtsi.CallResourceStatus} returns this
+ */
+proto.ondewo.vtsi.CallResourceStatus.prototype.setCallType = function(value) {
+  return jspb.Message.setProto3EnumField(this, 2, value);
+};
+
+
+/**
+ * optional string call_name = 3;
+ * @return {string}
+ */
+proto.ondewo.vtsi.CallResourceStatus.prototype.getCallName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.vtsi.CallResourceStatus} returns this
+ */
+proto.ondewo.vtsi.CallResourceStatus.prototype.setCallName = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
+};
+
+
+/**
+ * optional bool active = 4;
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.CallResourceStatus.prototype.getActive = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 4, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.ondewo.vtsi.CallResourceStatus} returns this
+ */
+proto.ondewo.vtsi.CallResourceStatus.prototype.setActive = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 4, value);
+};
+
+
+/**
+ * optional ondewo.sip.SipStatus.StatusType sip_status_type = 5;
+ * @return {!proto.ondewo.sip.SipStatus.StatusType}
+ */
+proto.ondewo.vtsi.CallResourceStatus.prototype.getSipStatusType = function() {
+  return /** @type {!proto.ondewo.sip.SipStatus.StatusType} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
+};
+
+
+/**
+ * @param {!proto.ondewo.sip.SipStatus.StatusType} value
+ * @return {!proto.ondewo.vtsi.CallResourceStatus} returns this
+ */
+proto.ondewo.vtsi.CallResourceStatus.prototype.setSipStatusType = function(value) {
+  return jspb.Message.setProto3EnumField(this, 5, value);
+};
+
+
+/**
+ * optional string sip_status_description = 6;
+ * @return {string}
+ */
+proto.ondewo.vtsi.CallResourceStatus.prototype.getSipStatusDescription = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.vtsi.CallResourceStatus} returns this
+ */
+proto.ondewo.vtsi.CallResourceStatus.prototype.setSipStatusDescription = function(value) {
+  return jspb.Message.setProto3StringField(this, 6, value);
+};
+
+
+/**
+ * optional google.protobuf.Timestamp start_time = 7;
+ * @return {?proto.google.protobuf.Timestamp}
+ */
+proto.ondewo.vtsi.CallResourceStatus.prototype.getStartTime = function() {
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 7));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Timestamp|undefined} value
+ * @return {!proto.ondewo.vtsi.CallResourceStatus} returns this
+*/
+proto.ondewo.vtsi.CallResourceStatus.prototype.setStartTime = function(value) {
+  return jspb.Message.setWrapperField(this, 7, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.ondewo.vtsi.CallResourceStatus} returns this
+ */
+proto.ondewo.vtsi.CallResourceStatus.prototype.clearStartTime = function() {
+  return this.setStartTime(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.CallResourceStatus.prototype.hasStartTime = function() {
+  return jspb.Message.getField(this, 7) != null;
+};
+
+
+/**
+ * optional google.protobuf.Timestamp end_time = 8;
+ * @return {?proto.google.protobuf.Timestamp}
+ */
+proto.ondewo.vtsi.CallResourceStatus.prototype.getEndTime = function() {
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 8));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Timestamp|undefined} value
+ * @return {!proto.ondewo.vtsi.CallResourceStatus} returns this
+*/
+proto.ondewo.vtsi.CallResourceStatus.prototype.setEndTime = function(value) {
+  return jspb.Message.setWrapperField(this, 8, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.ondewo.vtsi.CallResourceStatus} returns this
+ */
+proto.ondewo.vtsi.CallResourceStatus.prototype.clearEndTime = function() {
+  return this.setEndTime(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.CallResourceStatus.prototype.hasEndTime = function() {
+  return jspb.Message.getField(this, 8) != null;
+};
+
+
+/**
+ * optional string phone_number = 9;
+ * @return {string}
+ */
+proto.ondewo.vtsi.CallResourceStatus.prototype.getPhoneNumber = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 9, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.vtsi.CallResourceStatus} returns this
+ */
+proto.ondewo.vtsi.CallResourceStatus.prototype.setPhoneNumber = function(value) {
+  return jspb.Message.setProto3StringField(this, 9, value);
+};
+
+
+/**
+ * optional ScheduledCallerStatus scheduled_caller_status = 10;
+ * @return {!proto.ondewo.vtsi.ScheduledCallerStatus}
+ */
+proto.ondewo.vtsi.CallResourceStatus.prototype.getScheduledCallerStatus = function() {
+  return /** @type {!proto.ondewo.vtsi.ScheduledCallerStatus} */ (jspb.Message.getFieldWithDefault(this, 10, 0));
+};
+
+
+/**
+ * @param {!proto.ondewo.vtsi.ScheduledCallerStatus} value
+ * @return {!proto.ondewo.vtsi.CallResourceStatus} returns this
+ */
+proto.ondewo.vtsi.CallResourceStatus.prototype.setScheduledCallerStatus = function(value) {
+  return jspb.Message.setProto3EnumField(this, 10, value);
+};
+
+
+/**
+ * optional google.protobuf.Timestamp scheduled_time = 11;
+ * @return {?proto.google.protobuf.Timestamp}
+ */
+proto.ondewo.vtsi.CallResourceStatus.prototype.getScheduledTime = function() {
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 11));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Timestamp|undefined} value
+ * @return {!proto.ondewo.vtsi.CallResourceStatus} returns this
+*/
+proto.ondewo.vtsi.CallResourceStatus.prototype.setScheduledTime = function(value) {
+  return jspb.Message.setWrapperField(this, 11, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.ondewo.vtsi.CallResourceStatus} returns this
+ */
+proto.ondewo.vtsi.CallResourceStatus.prototype.clearScheduledTime = function() {
+  return this.setScheduledTime(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.CallResourceStatus.prototype.hasScheduledTime = function() {
+  return jspb.Message.getField(this, 11) != null;
+};
+
+
+/**
+ * optional string campaign_name = 12;
+ * @return {string}
+ */
+proto.ondewo.vtsi.CallResourceStatus.prototype.getCampaignName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 12, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.vtsi.CallResourceStatus} returns this
+ */
+proto.ondewo.vtsi.CallResourceStatus.prototype.setCampaignName = function(value) {
+  return jspb.Message.setProto3StringField(this, 12, value);
+};
+
+
+/**
+ * optional string error_message = 13;
+ * @return {string}
+ */
+proto.ondewo.vtsi.CallResourceStatus.prototype.getErrorMessage = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 13, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.vtsi.CallResourceStatus} returns this
+ */
+proto.ondewo.vtsi.CallResourceStatus.prototype.setErrorMessage = function(value) {
+  return jspb.Message.setProto3StringField(this, 13, value);
+};
+
+
+
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.ondewo.vtsi.StreamCallerStatusRequest.repeatedFields_ = [2];
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.ondewo.vtsi.StreamCallerStatusRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.ondewo.vtsi.StreamCallerStatusRequest.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.ondewo.vtsi.StreamCallerStatusRequest} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.vtsi.StreamCallerStatusRequest.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    callerNamesList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f,
+    activeOnly: jspb.Message.getBooleanFieldWithDefault(msg, 3, false)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.ondewo.vtsi.StreamCallerStatusRequest}
+ */
+proto.ondewo.vtsi.StreamCallerStatusRequest.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.ondewo.vtsi.StreamCallerStatusRequest;
+  return proto.ondewo.vtsi.StreamCallerStatusRequest.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.ondewo.vtsi.StreamCallerStatusRequest} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.ondewo.vtsi.StreamCallerStatusRequest}
+ */
+proto.ondewo.vtsi.StreamCallerStatusRequest.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setVtsiProjectName(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addCallerNames(value);
+      break;
+    case 3:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setActiveOnly(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.ondewo.vtsi.StreamCallerStatusRequest.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.ondewo.vtsi.StreamCallerStatusRequest.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.ondewo.vtsi.StreamCallerStatusRequest} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.vtsi.StreamCallerStatusRequest.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getVtsiProjectName();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getCallerNamesList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(
+      2,
+      f
+    );
+  }
+  f = message.getActiveOnly();
+  if (f) {
+    writer.writeBool(
+      3,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string vtsi_project_name = 1;
+ * @return {string}
+ */
+proto.ondewo.vtsi.StreamCallerStatusRequest.prototype.getVtsiProjectName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.vtsi.StreamCallerStatusRequest} returns this
+ */
+proto.ondewo.vtsi.StreamCallerStatusRequest.prototype.setVtsiProjectName = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * repeated string caller_names = 2;
+ * @return {!Array<string>}
+ */
+proto.ondewo.vtsi.StreamCallerStatusRequest.prototype.getCallerNamesList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 2));
+};
+
+
+/**
+ * @param {!Array<string>} value
+ * @return {!proto.ondewo.vtsi.StreamCallerStatusRequest} returns this
+ */
+proto.ondewo.vtsi.StreamCallerStatusRequest.prototype.setCallerNamesList = function(value) {
+  return jspb.Message.setField(this, 2, value || []);
+};
+
+
+/**
+ * @param {string} value
+ * @param {number=} opt_index
+ * @return {!proto.ondewo.vtsi.StreamCallerStatusRequest} returns this
+ */
+proto.ondewo.vtsi.StreamCallerStatusRequest.prototype.addCallerNames = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 2, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.ondewo.vtsi.StreamCallerStatusRequest} returns this
+ */
+proto.ondewo.vtsi.StreamCallerStatusRequest.prototype.clearCallerNamesList = function() {
+  return this.setCallerNamesList([]);
+};
+
+
+/**
+ * optional bool active_only = 3;
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.StreamCallerStatusRequest.prototype.getActiveOnly = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 3, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.ondewo.vtsi.StreamCallerStatusRequest} returns this
+ */
+proto.ondewo.vtsi.StreamCallerStatusRequest.prototype.setActiveOnly = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 3, value);
+};
+
+
+
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.ondewo.vtsi.StreamListenerStatusRequest.repeatedFields_ = [2];
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.ondewo.vtsi.StreamListenerStatusRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.ondewo.vtsi.StreamListenerStatusRequest.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.ondewo.vtsi.StreamListenerStatusRequest} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.vtsi.StreamListenerStatusRequest.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    listenerNamesList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f,
+    activeOnly: jspb.Message.getBooleanFieldWithDefault(msg, 3, false)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.ondewo.vtsi.StreamListenerStatusRequest}
+ */
+proto.ondewo.vtsi.StreamListenerStatusRequest.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.ondewo.vtsi.StreamListenerStatusRequest;
+  return proto.ondewo.vtsi.StreamListenerStatusRequest.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.ondewo.vtsi.StreamListenerStatusRequest} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.ondewo.vtsi.StreamListenerStatusRequest}
+ */
+proto.ondewo.vtsi.StreamListenerStatusRequest.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setVtsiProjectName(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addListenerNames(value);
+      break;
+    case 3:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setActiveOnly(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.ondewo.vtsi.StreamListenerStatusRequest.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.ondewo.vtsi.StreamListenerStatusRequest.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.ondewo.vtsi.StreamListenerStatusRequest} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.vtsi.StreamListenerStatusRequest.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getVtsiProjectName();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getListenerNamesList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(
+      2,
+      f
+    );
+  }
+  f = message.getActiveOnly();
+  if (f) {
+    writer.writeBool(
+      3,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string vtsi_project_name = 1;
+ * @return {string}
+ */
+proto.ondewo.vtsi.StreamListenerStatusRequest.prototype.getVtsiProjectName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.vtsi.StreamListenerStatusRequest} returns this
+ */
+proto.ondewo.vtsi.StreamListenerStatusRequest.prototype.setVtsiProjectName = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * repeated string listener_names = 2;
+ * @return {!Array<string>}
+ */
+proto.ondewo.vtsi.StreamListenerStatusRequest.prototype.getListenerNamesList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 2));
+};
+
+
+/**
+ * @param {!Array<string>} value
+ * @return {!proto.ondewo.vtsi.StreamListenerStatusRequest} returns this
+ */
+proto.ondewo.vtsi.StreamListenerStatusRequest.prototype.setListenerNamesList = function(value) {
+  return jspb.Message.setField(this, 2, value || []);
+};
+
+
+/**
+ * @param {string} value
+ * @param {number=} opt_index
+ * @return {!proto.ondewo.vtsi.StreamListenerStatusRequest} returns this
+ */
+proto.ondewo.vtsi.StreamListenerStatusRequest.prototype.addListenerNames = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 2, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.ondewo.vtsi.StreamListenerStatusRequest} returns this
+ */
+proto.ondewo.vtsi.StreamListenerStatusRequest.prototype.clearListenerNamesList = function() {
+  return this.setListenerNamesList([]);
+};
+
+
+/**
+ * optional bool active_only = 3;
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.StreamListenerStatusRequest.prototype.getActiveOnly = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 3, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.ondewo.vtsi.StreamListenerStatusRequest} returns this
+ */
+proto.ondewo.vtsi.StreamListenerStatusRequest.prototype.setActiveOnly = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 3, value);
+};
+
+
+
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.ondewo.vtsi.StreamScheduledCallerStatusRequest.repeatedFields_ = [2,3];
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.ondewo.vtsi.StreamScheduledCallerStatusRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.ondewo.vtsi.StreamScheduledCallerStatusRequest.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.ondewo.vtsi.StreamScheduledCallerStatusRequest} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.vtsi.StreamScheduledCallerStatusRequest.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    scheduledCallerNamesList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f,
+    statusesList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f,
+    campaignName: jspb.Message.getFieldWithDefault(msg, 4, "")
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.ondewo.vtsi.StreamScheduledCallerStatusRequest}
+ */
+proto.ondewo.vtsi.StreamScheduledCallerStatusRequest.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.ondewo.vtsi.StreamScheduledCallerStatusRequest;
+  return proto.ondewo.vtsi.StreamScheduledCallerStatusRequest.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.ondewo.vtsi.StreamScheduledCallerStatusRequest} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.ondewo.vtsi.StreamScheduledCallerStatusRequest}
+ */
+proto.ondewo.vtsi.StreamScheduledCallerStatusRequest.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setVtsiProjectName(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addScheduledCallerNames(value);
+      break;
+    case 3:
+      var values = /** @type {!Array<!proto.ondewo.vtsi.ScheduledCallerStatus>} */ (reader.isDelimited() ? reader.readPackedEnum() : [reader.readEnum()]);
+      for (var i = 0; i < values.length; i++) {
+        msg.addStatuses(values[i]);
+      }
+      break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setCampaignName(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.ondewo.vtsi.StreamScheduledCallerStatusRequest.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.ondewo.vtsi.StreamScheduledCallerStatusRequest.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.ondewo.vtsi.StreamScheduledCallerStatusRequest} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.vtsi.StreamScheduledCallerStatusRequest.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getVtsiProjectName();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getScheduledCallerNamesList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(
+      2,
+      f
+    );
+  }
+  f = message.getStatusesList();
+  if (f.length > 0) {
+    writer.writePackedEnum(
+      3,
+      f
+    );
+  }
+  f = message.getCampaignName();
+  if (f.length > 0) {
+    writer.writeString(
+      4,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string vtsi_project_name = 1;
+ * @return {string}
+ */
+proto.ondewo.vtsi.StreamScheduledCallerStatusRequest.prototype.getVtsiProjectName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.vtsi.StreamScheduledCallerStatusRequest} returns this
+ */
+proto.ondewo.vtsi.StreamScheduledCallerStatusRequest.prototype.setVtsiProjectName = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * repeated string scheduled_caller_names = 2;
+ * @return {!Array<string>}
+ */
+proto.ondewo.vtsi.StreamScheduledCallerStatusRequest.prototype.getScheduledCallerNamesList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 2));
+};
+
+
+/**
+ * @param {!Array<string>} value
+ * @return {!proto.ondewo.vtsi.StreamScheduledCallerStatusRequest} returns this
+ */
+proto.ondewo.vtsi.StreamScheduledCallerStatusRequest.prototype.setScheduledCallerNamesList = function(value) {
+  return jspb.Message.setField(this, 2, value || []);
+};
+
+
+/**
+ * @param {string} value
+ * @param {number=} opt_index
+ * @return {!proto.ondewo.vtsi.StreamScheduledCallerStatusRequest} returns this
+ */
+proto.ondewo.vtsi.StreamScheduledCallerStatusRequest.prototype.addScheduledCallerNames = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 2, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.ondewo.vtsi.StreamScheduledCallerStatusRequest} returns this
+ */
+proto.ondewo.vtsi.StreamScheduledCallerStatusRequest.prototype.clearScheduledCallerNamesList = function() {
+  return this.setScheduledCallerNamesList([]);
+};
+
+
+/**
+ * repeated ScheduledCallerStatus statuses = 3;
+ * @return {!Array<!proto.ondewo.vtsi.ScheduledCallerStatus>}
+ */
+proto.ondewo.vtsi.StreamScheduledCallerStatusRequest.prototype.getStatusesList = function() {
+  return /** @type {!Array<!proto.ondewo.vtsi.ScheduledCallerStatus>} */ (jspb.Message.getRepeatedField(this, 3));
+};
+
+
+/**
+ * @param {!Array<!proto.ondewo.vtsi.ScheduledCallerStatus>} value
+ * @return {!proto.ondewo.vtsi.StreamScheduledCallerStatusRequest} returns this
+ */
+proto.ondewo.vtsi.StreamScheduledCallerStatusRequest.prototype.setStatusesList = function(value) {
+  return jspb.Message.setField(this, 3, value || []);
+};
+
+
+/**
+ * @param {!proto.ondewo.vtsi.ScheduledCallerStatus} value
+ * @param {number=} opt_index
+ * @return {!proto.ondewo.vtsi.StreamScheduledCallerStatusRequest} returns this
+ */
+proto.ondewo.vtsi.StreamScheduledCallerStatusRequest.prototype.addStatuses = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 3, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.ondewo.vtsi.StreamScheduledCallerStatusRequest} returns this
+ */
+proto.ondewo.vtsi.StreamScheduledCallerStatusRequest.prototype.clearStatusesList = function() {
+  return this.setStatusesList([]);
+};
+
+
+/**
+ * optional string campaign_name = 4;
+ * @return {string}
+ */
+proto.ondewo.vtsi.StreamScheduledCallerStatusRequest.prototype.getCampaignName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.vtsi.StreamScheduledCallerStatusRequest} returns this
+ */
+proto.ondewo.vtsi.StreamScheduledCallerStatusRequest.prototype.setCampaignName = function(value) {
+  return jspb.Message.setProto3StringField(this, 4, value);
+};
+
+
+
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.ondewo.vtsi.StreamCallResourceStatusResponse.repeatedFields_ = [1,2];
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.ondewo.vtsi.StreamCallResourceStatusResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.ondewo.vtsi.StreamCallResourceStatusResponse.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.ondewo.vtsi.StreamCallResourceStatusResponse} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.vtsi.StreamCallResourceStatusResponse.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    statusesList: jspb.Message.toObjectList(msg.getStatusesList(),
+    proto.ondewo.vtsi.CallResourceStatus.toObject, includeInstance),
+    removedResourceNamesList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f,
+    snapshot: jspb.Message.getBooleanFieldWithDefault(msg, 3, false),
+    snapshotTruncated: jspb.Message.getBooleanFieldWithDefault(msg, 4, false),
+    endReason: jspb.Message.getFieldWithDefault(msg, 5, "")
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.ondewo.vtsi.StreamCallResourceStatusResponse}
+ */
+proto.ondewo.vtsi.StreamCallResourceStatusResponse.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.ondewo.vtsi.StreamCallResourceStatusResponse;
+  return proto.ondewo.vtsi.StreamCallResourceStatusResponse.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.ondewo.vtsi.StreamCallResourceStatusResponse} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.ondewo.vtsi.StreamCallResourceStatusResponse}
+ */
+proto.ondewo.vtsi.StreamCallResourceStatusResponse.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = new proto.ondewo.vtsi.CallResourceStatus;
+      reader.readMessage(value,proto.ondewo.vtsi.CallResourceStatus.deserializeBinaryFromReader);
+      msg.addStatuses(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addRemovedResourceNames(value);
+      break;
+    case 3:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setSnapshot(value);
+      break;
+    case 4:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setSnapshotTruncated(value);
+      break;
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setEndReason(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.ondewo.vtsi.StreamCallResourceStatusResponse.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.ondewo.vtsi.StreamCallResourceStatusResponse.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.ondewo.vtsi.StreamCallResourceStatusResponse} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.vtsi.StreamCallResourceStatusResponse.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getStatusesList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      1,
+      f,
+      proto.ondewo.vtsi.CallResourceStatus.serializeBinaryToWriter
+    );
+  }
+  f = message.getRemovedResourceNamesList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(
+      2,
+      f
+    );
+  }
+  f = message.getSnapshot();
+  if (f) {
+    writer.writeBool(
+      3,
+      f
+    );
+  }
+  f = message.getSnapshotTruncated();
+  if (f) {
+    writer.writeBool(
+      4,
+      f
+    );
+  }
+  f = message.getEndReason();
+  if (f.length > 0) {
+    writer.writeString(
+      5,
+      f
+    );
+  }
+};
+
+
+/**
+ * repeated CallResourceStatus statuses = 1;
+ * @return {!Array<!proto.ondewo.vtsi.CallResourceStatus>}
+ */
+proto.ondewo.vtsi.StreamCallResourceStatusResponse.prototype.getStatusesList = function() {
+  return /** @type{!Array<!proto.ondewo.vtsi.CallResourceStatus>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.ondewo.vtsi.CallResourceStatus, 1));
+};
+
+
+/**
+ * @param {!Array<!proto.ondewo.vtsi.CallResourceStatus>} value
+ * @return {!proto.ondewo.vtsi.StreamCallResourceStatusResponse} returns this
+*/
+proto.ondewo.vtsi.StreamCallResourceStatusResponse.prototype.setStatusesList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 1, value);
+};
+
+
+/**
+ * @param {!proto.ondewo.vtsi.CallResourceStatus=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.ondewo.vtsi.CallResourceStatus}
+ */
+proto.ondewo.vtsi.StreamCallResourceStatusResponse.prototype.addStatuses = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.ondewo.vtsi.CallResourceStatus, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.ondewo.vtsi.StreamCallResourceStatusResponse} returns this
+ */
+proto.ondewo.vtsi.StreamCallResourceStatusResponse.prototype.clearStatusesList = function() {
+  return this.setStatusesList([]);
+};
+
+
+/**
+ * repeated string removed_resource_names = 2;
+ * @return {!Array<string>}
+ */
+proto.ondewo.vtsi.StreamCallResourceStatusResponse.prototype.getRemovedResourceNamesList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 2));
+};
+
+
+/**
+ * @param {!Array<string>} value
+ * @return {!proto.ondewo.vtsi.StreamCallResourceStatusResponse} returns this
+ */
+proto.ondewo.vtsi.StreamCallResourceStatusResponse.prototype.setRemovedResourceNamesList = function(value) {
+  return jspb.Message.setField(this, 2, value || []);
+};
+
+
+/**
+ * @param {string} value
+ * @param {number=} opt_index
+ * @return {!proto.ondewo.vtsi.StreamCallResourceStatusResponse} returns this
+ */
+proto.ondewo.vtsi.StreamCallResourceStatusResponse.prototype.addRemovedResourceNames = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 2, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.ondewo.vtsi.StreamCallResourceStatusResponse} returns this
+ */
+proto.ondewo.vtsi.StreamCallResourceStatusResponse.prototype.clearRemovedResourceNamesList = function() {
+  return this.setRemovedResourceNamesList([]);
+};
+
+
+/**
+ * optional bool snapshot = 3;
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.StreamCallResourceStatusResponse.prototype.getSnapshot = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 3, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.ondewo.vtsi.StreamCallResourceStatusResponse} returns this
+ */
+proto.ondewo.vtsi.StreamCallResourceStatusResponse.prototype.setSnapshot = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 3, value);
+};
+
+
+/**
+ * optional bool snapshot_truncated = 4;
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.StreamCallResourceStatusResponse.prototype.getSnapshotTruncated = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 4, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.ondewo.vtsi.StreamCallResourceStatusResponse} returns this
+ */
+proto.ondewo.vtsi.StreamCallResourceStatusResponse.prototype.setSnapshotTruncated = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 4, value);
+};
+
+
+/**
+ * optional string end_reason = 5;
+ * @return {string}
+ */
+proto.ondewo.vtsi.StreamCallResourceStatusResponse.prototype.getEndReason = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.vtsi.StreamCallResourceStatusResponse} returns this
+ */
+proto.ondewo.vtsi.StreamCallResourceStatusResponse.prototype.setEndReason = function(value) {
+  return jspb.Message.setProto3StringField(this, 5, value);
+};
+
+
 /**
  * @enum {number}
  */
@@ -20699,6 +30864,91 @@ proto.ondewo.vtsi.ScheduledCallerStatus = {
   SCHEDULED_CALLER_STATUS_DONE: 3,
   SCHEDULED_CALLER_STATUS_FAILED: 4,
   SCHEDULED_CALLER_STATUS_CANCELLED: 5
+};
+
+/**
+ * @enum {number}
+ */
+proto.ondewo.vtsi.TransferMode = {
+  TRANSFER_MODE_UNSPECIFIED: 0,
+  TRANSFER_MODE_BLIND: 1,
+  TRANSFER_MODE_WARM: 2
+};
+
+/**
+ * @enum {number}
+ */
+proto.ondewo.vtsi.TransferOutcome = {
+  TRANSFER_OUTCOME_UNSPECIFIED: 0,
+  TRANSFER_OUTCOME_ACCEPTED: 1,
+  TRANSFER_OUTCOME_PENDING: 2,
+  TRANSFER_OUTCOME_TARGET_INVALID: 3,
+  TRANSFER_OUTCOME_REFER_REJECTED: 4,
+  TRANSFER_OUTCOME_TIMEOUT: 5,
+  TRANSFER_OUTCOME_CALL_ENDED: 6,
+  TRANSFER_OUTCOME_CALL_SCOPE_MISMATCH: 7,
+  TRANSFER_OUTCOME_SIP_UNREACHABLE: 8
+};
+
+/**
+ * @enum {number}
+ */
+proto.ondewo.vtsi.CallMediaSetting = {
+  CALL_MEDIA_SETTING_UNCHANGED: 0,
+  CALL_MEDIA_SETTING_ON: 1,
+  CALL_MEDIA_SETTING_OFF: 2
+};
+
+/**
+ * @enum {number}
+ */
+proto.ondewo.vtsi.ParticipantMode = {
+  PARTICIPANT_MODE_UNSPECIFIED: 0,
+  PARTICIPANT_MODE_CONFERENCE: 1,
+  PARTICIPANT_MODE_MONITOR: 2
+};
+
+/**
+ * @enum {number}
+ */
+proto.ondewo.vtsi.BotPolicyOnJoin = {
+  BOT_POLICY_ON_JOIN_UNSPECIFIED: 0,
+  BOT_POLICY_ON_JOIN_PAUSE: 1,
+  BOT_POLICY_ON_JOIN_PAUSE_LISTENING: 2,
+  BOT_POLICY_ON_JOIN_KEEP: 3
+};
+
+/**
+ * @enum {number}
+ */
+proto.ondewo.vtsi.ParticipantState = {
+  PARTICIPANT_STATE_UNSPECIFIED: 0,
+  PARTICIPANT_STATE_RINGING: 1,
+  PARTICIPANT_STATE_JOINED: 2,
+  PARTICIPANT_STATE_FAILED: 3,
+  PARTICIPANT_STATE_LEFT: 4
+};
+
+/**
+ * @enum {number}
+ */
+proto.ondewo.vtsi.CallAudioMode = {
+  CALL_AUDIO_MODE_UNSPECIFIED: 0,
+  CALL_AUDIO_MODE_LISTEN: 1,
+  CALL_AUDIO_MODE_TALK: 2
+};
+
+/**
+ * @enum {number}
+ */
+proto.ondewo.vtsi.CallAudioEndReason = {
+  CALL_AUDIO_END_REASON_UNSPECIFIED: 0,
+  CALL_AUDIO_END_REASON_CLIENT_CLOSED: 1,
+  CALL_AUDIO_END_REASON_CALL_ENDED: 2,
+  CALL_AUDIO_END_REASON_CALL_TRANSFERRED: 3,
+  CALL_AUDIO_END_REASON_MAX_DURATION: 4,
+  CALL_AUDIO_END_REASON_STALLED: 5,
+  CALL_AUDIO_END_REASON_INTERNAL: 6
 };
 
 /**
