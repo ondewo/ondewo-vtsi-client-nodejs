@@ -24,6 +24,7 @@ interface IEventsService extends grpc.ServiceDefinition<grpc.UntypedServiceImple
     deleteWebhook: IEventsService_IDeleteWebhook;
     listWebhooks: IEventsService_IListWebhooks;
     testWebhook: IEventsService_ITestWebhook;
+    redeliverWebhookEvents: IEventsService_IRedeliverWebhookEvents;
     subscribeVtsiEvents: IEventsService_ISubscribeVtsiEvents;
 }
 
@@ -126,6 +127,15 @@ interface IEventsService_ITestWebhook extends grpc.MethodDefinition<ondewo_vtsi_
     responseSerialize: grpc.serialize<ondewo_vtsi_events_pb.TestWebhookResponse>;
     responseDeserialize: grpc.deserialize<ondewo_vtsi_events_pb.TestWebhookResponse>;
 }
+interface IEventsService_IRedeliverWebhookEvents extends grpc.MethodDefinition<ondewo_vtsi_events_pb.RedeliverWebhookEventsRequest, ondewo_vtsi_events_pb.RedeliverWebhookEventsResponse> {
+    path: "/ondewo.vtsi.Events/RedeliverWebhookEvents";
+    requestStream: false;
+    responseStream: false;
+    requestSerialize: grpc.serialize<ondewo_vtsi_events_pb.RedeliverWebhookEventsRequest>;
+    requestDeserialize: grpc.deserialize<ondewo_vtsi_events_pb.RedeliverWebhookEventsRequest>;
+    responseSerialize: grpc.serialize<ondewo_vtsi_events_pb.RedeliverWebhookEventsResponse>;
+    responseDeserialize: grpc.deserialize<ondewo_vtsi_events_pb.RedeliverWebhookEventsResponse>;
+}
 interface IEventsService_ISubscribeVtsiEvents extends grpc.MethodDefinition<ondewo_vtsi_events_pb.SubscribeVtsiEventsRequest, ondewo_vtsi_events_pb.SubscribeVtsiEventsResponse> {
     path: "/ondewo.vtsi.Events/SubscribeVtsiEvents";
     requestStream: false;
@@ -150,6 +160,7 @@ export interface IEventsServer {
     deleteWebhook: grpc.handleUnaryCall<ondewo_vtsi_events_pb.DeleteWebhookRequest, ondewo_vtsi_events_pb.DeleteWebhookResponse>;
     listWebhooks: grpc.handleUnaryCall<ondewo_vtsi_events_pb.ListWebhooksRequest, ondewo_vtsi_events_pb.ListWebhooksResponse>;
     testWebhook: grpc.handleUnaryCall<ondewo_vtsi_events_pb.TestWebhookRequest, ondewo_vtsi_events_pb.TestWebhookResponse>;
+    redeliverWebhookEvents: grpc.handleUnaryCall<ondewo_vtsi_events_pb.RedeliverWebhookEventsRequest, ondewo_vtsi_events_pb.RedeliverWebhookEventsResponse>;
     subscribeVtsiEvents: grpc.handleServerStreamingCall<ondewo_vtsi_events_pb.SubscribeVtsiEventsRequest, ondewo_vtsi_events_pb.SubscribeVtsiEventsResponse>;
 }
 
@@ -187,6 +198,9 @@ export interface IEventsClient {
     testWebhook(request: ondewo_vtsi_events_pb.TestWebhookRequest, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_events_pb.TestWebhookResponse) => void): grpc.ClientUnaryCall;
     testWebhook(request: ondewo_vtsi_events_pb.TestWebhookRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_events_pb.TestWebhookResponse) => void): grpc.ClientUnaryCall;
     testWebhook(request: ondewo_vtsi_events_pb.TestWebhookRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_events_pb.TestWebhookResponse) => void): grpc.ClientUnaryCall;
+    redeliverWebhookEvents(request: ondewo_vtsi_events_pb.RedeliverWebhookEventsRequest, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_events_pb.RedeliverWebhookEventsResponse) => void): grpc.ClientUnaryCall;
+    redeliverWebhookEvents(request: ondewo_vtsi_events_pb.RedeliverWebhookEventsRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_events_pb.RedeliverWebhookEventsResponse) => void): grpc.ClientUnaryCall;
+    redeliverWebhookEvents(request: ondewo_vtsi_events_pb.RedeliverWebhookEventsRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_events_pb.RedeliverWebhookEventsResponse) => void): grpc.ClientUnaryCall;
     subscribeVtsiEvents(request: ondewo_vtsi_events_pb.SubscribeVtsiEventsRequest, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<ondewo_vtsi_events_pb.SubscribeVtsiEventsResponse>;
     subscribeVtsiEvents(request: ondewo_vtsi_events_pb.SubscribeVtsiEventsRequest, metadata?: grpc.Metadata, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<ondewo_vtsi_events_pb.SubscribeVtsiEventsResponse>;
 }
@@ -226,6 +240,9 @@ export class EventsClient extends grpc.Client implements IEventsClient {
     public testWebhook(request: ondewo_vtsi_events_pb.TestWebhookRequest, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_events_pb.TestWebhookResponse) => void): grpc.ClientUnaryCall;
     public testWebhook(request: ondewo_vtsi_events_pb.TestWebhookRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_events_pb.TestWebhookResponse) => void): grpc.ClientUnaryCall;
     public testWebhook(request: ondewo_vtsi_events_pb.TestWebhookRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_events_pb.TestWebhookResponse) => void): grpc.ClientUnaryCall;
+    public redeliverWebhookEvents(request: ondewo_vtsi_events_pb.RedeliverWebhookEventsRequest, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_events_pb.RedeliverWebhookEventsResponse) => void): grpc.ClientUnaryCall;
+    public redeliverWebhookEvents(request: ondewo_vtsi_events_pb.RedeliverWebhookEventsRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_events_pb.RedeliverWebhookEventsResponse) => void): grpc.ClientUnaryCall;
+    public redeliverWebhookEvents(request: ondewo_vtsi_events_pb.RedeliverWebhookEventsRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_events_pb.RedeliverWebhookEventsResponse) => void): grpc.ClientUnaryCall;
     public subscribeVtsiEvents(request: ondewo_vtsi_events_pb.SubscribeVtsiEventsRequest, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<ondewo_vtsi_events_pb.SubscribeVtsiEventsResponse>;
     public subscribeVtsiEvents(request: ondewo_vtsi_events_pb.SubscribeVtsiEventsRequest, metadata?: grpc.Metadata, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<ondewo_vtsi_events_pb.SubscribeVtsiEventsResponse>;
 }

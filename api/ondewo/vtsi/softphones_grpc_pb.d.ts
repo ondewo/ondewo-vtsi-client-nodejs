@@ -21,6 +21,7 @@ interface ISoftphonesService extends grpc.ServiceDefinition<grpc.UntypedServiceI
     getSoftphoneCertificate: ISoftphonesService_IGetSoftphoneCertificate;
     revokeSoftphoneCertificate: ISoftphonesService_IRevokeSoftphoneCertificate;
     getSoftphoneProvisioning: ISoftphonesService_IGetSoftphoneProvisioning;
+    getSoftphoneRegistration: ISoftphonesService_IGetSoftphoneRegistration;
 }
 
 interface ISoftphonesService_ICreateSoftphoneAccount extends grpc.MethodDefinition<ondewo_vtsi_softphones_pb.CreateSoftphoneAccountRequest, ondewo_vtsi_softphones_pb.CreateSoftphoneAccountResponse> {
@@ -113,6 +114,15 @@ interface ISoftphonesService_IGetSoftphoneProvisioning extends grpc.MethodDefini
     responseSerialize: grpc.serialize<ondewo_vtsi_softphones_pb.SoftphoneProvisioning>;
     responseDeserialize: grpc.deserialize<ondewo_vtsi_softphones_pb.SoftphoneProvisioning>;
 }
+interface ISoftphonesService_IGetSoftphoneRegistration extends grpc.MethodDefinition<ondewo_vtsi_softphones_pb.GetSoftphoneRegistrationRequest, ondewo_vtsi_softphones_pb.SoftphoneRegistration> {
+    path: "/ondewo.vtsi.Softphones/GetSoftphoneRegistration";
+    requestStream: false;
+    responseStream: false;
+    requestSerialize: grpc.serialize<ondewo_vtsi_softphones_pb.GetSoftphoneRegistrationRequest>;
+    requestDeserialize: grpc.deserialize<ondewo_vtsi_softphones_pb.GetSoftphoneRegistrationRequest>;
+    responseSerialize: grpc.serialize<ondewo_vtsi_softphones_pb.SoftphoneRegistration>;
+    responseDeserialize: grpc.deserialize<ondewo_vtsi_softphones_pb.SoftphoneRegistration>;
+}
 
 export const SoftphonesService: ISoftphonesService;
 
@@ -127,6 +137,7 @@ export interface ISoftphonesServer {
     getSoftphoneCertificate: grpc.handleUnaryCall<ondewo_vtsi_softphones_pb.GetSoftphoneCertificateRequest, ondewo_vtsi_softphones_pb.SoftphoneCertificate>;
     revokeSoftphoneCertificate: grpc.handleUnaryCall<ondewo_vtsi_softphones_pb.RevokeSoftphoneCertificateRequest, ondewo_vtsi_softphones_pb.SoftphoneCertificate>;
     getSoftphoneProvisioning: grpc.handleUnaryCall<ondewo_vtsi_softphones_pb.GetSoftphoneProvisioningRequest, ondewo_vtsi_softphones_pb.SoftphoneProvisioning>;
+    getSoftphoneRegistration: grpc.handleUnaryCall<ondewo_vtsi_softphones_pb.GetSoftphoneRegistrationRequest, ondewo_vtsi_softphones_pb.SoftphoneRegistration>;
 }
 
 export interface ISoftphonesClient {
@@ -160,6 +171,9 @@ export interface ISoftphonesClient {
     getSoftphoneProvisioning(request: ondewo_vtsi_softphones_pb.GetSoftphoneProvisioningRequest, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_softphones_pb.SoftphoneProvisioning) => void): grpc.ClientUnaryCall;
     getSoftphoneProvisioning(request: ondewo_vtsi_softphones_pb.GetSoftphoneProvisioningRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_softphones_pb.SoftphoneProvisioning) => void): grpc.ClientUnaryCall;
     getSoftphoneProvisioning(request: ondewo_vtsi_softphones_pb.GetSoftphoneProvisioningRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_softphones_pb.SoftphoneProvisioning) => void): grpc.ClientUnaryCall;
+    getSoftphoneRegistration(request: ondewo_vtsi_softphones_pb.GetSoftphoneRegistrationRequest, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_softphones_pb.SoftphoneRegistration) => void): grpc.ClientUnaryCall;
+    getSoftphoneRegistration(request: ondewo_vtsi_softphones_pb.GetSoftphoneRegistrationRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_softphones_pb.SoftphoneRegistration) => void): grpc.ClientUnaryCall;
+    getSoftphoneRegistration(request: ondewo_vtsi_softphones_pb.GetSoftphoneRegistrationRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_softphones_pb.SoftphoneRegistration) => void): grpc.ClientUnaryCall;
 }
 
 export class SoftphonesClient extends grpc.Client implements ISoftphonesClient {
@@ -194,4 +208,7 @@ export class SoftphonesClient extends grpc.Client implements ISoftphonesClient {
     public getSoftphoneProvisioning(request: ondewo_vtsi_softphones_pb.GetSoftphoneProvisioningRequest, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_softphones_pb.SoftphoneProvisioning) => void): grpc.ClientUnaryCall;
     public getSoftphoneProvisioning(request: ondewo_vtsi_softphones_pb.GetSoftphoneProvisioningRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_softphones_pb.SoftphoneProvisioning) => void): grpc.ClientUnaryCall;
     public getSoftphoneProvisioning(request: ondewo_vtsi_softphones_pb.GetSoftphoneProvisioningRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_softphones_pb.SoftphoneProvisioning) => void): grpc.ClientUnaryCall;
+    public getSoftphoneRegistration(request: ondewo_vtsi_softphones_pb.GetSoftphoneRegistrationRequest, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_softphones_pb.SoftphoneRegistration) => void): grpc.ClientUnaryCall;
+    public getSoftphoneRegistration(request: ondewo_vtsi_softphones_pb.GetSoftphoneRegistrationRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_softphones_pb.SoftphoneRegistration) => void): grpc.ClientUnaryCall;
+    public getSoftphoneRegistration(request: ondewo_vtsi_softphones_pb.GetSoftphoneRegistrationRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_softphones_pb.SoftphoneRegistration) => void): grpc.ClientUnaryCall;
 }

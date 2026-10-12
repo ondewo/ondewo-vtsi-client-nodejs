@@ -64,6 +64,15 @@ export class SoftphoneAccount extends jspb.Message {
     clearModifiedAt(): void;
     getModifiedAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
     setModifiedAt(value?: google_protobuf_timestamp_pb.Timestamp): SoftphoneAccount;
+    getLocked(): boolean;
+    setLocked(value: boolean): SoftphoneAccount;
+
+    hasLockedAt(): boolean;
+    clearLockedAt(): void;
+    getLockedAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
+    setLockedAt(value?: google_protobuf_timestamp_pb.Timestamp): SoftphoneAccount;
+    getLockedReason(): string;
+    setLockedReason(value: string): SoftphoneAccount;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): SoftphoneAccount.AsObject;
@@ -96,6 +105,9 @@ export namespace SoftphoneAccount {
         createdAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
         modifiedBy: string,
         modifiedAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+        locked: boolean,
+        lockedAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+        lockedReason: string,
     }
 }
 
@@ -326,6 +338,11 @@ export class SoftphoneAccountFilter extends jspb.Message {
     getCertificateExpiresAfter(): google_protobuf_timestamp_pb.Timestamp | undefined;
     setCertificateExpiresAfter(value?: google_protobuf_timestamp_pb.Timestamp): SoftphoneAccountFilter;
 
+    hasLocked(): boolean;
+    clearLocked(): void;
+    getLocked(): boolean | undefined;
+    setLocked(value: boolean): SoftphoneAccountFilter;
+
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): SoftphoneAccountFilter.AsObject;
     static toObject(includeInstance: boolean, msg: SoftphoneAccountFilter): SoftphoneAccountFilter.AsObject;
@@ -346,6 +363,7 @@ export namespace SoftphoneAccountFilter {
         sipUsernameContains: string,
         certificateExpiresBefore?: google_protobuf_timestamp_pb.Timestamp.AsObject,
         certificateExpiresAfter?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+        locked?: boolean,
     }
 }
 
@@ -430,6 +448,8 @@ export class CreateSoftphoneAccountRequest extends jspb.Message {
     clearSoftphoneAccount(): void;
     getSoftphoneAccount(): SoftphoneAccount | undefined;
     setSoftphoneAccount(value?: SoftphoneAccount): CreateSoftphoneAccountRequest;
+    getIdempotencyKey(): string;
+    setIdempotencyKey(value: string): CreateSoftphoneAccountRequest;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): CreateSoftphoneAccountRequest.AsObject;
@@ -445,6 +465,7 @@ export namespace CreateSoftphoneAccountRequest {
     export type AsObject = {
         vtsiProjectName: string,
         softphoneAccount?: SoftphoneAccount.AsObject,
+        idempotencyKey: string,
     }
 }
 
@@ -855,6 +876,101 @@ export namespace GetSoftphoneProvisioningRequest {
     }
 }
 
+export class GetSoftphoneRegistrationRequest extends jspb.Message { 
+    getName(): string;
+    setName(value: string): GetSoftphoneRegistrationRequest;
+
+    hasFieldMask(): boolean;
+    clearFieldMask(): void;
+    getFieldMask(): google_protobuf_field_mask_pb.FieldMask | undefined;
+    setFieldMask(value?: google_protobuf_field_mask_pb.FieldMask): GetSoftphoneRegistrationRequest;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): GetSoftphoneRegistrationRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: GetSoftphoneRegistrationRequest): GetSoftphoneRegistrationRequest.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: GetSoftphoneRegistrationRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): GetSoftphoneRegistrationRequest;
+    static deserializeBinaryFromReader(message: GetSoftphoneRegistrationRequest, reader: jspb.BinaryReader): GetSoftphoneRegistrationRequest;
+}
+
+export namespace GetSoftphoneRegistrationRequest {
+    export type AsObject = {
+        name: string,
+        fieldMask?: google_protobuf_field_mask_pb.FieldMask.AsObject,
+    }
+}
+
+export class SoftphoneRegistration extends jspb.Message { 
+    getSoftphoneAccountName(): string;
+    setSoftphoneAccountName(value: string): SoftphoneRegistration;
+    clearContactsList(): void;
+    getContactsList(): Array<SoftphoneContact>;
+    setContactsList(value: Array<SoftphoneContact>): SoftphoneRegistration;
+    addContacts(value?: SoftphoneContact, index?: number): SoftphoneContact;
+
+    hasObservedAt(): boolean;
+    clearObservedAt(): void;
+    getObservedAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
+    setObservedAt(value?: google_protobuf_timestamp_pb.Timestamp): SoftphoneRegistration;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): SoftphoneRegistration.AsObject;
+    static toObject(includeInstance: boolean, msg: SoftphoneRegistration): SoftphoneRegistration.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: SoftphoneRegistration, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): SoftphoneRegistration;
+    static deserializeBinaryFromReader(message: SoftphoneRegistration, reader: jspb.BinaryReader): SoftphoneRegistration;
+}
+
+export namespace SoftphoneRegistration {
+    export type AsObject = {
+        softphoneAccountName: string,
+        contactsList: Array<SoftphoneContact.AsObject>,
+        observedAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    }
+}
+
+export class SoftphoneContact extends jspb.Message { 
+    getUri(): string;
+    setUri(value: string): SoftphoneContact;
+    getUserAgent(): string;
+    setUserAgent(value: string): SoftphoneContact;
+    getSourceAddress(): string;
+    setSourceAddress(value: string): SoftphoneContact;
+
+    hasExpireTime(): boolean;
+    clearExpireTime(): void;
+    getExpireTime(): google_protobuf_timestamp_pb.Timestamp | undefined;
+    setExpireTime(value?: google_protobuf_timestamp_pb.Timestamp): SoftphoneContact;
+    getRoundTripMs(): number;
+    setRoundTripMs(value: number): SoftphoneContact;
+    getStatus(): SoftphoneContactStatus;
+    setStatus(value: SoftphoneContactStatus): SoftphoneContact;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): SoftphoneContact.AsObject;
+    static toObject(includeInstance: boolean, msg: SoftphoneContact): SoftphoneContact.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: SoftphoneContact, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): SoftphoneContact;
+    static deserializeBinaryFromReader(message: SoftphoneContact, reader: jspb.BinaryReader): SoftphoneContact;
+}
+
+export namespace SoftphoneContact {
+    export type AsObject = {
+        uri: string,
+        userAgent: string,
+        sourceAddress: string,
+        expireTime?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+        roundTripMs: number,
+        status: SoftphoneContactStatus,
+    }
+}
+
 export enum SoftphoneTransportSecurity {
     SOFTPHONE_TRANSPORT_SECURITY_UNSPECIFIED = 0,
     SOFTPHONE_TRANSPORT_SECURITY_CLIENT_CERTIFICATE = 1,
@@ -866,6 +982,14 @@ export enum SoftphoneCertificateStatus {
     SOFTPHONE_CERTIFICATE_STATUS_ACTIVE = 1,
     SOFTPHONE_CERTIFICATE_STATUS_SUPERSEDED = 2,
     SOFTPHONE_CERTIFICATE_STATUS_REVOKED = 3,
+}
+
+export enum SoftphoneContactStatus {
+    SOFTPHONE_CONTACT_STATUS_UNSPECIFIED = 0,
+    SOFTPHONE_CONTACT_STATUS_AVAILABLE = 1,
+    SOFTPHONE_CONTACT_STATUS_UNAVAILABLE = 2,
+    SOFTPHONE_CONTACT_STATUS_NOT_QUALIFIED = 3,
+    SOFTPHONE_CONTACT_STATUS_UNKNOWN = 4,
 }
 
 export enum SoftphoneSrtpMode {

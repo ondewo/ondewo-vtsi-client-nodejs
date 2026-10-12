@@ -23,8 +23,6 @@ var global = (function() {
 
 var google_protobuf_field_mask_pb = require('google-protobuf/google/protobuf/field_mask_pb.js');
 goog.object.extend(proto, google_protobuf_field_mask_pb);
-var google_protobuf_struct_pb = require('google-protobuf/google/protobuf/struct_pb.js');
-goog.object.extend(proto, google_protobuf_struct_pb);
 var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js');
 goog.object.extend(proto, google_protobuf_timestamp_pb);
 goog.exportSymbol('proto.ondewo.vtsi.AsteriskConfigs', null, global);
@@ -41,6 +39,7 @@ goog.exportSymbol('proto.ondewo.vtsi.GetVtsiProjectRequest', null, global);
 goog.exportSymbol('proto.ondewo.vtsi.ListVtsiProjectsRequest', null, global);
 goog.exportSymbol('proto.ondewo.vtsi.ListVtsiProjectsResponse', null, global);
 goog.exportSymbol('proto.ondewo.vtsi.SipTrunkTransport', null, global);
+goog.exportSymbol('proto.ondewo.vtsi.TrunkRegistrationState', null, global);
 goog.exportSymbol('proto.ondewo.vtsi.UndeployVtsiProjectRequest', null, global);
 goog.exportSymbol('proto.ondewo.vtsi.UndeployVtsiProjectResponse', null, global);
 goog.exportSymbol('proto.ondewo.vtsi.UpdateVtsiProjectRequest', null, global);
@@ -484,7 +483,11 @@ proto.ondewo.vtsi.VtsiProject.toObject = function(includeInstance, msg) {
     nluAgentNamesList: (f = jspb.Message.getRepeatedField(msg, 14)) == null ? undefined : f,
     deployedCallers: jspb.Message.getFieldWithDefault(msg, 15, 0),
     deployedListeners: jspb.Message.getFieldWithDefault(msg, 16, 0),
-    transferPhoneNumberAllowlistList: (f = jspb.Message.getRepeatedField(msg, 17)) == null ? undefined : f
+    transferPhoneNumberAllowlistList: (f = jspb.Message.getRepeatedField(msg, 17)) == null ? undefined : f,
+    statusMessage: jspb.Message.getFieldWithDefault(msg, 18, ""),
+    statusChangedAt: (f = msg.getStatusChangedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    trunkRegistrationState: jspb.Message.getFieldWithDefault(msg, 20, 0),
+    asteriskVersionEffective: jspb.Message.getFieldWithDefault(msg, 21, "")
   };
 
   if (includeInstance) {
@@ -591,6 +594,23 @@ proto.ondewo.vtsi.VtsiProject.deserializeBinaryFromReader = function(msg, reader
     case 17:
       var value = /** @type {string} */ (reader.readString());
       msg.addTransferPhoneNumberAllowlist(value);
+      break;
+    case 18:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setStatusMessage(value);
+      break;
+    case 19:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setStatusChangedAt(value);
+      break;
+    case 20:
+      var value = /** @type {!proto.ondewo.vtsi.TrunkRegistrationState} */ (reader.readEnum());
+      msg.setTrunkRegistrationState(value);
+      break;
+    case 21:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setAsteriskVersionEffective(value);
       break;
     default:
       reader.skipField();
@@ -740,6 +760,35 @@ proto.ondewo.vtsi.VtsiProject.serializeBinaryToWriter = function(message, writer
   if (f.length > 0) {
     writer.writeRepeatedString(
       17,
+      f
+    );
+  }
+  f = message.getStatusMessage();
+  if (f.length > 0) {
+    writer.writeString(
+      18,
+      f
+    );
+  }
+  f = message.getStatusChangedAt();
+  if (f != null) {
+    writer.writeMessage(
+      19,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+  f = message.getTrunkRegistrationState();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      20,
+      f
+    );
+  }
+  f = message.getAsteriskVersionEffective();
+  if (f.length > 0) {
+    writer.writeString(
+      21,
       f
     );
   }
@@ -1144,6 +1193,97 @@ proto.ondewo.vtsi.VtsiProject.prototype.addTransferPhoneNumberAllowlist = functi
  */
 proto.ondewo.vtsi.VtsiProject.prototype.clearTransferPhoneNumberAllowlistList = function() {
   return this.setTransferPhoneNumberAllowlistList([]);
+};
+
+
+/**
+ * optional string status_message = 18;
+ * @return {string}
+ */
+proto.ondewo.vtsi.VtsiProject.prototype.getStatusMessage = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 18, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.vtsi.VtsiProject} returns this
+ */
+proto.ondewo.vtsi.VtsiProject.prototype.setStatusMessage = function(value) {
+  return jspb.Message.setProto3StringField(this, 18, value);
+};
+
+
+/**
+ * optional google.protobuf.Timestamp status_changed_at = 19;
+ * @return {?proto.google.protobuf.Timestamp}
+ */
+proto.ondewo.vtsi.VtsiProject.prototype.getStatusChangedAt = function() {
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 19));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Timestamp|undefined} value
+ * @return {!proto.ondewo.vtsi.VtsiProject} returns this
+*/
+proto.ondewo.vtsi.VtsiProject.prototype.setStatusChangedAt = function(value) {
+  return jspb.Message.setWrapperField(this, 19, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.ondewo.vtsi.VtsiProject} returns this
+ */
+proto.ondewo.vtsi.VtsiProject.prototype.clearStatusChangedAt = function() {
+  return this.setStatusChangedAt(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.VtsiProject.prototype.hasStatusChangedAt = function() {
+  return jspb.Message.getField(this, 19) != null;
+};
+
+
+/**
+ * optional TrunkRegistrationState trunk_registration_state = 20;
+ * @return {!proto.ondewo.vtsi.TrunkRegistrationState}
+ */
+proto.ondewo.vtsi.VtsiProject.prototype.getTrunkRegistrationState = function() {
+  return /** @type {!proto.ondewo.vtsi.TrunkRegistrationState} */ (jspb.Message.getFieldWithDefault(this, 20, 0));
+};
+
+
+/**
+ * @param {!proto.ondewo.vtsi.TrunkRegistrationState} value
+ * @return {!proto.ondewo.vtsi.VtsiProject} returns this
+ */
+proto.ondewo.vtsi.VtsiProject.prototype.setTrunkRegistrationState = function(value) {
+  return jspb.Message.setProto3EnumField(this, 20, value);
+};
+
+
+/**
+ * optional string asterisk_version_effective = 21;
+ * @return {string}
+ */
+proto.ondewo.vtsi.VtsiProject.prototype.getAsteriskVersionEffective = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 21, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.vtsi.VtsiProject} returns this
+ */
+proto.ondewo.vtsi.VtsiProject.prototype.setAsteriskVersionEffective = function(value) {
+  return jspb.Message.setProto3StringField(this, 21, value);
 };
 
 
@@ -2265,7 +2405,8 @@ proto.ondewo.vtsi.CreateVtsiProjectRequest.prototype.toObject = function(opt_inc
 proto.ondewo.vtsi.CreateVtsiProjectRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     vtsiProject: (f = msg.getVtsiProject()) && proto.ondewo.vtsi.VtsiProject.toObject(includeInstance, f),
-    errorMessage: jspb.Message.getFieldWithDefault(msg, 2, "")
+    errorMessage: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    validateOnly: jspb.Message.getBooleanFieldWithDefault(msg, 3, false)
   };
 
   if (includeInstance) {
@@ -2311,6 +2452,10 @@ proto.ondewo.vtsi.CreateVtsiProjectRequest.deserializeBinaryFromReader = functio
       var value = /** @type {string} */ (reader.readString());
       msg.setErrorMessage(value);
       break;
+    case 3:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setValidateOnly(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -2352,6 +2497,13 @@ proto.ondewo.vtsi.CreateVtsiProjectRequest.serializeBinaryToWriter = function(me
   if (f.length > 0) {
     writer.writeString(
       2,
+      f
+    );
+  }
+  f = message.getValidateOnly();
+  if (f) {
+    writer.writeBool(
+      3,
       f
     );
   }
@@ -2410,6 +2562,24 @@ proto.ondewo.vtsi.CreateVtsiProjectRequest.prototype.getErrorMessage = function(
  */
 proto.ondewo.vtsi.CreateVtsiProjectRequest.prototype.setErrorMessage = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional bool validate_only = 3;
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.CreateVtsiProjectRequest.prototype.getValidateOnly = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 3, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.ondewo.vtsi.CreateVtsiProjectRequest} returns this
+ */
+proto.ondewo.vtsi.CreateVtsiProjectRequest.prototype.setValidateOnly = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 3, value);
 };
 
 
@@ -2627,7 +2797,8 @@ proto.ondewo.vtsi.GetVtsiProjectRequest.prototype.toObject = function(opt_includ
 proto.ondewo.vtsi.GetVtsiProjectRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    vtsiProjectView: jspb.Message.getFieldWithDefault(msg, 2, 0)
+    vtsiProjectView: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -2672,6 +2843,11 @@ proto.ondewo.vtsi.GetVtsiProjectRequest.deserializeBinaryFromReader = function(m
       var value = /** @type {!proto.ondewo.vtsi.VtsiProjectView} */ (reader.readEnum());
       msg.setVtsiProjectView(value);
       break;
+    case 3:
+      var value = new google_protobuf_field_mask_pb.FieldMask;
+      reader.readMessage(value,google_protobuf_field_mask_pb.FieldMask.deserializeBinaryFromReader);
+      msg.setFieldMask(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -2715,6 +2891,14 @@ proto.ondewo.vtsi.GetVtsiProjectRequest.serializeBinaryToWriter = function(messa
       f
     );
   }
+  f = message.getFieldMask();
+  if (f != null) {
+    writer.writeMessage(
+      3,
+      f,
+      google_protobuf_field_mask_pb.FieldMask.serializeBinaryToWriter
+    );
+  }
 };
 
 
@@ -2754,13 +2938,50 @@ proto.ondewo.vtsi.GetVtsiProjectRequest.prototype.setVtsiProjectView = function(
 };
 
 
+/**
+ * optional google.protobuf.FieldMask field_mask = 3;
+ * @return {?proto.google.protobuf.FieldMask}
+ */
+proto.ondewo.vtsi.GetVtsiProjectRequest.prototype.getFieldMask = function() {
+  return /** @type{?proto.google.protobuf.FieldMask} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_field_mask_pb.FieldMask, 3));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.FieldMask|undefined} value
+ * @return {!proto.ondewo.vtsi.GetVtsiProjectRequest} returns this
+*/
+proto.ondewo.vtsi.GetVtsiProjectRequest.prototype.setFieldMask = function(value) {
+  return jspb.Message.setWrapperField(this, 3, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.ondewo.vtsi.GetVtsiProjectRequest} returns this
+ */
+proto.ondewo.vtsi.GetVtsiProjectRequest.prototype.clearFieldMask = function() {
+  return this.setFieldMask(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.GetVtsiProjectRequest.prototype.hasFieldMask = function() {
+  return jspb.Message.getField(this, 3) != null;
+};
+
+
 
 /**
  * List of repeated fields within this message type.
  * @private {!Array<number>}
  * @const
  */
-proto.ondewo.vtsi.ListVtsiProjectsRequest.repeatedFields_ = [4];
+proto.ondewo.vtsi.ListVtsiProjectsRequest.repeatedFields_ = [4,7];
 
 
 
@@ -2796,7 +3017,13 @@ proto.ondewo.vtsi.ListVtsiProjectsRequest.toObject = function(includeInstance, m
     vtsiProjectView: jspb.Message.getFieldWithDefault(msg, 1, 0),
     pageToken: jspb.Message.getFieldWithDefault(msg, 2, ""),
     vtsiProjectSorting: (f = msg.getVtsiProjectSorting()) && proto.ondewo.vtsi.VtsiProjectSorting.toObject(includeInstance, f),
-    nluAgentNamesList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f
+    nluAgentNamesList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f,
+    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f),
+    pageSize: jspb.Message.getFieldWithDefault(msg, 6, 0),
+    statusesList: (f = jspb.Message.getRepeatedField(msg, 7)) == null ? undefined : f,
+    displayNameContains: jspb.Message.getFieldWithDefault(msg, 8, ""),
+    createdAfter: (f = msg.getCreatedAfter()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    createdBefore: (f = msg.getCreatedBefore()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -2849,6 +3076,35 @@ proto.ondewo.vtsi.ListVtsiProjectsRequest.deserializeBinaryFromReader = function
     case 4:
       var value = /** @type {string} */ (reader.readString());
       msg.addNluAgentNames(value);
+      break;
+    case 5:
+      var value = new google_protobuf_field_mask_pb.FieldMask;
+      reader.readMessage(value,google_protobuf_field_mask_pb.FieldMask.deserializeBinaryFromReader);
+      msg.setFieldMask(value);
+      break;
+    case 6:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setPageSize(value);
+      break;
+    case 7:
+      var values = /** @type {!Array<!proto.ondewo.vtsi.VtsiProjectStatus>} */ (reader.isDelimited() ? reader.readPackedEnum() : [reader.readEnum()]);
+      for (var i = 0; i < values.length; i++) {
+        msg.addStatuses(values[i]);
+      }
+      break;
+    case 8:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setDisplayNameContains(value);
+      break;
+    case 9:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setCreatedAfter(value);
+      break;
+    case 10:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setCreatedBefore(value);
       break;
     default:
       reader.skipField();
@@ -2906,6 +3162,51 @@ proto.ondewo.vtsi.ListVtsiProjectsRequest.serializeBinaryToWriter = function(mes
     writer.writeRepeatedString(
       4,
       f
+    );
+  }
+  f = message.getFieldMask();
+  if (f != null) {
+    writer.writeMessage(
+      5,
+      f,
+      google_protobuf_field_mask_pb.FieldMask.serializeBinaryToWriter
+    );
+  }
+  f = message.getPageSize();
+  if (f !== 0) {
+    writer.writeInt32(
+      6,
+      f
+    );
+  }
+  f = message.getStatusesList();
+  if (f.length > 0) {
+    writer.writePackedEnum(
+      7,
+      f
+    );
+  }
+  f = message.getDisplayNameContains();
+  if (f.length > 0) {
+    writer.writeString(
+      8,
+      f
+    );
+  }
+  f = message.getCreatedAfter();
+  if (f != null) {
+    writer.writeMessage(
+      9,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+  f = message.getCreatedBefore();
+  if (f != null) {
+    writer.writeMessage(
+      10,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
     );
   }
 };
@@ -3036,6 +3337,190 @@ proto.ondewo.vtsi.ListVtsiProjectsRequest.prototype.addNluAgentNames = function(
  */
 proto.ondewo.vtsi.ListVtsiProjectsRequest.prototype.clearNluAgentNamesList = function() {
   return this.setNluAgentNamesList([]);
+};
+
+
+/**
+ * optional google.protobuf.FieldMask field_mask = 5;
+ * @return {?proto.google.protobuf.FieldMask}
+ */
+proto.ondewo.vtsi.ListVtsiProjectsRequest.prototype.getFieldMask = function() {
+  return /** @type{?proto.google.protobuf.FieldMask} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_field_mask_pb.FieldMask, 5));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.FieldMask|undefined} value
+ * @return {!proto.ondewo.vtsi.ListVtsiProjectsRequest} returns this
+*/
+proto.ondewo.vtsi.ListVtsiProjectsRequest.prototype.setFieldMask = function(value) {
+  return jspb.Message.setWrapperField(this, 5, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.ondewo.vtsi.ListVtsiProjectsRequest} returns this
+ */
+proto.ondewo.vtsi.ListVtsiProjectsRequest.prototype.clearFieldMask = function() {
+  return this.setFieldMask(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.ListVtsiProjectsRequest.prototype.hasFieldMask = function() {
+  return jspb.Message.getField(this, 5) != null;
+};
+
+
+/**
+ * optional int32 page_size = 6;
+ * @return {number}
+ */
+proto.ondewo.vtsi.ListVtsiProjectsRequest.prototype.getPageSize = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 6, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.ondewo.vtsi.ListVtsiProjectsRequest} returns this
+ */
+proto.ondewo.vtsi.ListVtsiProjectsRequest.prototype.setPageSize = function(value) {
+  return jspb.Message.setProto3IntField(this, 6, value);
+};
+
+
+/**
+ * repeated VtsiProjectStatus statuses = 7;
+ * @return {!Array<!proto.ondewo.vtsi.VtsiProjectStatus>}
+ */
+proto.ondewo.vtsi.ListVtsiProjectsRequest.prototype.getStatusesList = function() {
+  return /** @type {!Array<!proto.ondewo.vtsi.VtsiProjectStatus>} */ (jspb.Message.getRepeatedField(this, 7));
+};
+
+
+/**
+ * @param {!Array<!proto.ondewo.vtsi.VtsiProjectStatus>} value
+ * @return {!proto.ondewo.vtsi.ListVtsiProjectsRequest} returns this
+ */
+proto.ondewo.vtsi.ListVtsiProjectsRequest.prototype.setStatusesList = function(value) {
+  return jspb.Message.setField(this, 7, value || []);
+};
+
+
+/**
+ * @param {!proto.ondewo.vtsi.VtsiProjectStatus} value
+ * @param {number=} opt_index
+ * @return {!proto.ondewo.vtsi.ListVtsiProjectsRequest} returns this
+ */
+proto.ondewo.vtsi.ListVtsiProjectsRequest.prototype.addStatuses = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 7, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.ondewo.vtsi.ListVtsiProjectsRequest} returns this
+ */
+proto.ondewo.vtsi.ListVtsiProjectsRequest.prototype.clearStatusesList = function() {
+  return this.setStatusesList([]);
+};
+
+
+/**
+ * optional string display_name_contains = 8;
+ * @return {string}
+ */
+proto.ondewo.vtsi.ListVtsiProjectsRequest.prototype.getDisplayNameContains = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.vtsi.ListVtsiProjectsRequest} returns this
+ */
+proto.ondewo.vtsi.ListVtsiProjectsRequest.prototype.setDisplayNameContains = function(value) {
+  return jspb.Message.setProto3StringField(this, 8, value);
+};
+
+
+/**
+ * optional google.protobuf.Timestamp created_after = 9;
+ * @return {?proto.google.protobuf.Timestamp}
+ */
+proto.ondewo.vtsi.ListVtsiProjectsRequest.prototype.getCreatedAfter = function() {
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 9));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Timestamp|undefined} value
+ * @return {!proto.ondewo.vtsi.ListVtsiProjectsRequest} returns this
+*/
+proto.ondewo.vtsi.ListVtsiProjectsRequest.prototype.setCreatedAfter = function(value) {
+  return jspb.Message.setWrapperField(this, 9, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.ondewo.vtsi.ListVtsiProjectsRequest} returns this
+ */
+proto.ondewo.vtsi.ListVtsiProjectsRequest.prototype.clearCreatedAfter = function() {
+  return this.setCreatedAfter(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.ListVtsiProjectsRequest.prototype.hasCreatedAfter = function() {
+  return jspb.Message.getField(this, 9) != null;
+};
+
+
+/**
+ * optional google.protobuf.Timestamp created_before = 10;
+ * @return {?proto.google.protobuf.Timestamp}
+ */
+proto.ondewo.vtsi.ListVtsiProjectsRequest.prototype.getCreatedBefore = function() {
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 10));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Timestamp|undefined} value
+ * @return {!proto.ondewo.vtsi.ListVtsiProjectsRequest} returns this
+*/
+proto.ondewo.vtsi.ListVtsiProjectsRequest.prototype.setCreatedBefore = function(value) {
+  return jspb.Message.setWrapperField(this, 10, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.ondewo.vtsi.ListVtsiProjectsRequest} returns this
+ */
+proto.ondewo.vtsi.ListVtsiProjectsRequest.prototype.clearCreatedBefore = function() {
+  return this.setCreatedBefore(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.ListVtsiProjectsRequest.prototype.hasCreatedBefore = function() {
+  return jspb.Message.getField(this, 10) != null;
 };
 
 
@@ -3469,7 +3954,9 @@ proto.ondewo.vtsi.UpdateVtsiProjectRequest.prototype.toObject = function(opt_inc
 proto.ondewo.vtsi.UpdateVtsiProjectRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     vtsiProject: (f = msg.getVtsiProject()) && proto.ondewo.vtsi.VtsiProject.toObject(includeInstance, f),
-    updateMask: (f = msg.getUpdateMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
+    updateMask: (f = msg.getUpdateMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f),
+    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f),
+    validateOnly: jspb.Message.getBooleanFieldWithDefault(msg, 4, false)
   };
 
   if (includeInstance) {
@@ -3516,6 +4003,15 @@ proto.ondewo.vtsi.UpdateVtsiProjectRequest.deserializeBinaryFromReader = functio
       reader.readMessage(value,google_protobuf_field_mask_pb.FieldMask.deserializeBinaryFromReader);
       msg.setUpdateMask(value);
       break;
+    case 3:
+      var value = new google_protobuf_field_mask_pb.FieldMask;
+      reader.readMessage(value,google_protobuf_field_mask_pb.FieldMask.deserializeBinaryFromReader);
+      msg.setFieldMask(value);
+      break;
+    case 4:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setValidateOnly(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -3559,6 +4055,21 @@ proto.ondewo.vtsi.UpdateVtsiProjectRequest.serializeBinaryToWriter = function(me
       2,
       f,
       google_protobuf_field_mask_pb.FieldMask.serializeBinaryToWriter
+    );
+  }
+  f = message.getFieldMask();
+  if (f != null) {
+    writer.writeMessage(
+      3,
+      f,
+      google_protobuf_field_mask_pb.FieldMask.serializeBinaryToWriter
+    );
+  }
+  f = message.getValidateOnly();
+  if (f) {
+    writer.writeBool(
+      4,
+      f
     );
   }
 };
@@ -3638,6 +4149,61 @@ proto.ondewo.vtsi.UpdateVtsiProjectRequest.prototype.hasUpdateMask = function() 
 };
 
 
+/**
+ * optional google.protobuf.FieldMask field_mask = 3;
+ * @return {?proto.google.protobuf.FieldMask}
+ */
+proto.ondewo.vtsi.UpdateVtsiProjectRequest.prototype.getFieldMask = function() {
+  return /** @type{?proto.google.protobuf.FieldMask} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_field_mask_pb.FieldMask, 3));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.FieldMask|undefined} value
+ * @return {!proto.ondewo.vtsi.UpdateVtsiProjectRequest} returns this
+*/
+proto.ondewo.vtsi.UpdateVtsiProjectRequest.prototype.setFieldMask = function(value) {
+  return jspb.Message.setWrapperField(this, 3, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.ondewo.vtsi.UpdateVtsiProjectRequest} returns this
+ */
+proto.ondewo.vtsi.UpdateVtsiProjectRequest.prototype.clearFieldMask = function() {
+  return this.setFieldMask(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.UpdateVtsiProjectRequest.prototype.hasFieldMask = function() {
+  return jspb.Message.getField(this, 3) != null;
+};
+
+
+/**
+ * optional bool validate_only = 4;
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.UpdateVtsiProjectRequest.prototype.getValidateOnly = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 4, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.ondewo.vtsi.UpdateVtsiProjectRequest} returns this
+ */
+proto.ondewo.vtsi.UpdateVtsiProjectRequest.prototype.setValidateOnly = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 4, value);
+};
+
+
 
 
 
@@ -3671,7 +4237,8 @@ proto.ondewo.vtsi.UpdateVtsiProjectResponse.prototype.toObject = function(opt_in
 proto.ondewo.vtsi.UpdateVtsiProjectResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
     name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    errorMessage: jspb.Message.getFieldWithDefault(msg, 2, "")
+    errorMessage: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    vtsiProject: (f = msg.getVtsiProject()) && proto.ondewo.vtsi.VtsiProject.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -3716,6 +4283,11 @@ proto.ondewo.vtsi.UpdateVtsiProjectResponse.deserializeBinaryFromReader = functi
       var value = /** @type {string} */ (reader.readString());
       msg.setErrorMessage(value);
       break;
+    case 3:
+      var value = new proto.ondewo.vtsi.VtsiProject;
+      reader.readMessage(value,proto.ondewo.vtsi.VtsiProject.deserializeBinaryFromReader);
+      msg.setVtsiProject(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -3759,6 +4331,14 @@ proto.ondewo.vtsi.UpdateVtsiProjectResponse.serializeBinaryToWriter = function(m
       f
     );
   }
+  f = message.getVtsiProject();
+  if (f != null) {
+    writer.writeMessage(
+      3,
+      f,
+      proto.ondewo.vtsi.VtsiProject.serializeBinaryToWriter
+    );
+  }
 };
 
 
@@ -3795,6 +4375,43 @@ proto.ondewo.vtsi.UpdateVtsiProjectResponse.prototype.getErrorMessage = function
  */
 proto.ondewo.vtsi.UpdateVtsiProjectResponse.prototype.setErrorMessage = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional VtsiProject vtsi_project = 3;
+ * @return {?proto.ondewo.vtsi.VtsiProject}
+ */
+proto.ondewo.vtsi.UpdateVtsiProjectResponse.prototype.getVtsiProject = function() {
+  return /** @type{?proto.ondewo.vtsi.VtsiProject} */ (
+    jspb.Message.getWrapperField(this, proto.ondewo.vtsi.VtsiProject, 3));
+};
+
+
+/**
+ * @param {?proto.ondewo.vtsi.VtsiProject|undefined} value
+ * @return {!proto.ondewo.vtsi.UpdateVtsiProjectResponse} returns this
+*/
+proto.ondewo.vtsi.UpdateVtsiProjectResponse.prototype.setVtsiProject = function(value) {
+  return jspb.Message.setWrapperField(this, 3, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.ondewo.vtsi.UpdateVtsiProjectResponse} returns this
+ */
+proto.ondewo.vtsi.UpdateVtsiProjectResponse.prototype.clearVtsiProject = function() {
+  return this.setVtsiProject(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.vtsi.UpdateVtsiProjectResponse.prototype.hasVtsiProject = function() {
+  return jspb.Message.getField(this, 3) != null;
 };
 
 
@@ -4671,6 +5288,17 @@ proto.ondewo.vtsi.UndeployVtsiProjectResponse.prototype.setErrorMessage = functi
 /**
  * @enum {number}
  */
+proto.ondewo.vtsi.TrunkRegistrationState = {
+  TRUNK_REGISTRATION_STATE_UNSPECIFIED: 0,
+  TRUNK_REGISTRATION_STATE_REGISTERED: 1,
+  TRUNK_REGISTRATION_STATE_UNREGISTERED: 2,
+  TRUNK_REGISTRATION_STATE_REJECTED: 3,
+  TRUNK_REGISTRATION_STATE_NOT_CONFIGURED: 4
+};
+
+/**
+ * @enum {number}
+ */
 proto.ondewo.vtsi.VtsiProjectStatus = {
   UNSPECIFIED: 0,
   UNDEPLOYED: 1,
@@ -4679,7 +5307,8 @@ proto.ondewo.vtsi.VtsiProjectStatus = {
   DEPLOYED: 4,
   UNDEPLOYING: 5,
   DELETING: 6,
-  DELETED: 7
+  DELETED: 7,
+  DEPLOY_FAILED: 8
 };
 
 /**

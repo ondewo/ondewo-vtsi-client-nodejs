@@ -7,7 +7,6 @@
 import * as grpc from "grpc";
 import * as ondewo_vtsi_projects_pb from "../../ondewo/vtsi/projects_pb";
 import * as google_protobuf_field_mask_pb from "google-protobuf/google/protobuf/field_mask_pb";
-import * as google_protobuf_struct_pb from "google-protobuf/google/protobuf/struct_pb";
 import * as google_protobuf_timestamp_pb from "google-protobuf/google/protobuf/timestamp_pb";
 
 interface IProjectsService extends grpc.ServiceDefinition<grpc.UntypedServiceImplementation> {

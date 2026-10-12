@@ -9,6 +9,7 @@ import * as google_protobuf_duration_pb from "google-protobuf/google/protobuf/du
 import * as google_protobuf_field_mask_pb from "google-protobuf/google/protobuf/field_mask_pb";
 import * as google_protobuf_timestamp_pb from "google-protobuf/google/protobuf/timestamp_pb";
 import * as ondewo_sip_sip_pb from "../../ondewo/sip/sip_pb";
+import * as ondewo_vtsi_call_configs_pb from "../../ondewo/vtsi/call_configs_pb";
 
 export class Campaign extends jspb.Message { 
     getName(): string;
@@ -67,6 +68,29 @@ export class Campaign extends jspb.Message {
     getCompletedAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
     setCompletedAt(value?: google_protobuf_timestamp_pb.Timestamp): Campaign;
 
+    hasCampaignCommonServicesConfig(): boolean;
+    clearCampaignCommonServicesConfig(): void;
+    getCampaignCommonServicesConfig(): ondewo_vtsi_call_configs_pb.CommonServicesConfig | undefined;
+    setCampaignCommonServicesConfig(value?: ondewo_vtsi_call_configs_pb.CommonServicesConfig): Campaign;
+
+    hasCampaignSipCallerConfig(): boolean;
+    clearCampaignSipCallerConfig(): void;
+    getCampaignSipCallerConfig(): ondewo_vtsi_call_configs_pb.SipCallerConfig | undefined;
+    setCampaignSipCallerConfig(value?: ondewo_vtsi_call_configs_pb.SipCallerConfig): Campaign;
+    clearCampaignCallersList(): void;
+    getCampaignCallersList(): Array<string>;
+    setCampaignCallersList(value: Array<string>): Campaign;
+    addCampaignCallers(value: string, index?: number): string;
+    getCampaignCallersTruncated(): boolean;
+    setCampaignCallersTruncated(value: boolean): Campaign;
+
+    hasCallingWindow(): boolean;
+    clearCallingWindow(): void;
+    getCallingWindow(): CampaignCallingWindow | undefined;
+    setCallingWindow(value?: CampaignCallingWindow): Campaign;
+    getOutsideCallingWindow(): boolean;
+    setOutsideCallingWindow(value: boolean): Campaign;
+
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): Campaign.AsObject;
     static toObject(includeInstance: boolean, msg: Campaign): Campaign.AsObject;
@@ -96,6 +120,69 @@ export namespace Campaign {
         startedAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
         stoppedAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
         completedAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+        campaignCommonServicesConfig?: ondewo_vtsi_call_configs_pb.CommonServicesConfig.AsObject,
+        campaignSipCallerConfig?: ondewo_vtsi_call_configs_pb.SipCallerConfig.AsObject,
+        campaignCallersList: Array<string>,
+        campaignCallersTruncated: boolean,
+        callingWindow?: CampaignCallingWindow.AsObject,
+        outsideCallingWindow: boolean,
+    }
+}
+
+export class CampaignCallingWindow extends jspb.Message { 
+    getTimeZone(): string;
+    setTimeZone(value: string): CampaignCallingWindow;
+    clearSlotsList(): void;
+    getSlotsList(): Array<CallingWindowSlot>;
+    setSlotsList(value: Array<CallingWindowSlot>): CampaignCallingWindow;
+    addSlots(value?: CallingWindowSlot, index?: number): CallingWindowSlot;
+
+    hasNextWindowStart(): boolean;
+    clearNextWindowStart(): void;
+    getNextWindowStart(): google_protobuf_timestamp_pb.Timestamp | undefined;
+    setNextWindowStart(value?: google_protobuf_timestamp_pb.Timestamp): CampaignCallingWindow;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): CampaignCallingWindow.AsObject;
+    static toObject(includeInstance: boolean, msg: CampaignCallingWindow): CampaignCallingWindow.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: CampaignCallingWindow, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): CampaignCallingWindow;
+    static deserializeBinaryFromReader(message: CampaignCallingWindow, reader: jspb.BinaryReader): CampaignCallingWindow;
+}
+
+export namespace CampaignCallingWindow {
+    export type AsObject = {
+        timeZone: string,
+        slotsList: Array<CallingWindowSlot.AsObject>,
+        nextWindowStart?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    }
+}
+
+export class CallingWindowSlot extends jspb.Message { 
+    getDayOfWeek(): CallingWindowDayOfWeek;
+    setDayOfWeek(value: CallingWindowDayOfWeek): CallingWindowSlot;
+    getStartMinute(): number;
+    setStartMinute(value: number): CallingWindowSlot;
+    getEndMinute(): number;
+    setEndMinute(value: number): CallingWindowSlot;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): CallingWindowSlot.AsObject;
+    static toObject(includeInstance: boolean, msg: CallingWindowSlot): CallingWindowSlot.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: CallingWindowSlot, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): CallingWindowSlot;
+    static deserializeBinaryFromReader(message: CallingWindowSlot, reader: jspb.BinaryReader): CallingWindowSlot;
+}
+
+export namespace CallingWindowSlot {
+    export type AsObject = {
+        dayOfWeek: CallingWindowDayOfWeek,
+        startMinute: number,
+        endMinute: number,
     }
 }
 
@@ -125,6 +212,13 @@ export class CampaignStatistics extends jspb.Message {
     getCallsRetried(): number;
     setCallsRetried(value: number): CampaignStatistics;
 
+    hasAverageConnectedDuration(): boolean;
+    clearAverageConnectedDuration(): void;
+    getAverageConnectedDuration(): google_protobuf_duration_pb.Duration | undefined;
+    setAverageConnectedDuration(value?: google_protobuf_duration_pb.Duration): CampaignStatistics;
+    getAnsweringMachineDetected(): number;
+    setAnsweringMachineDetected(value: number): CampaignStatistics;
+
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): CampaignStatistics.AsObject;
     static toObject(includeInstance: boolean, msg: CampaignStatistics): CampaignStatistics.AsObject;
@@ -149,6 +243,8 @@ export namespace CampaignStatistics {
         progressPercent: number,
         scheduledNotDue: number,
         callsRetried: number,
+        averageConnectedDuration?: google_protobuf_duration_pb.Duration.AsObject,
+        answeringMachineDetected: number,
     }
 }
 
@@ -308,29 +404,6 @@ export namespace CampaignCall {
     }
 }
 
-export class CampaignDisplayName extends jspb.Message { 
-    getVtsiProjectName(): string;
-    setVtsiProjectName(value: string): CampaignDisplayName;
-    getDisplayName(): string;
-    setDisplayName(value: string): CampaignDisplayName;
-
-    serializeBinary(): Uint8Array;
-    toObject(includeInstance?: boolean): CampaignDisplayName.AsObject;
-    static toObject(includeInstance: boolean, msg: CampaignDisplayName): CampaignDisplayName.AsObject;
-    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-    static serializeBinaryToWriter(message: CampaignDisplayName, writer: jspb.BinaryWriter): void;
-    static deserializeBinary(bytes: Uint8Array): CampaignDisplayName;
-    static deserializeBinaryFromReader(message: CampaignDisplayName, reader: jspb.BinaryReader): CampaignDisplayName;
-}
-
-export namespace CampaignDisplayName {
-    export type AsObject = {
-        vtsiProjectName: string,
-        displayName: string,
-    }
-}
-
 export class CampaignAssignment extends jspb.Message { 
 
     hasCampaignName(): boolean;
@@ -343,10 +416,10 @@ export class CampaignAssignment extends jspb.Message {
     getNewCampaign(): Campaign | undefined;
     setNewCampaign(value?: Campaign): CampaignAssignment;
 
-    hasCampaignDisplayName(): boolean;
-    clearCampaignDisplayName(): void;
-    getCampaignDisplayName(): CampaignDisplayName | undefined;
-    setCampaignDisplayName(value?: CampaignDisplayName): CampaignAssignment;
+    hasDisplayName(): boolean;
+    clearDisplayName(): void;
+    getDisplayName(): string;
+    setDisplayName(value: string): CampaignAssignment;
     getStartMode(): CampaignStartMode;
     setStartMode(value: CampaignStartMode): CampaignAssignment;
 
@@ -366,7 +439,7 @@ export namespace CampaignAssignment {
     export type AsObject = {
         campaignName: string,
         newCampaign?: Campaign.AsObject,
-        campaignDisplayName?: CampaignDisplayName.AsObject,
+        displayName: string,
         startMode: CampaignStartMode,
     }
 
@@ -374,7 +447,7 @@ export namespace CampaignAssignment {
         CAMPAIGN_SELECTOR_NOT_SET = 0,
         CAMPAIGN_NAME = 1,
         NEW_CAMPAIGN = 2,
-        CAMPAIGN_DISPLAY_NAME = 4,
+        DISPLAY_NAME = 5,
     }
 
 }
@@ -387,6 +460,13 @@ export class CreateCampaignRequest extends jspb.Message {
     clearCampaign(): void;
     getCampaign(): Campaign | undefined;
     setCampaign(value?: Campaign): CreateCampaignRequest;
+
+    hasFieldMask(): boolean;
+    clearFieldMask(): void;
+    getFieldMask(): google_protobuf_field_mask_pb.FieldMask | undefined;
+    setFieldMask(value?: google_protobuf_field_mask_pb.FieldMask): CreateCampaignRequest;
+    getIdempotencyKey(): string;
+    setIdempotencyKey(value: string): CreateCampaignRequest;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): CreateCampaignRequest.AsObject;
@@ -402,6 +482,8 @@ export namespace CreateCampaignRequest {
     export type AsObject = {
         vtsiProjectName: string,
         campaign?: Campaign.AsObject,
+        fieldMask?: google_protobuf_field_mask_pb.FieldMask.AsObject,
+        idempotencyKey: string,
     }
 }
 
@@ -414,8 +496,15 @@ export class GetCampaignRequest extends jspb.Message {
 
     hasDisplayName(): boolean;
     clearDisplayName(): void;
-    getDisplayName(): CampaignDisplayName | undefined;
-    setDisplayName(value?: CampaignDisplayName): GetCampaignRequest;
+    getDisplayName(): string;
+    setDisplayName(value: string): GetCampaignRequest;
+    getVtsiProjectName(): string;
+    setVtsiProjectName(value: string): GetCampaignRequest;
+
+    hasFieldMask(): boolean;
+    clearFieldMask(): void;
+    getFieldMask(): google_protobuf_field_mask_pb.FieldMask | undefined;
+    setFieldMask(value?: google_protobuf_field_mask_pb.FieldMask): GetCampaignRequest;
 
     getCampaignCase(): GetCampaignRequest.CampaignCase;
 
@@ -432,13 +521,15 @@ export class GetCampaignRequest extends jspb.Message {
 export namespace GetCampaignRequest {
     export type AsObject = {
         name: string,
-        displayName?: CampaignDisplayName.AsObject,
+        displayName: string,
+        vtsiProjectName: string,
+        fieldMask?: google_protobuf_field_mask_pb.FieldMask.AsObject,
     }
 
     export enum CampaignCase {
         CAMPAIGN_NOT_SET = 0,
         NAME = 1,
-        DISPLAY_NAME = 2,
+        DISPLAY_NAME = 3,
     }
 
 }
@@ -455,6 +546,11 @@ export class UpdateCampaignRequest extends jspb.Message {
     getUpdateMask(): google_protobuf_field_mask_pb.FieldMask | undefined;
     setUpdateMask(value?: google_protobuf_field_mask_pb.FieldMask): UpdateCampaignRequest;
 
+    hasFieldMask(): boolean;
+    clearFieldMask(): void;
+    getFieldMask(): google_protobuf_field_mask_pb.FieldMask | undefined;
+    setFieldMask(value?: google_protobuf_field_mask_pb.FieldMask): UpdateCampaignRequest;
+
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): UpdateCampaignRequest.AsObject;
     static toObject(includeInstance: boolean, msg: UpdateCampaignRequest): UpdateCampaignRequest.AsObject;
@@ -469,6 +565,7 @@ export namespace UpdateCampaignRequest {
     export type AsObject = {
         campaign?: Campaign.AsObject,
         updateMask?: google_protobuf_field_mask_pb.FieldMask.AsObject,
+        fieldMask?: google_protobuf_field_mask_pb.FieldMask.AsObject,
     }
 }
 
@@ -481,8 +578,17 @@ export class DeleteCampaignRequest extends jspb.Message {
 
     hasDisplayName(): boolean;
     clearDisplayName(): void;
-    getDisplayName(): CampaignDisplayName | undefined;
-    setDisplayName(value?: CampaignDisplayName): DeleteCampaignRequest;
+    getDisplayName(): string;
+    setDisplayName(value: string): DeleteCampaignRequest;
+    getVtsiProjectName(): string;
+    setVtsiProjectName(value: string): DeleteCampaignRequest;
+
+    hasFieldMask(): boolean;
+    clearFieldMask(): void;
+    getFieldMask(): google_protobuf_field_mask_pb.FieldMask | undefined;
+    setFieldMask(value?: google_protobuf_field_mask_pb.FieldMask): DeleteCampaignRequest;
+    getForce(): boolean;
+    setForce(value: boolean): DeleteCampaignRequest;
 
     getCampaignCase(): DeleteCampaignRequest.CampaignCase;
 
@@ -499,13 +605,16 @@ export class DeleteCampaignRequest extends jspb.Message {
 export namespace DeleteCampaignRequest {
     export type AsObject = {
         name: string,
-        displayName?: CampaignDisplayName.AsObject,
+        displayName: string,
+        vtsiProjectName: string,
+        fieldMask?: google_protobuf_field_mask_pb.FieldMask.AsObject,
+        force: boolean,
     }
 
     export enum CampaignCase {
         CAMPAIGN_NOT_SET = 0,
         NAME = 1,
-        DISPLAY_NAME = 2,
+        DISPLAY_NAME = 3,
     }
 
 }
@@ -546,6 +655,23 @@ export class CampaignFilter extends jspb.Message {
     getDisplayName(): string;
     setDisplayName(value: string): CampaignFilter;
 
+    hasCreatedAfter(): boolean;
+    clearCreatedAfter(): void;
+    getCreatedAfter(): google_protobuf_timestamp_pb.Timestamp | undefined;
+    setCreatedAfter(value?: google_protobuf_timestamp_pb.Timestamp): CampaignFilter;
+
+    hasCreatedBefore(): boolean;
+    clearCreatedBefore(): void;
+    getCreatedBefore(): google_protobuf_timestamp_pb.Timestamp | undefined;
+    setCreatedBefore(value?: google_protobuf_timestamp_pb.Timestamp): CampaignFilter;
+    getCreatedBy(): string;
+    setCreatedBy(value: string): CampaignFilter;
+
+    hasModifiedSince(): boolean;
+    clearModifiedSince(): void;
+    getModifiedSince(): google_protobuf_timestamp_pb.Timestamp | undefined;
+    setModifiedSince(value?: google_protobuf_timestamp_pb.Timestamp): CampaignFilter;
+
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): CampaignFilter.AsObject;
     static toObject(includeInstance: boolean, msg: CampaignFilter): CampaignFilter.AsObject;
@@ -561,6 +687,10 @@ export namespace CampaignFilter {
         statesList: Array<CampaignState>,
         displayNameContains: string,
         displayName: string,
+        createdAfter?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+        createdBefore?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+        createdBy: string,
+        modifiedSince?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     }
 }
 
@@ -580,6 +710,13 @@ export class ListCampaignsRequest extends jspb.Message {
     getPageToken(): string | undefined;
     setPageToken(value: string): ListCampaignsRequest;
 
+    hasFieldMask(): boolean;
+    clearFieldMask(): void;
+    getFieldMask(): google_protobuf_field_mask_pb.FieldMask | undefined;
+    setFieldMask(value?: google_protobuf_field_mask_pb.FieldMask): ListCampaignsRequest;
+    getOrderBy(): CampaignOrderBy;
+    setOrderBy(value: CampaignOrderBy): ListCampaignsRequest;
+
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): ListCampaignsRequest.AsObject;
     static toObject(includeInstance: boolean, msg: ListCampaignsRequest): ListCampaignsRequest.AsObject;
@@ -596,6 +733,8 @@ export namespace ListCampaignsRequest {
         filter?: CampaignFilter.AsObject,
         pageSize: number,
         pageToken?: string,
+        fieldMask?: google_protobuf_field_mask_pb.FieldMask.AsObject,
+        orderBy: CampaignOrderBy,
     }
 }
 
@@ -633,8 +772,10 @@ export class GetCampaignStatisticsRequest extends jspb.Message {
 
     hasDisplayName(): boolean;
     clearDisplayName(): void;
-    getDisplayName(): CampaignDisplayName | undefined;
-    setDisplayName(value?: CampaignDisplayName): GetCampaignStatisticsRequest;
+    getDisplayName(): string;
+    setDisplayName(value: string): GetCampaignStatisticsRequest;
+    getVtsiProjectName(): string;
+    setVtsiProjectName(value: string): GetCampaignStatisticsRequest;
 
     getCampaignCase(): GetCampaignStatisticsRequest.CampaignCase;
 
@@ -651,13 +792,14 @@ export class GetCampaignStatisticsRequest extends jspb.Message {
 export namespace GetCampaignStatisticsRequest {
     export type AsObject = {
         name: string,
-        displayName?: CampaignDisplayName.AsObject,
+        displayName: string,
+        vtsiProjectName: string,
     }
 
     export enum CampaignCase {
         CAMPAIGN_NOT_SET = 0,
         NAME = 1,
-        DISPLAY_NAME = 2,
+        DISPLAY_NAME = 3,
     }
 
 }
@@ -669,10 +811,12 @@ export class ListCampaignCallsRequest extends jspb.Message {
     getCampaignName(): string;
     setCampaignName(value: string): ListCampaignCallsRequest;
 
-    hasCampaignDisplayName(): boolean;
-    clearCampaignDisplayName(): void;
-    getCampaignDisplayName(): CampaignDisplayName | undefined;
-    setCampaignDisplayName(value?: CampaignDisplayName): ListCampaignCallsRequest;
+    hasDisplayName(): boolean;
+    clearDisplayName(): void;
+    getDisplayName(): string;
+    setDisplayName(value: string): ListCampaignCallsRequest;
+    getVtsiProjectName(): string;
+    setVtsiProjectName(value: string): ListCampaignCallsRequest;
     clearStatesList(): void;
     getStatesList(): Array<CampaignCallState>;
     setStatesList(value: Array<CampaignCallState>): ListCampaignCallsRequest;
@@ -689,6 +833,40 @@ export class ListCampaignCallsRequest extends jspb.Message {
     getIncludeAttempts(): boolean;
     setIncludeAttempts(value: boolean): ListCampaignCallsRequest;
 
+    hasFieldMask(): boolean;
+    clearFieldMask(): void;
+    getFieldMask(): google_protobuf_field_mask_pb.FieldMask | undefined;
+    setFieldMask(value?: google_protobuf_field_mask_pb.FieldMask): ListCampaignCallsRequest;
+    clearPhoneNumbersList(): void;
+    getPhoneNumbersList(): Array<string>;
+    setPhoneNumbersList(value: Array<string>): ListCampaignCallsRequest;
+    addPhoneNumbers(value: string, index?: number): string;
+    clearSourcesList(): void;
+    getSourcesList(): Array<CampaignCallSource>;
+    setSourcesList(value: Array<CampaignCallSource>): ListCampaignCallsRequest;
+    addSources(value: CampaignCallSource, index?: number): CampaignCallSource;
+
+    hasFinishTimeMin(): boolean;
+    clearFinishTimeMin(): void;
+    getFinishTimeMin(): google_protobuf_timestamp_pb.Timestamp | undefined;
+    setFinishTimeMin(value?: google_protobuf_timestamp_pb.Timestamp): ListCampaignCallsRequest;
+
+    hasFinishTimeMax(): boolean;
+    clearFinishTimeMax(): void;
+    getFinishTimeMax(): google_protobuf_timestamp_pb.Timestamp | undefined;
+    setFinishTimeMax(value?: google_protobuf_timestamp_pb.Timestamp): ListCampaignCallsRequest;
+
+    hasModifiedSince(): boolean;
+    clearModifiedSince(): void;
+    getModifiedSince(): google_protobuf_timestamp_pb.Timestamp | undefined;
+    setModifiedSince(value?: google_protobuf_timestamp_pb.Timestamp): ListCampaignCallsRequest;
+    getMinAttempts(): number;
+    setMinAttempts(value: number): ListCampaignCallsRequest;
+    clearCampaignCallNamesList(): void;
+    getCampaignCallNamesList(): Array<string>;
+    setCampaignCallNamesList(value: Array<string>): ListCampaignCallsRequest;
+    addCampaignCallNames(value: string, index?: number): string;
+
     getCampaignCase(): ListCampaignCallsRequest.CampaignCase;
 
     serializeBinary(): Uint8Array;
@@ -704,18 +882,27 @@ export class ListCampaignCallsRequest extends jspb.Message {
 export namespace ListCampaignCallsRequest {
     export type AsObject = {
         campaignName: string,
-        campaignDisplayName?: CampaignDisplayName.AsObject,
+        displayName: string,
+        vtsiProjectName: string,
         statesList: Array<CampaignCallState>,
         phoneNumber: string,
         pageSize: number,
         pageToken?: string,
         includeAttempts: boolean,
+        fieldMask?: google_protobuf_field_mask_pb.FieldMask.AsObject,
+        phoneNumbersList: Array<string>,
+        sourcesList: Array<CampaignCallSource>,
+        finishTimeMin?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+        finishTimeMax?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+        modifiedSince?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+        minAttempts: number,
+        campaignCallNamesList: Array<string>,
     }
 
     export enum CampaignCase {
         CAMPAIGN_NOT_SET = 0,
         CAMPAIGN_NAME = 1,
-        CAMPAIGN_DISPLAY_NAME = 7,
+        DISPLAY_NAME = 8,
     }
 
 }
@@ -754,8 +941,15 @@ export class StartCampaignRequest extends jspb.Message {
 
     hasDisplayName(): boolean;
     clearDisplayName(): void;
-    getDisplayName(): CampaignDisplayName | undefined;
-    setDisplayName(value?: CampaignDisplayName): StartCampaignRequest;
+    getDisplayName(): string;
+    setDisplayName(value: string): StartCampaignRequest;
+    getVtsiProjectName(): string;
+    setVtsiProjectName(value: string): StartCampaignRequest;
+
+    hasFieldMask(): boolean;
+    clearFieldMask(): void;
+    getFieldMask(): google_protobuf_field_mask_pb.FieldMask | undefined;
+    setFieldMask(value?: google_protobuf_field_mask_pb.FieldMask): StartCampaignRequest;
 
     getCampaignCase(): StartCampaignRequest.CampaignCase;
 
@@ -772,13 +966,15 @@ export class StartCampaignRequest extends jspb.Message {
 export namespace StartCampaignRequest {
     export type AsObject = {
         name: string,
-        displayName?: CampaignDisplayName.AsObject,
+        displayName: string,
+        vtsiProjectName: string,
+        fieldMask?: google_protobuf_field_mask_pb.FieldMask.AsObject,
     }
 
     export enum CampaignCase {
         CAMPAIGN_NOT_SET = 0,
         NAME = 1,
-        DISPLAY_NAME = 2,
+        DISPLAY_NAME = 3,
     }
 
 }
@@ -792,8 +988,15 @@ export class StopCampaignRequest extends jspb.Message {
 
     hasDisplayName(): boolean;
     clearDisplayName(): void;
-    getDisplayName(): CampaignDisplayName | undefined;
-    setDisplayName(value?: CampaignDisplayName): StopCampaignRequest;
+    getDisplayName(): string;
+    setDisplayName(value: string): StopCampaignRequest;
+    getVtsiProjectName(): string;
+    setVtsiProjectName(value: string): StopCampaignRequest;
+
+    hasFieldMask(): boolean;
+    clearFieldMask(): void;
+    getFieldMask(): google_protobuf_field_mask_pb.FieldMask | undefined;
+    setFieldMask(value?: google_protobuf_field_mask_pb.FieldMask): StopCampaignRequest;
 
     getCampaignCase(): StopCampaignRequest.CampaignCase;
 
@@ -810,13 +1013,15 @@ export class StopCampaignRequest extends jspb.Message {
 export namespace StopCampaignRequest {
     export type AsObject = {
         name: string,
-        displayName?: CampaignDisplayName.AsObject,
+        displayName: string,
+        vtsiProjectName: string,
+        fieldMask?: google_protobuf_field_mask_pb.FieldMask.AsObject,
     }
 
     export enum CampaignCase {
         CAMPAIGN_NOT_SET = 0,
         NAME = 1,
-        DISPLAY_NAME = 2,
+        DISPLAY_NAME = 3,
     }
 
 }
@@ -830,8 +1035,15 @@ export class HardStopCampaignRequest extends jspb.Message {
 
     hasDisplayName(): boolean;
     clearDisplayName(): void;
-    getDisplayName(): CampaignDisplayName | undefined;
-    setDisplayName(value?: CampaignDisplayName): HardStopCampaignRequest;
+    getDisplayName(): string;
+    setDisplayName(value: string): HardStopCampaignRequest;
+    getVtsiProjectName(): string;
+    setVtsiProjectName(value: string): HardStopCampaignRequest;
+
+    hasFieldMask(): boolean;
+    clearFieldMask(): void;
+    getFieldMask(): google_protobuf_field_mask_pb.FieldMask | undefined;
+    setFieldMask(value?: google_protobuf_field_mask_pb.FieldMask): HardStopCampaignRequest;
 
     getCampaignCase(): HardStopCampaignRequest.CampaignCase;
 
@@ -848,13 +1060,15 @@ export class HardStopCampaignRequest extends jspb.Message {
 export namespace HardStopCampaignRequest {
     export type AsObject = {
         name: string,
-        displayName?: CampaignDisplayName.AsObject,
+        displayName: string,
+        vtsiProjectName: string,
+        fieldMask?: google_protobuf_field_mask_pb.FieldMask.AsObject,
     }
 
     export enum CampaignCase {
         CAMPAIGN_NOT_SET = 0,
         NAME = 1,
-        DISPLAY_NAME = 2,
+        DISPLAY_NAME = 3,
     }
 
 }
@@ -868,8 +1082,15 @@ export class ResumeCampaignRequest extends jspb.Message {
 
     hasDisplayName(): boolean;
     clearDisplayName(): void;
-    getDisplayName(): CampaignDisplayName | undefined;
-    setDisplayName(value?: CampaignDisplayName): ResumeCampaignRequest;
+    getDisplayName(): string;
+    setDisplayName(value: string): ResumeCampaignRequest;
+    getVtsiProjectName(): string;
+    setVtsiProjectName(value: string): ResumeCampaignRequest;
+
+    hasFieldMask(): boolean;
+    clearFieldMask(): void;
+    getFieldMask(): google_protobuf_field_mask_pb.FieldMask | undefined;
+    setFieldMask(value?: google_protobuf_field_mask_pb.FieldMask): ResumeCampaignRequest;
 
     getCampaignCase(): ResumeCampaignRequest.CampaignCase;
 
@@ -886,13 +1107,15 @@ export class ResumeCampaignRequest extends jspb.Message {
 export namespace ResumeCampaignRequest {
     export type AsObject = {
         name: string,
-        displayName?: CampaignDisplayName.AsObject,
+        displayName: string,
+        vtsiProjectName: string,
+        fieldMask?: google_protobuf_field_mask_pb.FieldMask.AsObject,
     }
 
     export enum CampaignCase {
         CAMPAIGN_NOT_SET = 0,
         NAME = 1,
-        DISPLAY_NAME = 2,
+        DISPLAY_NAME = 3,
     }
 
 }
@@ -910,6 +1133,10 @@ export class StreamCampaignStatusRequest extends jspb.Message {
     addCampaignDisplayNames(value: string, index?: number): string;
     getIncludeCalls(): boolean;
     setIncludeCalls(value: boolean): StreamCampaignStatusRequest;
+    clearStatesList(): void;
+    getStatesList(): Array<CampaignState>;
+    setStatesList(value: Array<CampaignState>): StreamCampaignStatusRequest;
+    addStates(value: CampaignState, index?: number): CampaignState;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): StreamCampaignStatusRequest.AsObject;
@@ -927,6 +1154,7 @@ export namespace StreamCampaignStatusRequest {
         campaignNamesList: Array<string>,
         campaignDisplayNamesList: Array<string>,
         includeCalls: boolean,
+        statesList: Array<CampaignState>,
     }
 }
 
@@ -947,6 +1175,8 @@ export class StreamCampaignStatusResponse extends jspb.Message {
     setSnapshot(value: boolean): StreamCampaignStatusResponse;
     getEndReason(): string;
     setEndReason(value: string): StreamCampaignStatusResponse;
+    getEndReasonType(): StreamEndReason;
+    setEndReasonType(value: StreamEndReason): StreamCampaignStatusResponse;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): StreamCampaignStatusResponse.AsObject;
@@ -965,7 +1195,304 @@ export namespace StreamCampaignStatusResponse {
         deletedCampaignNamesList: Array<string>,
         snapshot: boolean,
         endReason: string,
+        endReasonType: StreamEndReason,
     }
+}
+
+export class GetCampaignCallRequest extends jspb.Message { 
+    getName(): string;
+    setName(value: string): GetCampaignCallRequest;
+    getIncludeAttempts(): boolean;
+    setIncludeAttempts(value: boolean): GetCampaignCallRequest;
+
+    hasFieldMask(): boolean;
+    clearFieldMask(): void;
+    getFieldMask(): google_protobuf_field_mask_pb.FieldMask | undefined;
+    setFieldMask(value?: google_protobuf_field_mask_pb.FieldMask): GetCampaignCallRequest;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): GetCampaignCallRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: GetCampaignCallRequest): GetCampaignCallRequest.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: GetCampaignCallRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): GetCampaignCallRequest;
+    static deserializeBinaryFromReader(message: GetCampaignCallRequest, reader: jspb.BinaryReader): GetCampaignCallRequest;
+}
+
+export namespace GetCampaignCallRequest {
+    export type AsObject = {
+        name: string,
+        includeAttempts: boolean,
+        fieldMask?: google_protobuf_field_mask_pb.FieldMask.AsObject,
+    }
+}
+
+export class CampaignCallRefusal extends jspb.Message { 
+    getCampaignCallName(): string;
+    setCampaignCallName(value: string): CampaignCallRefusal;
+    getState(): CampaignCallState;
+    setState(value: CampaignCallState): CampaignCallRefusal;
+    getReason(): string;
+    setReason(value: string): CampaignCallRefusal;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): CampaignCallRefusal.AsObject;
+    static toObject(includeInstance: boolean, msg: CampaignCallRefusal): CampaignCallRefusal.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: CampaignCallRefusal, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): CampaignCallRefusal;
+    static deserializeBinaryFromReader(message: CampaignCallRefusal, reader: jspb.BinaryReader): CampaignCallRefusal;
+}
+
+export namespace CampaignCallRefusal {
+    export type AsObject = {
+        campaignCallName: string,
+        state: CampaignCallState,
+        reason: string,
+    }
+}
+
+export class CancelCampaignCallsRequest extends jspb.Message { 
+
+    hasName(): boolean;
+    clearName(): void;
+    getName(): string;
+    setName(value: string): CancelCampaignCallsRequest;
+
+    hasDisplayName(): boolean;
+    clearDisplayName(): void;
+    getDisplayName(): string;
+    setDisplayName(value: string): CancelCampaignCallsRequest;
+    getVtsiProjectName(): string;
+    setVtsiProjectName(value: string): CancelCampaignCallsRequest;
+    clearCampaignCallNamesList(): void;
+    getCampaignCallNamesList(): Array<string>;
+    setCampaignCallNamesList(value: Array<string>): CancelCampaignCallsRequest;
+    addCampaignCallNames(value: string, index?: number): string;
+    clearStatesList(): void;
+    getStatesList(): Array<CampaignCallState>;
+    setStatesList(value: Array<CampaignCallState>): CancelCampaignCallsRequest;
+    addStates(value: CampaignCallState, index?: number): CampaignCallState;
+
+    getCampaignCase(): CancelCampaignCallsRequest.CampaignCase;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): CancelCampaignCallsRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: CancelCampaignCallsRequest): CancelCampaignCallsRequest.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: CancelCampaignCallsRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): CancelCampaignCallsRequest;
+    static deserializeBinaryFromReader(message: CancelCampaignCallsRequest, reader: jspb.BinaryReader): CancelCampaignCallsRequest;
+}
+
+export namespace CancelCampaignCallsRequest {
+    export type AsObject = {
+        name: string,
+        displayName: string,
+        vtsiProjectName: string,
+        campaignCallNamesList: Array<string>,
+        statesList: Array<CampaignCallState>,
+    }
+
+    export enum CampaignCase {
+        CAMPAIGN_NOT_SET = 0,
+        NAME = 1,
+        DISPLAY_NAME = 2,
+    }
+
+}
+
+export class CancelCampaignCallsResponse extends jspb.Message { 
+    getCampaignName(): string;
+    setCampaignName(value: string): CancelCampaignCallsResponse;
+    clearCancelledCampaignCallNamesList(): void;
+    getCancelledCampaignCallNamesList(): Array<string>;
+    setCancelledCampaignCallNamesList(value: Array<string>): CancelCampaignCallsResponse;
+    addCancelledCampaignCallNames(value: string, index?: number): string;
+    clearRefusedList(): void;
+    getRefusedList(): Array<CampaignCallRefusal>;
+    setRefusedList(value: Array<CampaignCallRefusal>): CancelCampaignCallsResponse;
+    addRefused(value?: CampaignCallRefusal, index?: number): CampaignCallRefusal;
+    getRemainingCount(): number;
+    setRemainingCount(value: number): CancelCampaignCallsResponse;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): CancelCampaignCallsResponse.AsObject;
+    static toObject(includeInstance: boolean, msg: CancelCampaignCallsResponse): CancelCampaignCallsResponse.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: CancelCampaignCallsResponse, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): CancelCampaignCallsResponse;
+    static deserializeBinaryFromReader(message: CancelCampaignCallsResponse, reader: jspb.BinaryReader): CancelCampaignCallsResponse;
+}
+
+export namespace CancelCampaignCallsResponse {
+    export type AsObject = {
+        campaignName: string,
+        cancelledCampaignCallNamesList: Array<string>,
+        refusedList: Array<CampaignCallRefusal.AsObject>,
+        remainingCount: number,
+    }
+}
+
+export class RetryCampaignCallsRequest extends jspb.Message { 
+
+    hasName(): boolean;
+    clearName(): void;
+    getName(): string;
+    setName(value: string): RetryCampaignCallsRequest;
+
+    hasDisplayName(): boolean;
+    clearDisplayName(): void;
+    getDisplayName(): string;
+    setDisplayName(value: string): RetryCampaignCallsRequest;
+    getVtsiProjectName(): string;
+    setVtsiProjectName(value: string): RetryCampaignCallsRequest;
+    clearCampaignCallNamesList(): void;
+    getCampaignCallNamesList(): Array<string>;
+    setCampaignCallNamesList(value: Array<string>): RetryCampaignCallsRequest;
+    addCampaignCallNames(value: string, index?: number): string;
+    clearStatesList(): void;
+    getStatesList(): Array<CampaignCallState>;
+    setStatesList(value: Array<CampaignCallState>): RetryCampaignCallsRequest;
+    addStates(value: CampaignCallState, index?: number): CampaignCallState;
+    getAdditionalAttempts(): number;
+    setAdditionalAttempts(value: number): RetryCampaignCallsRequest;
+
+    hasNotBefore(): boolean;
+    clearNotBefore(): void;
+    getNotBefore(): google_protobuf_timestamp_pb.Timestamp | undefined;
+    setNotBefore(value?: google_protobuf_timestamp_pb.Timestamp): RetryCampaignCallsRequest;
+
+    getCampaignCase(): RetryCampaignCallsRequest.CampaignCase;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): RetryCampaignCallsRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: RetryCampaignCallsRequest): RetryCampaignCallsRequest.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: RetryCampaignCallsRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): RetryCampaignCallsRequest;
+    static deserializeBinaryFromReader(message: RetryCampaignCallsRequest, reader: jspb.BinaryReader): RetryCampaignCallsRequest;
+}
+
+export namespace RetryCampaignCallsRequest {
+    export type AsObject = {
+        name: string,
+        displayName: string,
+        vtsiProjectName: string,
+        campaignCallNamesList: Array<string>,
+        statesList: Array<CampaignCallState>,
+        additionalAttempts: number,
+        notBefore?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    }
+
+    export enum CampaignCase {
+        CAMPAIGN_NOT_SET = 0,
+        NAME = 1,
+        DISPLAY_NAME = 2,
+    }
+
+}
+
+export class RetryCampaignCallsResponse extends jspb.Message { 
+    getCampaignName(): string;
+    setCampaignName(value: string): RetryCampaignCallsResponse;
+    clearRequeuedCampaignCallNamesList(): void;
+    getRequeuedCampaignCallNamesList(): Array<string>;
+    setRequeuedCampaignCallNamesList(value: Array<string>): RetryCampaignCallsResponse;
+    addRequeuedCampaignCallNames(value: string, index?: number): string;
+    clearRefusedList(): void;
+    getRefusedList(): Array<CampaignCallRefusal>;
+    setRefusedList(value: Array<CampaignCallRefusal>): RetryCampaignCallsResponse;
+    addRefused(value?: CampaignCallRefusal, index?: number): CampaignCallRefusal;
+    getRemainingCount(): number;
+    setRemainingCount(value: number): RetryCampaignCallsResponse;
+    getCampaignState(): CampaignState;
+    setCampaignState(value: CampaignState): RetryCampaignCallsResponse;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): RetryCampaignCallsResponse.AsObject;
+    static toObject(includeInstance: boolean, msg: RetryCampaignCallsResponse): RetryCampaignCallsResponse.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: RetryCampaignCallsResponse, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): RetryCampaignCallsResponse;
+    static deserializeBinaryFromReader(message: RetryCampaignCallsResponse, reader: jspb.BinaryReader): RetryCampaignCallsResponse;
+}
+
+export namespace RetryCampaignCallsResponse {
+    export type AsObject = {
+        campaignName: string,
+        requeuedCampaignCallNamesList: Array<string>,
+        refusedList: Array<CampaignCallRefusal.AsObject>,
+        remainingCount: number,
+        campaignState: CampaignState,
+    }
+}
+
+export class CloneCampaignRequest extends jspb.Message { 
+
+    hasSourceName(): boolean;
+    clearSourceName(): void;
+    getSourceName(): string;
+    setSourceName(value: string): CloneCampaignRequest;
+
+    hasSourceDisplayName(): boolean;
+    clearSourceDisplayName(): void;
+    getSourceDisplayName(): string;
+    setSourceDisplayName(value: string): CloneCampaignRequest;
+    getVtsiProjectName(): string;
+    setVtsiProjectName(value: string): CloneCampaignRequest;
+    getNewDisplayName(): string;
+    setNewDisplayName(value: string): CloneCampaignRequest;
+    getIncludeCalls(): boolean;
+    setIncludeCalls(value: boolean): CloneCampaignRequest;
+    clearCallStatesList(): void;
+    getCallStatesList(): Array<CampaignCallState>;
+    setCallStatesList(value: Array<CampaignCallState>): CloneCampaignRequest;
+    addCallStates(value: CampaignCallState, index?: number): CampaignCallState;
+
+    hasFieldMask(): boolean;
+    clearFieldMask(): void;
+    getFieldMask(): google_protobuf_field_mask_pb.FieldMask | undefined;
+    setFieldMask(value?: google_protobuf_field_mask_pb.FieldMask): CloneCampaignRequest;
+    getIdempotencyKey(): string;
+    setIdempotencyKey(value: string): CloneCampaignRequest;
+
+    getSourceCase(): CloneCampaignRequest.SourceCase;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): CloneCampaignRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: CloneCampaignRequest): CloneCampaignRequest.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: CloneCampaignRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): CloneCampaignRequest;
+    static deserializeBinaryFromReader(message: CloneCampaignRequest, reader: jspb.BinaryReader): CloneCampaignRequest;
+}
+
+export namespace CloneCampaignRequest {
+    export type AsObject = {
+        sourceName: string,
+        sourceDisplayName: string,
+        vtsiProjectName: string,
+        newDisplayName: string,
+        includeCalls: boolean,
+        callStatesList: Array<CampaignCallState>,
+        fieldMask?: google_protobuf_field_mask_pb.FieldMask.AsObject,
+        idempotencyKey: string,
+    }
+
+    export enum SourceCase {
+        SOURCE_NOT_SET = 0,
+        SOURCE_NAME = 1,
+        SOURCE_DISPLAY_NAME = 2,
+    }
+
 }
 
 export enum CampaignState {
@@ -1008,4 +1535,32 @@ export enum CampaignCallAttemptOutcome {
     CAMPAIGN_CALL_ATTEMPT_OUTCOME_COMPLETED = 2,
     CAMPAIGN_CALL_ATTEMPT_OUTCOME_FAILED = 3,
     CAMPAIGN_CALL_ATTEMPT_OUTCOME_CANCELLED = 4,
+}
+
+export enum CallingWindowDayOfWeek {
+    CALLING_WINDOW_DAY_OF_WEEK_UNSPECIFIED = 0,
+    CALLING_WINDOW_DAY_OF_WEEK_MONDAY = 1,
+    CALLING_WINDOW_DAY_OF_WEEK_TUESDAY = 2,
+    CALLING_WINDOW_DAY_OF_WEEK_WEDNESDAY = 3,
+    CALLING_WINDOW_DAY_OF_WEEK_THURSDAY = 4,
+    CALLING_WINDOW_DAY_OF_WEEK_FRIDAY = 5,
+    CALLING_WINDOW_DAY_OF_WEEK_SATURDAY = 6,
+    CALLING_WINDOW_DAY_OF_WEEK_SUNDAY = 7,
+}
+
+export enum CampaignOrderBy {
+    CAMPAIGN_ORDER_BY_UNSPECIFIED = 0,
+    CAMPAIGN_ORDER_BY_CREATED_AT_DESC = 1,
+    CAMPAIGN_ORDER_BY_MODIFIED_AT_DESC = 2,
+    CAMPAIGN_ORDER_BY_DISPLAY_NAME_ASC = 3,
+}
+
+export enum StreamEndReason {
+    STREAM_END_REASON_UNSPECIFIED = 0,
+    STREAM_END_REASON_MAX_DURATION = 1,
+    STREAM_END_REASON_CLIENT_TOO_SLOW = 2,
+    STREAM_END_REASON_SUBSCRIPTION_DELETED = 3,
+    STREAM_END_REASON_SUBSCRIPTION_DISABLED = 4,
+    STREAM_END_REASON_PROJECT_DELETED = 5,
+    STREAM_END_REASON_SERVER_SHUTDOWN = 6,
 }

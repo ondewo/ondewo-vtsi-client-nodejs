@@ -10,6 +10,7 @@ import * as google_protobuf_duration_pb from "google-protobuf/google/protobuf/du
 import * as google_protobuf_field_mask_pb from "google-protobuf/google/protobuf/field_mask_pb";
 import * as google_protobuf_timestamp_pb from "google-protobuf/google/protobuf/timestamp_pb";
 import * as ondewo_sip_sip_pb from "../../ondewo/sip/sip_pb";
+import * as ondewo_vtsi_call_configs_pb from "../../ondewo/vtsi/call_configs_pb";
 
 interface ICampaignsService extends grpc.ServiceDefinition<grpc.UntypedServiceImplementation> {
     createCampaign: ICampaignsService_ICreateCampaign;
@@ -24,6 +25,10 @@ interface ICampaignsService extends grpc.ServiceDefinition<grpc.UntypedServiceIm
     hardStopCampaign: ICampaignsService_IHardStopCampaign;
     resumeCampaign: ICampaignsService_IResumeCampaign;
     streamCampaignStatus: ICampaignsService_IStreamCampaignStatus;
+    getCampaignCall: ICampaignsService_IGetCampaignCall;
+    cancelCampaignCalls: ICampaignsService_ICancelCampaignCalls;
+    retryCampaignCalls: ICampaignsService_IRetryCampaignCalls;
+    cloneCampaign: ICampaignsService_ICloneCampaign;
 }
 
 interface ICampaignsService_ICreateCampaign extends grpc.MethodDefinition<ondewo_vtsi_campaigns_pb.CreateCampaignRequest, ondewo_vtsi_campaigns_pb.Campaign> {
@@ -134,6 +139,42 @@ interface ICampaignsService_IStreamCampaignStatus extends grpc.MethodDefinition<
     responseSerialize: grpc.serialize<ondewo_vtsi_campaigns_pb.StreamCampaignStatusResponse>;
     responseDeserialize: grpc.deserialize<ondewo_vtsi_campaigns_pb.StreamCampaignStatusResponse>;
 }
+interface ICampaignsService_IGetCampaignCall extends grpc.MethodDefinition<ondewo_vtsi_campaigns_pb.GetCampaignCallRequest, ondewo_vtsi_campaigns_pb.CampaignCall> {
+    path: "/ondewo.vtsi.Campaigns/GetCampaignCall";
+    requestStream: false;
+    responseStream: false;
+    requestSerialize: grpc.serialize<ondewo_vtsi_campaigns_pb.GetCampaignCallRequest>;
+    requestDeserialize: grpc.deserialize<ondewo_vtsi_campaigns_pb.GetCampaignCallRequest>;
+    responseSerialize: grpc.serialize<ondewo_vtsi_campaigns_pb.CampaignCall>;
+    responseDeserialize: grpc.deserialize<ondewo_vtsi_campaigns_pb.CampaignCall>;
+}
+interface ICampaignsService_ICancelCampaignCalls extends grpc.MethodDefinition<ondewo_vtsi_campaigns_pb.CancelCampaignCallsRequest, ondewo_vtsi_campaigns_pb.CancelCampaignCallsResponse> {
+    path: "/ondewo.vtsi.Campaigns/CancelCampaignCalls";
+    requestStream: false;
+    responseStream: false;
+    requestSerialize: grpc.serialize<ondewo_vtsi_campaigns_pb.CancelCampaignCallsRequest>;
+    requestDeserialize: grpc.deserialize<ondewo_vtsi_campaigns_pb.CancelCampaignCallsRequest>;
+    responseSerialize: grpc.serialize<ondewo_vtsi_campaigns_pb.CancelCampaignCallsResponse>;
+    responseDeserialize: grpc.deserialize<ondewo_vtsi_campaigns_pb.CancelCampaignCallsResponse>;
+}
+interface ICampaignsService_IRetryCampaignCalls extends grpc.MethodDefinition<ondewo_vtsi_campaigns_pb.RetryCampaignCallsRequest, ondewo_vtsi_campaigns_pb.RetryCampaignCallsResponse> {
+    path: "/ondewo.vtsi.Campaigns/RetryCampaignCalls";
+    requestStream: false;
+    responseStream: false;
+    requestSerialize: grpc.serialize<ondewo_vtsi_campaigns_pb.RetryCampaignCallsRequest>;
+    requestDeserialize: grpc.deserialize<ondewo_vtsi_campaigns_pb.RetryCampaignCallsRequest>;
+    responseSerialize: grpc.serialize<ondewo_vtsi_campaigns_pb.RetryCampaignCallsResponse>;
+    responseDeserialize: grpc.deserialize<ondewo_vtsi_campaigns_pb.RetryCampaignCallsResponse>;
+}
+interface ICampaignsService_ICloneCampaign extends grpc.MethodDefinition<ondewo_vtsi_campaigns_pb.CloneCampaignRequest, ondewo_vtsi_campaigns_pb.Campaign> {
+    path: "/ondewo.vtsi.Campaigns/CloneCampaign";
+    requestStream: false;
+    responseStream: false;
+    requestSerialize: grpc.serialize<ondewo_vtsi_campaigns_pb.CloneCampaignRequest>;
+    requestDeserialize: grpc.deserialize<ondewo_vtsi_campaigns_pb.CloneCampaignRequest>;
+    responseSerialize: grpc.serialize<ondewo_vtsi_campaigns_pb.Campaign>;
+    responseDeserialize: grpc.deserialize<ondewo_vtsi_campaigns_pb.Campaign>;
+}
 
 export const CampaignsService: ICampaignsService;
 
@@ -150,6 +191,10 @@ export interface ICampaignsServer {
     hardStopCampaign: grpc.handleUnaryCall<ondewo_vtsi_campaigns_pb.HardStopCampaignRequest, ondewo_vtsi_campaigns_pb.Campaign>;
     resumeCampaign: grpc.handleUnaryCall<ondewo_vtsi_campaigns_pb.ResumeCampaignRequest, ondewo_vtsi_campaigns_pb.Campaign>;
     streamCampaignStatus: grpc.handleServerStreamingCall<ondewo_vtsi_campaigns_pb.StreamCampaignStatusRequest, ondewo_vtsi_campaigns_pb.StreamCampaignStatusResponse>;
+    getCampaignCall: grpc.handleUnaryCall<ondewo_vtsi_campaigns_pb.GetCampaignCallRequest, ondewo_vtsi_campaigns_pb.CampaignCall>;
+    cancelCampaignCalls: grpc.handleUnaryCall<ondewo_vtsi_campaigns_pb.CancelCampaignCallsRequest, ondewo_vtsi_campaigns_pb.CancelCampaignCallsResponse>;
+    retryCampaignCalls: grpc.handleUnaryCall<ondewo_vtsi_campaigns_pb.RetryCampaignCallsRequest, ondewo_vtsi_campaigns_pb.RetryCampaignCallsResponse>;
+    cloneCampaign: grpc.handleUnaryCall<ondewo_vtsi_campaigns_pb.CloneCampaignRequest, ondewo_vtsi_campaigns_pb.Campaign>;
 }
 
 export interface ICampaignsClient {
@@ -188,6 +233,18 @@ export interface ICampaignsClient {
     resumeCampaign(request: ondewo_vtsi_campaigns_pb.ResumeCampaignRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_campaigns_pb.Campaign) => void): grpc.ClientUnaryCall;
     streamCampaignStatus(request: ondewo_vtsi_campaigns_pb.StreamCampaignStatusRequest, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<ondewo_vtsi_campaigns_pb.StreamCampaignStatusResponse>;
     streamCampaignStatus(request: ondewo_vtsi_campaigns_pb.StreamCampaignStatusRequest, metadata?: grpc.Metadata, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<ondewo_vtsi_campaigns_pb.StreamCampaignStatusResponse>;
+    getCampaignCall(request: ondewo_vtsi_campaigns_pb.GetCampaignCallRequest, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_campaigns_pb.CampaignCall) => void): grpc.ClientUnaryCall;
+    getCampaignCall(request: ondewo_vtsi_campaigns_pb.GetCampaignCallRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_campaigns_pb.CampaignCall) => void): grpc.ClientUnaryCall;
+    getCampaignCall(request: ondewo_vtsi_campaigns_pb.GetCampaignCallRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_campaigns_pb.CampaignCall) => void): grpc.ClientUnaryCall;
+    cancelCampaignCalls(request: ondewo_vtsi_campaigns_pb.CancelCampaignCallsRequest, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_campaigns_pb.CancelCampaignCallsResponse) => void): grpc.ClientUnaryCall;
+    cancelCampaignCalls(request: ondewo_vtsi_campaigns_pb.CancelCampaignCallsRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_campaigns_pb.CancelCampaignCallsResponse) => void): grpc.ClientUnaryCall;
+    cancelCampaignCalls(request: ondewo_vtsi_campaigns_pb.CancelCampaignCallsRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_campaigns_pb.CancelCampaignCallsResponse) => void): grpc.ClientUnaryCall;
+    retryCampaignCalls(request: ondewo_vtsi_campaigns_pb.RetryCampaignCallsRequest, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_campaigns_pb.RetryCampaignCallsResponse) => void): grpc.ClientUnaryCall;
+    retryCampaignCalls(request: ondewo_vtsi_campaigns_pb.RetryCampaignCallsRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_campaigns_pb.RetryCampaignCallsResponse) => void): grpc.ClientUnaryCall;
+    retryCampaignCalls(request: ondewo_vtsi_campaigns_pb.RetryCampaignCallsRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_campaigns_pb.RetryCampaignCallsResponse) => void): grpc.ClientUnaryCall;
+    cloneCampaign(request: ondewo_vtsi_campaigns_pb.CloneCampaignRequest, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_campaigns_pb.Campaign) => void): grpc.ClientUnaryCall;
+    cloneCampaign(request: ondewo_vtsi_campaigns_pb.CloneCampaignRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_campaigns_pb.Campaign) => void): grpc.ClientUnaryCall;
+    cloneCampaign(request: ondewo_vtsi_campaigns_pb.CloneCampaignRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_campaigns_pb.Campaign) => void): grpc.ClientUnaryCall;
 }
 
 export class CampaignsClient extends grpc.Client implements ICampaignsClient {
@@ -227,4 +284,16 @@ export class CampaignsClient extends grpc.Client implements ICampaignsClient {
     public resumeCampaign(request: ondewo_vtsi_campaigns_pb.ResumeCampaignRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_campaigns_pb.Campaign) => void): grpc.ClientUnaryCall;
     public streamCampaignStatus(request: ondewo_vtsi_campaigns_pb.StreamCampaignStatusRequest, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<ondewo_vtsi_campaigns_pb.StreamCampaignStatusResponse>;
     public streamCampaignStatus(request: ondewo_vtsi_campaigns_pb.StreamCampaignStatusRequest, metadata?: grpc.Metadata, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<ondewo_vtsi_campaigns_pb.StreamCampaignStatusResponse>;
+    public getCampaignCall(request: ondewo_vtsi_campaigns_pb.GetCampaignCallRequest, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_campaigns_pb.CampaignCall) => void): grpc.ClientUnaryCall;
+    public getCampaignCall(request: ondewo_vtsi_campaigns_pb.GetCampaignCallRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_campaigns_pb.CampaignCall) => void): grpc.ClientUnaryCall;
+    public getCampaignCall(request: ondewo_vtsi_campaigns_pb.GetCampaignCallRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_campaigns_pb.CampaignCall) => void): grpc.ClientUnaryCall;
+    public cancelCampaignCalls(request: ondewo_vtsi_campaigns_pb.CancelCampaignCallsRequest, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_campaigns_pb.CancelCampaignCallsResponse) => void): grpc.ClientUnaryCall;
+    public cancelCampaignCalls(request: ondewo_vtsi_campaigns_pb.CancelCampaignCallsRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_campaigns_pb.CancelCampaignCallsResponse) => void): grpc.ClientUnaryCall;
+    public cancelCampaignCalls(request: ondewo_vtsi_campaigns_pb.CancelCampaignCallsRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_campaigns_pb.CancelCampaignCallsResponse) => void): grpc.ClientUnaryCall;
+    public retryCampaignCalls(request: ondewo_vtsi_campaigns_pb.RetryCampaignCallsRequest, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_campaigns_pb.RetryCampaignCallsResponse) => void): grpc.ClientUnaryCall;
+    public retryCampaignCalls(request: ondewo_vtsi_campaigns_pb.RetryCampaignCallsRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_campaigns_pb.RetryCampaignCallsResponse) => void): grpc.ClientUnaryCall;
+    public retryCampaignCalls(request: ondewo_vtsi_campaigns_pb.RetryCampaignCallsRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_campaigns_pb.RetryCampaignCallsResponse) => void): grpc.ClientUnaryCall;
+    public cloneCampaign(request: ondewo_vtsi_campaigns_pb.CloneCampaignRequest, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_campaigns_pb.Campaign) => void): grpc.ClientUnaryCall;
+    public cloneCampaign(request: ondewo_vtsi_campaigns_pb.CloneCampaignRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_campaigns_pb.Campaign) => void): grpc.ClientUnaryCall;
+    public cloneCampaign(request: ondewo_vtsi_campaigns_pb.CloneCampaignRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_campaigns_pb.Campaign) => void): grpc.ClientUnaryCall;
 }

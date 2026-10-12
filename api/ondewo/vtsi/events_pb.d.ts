@@ -125,6 +125,10 @@ export class VtsiEventSubscription extends jspb.Message {
     getCampaignNamesList(): Array<string>;
     setCampaignNamesList(value: Array<string>): VtsiEventSubscription;
     addCampaignNames(value: string, index?: number): string;
+    clearExcludedEventsList(): void;
+    getExcludedEventsList(): Array<VtsiEvent>;
+    setExcludedEventsList(value: Array<VtsiEvent>): VtsiEventSubscription;
+    addExcludedEvents(value: VtsiEvent, index?: number): VtsiEvent;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): VtsiEventSubscription.AsObject;
@@ -151,6 +155,7 @@ export namespace VtsiEventSubscription {
         modifiedBy: string,
         modifiedAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
         campaignNamesList: Array<string>,
+        excludedEventsList: Array<VtsiEvent>,
     }
 }
 
@@ -238,6 +243,8 @@ export class Webhook extends jspb.Message {
     clearModifiedAt(): void;
     getModifiedAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
     setModifiedAt(value?: google_protobuf_timestamp_pb.Timestamp): Webhook;
+    getSigningSecret(): string;
+    setSigningSecret(value: string): Webhook;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): Webhook.AsObject;
@@ -265,6 +272,7 @@ export namespace Webhook {
         createdAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
         modifiedBy: string,
         modifiedAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+        signingSecret: string,
     }
 }
 
@@ -281,6 +289,12 @@ export class VtsiEventFilter extends jspb.Message {
     getCampaignNamesList(): Array<string>;
     setCampaignNamesList(value: Array<string>): VtsiEventFilter;
     addCampaignNames(value: string, index?: number): string;
+    getAllEvents(): boolean;
+    setAllEvents(value: boolean): VtsiEventFilter;
+    clearExcludedEventsList(): void;
+    getExcludedEventsList(): Array<VtsiEvent>;
+    setExcludedEventsList(value: Array<VtsiEvent>): VtsiEventFilter;
+    addExcludedEvents(value: VtsiEvent, index?: number): VtsiEvent;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): VtsiEventFilter.AsObject;
@@ -297,6 +311,8 @@ export namespace VtsiEventFilter {
         eventsList: Array<VtsiEvent>,
         resourceNamePrefixesList: Array<string>,
         campaignNamesList: Array<string>,
+        allEvents: boolean,
+        excludedEventsList: Array<VtsiEvent>,
     }
 }
 
@@ -308,6 +324,11 @@ export class CreateVtsiEventSubscriptionRequest extends jspb.Message {
     clearEventSubscription(): void;
     getEventSubscription(): VtsiEventSubscription | undefined;
     setEventSubscription(value?: VtsiEventSubscription): CreateVtsiEventSubscriptionRequest;
+
+    hasFieldMask(): boolean;
+    clearFieldMask(): void;
+    getFieldMask(): google_protobuf_field_mask_pb.FieldMask | undefined;
+    setFieldMask(value?: google_protobuf_field_mask_pb.FieldMask): CreateVtsiEventSubscriptionRequest;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): CreateVtsiEventSubscriptionRequest.AsObject;
@@ -323,12 +344,18 @@ export namespace CreateVtsiEventSubscriptionRequest {
     export type AsObject = {
         vtsiProjectName: string,
         eventSubscription?: VtsiEventSubscription.AsObject,
+        fieldMask?: google_protobuf_field_mask_pb.FieldMask.AsObject,
     }
 }
 
 export class GetVtsiEventSubscriptionRequest extends jspb.Message { 
     getName(): string;
     setName(value: string): GetVtsiEventSubscriptionRequest;
+
+    hasFieldMask(): boolean;
+    clearFieldMask(): void;
+    getFieldMask(): google_protobuf_field_mask_pb.FieldMask | undefined;
+    setFieldMask(value?: google_protobuf_field_mask_pb.FieldMask): GetVtsiEventSubscriptionRequest;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): GetVtsiEventSubscriptionRequest.AsObject;
@@ -343,6 +370,7 @@ export class GetVtsiEventSubscriptionRequest extends jspb.Message {
 export namespace GetVtsiEventSubscriptionRequest {
     export type AsObject = {
         name: string,
+        fieldMask?: google_protobuf_field_mask_pb.FieldMask.AsObject,
     }
 }
 
@@ -358,6 +386,11 @@ export class UpdateVtsiEventSubscriptionRequest extends jspb.Message {
     getUpdateMask(): google_protobuf_field_mask_pb.FieldMask | undefined;
     setUpdateMask(value?: google_protobuf_field_mask_pb.FieldMask): UpdateVtsiEventSubscriptionRequest;
 
+    hasFieldMask(): boolean;
+    clearFieldMask(): void;
+    getFieldMask(): google_protobuf_field_mask_pb.FieldMask | undefined;
+    setFieldMask(value?: google_protobuf_field_mask_pb.FieldMask): UpdateVtsiEventSubscriptionRequest;
+
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): UpdateVtsiEventSubscriptionRequest.AsObject;
     static toObject(includeInstance: boolean, msg: UpdateVtsiEventSubscriptionRequest): UpdateVtsiEventSubscriptionRequest.AsObject;
@@ -372,12 +405,18 @@ export namespace UpdateVtsiEventSubscriptionRequest {
     export type AsObject = {
         eventSubscription?: VtsiEventSubscription.AsObject,
         updateMask?: google_protobuf_field_mask_pb.FieldMask.AsObject,
+        fieldMask?: google_protobuf_field_mask_pb.FieldMask.AsObject,
     }
 }
 
 export class DeleteVtsiEventSubscriptionRequest extends jspb.Message { 
     getName(): string;
     setName(value: string): DeleteVtsiEventSubscriptionRequest;
+
+    hasFieldMask(): boolean;
+    clearFieldMask(): void;
+    getFieldMask(): google_protobuf_field_mask_pb.FieldMask | undefined;
+    setFieldMask(value?: google_protobuf_field_mask_pb.FieldMask): DeleteVtsiEventSubscriptionRequest;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): DeleteVtsiEventSubscriptionRequest.AsObject;
@@ -392,6 +431,7 @@ export class DeleteVtsiEventSubscriptionRequest extends jspb.Message {
 export namespace DeleteVtsiEventSubscriptionRequest {
     export type AsObject = {
         name: string,
+        fieldMask?: google_protobuf_field_mask_pb.FieldMask.AsObject,
     }
 }
 
@@ -426,6 +466,11 @@ export class ListVtsiEventSubscriptionsRequest extends jspb.Message {
     getPageToken(): string | undefined;
     setPageToken(value: string): ListVtsiEventSubscriptionsRequest;
 
+    hasFieldMask(): boolean;
+    clearFieldMask(): void;
+    getFieldMask(): google_protobuf_field_mask_pb.FieldMask | undefined;
+    setFieldMask(value?: google_protobuf_field_mask_pb.FieldMask): ListVtsiEventSubscriptionsRequest;
+
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): ListVtsiEventSubscriptionsRequest.AsObject;
     static toObject(includeInstance: boolean, msg: ListVtsiEventSubscriptionsRequest): ListVtsiEventSubscriptionsRequest.AsObject;
@@ -441,6 +486,7 @@ export namespace ListVtsiEventSubscriptionsRequest {
         vtsiProjectName: string,
         pageSize: number,
         pageToken?: string,
+        fieldMask?: google_protobuf_field_mask_pb.FieldMask.AsObject,
     }
 }
 
@@ -478,6 +524,11 @@ export class CreateWebhookRequest extends jspb.Message {
     getWebhook(): Webhook | undefined;
     setWebhook(value?: Webhook): CreateWebhookRequest;
 
+    hasFieldMask(): boolean;
+    clearFieldMask(): void;
+    getFieldMask(): google_protobuf_field_mask_pb.FieldMask | undefined;
+    setFieldMask(value?: google_protobuf_field_mask_pb.FieldMask): CreateWebhookRequest;
+
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): CreateWebhookRequest.AsObject;
     static toObject(includeInstance: boolean, msg: CreateWebhookRequest): CreateWebhookRequest.AsObject;
@@ -492,12 +543,18 @@ export namespace CreateWebhookRequest {
     export type AsObject = {
         vtsiProjectName: string,
         webhook?: Webhook.AsObject,
+        fieldMask?: google_protobuf_field_mask_pb.FieldMask.AsObject,
     }
 }
 
 export class GetWebhookRequest extends jspb.Message { 
     getName(): string;
     setName(value: string): GetWebhookRequest;
+
+    hasFieldMask(): boolean;
+    clearFieldMask(): void;
+    getFieldMask(): google_protobuf_field_mask_pb.FieldMask | undefined;
+    setFieldMask(value?: google_protobuf_field_mask_pb.FieldMask): GetWebhookRequest;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): GetWebhookRequest.AsObject;
@@ -512,6 +569,7 @@ export class GetWebhookRequest extends jspb.Message {
 export namespace GetWebhookRequest {
     export type AsObject = {
         name: string,
+        fieldMask?: google_protobuf_field_mask_pb.FieldMask.AsObject,
     }
 }
 
@@ -527,6 +585,11 @@ export class UpdateWebhookRequest extends jspb.Message {
     getUpdateMask(): google_protobuf_field_mask_pb.FieldMask | undefined;
     setUpdateMask(value?: google_protobuf_field_mask_pb.FieldMask): UpdateWebhookRequest;
 
+    hasFieldMask(): boolean;
+    clearFieldMask(): void;
+    getFieldMask(): google_protobuf_field_mask_pb.FieldMask | undefined;
+    setFieldMask(value?: google_protobuf_field_mask_pb.FieldMask): UpdateWebhookRequest;
+
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): UpdateWebhookRequest.AsObject;
     static toObject(includeInstance: boolean, msg: UpdateWebhookRequest): UpdateWebhookRequest.AsObject;
@@ -541,12 +604,18 @@ export namespace UpdateWebhookRequest {
     export type AsObject = {
         webhook?: Webhook.AsObject,
         updateMask?: google_protobuf_field_mask_pb.FieldMask.AsObject,
+        fieldMask?: google_protobuf_field_mask_pb.FieldMask.AsObject,
     }
 }
 
 export class DeleteWebhookRequest extends jspb.Message { 
     getName(): string;
     setName(value: string): DeleteWebhookRequest;
+
+    hasFieldMask(): boolean;
+    clearFieldMask(): void;
+    getFieldMask(): google_protobuf_field_mask_pb.FieldMask | undefined;
+    setFieldMask(value?: google_protobuf_field_mask_pb.FieldMask): DeleteWebhookRequest;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): DeleteWebhookRequest.AsObject;
@@ -561,6 +630,7 @@ export class DeleteWebhookRequest extends jspb.Message {
 export namespace DeleteWebhookRequest {
     export type AsObject = {
         name: string,
+        fieldMask?: google_protobuf_field_mask_pb.FieldMask.AsObject,
     }
 }
 
@@ -598,6 +668,11 @@ export class ListWebhooksRequest extends jspb.Message {
     getPageToken(): string | undefined;
     setPageToken(value: string): ListWebhooksRequest;
 
+    hasFieldMask(): boolean;
+    clearFieldMask(): void;
+    getFieldMask(): google_protobuf_field_mask_pb.FieldMask | undefined;
+    setFieldMask(value?: google_protobuf_field_mask_pb.FieldMask): ListWebhooksRequest;
+
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): ListWebhooksRequest.AsObject;
     static toObject(includeInstance: boolean, msg: ListWebhooksRequest): ListWebhooksRequest.AsObject;
@@ -613,6 +688,7 @@ export namespace ListWebhooksRequest {
         vtsiProjectName: string,
         pageSize: number,
         pageToken?: string,
+        fieldMask?: google_protobuf_field_mask_pb.FieldMask.AsObject,
     }
 }
 
@@ -644,6 +720,8 @@ export namespace ListWebhooksResponse {
 export class TestWebhookRequest extends jspb.Message { 
     getName(): string;
     setName(value: string): TestWebhookRequest;
+    getSampleEvent(): VtsiEvent;
+    setSampleEvent(value: VtsiEvent): TestWebhookRequest;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): TestWebhookRequest.AsObject;
@@ -658,6 +736,7 @@ export class TestWebhookRequest extends jspb.Message {
 export namespace TestWebhookRequest {
     export type AsObject = {
         name: string,
+        sampleEvent: VtsiEvent,
     }
 }
 
@@ -715,6 +794,11 @@ export class SubscribeVtsiEventsRequest extends jspb.Message {
     getResumeToken(): string | undefined;
     setResumeToken(value: string): SubscribeVtsiEventsRequest;
 
+    hasStartTime(): boolean;
+    clearStartTime(): void;
+    getStartTime(): google_protobuf_timestamp_pb.Timestamp | undefined;
+    setStartTime(value?: google_protobuf_timestamp_pb.Timestamp): SubscribeVtsiEventsRequest;
+
     getSelectorCase(): SubscribeVtsiEventsRequest.SelectorCase;
 
     serializeBinary(): Uint8Array;
@@ -733,6 +817,7 @@ export namespace SubscribeVtsiEventsRequest {
         eventSubscriptionName: string,
         filter?: VtsiEventFilter.AsObject,
         resumeToken?: string,
+        startTime?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     }
 
     export enum SelectorCase {
@@ -754,6 +839,8 @@ export class SubscribeVtsiEventsResponse extends jspb.Message {
     setDroppedEventCount(value: number): SubscribeVtsiEventsResponse;
     getEndReason(): string;
     setEndReason(value: string): SubscribeVtsiEventsResponse;
+    getEndReasonType(): ondewo_vtsi_campaigns_pb.StreamEndReason;
+    setEndReasonType(value: ondewo_vtsi_campaigns_pb.StreamEndReason): SubscribeVtsiEventsResponse;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): SubscribeVtsiEventsResponse.AsObject;
@@ -771,6 +858,82 @@ export namespace SubscribeVtsiEventsResponse {
         resumeToken: string,
         droppedEventCount: number,
         endReason: string,
+        endReasonType: ondewo_vtsi_campaigns_pb.StreamEndReason,
+    }
+}
+
+export class RedeliverWebhookEventsRequest extends jspb.Message { 
+    getWebhookName(): string;
+    setWebhookName(value: string): RedeliverWebhookEventsRequest;
+    clearEventIdsList(): void;
+    getEventIdsList(): Array<string>;
+    setEventIdsList(value: Array<string>): RedeliverWebhookEventsRequest;
+    addEventIds(value: string, index?: number): string;
+
+    hasStartTime(): boolean;
+    clearStartTime(): void;
+    getStartTime(): google_protobuf_timestamp_pb.Timestamp | undefined;
+    setStartTime(value?: google_protobuf_timestamp_pb.Timestamp): RedeliverWebhookEventsRequest;
+
+    hasEndTime(): boolean;
+    clearEndTime(): void;
+    getEndTime(): google_protobuf_timestamp_pb.Timestamp | undefined;
+    setEndTime(value?: google_protobuf_timestamp_pb.Timestamp): RedeliverWebhookEventsRequest;
+
+    hasFilter(): boolean;
+    clearFilter(): void;
+    getFilter(): VtsiEventFilter | undefined;
+    setFilter(value?: VtsiEventFilter): RedeliverWebhookEventsRequest;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): RedeliverWebhookEventsRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: RedeliverWebhookEventsRequest): RedeliverWebhookEventsRequest.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: RedeliverWebhookEventsRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): RedeliverWebhookEventsRequest;
+    static deserializeBinaryFromReader(message: RedeliverWebhookEventsRequest, reader: jspb.BinaryReader): RedeliverWebhookEventsRequest;
+}
+
+export namespace RedeliverWebhookEventsRequest {
+    export type AsObject = {
+        webhookName: string,
+        eventIdsList: Array<string>,
+        startTime?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+        endTime?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+        filter?: VtsiEventFilter.AsObject,
+    }
+}
+
+export class RedeliverWebhookEventsResponse extends jspb.Message { 
+    getEnqueuedCount(): number;
+    setEnqueuedCount(value: number): RedeliverWebhookEventsResponse;
+    getNotInJournalCount(): number;
+    setNotInJournalCount(value: number): RedeliverWebhookEventsResponse;
+    getNotEnqueuedCount(): number;
+    setNotEnqueuedCount(value: number): RedeliverWebhookEventsResponse;
+
+    hasNextStartTime(): boolean;
+    clearNextStartTime(): void;
+    getNextStartTime(): google_protobuf_timestamp_pb.Timestamp | undefined;
+    setNextStartTime(value?: google_protobuf_timestamp_pb.Timestamp): RedeliverWebhookEventsResponse;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): RedeliverWebhookEventsResponse.AsObject;
+    static toObject(includeInstance: boolean, msg: RedeliverWebhookEventsResponse): RedeliverWebhookEventsResponse.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: RedeliverWebhookEventsResponse, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): RedeliverWebhookEventsResponse;
+    static deserializeBinaryFromReader(message: RedeliverWebhookEventsResponse, reader: jspb.BinaryReader): RedeliverWebhookEventsResponse;
+}
+
+export namespace RedeliverWebhookEventsResponse {
+    export type AsObject = {
+        enqueuedCount: number,
+        notInJournalCount: number,
+        notEnqueuedCount: number,
+        nextStartTime?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     }
 }
 
@@ -798,6 +961,7 @@ export enum VtsiEvent {
     VTSI_EVENT_CALL_LISTENING_RESUMED = 119,
     VTSI_EVENT_CALL_AUDIO_STREAM_CONNECTED = 120,
     VTSI_EVENT_CALL_AUDIO_STREAM_DISCONNECTED = 121,
+    VTSI_EVENT_CALL_UPDATED = 122,
     VTSI_EVENT_CALLER_STARTED = 200,
     VTSI_EVENT_CALLER_START_FAILED = 201,
     VTSI_EVENT_CALLER_STOPPED = 202,
@@ -805,6 +969,7 @@ export enum VtsiEvent {
     VTSI_EVENT_CALLER_RESTARTED = 204,
     VTSI_EVENT_CALLER_UNHEALTHY = 205,
     VTSI_EVENT_CALLER_HEALTHY = 206,
+    VTSI_EVENT_CALLER_UPDATED = 207,
     VTSI_EVENT_LISTENER_STARTED = 300,
     VTSI_EVENT_LISTENER_START_FAILED = 301,
     VTSI_EVENT_LISTENER_STOPPED = 302,
@@ -812,11 +977,13 @@ export enum VtsiEvent {
     VTSI_EVENT_LISTENER_RESTARTED = 304,
     VTSI_EVENT_LISTENER_UNHEALTHY = 305,
     VTSI_EVENT_LISTENER_HEALTHY = 306,
+    VTSI_EVENT_LISTENER_UPDATED = 307,
     VTSI_EVENT_SCHEDULED_CALLER_CREATED = 400,
     VTSI_EVENT_SCHEDULED_CALLER_FIRED = 401,
     VTSI_EVENT_SCHEDULED_CALLER_FAILED = 402,
     VTSI_EVENT_SCHEDULED_CALLER_CANCELLED = 403,
     VTSI_EVENT_SCHEDULED_CALLER_RETRY_SCHEDULED = 404,
+    VTSI_EVENT_SCHEDULED_CALLER_UPDATED = 405,
     VTSI_EVENT_CAMPAIGN_CREATED = 500,
     VTSI_EVENT_CAMPAIGN_UPDATED = 501,
     VTSI_EVENT_CAMPAIGN_DELETED = 502,
@@ -836,6 +1003,9 @@ export enum VtsiEvent {
     VTSI_EVENT_CAMPAIGN_CALL_RETRY_SCHEDULED = 516,
     VTSI_EVENT_CAMPAIGN_CALL_CANCELLED = 517,
     VTSI_EVENT_CAMPAIGN_AUTO_STOPPED = 518,
+    VTSI_EVENT_CAMPAIGN_CALL_REQUEUED = 519,
+    VTSI_EVENT_CAMPAIGN_CALLING_WINDOW_OPENED = 520,
+    VTSI_EVENT_CAMPAIGN_CALLING_WINDOW_CLOSED = 521,
     VTSI_EVENT_VTSI_PROJECT_UPDATED = 601,
     VTSI_EVENT_VTSI_PROJECT_DELETED = 602,
     VTSI_EVENT_VTSI_PROJECT_DEPLOYED = 603,

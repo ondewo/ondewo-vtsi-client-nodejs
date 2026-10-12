@@ -6,6 +6,7 @@
 
 import * as grpc from "grpc";
 import * as ondewo_vtsi_logs_pb from "../../ondewo/vtsi/logs_pb";
+import * as google_protobuf_field_mask_pb from "google-protobuf/google/protobuf/field_mask_pb";
 import * as google_protobuf_timestamp_pb from "google-protobuf/google/protobuf/timestamp_pb";
 import * as ondewo_nlu_common_pb from "../../ondewo/nlu/common_pb";
 import * as ondewo_vtsi_calls_pb from "../../ondewo/vtsi/calls_pb";
@@ -16,6 +17,7 @@ interface ILogsService extends grpc.ServiceDefinition<grpc.UntypedServiceImpleme
     getCallLogStream: ILogsService_IGetCallLogStream;
     listCallLogStreams: ILogsService_IListCallLogStreams;
     deleteCallLogs: ILogsService_IDeleteCallLogs;
+    exportCallLogs: ILogsService_IExportCallLogs;
 }
 
 interface ILogsService_IStreamCallLogs extends grpc.MethodDefinition<ondewo_vtsi_logs_pb.StreamCallLogsRequest, ondewo_vtsi_logs_pb.StreamCallLogsResponse> {
@@ -63,6 +65,15 @@ interface ILogsService_IDeleteCallLogs extends grpc.MethodDefinition<ondewo_vtsi
     responseSerialize: grpc.serialize<ondewo_vtsi_logs_pb.DeleteCallLogsResponse>;
     responseDeserialize: grpc.deserialize<ondewo_vtsi_logs_pb.DeleteCallLogsResponse>;
 }
+interface ILogsService_IExportCallLogs extends grpc.MethodDefinition<ondewo_vtsi_logs_pb.ExportCallLogsRequest, ondewo_vtsi_logs_pb.ExportCallLogsResponse> {
+    path: "/ondewo.vtsi.Logs/ExportCallLogs";
+    requestStream: false;
+    responseStream: true;
+    requestSerialize: grpc.serialize<ondewo_vtsi_logs_pb.ExportCallLogsRequest>;
+    requestDeserialize: grpc.deserialize<ondewo_vtsi_logs_pb.ExportCallLogsRequest>;
+    responseSerialize: grpc.serialize<ondewo_vtsi_logs_pb.ExportCallLogsResponse>;
+    responseDeserialize: grpc.deserialize<ondewo_vtsi_logs_pb.ExportCallLogsResponse>;
+}
 
 export const LogsService: ILogsService;
 
@@ -72,6 +83,7 @@ export interface ILogsServer {
     getCallLogStream: grpc.handleUnaryCall<ondewo_vtsi_logs_pb.GetCallLogStreamRequest, ondewo_vtsi_logs_pb.CallLogStream>;
     listCallLogStreams: grpc.handleUnaryCall<ondewo_vtsi_logs_pb.ListCallLogStreamsRequest, ondewo_vtsi_logs_pb.ListCallLogStreamsResponse>;
     deleteCallLogs: grpc.handleUnaryCall<ondewo_vtsi_logs_pb.DeleteCallLogsRequest, ondewo_vtsi_logs_pb.DeleteCallLogsResponse>;
+    exportCallLogs: grpc.handleServerStreamingCall<ondewo_vtsi_logs_pb.ExportCallLogsRequest, ondewo_vtsi_logs_pb.ExportCallLogsResponse>;
 }
 
 export interface ILogsClient {
@@ -89,6 +101,8 @@ export interface ILogsClient {
     deleteCallLogs(request: ondewo_vtsi_logs_pb.DeleteCallLogsRequest, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_logs_pb.DeleteCallLogsResponse) => void): grpc.ClientUnaryCall;
     deleteCallLogs(request: ondewo_vtsi_logs_pb.DeleteCallLogsRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_logs_pb.DeleteCallLogsResponse) => void): grpc.ClientUnaryCall;
     deleteCallLogs(request: ondewo_vtsi_logs_pb.DeleteCallLogsRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_logs_pb.DeleteCallLogsResponse) => void): grpc.ClientUnaryCall;
+    exportCallLogs(request: ondewo_vtsi_logs_pb.ExportCallLogsRequest, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<ondewo_vtsi_logs_pb.ExportCallLogsResponse>;
+    exportCallLogs(request: ondewo_vtsi_logs_pb.ExportCallLogsRequest, metadata?: grpc.Metadata, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<ondewo_vtsi_logs_pb.ExportCallLogsResponse>;
 }
 
 export class LogsClient extends grpc.Client implements ILogsClient {
@@ -107,4 +121,6 @@ export class LogsClient extends grpc.Client implements ILogsClient {
     public deleteCallLogs(request: ondewo_vtsi_logs_pb.DeleteCallLogsRequest, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_logs_pb.DeleteCallLogsResponse) => void): grpc.ClientUnaryCall;
     public deleteCallLogs(request: ondewo_vtsi_logs_pb.DeleteCallLogsRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_logs_pb.DeleteCallLogsResponse) => void): grpc.ClientUnaryCall;
     public deleteCallLogs(request: ondewo_vtsi_logs_pb.DeleteCallLogsRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_logs_pb.DeleteCallLogsResponse) => void): grpc.ClientUnaryCall;
+    public exportCallLogs(request: ondewo_vtsi_logs_pb.ExportCallLogsRequest, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<ondewo_vtsi_logs_pb.ExportCallLogsResponse>;
+    public exportCallLogs(request: ondewo_vtsi_logs_pb.ExportCallLogsRequest, metadata?: grpc.Metadata, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<ondewo_vtsi_logs_pb.ExportCallLogsResponse>;
 }
