@@ -8,7 +8,14 @@ on:
 jobs:
   unit-tests:
     name: tests (node ${{ matrix.node-version }})
-    runs-on: ubuntu-latest
+    # Pinned instead of ubuntu-latest, whose move to a new Ubuntu release is announced on every job.
+    runs-on: ubuntu-24.04
+    # actions/checkout runs a plain `git init`, and git prints a multi-line default-branch hint when
+    # init.defaultBranch is unset. Setting it through the environment reaches every git the job runs.
+    env:
+      GIT_CONFIG_COUNT: '1'
+      GIT_CONFIG_KEY_0: init.defaultBranch
+      GIT_CONFIG_VALUE_0: master
     strategy:
       fail-fast: false
       matrix:
@@ -16,10 +23,10 @@ jobs:
         # LTS, 24 the newest release.
         node-version: ['20', '22', '24']
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
 
       - name: Set up Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v7
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm' # caches ~/.npm, keyed on package-lock.json
