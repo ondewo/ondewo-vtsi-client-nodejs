@@ -19,8 +19,8 @@
 
 import { strict as assert } from 'assert';
 import { execFileSync } from 'child_process';
-import { existsSync, readFileSync } from 'fs';
-import { dirname, join } from 'path';
+import { existsSync, readdirSync, readFileSync } from 'fs';
+import { dirname, join, relative } from 'path';
 import { describe, it } from 'node:test';
 
 /**
@@ -77,7 +77,53 @@ function serviceMethods(client: string): string[] {
 	return (evaluateOnPackage(`Object.keys(m[${JSON.stringify(client)}].service)`) as string[]).sort();
 }
 
+/**
+ * List the generated stubs below `api/` whose file name ends with `suffix`.
+ *
+ * @param suffix - File name ending, e.g. `_pb.js`.
+ * @param replacement - What `suffix` is replaced by in the returned path (the module specifier's ending).
+ * @returns Repository-relative paths (`./api/...`) with `suffix` replaced by `replacement`, sorted.
+ */
+function generatedStubs(suffix: string, replacement: string): string[] {
+	const found: string[] = [];
+	const walk: (dir: string) => void = (dir: string): void => {
+		for (const entry of readdirSync(dir, { withFileTypes: true })) {
+			const path: string = join(dir, entry.name);
+			if (entry.isDirectory()) {
+				walk(path);
+			} else if (entry.name.endsWith(suffix)) {
+				found.push(`./${relative(REPO_ROOT, path).slice(0, -suffix.length)}${replacement}`);
+			}
+		}
+	};
+	walk(join(REPO_ROOT, 'api'));
+	return found.sort();
+}
+
 describe('package entry point', () => {
+	// The release target once committed a regenerated api/ without the regenerated public-api.*, so
+	// the git tag of 9.1.0 lacked the call_configs exports that the npm tarball of 9.1.0 had.
+	it('public-api.js re-exports every generated stub and nothing that does not exist', () => {
+		const required: string[] = [
+			...readFileSync(join(REPO_ROOT, 'public-api.js'), 'utf8').matchAll(/require\('(\.\/api\/[^']+)'\)/g)
+		]
+			.map((match: RegExpMatchArray): string => match[1])
+			.sort();
+		assert.deepEqual(required, generatedStubs('_pb.js', '_pb'));
+	});
+
+	it('public-api.d.ts exports the typings of every generated stub', () => {
+		const exported: Set<string> = new Set<string>(
+			[...readFileSync(join(REPO_ROOT, 'public-api.d.ts'), 'utf8').matchAll(/from '(\.\/api\/[^']+)'/g)].map(
+				(match: RegExpMatchArray): string => match[1]
+			)
+		);
+		const missing: string[] = generatedStubs('_pb.d.ts', '_pb.d').filter(
+			(stub: string): boolean => !exported.has(stub)
+		);
+		assert.deepEqual(missing, []);
+	});
+
 	it('package.json main is the CommonJS public-api.js', () => {
 		const manifest: { main?: string } = JSON.parse(readFileSync(join(REPO_ROOT, 'package.json'), 'utf8')) as {
 			main?: string;
@@ -113,16 +159,22 @@ describe('package entry point', () => {
 		}
 	});
 
-	it('the new ondewo-vtsi-api 9.0.0 services carry every RPC of their proto', () => {
+	it('the ondewo-vtsi-api 9.x services carry every RPC of their proto', () => {
+		// 9.1.0 added cancelCampaignCalls, cloneCampaign, getCampaignCall, retryCampaignCalls,
+		// redeliverWebhookEvents and getSoftphoneRegistration.
 		assert.deepEqual(serviceMethods('CampaignsClient'), [
+			'cancelCampaignCalls',
+			'cloneCampaign',
 			'createCampaign',
 			'deleteCampaign',
 			'getCampaign',
+			'getCampaignCall',
 			'getCampaignStatistics',
 			'hardStopCampaign',
 			'listCampaignCalls',
 			'listCampaigns',
 			'resumeCampaign',
+			'retryCampaignCalls',
 			'startCampaign',
 			'stopCampaign',
 			'streamCampaignStatus',
@@ -137,6 +189,7 @@ describe('package entry point', () => {
 			'getWebhook',
 			'listVtsiEventSubscriptions',
 			'listWebhooks',
+			'redeliverWebhookEvents',
 			'subscribeVtsiEvents',
 			'testWebhook',
 			'updateVtsiEventSubscription',
@@ -148,6 +201,7 @@ describe('package entry point', () => {
 			'getSoftphoneAccount',
 			'getSoftphoneCertificate',
 			'getSoftphoneProvisioning',
+			'getSoftphoneRegistration',
 			'listSoftphoneAccounts',
 			'listSoftphoneCertificates',
 			'revokeSoftphoneCertificate',

@@ -78,6 +78,7 @@ export * from './api/ondewo/vtsi/events_pb.d';
 export * from './api/ondewo/vtsi/logs_pb.d';
 export * from './api/ondewo/vtsi/events_grpc_pb.d';
 export * from './api/ondewo/vtsi/logs_grpc_pb.d';
+export * from './api/ondewo/vtsi/call_configs_pb.d';
 export * from './api/ondewo/vtsi/campaigns_pb.d';
 export * from './api/ondewo/vtsi/calls_grpc_pb.d';
 export * from './api/ondewo/vtsi/projects_pb.d';

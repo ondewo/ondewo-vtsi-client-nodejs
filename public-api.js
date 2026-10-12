@@ -184,6 +184,8 @@ reexport(require('./api/ondewo/sip/sip_grpc_pb'));
 reexport(require('./api/ondewo/sip/sip_pb'));
 reexport(require('./api/ondewo/t2s/text-to-speech_grpc_pb'));
 reexport(require('./api/ondewo/t2s/text-to-speech_pb'));
+reexport(require('./api/ondewo/vtsi/call_configs_grpc_pb'));
+reexport(require('./api/ondewo/vtsi/call_configs_pb'));
 reexport(require('./api/ondewo/vtsi/calls_grpc_pb'));
 reexport(require('./api/ondewo/vtsi/calls_pb'));
 reexport(require('./api/ondewo/vtsi/campaigns_grpc_pb'));
