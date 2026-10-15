@@ -46,6 +46,7 @@ HOST_HAS_PRE_COMMIT?=$(shell command -v pre-commit >/dev/null 2>&1 && echo yes)
 IN_TOOLS=docker run --rm --user "$$(id -u):$$(id -g)" -v "$(CURDIR)":/work -w /work ${IMAGE_UTILS_NAME}
 IN_NODE=$(if $(HOST_HAS_NODE),,$(IN_TOOLS) )
 IN_PRE_COMMIT=$(if $(HOST_HAS_PRE_COMMIT),,$(IN_TOOLS) )
+NODE_IMAGE_IF_NEEDED=$(if $(HOST_HAS_NODE),,build_utils_docker_image)
 TOOLS_IMAGE_IF_NEEDED=$(if $(and $(HOST_HAS_NODE),$(HOST_HAS_PRE_COMMIT)),,build_utils_docker_image)
 
 # The release-notes section of ONDEWO_VTSI_VERSION: from its heading (anchored, the version taken literally)
@@ -76,10 +77,10 @@ install_precommit_hooks: ## Install precommit hooks
 run_precommit_hooks: ## Runs all precommit hooks
 	.husky/pre-commit
 
-prettier: ## Checks formatting with Prettier - Use PRETTIER_WRITE=-w to also automatically apply corrections where needed
+prettier: $(NODE_IMAGE_IF_NEEDED) ## Checks formatting with Prettier - Use PRETTIER_WRITE=-w to also automatically apply corrections where needed
 	$(IN_NODE)node_modules/.bin/prettier --config .prettierrc --check --ignore-path .prettierignore $(PRETTIER_WRITE) ./
 
-eslint: ## Checks Code Logic and Typing
+eslint: $(NODE_IMAGE_IF_NEEDED) ## Checks Code Logic and Typing
 	$(IN_NODE)./node_modules/.bin/eslint --config eslint.config.mjs .
 
 TEST: ## Prints some important variables
@@ -200,7 +201,7 @@ release_preflight: ## Fails unless the credentials are valid, the version is unr
 
 # The suites the `tests` workflow runs, run BEFORE anything is committed or published: the workflow
 # runs only after the push, so on its own it cannot stop a release.
-release_tests: ## Runs the CI test suites against the built tree (gates the release)
+release_tests: $(NODE_IMAGE_IF_NEEDED) ## Runs the CI test suites against the built tree (gates the release)
 	$(IN_NODE)npm ci --no-audit --no-fund
 	$(IN_NODE)npm test
 	$(IN_NODE)npm run test:protos
@@ -223,7 +224,7 @@ release_precommit_hooks: $(TOOLS_IMAGE_IF_NEEDED) ## Runs eslint, prettier and e
 # Every file the tarball ships must be committed and byte-equal at HEAD, so the git tag of a version holds
 # exactly what npm serves for it. README.md (the GitHub-only part is cut out) and package.json (the
 # scripts are removed) are derived: package.json is compared without its scripts.
-check_tag_matches_package: $(if $(HOST_HAS_NODE),,build_utils_docker_image) ## Fails unless every file npm would publish is committed and byte-equal at HEAD
+check_tag_matches_package: $(NODE_IMAGE_IF_NEEDED) ## Fails unless every file npm would publish is committed and byte-equal at HEAD
 	@files="$$($(IN_NODE)npm pack ./npm --dry-run --json --ignore-scripts 2>/dev/null \
 		| perl -MJSON::PP -0777 -ne 'print "$$_->{path}\n" for @{decode_json($$_)->[0]{files}}')" \
 		&& test -n "$$files" || { echo "check_tag_matches_package: npm pack listed no files"; exit 1; }; \
@@ -241,7 +242,7 @@ check_tag_matches_package: $(if $(HOST_HAS_NODE),,build_utils_docker_image) ## F
 	test $$bad -eq 0 && echo "check_tag_matches_package: the $$(echo "$$files" | wc -l) shipped files are committed at HEAD"
 
 # A publish that npm did not accept must fail the release before the push, branch, tag and GitHub release.
-release_verify_npm: $(if $(HOST_HAS_NODE),,build_utils_docker_image) ## Fails unless npm serves the released version (retried: the registry lags)
+release_verify_npm: $(NODE_IMAGE_IF_NEEDED) ## Fails unless npm serves the released version (retried: the registry lags)
 	@for attempt in $$(seq 1 20); do \
 		if test "$$($(IN_NODE)npm view ${NPM_PACKAGE}@${ONDEWO_VTSI_VERSION} version 2>/dev/null)" = "${ONDEWO_VTSI_VERSION}"; then \
 			echo "npm serves ${NPM_PACKAGE}@${ONDEWO_VTSI_VERSION}"; \
@@ -380,7 +381,7 @@ create_npm_package: ## Create NPM Package for Release
 # The codegen rewrites package.json; restore_ci_test_setup puts the dev tooling ranges of .ci-package.json
 # back. `npm install` then only brings package-lock.json in line with them. `npm i --save-dev <name>`
 # re-resolved every tool on each release and moved eslint 10 back to 9.
-install_dependencies: $(if $(HOST_HAS_NODE),,build_utils_docker_image) ## Brings package-lock.json in line with package.json
+install_dependencies: $(NODE_IMAGE_IF_NEEDED) ## Brings package-lock.json in line with package.json
 	$(IN_NODE)npm install --no-audit --no-fund
 
 # ondewo-vtsi-api is used at the tag VTSI_API_GIT_BRANCH, which already holds every proto. Its own
@@ -405,5 +406,5 @@ npm_run_build: ## Generates api/, public-api.* and package.json with the proto c
 		-c "find /output-volume -xdev -user 0 -exec chown $$(id -u):$$(id -g) {} +"
 	@echo "DONE npm run build."
 
-restore_ci_test_setup: $(if $(HOST_HAS_NODE),,build_utils_docker_image) ## Re-add CI test scripts + devDeps (from .ci-package.json) stripped by the proto-compiler root regen
+restore_ci_test_setup: $(NODE_IMAGE_IF_NEEDED) ## Re-add CI test scripts + devDeps (from .ci-package.json) stripped by the proto-compiler root regen
 	@$(IN_NODE)node -e 'const fs=require("fs");if(!fs.existsSync(".ci-package.json")){console.log("no .ci-package.json, skipping");process.exit(0)}const sorted=(o)=>Object.fromEntries(Object.entries(o).sort(([a],[b])=>(a<b?-1:a>b?1:0)));const p=JSON.parse(fs.readFileSync("package.json","utf8"));const c=JSON.parse(fs.readFileSync(".ci-package.json","utf8"));p.scripts=Object.assign({},p.scripts||{},c.scripts||{});p.dependencies=sorted(Object.assign({},p.dependencies||{},c.dependencies||{}));p.devDependencies=sorted(Object.assign({},p.devDependencies||{},c.devDependencies||{}));if(c.allowScripts)p.allowScripts=Object.assign({},p.allowScripts||{},c.allowScripts);if(c.description)p.description=c.description;fs.writeFileSync("package.json",JSON.stringify(p,null,2)+"\n");console.log("restore-ci-package: merged CI test setup; scripts=["+Object.keys(p.scripts).join(",")+"]")'
