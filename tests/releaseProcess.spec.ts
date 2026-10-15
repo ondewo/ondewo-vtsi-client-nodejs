@@ -345,6 +345,84 @@ describe('ondewo_release', () => {
 	});
 });
 
+describe('release_preflight and release_verify run on their own', () => {
+	/**
+	 * Run release_verify standalone in a scratch repository whose origin has the tag, with stand-ins for
+	 * docker (records the env-file it is handed) and npm (serves the version) first on the PATH.
+	 *
+	 * @param env - Extra environment (DEVOPS_ACCOUNT_DIR).
+	 * @returns The finished process and the stand-in docker's report.
+	 */
+	function verifyStandalone(env: NodeJS.ProcessEnv): { result: SpawnSyncReturns<string>; report: string } {
+		const dir: string = scratchRepository();
+		const origin: string = mkdtempSync(join(tmpdir(), 'vtsi-nodejs-origin-'));
+		const bin: string = mkdtempSync(join(tmpdir(), 'vtsi-nodejs-bin-'));
+		const report: string = join(bin, 'report');
+		try {
+			git(origin, 'init', '-q', '--bare');
+			git(dir, 'commit', '-q', '--allow-empty', '-m', 'init');
+			git(dir, 'remote', 'add', 'origin', origin);
+			git(dir, 'tag', '0.0.1');
+			git(dir, 'push', '-q', 'origin', '0.0.1');
+			writeFileSync(
+				join(bin, 'docker'),
+				[
+					'#!/bin/sh',
+					'test "$1" = run || exit 0',
+					`{ printf 'argv: %s' "$*" | tr '\\n' ' '; echo; } >> ${report}`,
+					'while test $# -gt 0; do',
+					`  if test "$1" = --env-file; then ls -l "$2" | cut -c1-10 >> ${report}; cat "$2" >> ${report}; echo "$2" >> ${report}; fi`,
+					'  shift',
+					'done',
+					''
+				].join('\n'),
+				{ mode: 0o755 }
+			);
+			writeFileSync(join(bin, 'npm'), '#!/bin/sh\necho 0.0.1\n', { mode: 0o755 });
+			const result: SpawnSyncReturns<string> = runMake(
+				dir,
+				['release_verify', 'ONDEWO_VTSI_VERSION=0.0.1', 'VERIFY_ATTEMPTS=1', 'VERIFY_INTERVAL_S=0'],
+				{ ...env, PATH: `${bin}:${process.env.PATH ?? ''}` }
+			);
+			if (!existsSync(report)) {
+				return { result, report: '' };
+			}
+			return { result, report: readFileSync(report, 'utf8') };
+		} finally {
+			rmSync(dir, { recursive: true, force: true });
+			rmSync(origin, { recursive: true, force: true });
+			rmSync(bin, { recursive: true, force: true });
+		}
+	}
+
+	it('read the tokens from DEVOPS_ACCOUNT_DIR into a 0600 file for that step only, never onto an argv', () => {
+		const accounts: string = mkdtempSync(join(tmpdir(), 'vtsi-nodejs-accounts-'));
+		try {
+			writeFileSync(join(accounts, 'account_github.env'), 'GITHUB_GH_TOKEN="gh-value"\n');
+			writeFileSync(join(accounts, 'account_npm.env'), 'NPM_AUTOMATION_TOKEN=npm-value\n');
+			const { result, report } = verifyStandalone({ DEVOPS_ACCOUNT_DIR: accounts });
+			assert.equal(result.status, 0, result.stdout + result.stderr);
+			const lines: string[] = report.trim().split('\n');
+			assert.match(lines[0], /^argv: run --rm --env-file \S+ /);
+			assert.ok(!report.split('\n')[0].includes('-value'), 'a token reached the argv of docker');
+			assert.deepEqual(lines.slice(1, 4), ['-rw-------', 'GITHUB_GH_TOKEN=gh-value', 'NPM_AUTOMATION_TOKEN=npm-value']);
+			assert.ok(!existsSync(lines[4]), 'the credentials file must be deleted after the step');
+			assert.ok(!(result.stdout + result.stderr).includes('-value'), 'a token reached the log');
+		} finally {
+			rmSync(accounts, { recursive: true, force: true });
+		}
+	});
+
+	it('fail before docker when there is no credential to hand over', () => {
+		for (const env of [{}, { DEVOPS_ACCOUNT_DIR: join(tmpdir(), 'vtsi-nodejs-no-such-dir') }]) {
+			const { result, report } = verifyStandalone(env);
+			assert.notEqual(result.status, 0);
+			assert.match(result.stdout, /release_verify: (no credentials|DEVOPS_ACCOUNT_DIR=.* is not a directory)/);
+			assert.equal(report, '');
+		}
+	});
+});
+
 describe('check_tag_matches_package', () => {
 	/**
 	 * Lay out a scratch repository with a committed root and an npm/ package built from it.

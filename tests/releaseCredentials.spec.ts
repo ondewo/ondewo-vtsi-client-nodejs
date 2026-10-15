@@ -98,8 +98,12 @@ const CREDENTIALED_TARGETS: string[] = [
 
 runTestCase('credentials reach docker only through the RELEASE_ENV_FILE env-file, never by name or value', () => {
 	assert.equal(new RegExp(`(?:-e|--env)[\\s=]+${SECRET_NAME}\\b`).exec(MAKEFILE), null);
-	for (const target of CREDENTIALED_TARGETS) {
+	for (const target of ['publish_npm_via_docker', 'release_to_github_via_docker_image']) {
 		assert.ok(recipeOf(target).includes('docker run --rm --env-file "$(RELEASE_ENV_FILE)"'), target);
+	}
+	// These two also run on their own (the release driver), with only DEVOPS_ACCOUNT_DIR set.
+	for (const target of ['release_preflight', 'release_verify']) {
+		assert.ok(recipeOf(target).includes('@$(USE_CREDENTIALS_FILE) docker run --rm --env-file "$$env_file"'), target);
 	}
 	const withEnvFile: string[] = RECIPE_LINES.filter((line: string): boolean => line.includes('--env-file'));
 	assert.equal(withEnvFile.length, CREDENTIALED_TARGETS.length);
@@ -137,9 +141,11 @@ runTestCase('the devops release writes the credentials to a file and never into 
 	assert.ok(!recipe.includes('$(info)'));
 	assert.ok(!recipe.includes('$(shell'));
 	assert.ok(!recipe.includes('set -a'));
-	assert.ok(recipe.includes("grep -h -E '^(GITHUB_GH_TOKEN|NPM_AUTOMATION_TOKEN)='"));
+	assert.ok(recipe.includes('\t$(WRITE_CREDENTIALS); \\'));
 	// the values are evaluated inside a ( subshell ) whose only output is the 0600 mktemp file
-	assert.match(recipe, /\( eval "\$\$\(grep [^\n]*\n[^\n]*\) > "\$\$env_file"/);
+	const write: string = (MAKEFILE.match(/^WRITE_CREDENTIALS=.*\n.*$/m) ?? [''])[0];
+	assert.ok(write.includes("grep -h -E '^(GITHUB_GH_TOKEN|NPM_AUTOMATION_TOKEN)='"));
+	assert.match(write, /^WRITE_CREDENTIALS=\( eval "\$\$\(grep [^\n]*\n[^\n]*\) > "\$\$env_file"$/);
 	assert.match(recipe, /\$\(MAKE\) release RELEASE_ENV_FILE="\$\$env_file"$/);
 	assert.equal(/\bmake\b[^\n]*\$\(info\)/.exec(MAKEFILE), null);
 	assert.equal(new RegExp(`(?:\\bmake|\\$\\(MAKE\\))[^\\n]*\\b${SECRET_NAME}=`).exec(RECIPE_LINES.join('\n')), null);

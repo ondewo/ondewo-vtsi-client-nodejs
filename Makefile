@@ -36,6 +36,9 @@ GH_REPO_NAME=ondewo/ondewo-vtsi-client-nodejs
 # never sourced into make or into a shell, so no token reaches npm ci, its install scripts, the tests or the
 # hooks.
 RELEASE_ENV_FILE?=
+# How long release_verify_npm waits for npm to serve a fresh publish.
+VERIFY_ATTEMPTS?=20
+VERIFY_INTERVAL_S?=30
 # A token that is in the CALLER's environment is not passed on to any recipe either.
 unexport GITHUB_GH_TOKEN GH_TOKEN NPM_AUTOMATION_TOKEN
 
@@ -59,6 +62,24 @@ GH_REPO="https://github.com/ondewo/ondewo-vtsi-client-nodejs"
 DEVOPS_ACCOUNT_GIT="ondewo-devops-accounts"
 # An existing devops-accounts checkout to read instead of cloning one (the driver's single temp clone).
 DEVOPS_ACCOUNT_DIR?=
+# Shell fragment: write the two tokens of the devops-accounts checkout "$$accounts" to the file "$$env_file"
+# (NAME=value lines). The values pass through a subshell only, so no shell, make or argv keeps one.
+WRITE_CREDENTIALS=( eval "$$(grep -h -E '^(GITHUB_GH_TOKEN|NPM_AUTOMATION_TOKEN)=' "$$accounts/account_github.env" "$$accounts/account_npm.env")"; \
+		printf 'GITHUB_GH_TOKEN=%s\nNPM_AUTOMATION_TOKEN=%s\n' "$$GITHUB_GH_TOKEN" "$$NPM_AUTOMATION_TOKEN" ) > "$$env_file"
+# Shell fragment for a recipe line that hands the credentials to a container: "$$env_file" is RELEASE_ENV_FILE
+# when the release set it, else (release_preflight / release_verify run on their own by the driver) a 0600
+# file written from DEVOPS_ACCOUNT_DIR for this one line and deleted when it exits.
+USE_CREDENTIALS_FILE=env_file="$(RELEASE_ENV_FILE)"; \
+	if test -z "$$env_file" && test -n "$(DEVOPS_ACCOUNT_DIR)"; then \
+		test -d "$(DEVOPS_ACCOUNT_DIR)" || { echo "$@: DEVOPS_ACCOUNT_DIR=$(DEVOPS_ACCOUNT_DIR) is not a directory"; exit 1; }; \
+		accounts="$(DEVOPS_ACCOUNT_DIR)"; env_file="$$(mktemp)"; trap 'rm -f "$$env_file"' EXIT; \
+		$(WRITE_CREDENTIALS) || exit 1; \
+	fi; \
+	test -n "$$env_file" && test -f "$$env_file" || { \
+		echo "$@: no credentials - set DEVOPS_ACCOUNT_DIR to a devops-accounts checkout, or run 'make ondewo_release'"; exit 1; }; \
+	for name in GITHUB_GH_TOKEN NPM_AUTOMATION_TOKEN; do \
+		grep -q "^$$name=." "$$env_file" || { echo "$@: $$name is missing or empty"; exit 1; }; \
+	done;
 .DEFAULT_GOAL := help
 
 ########################################################
@@ -179,17 +200,12 @@ release_preflight: ## Fails unless the credentials are valid, the version is unr
 			200) echo "release_preflight: ${NPM_PACKAGE}@${ONDEWO_VTSI_VERSION} is already on npm"; exit 1;; \
 			*) echo "release_preflight: cannot tell whether npm has ${NPM_PACKAGE}@${ONDEWO_VTSI_VERSION} (HTTP $$code)"; exit 1;; \
 		esac
-	@test -n "$(RELEASE_ENV_FILE)" && test -f "$(RELEASE_ENV_FILE)" || { \
-		echo "release_preflight: RELEASE_ENV_FILE does not name a credentials file - run 'make ondewo_release'"; exit 1; }
-	@for name in GITHUB_GH_TOKEN NPM_AUTOMATION_TOKEN; do \
-		grep -q "^$$name=." "$(RELEASE_ENV_FILE)" || { echo "release_preflight: $$name is missing or empty"; exit 1; }; \
-	done
 	@git push --dry-run origin HEAD >/dev/null 2>&1 || { echo "release_preflight: 'git push --dry-run origin HEAD' fails - check the SSH access to origin"; exit 1; }
 	@echo "-- git: may push to origin"
 	@$(MAKE) --no-print-directory build_utils_docker_image >/dev/null
 # npm reads the literal `${NPM_AUTOMATION_TOKEN}` from the temporary userconfig and substitutes the
 # container's environment value, so the token is on no argv and in no file.
-	@docker run --rm --env-file "$(RELEASE_ENV_FILE)" ${IMAGE_UTILS_NAME} sh -ec ' \
+	@$(USE_CREDENTIALS_FILE) docker run --rm --env-file "$$env_file" ${IMAGE_UTILS_NAME} sh -ec ' \
 		cfg="$$(mktemp)"; trap "rm -f \"$$cfg\"" EXIT; \
 		printf "%s\n" "//registry.npmjs.org/:_authToken=\$${NPM_AUTOMATION_TOKEN}" > "$$cfg"; \
 		user="$$(npm whoami --userconfig "$$cfg" --registry https://registry.npmjs.org/ 2>/dev/null)" || { echo "release_preflight: npm rejects NPM_AUTOMATION_TOKEN"; exit 1; }; \
@@ -243,13 +259,13 @@ check_tag_matches_package: $(NODE_IMAGE_IF_NEEDED) ## Fails unless every file np
 
 # A publish that npm did not accept must fail the release before the push, branch, tag and GitHub release.
 release_verify_npm: $(NODE_IMAGE_IF_NEEDED) ## Fails unless npm serves the released version (retried: the registry lags)
-	@for attempt in $$(seq 1 20); do \
+	@for attempt in $$(seq 1 $(VERIFY_ATTEMPTS)); do \
 		if test "$$($(IN_NODE)npm view ${NPM_PACKAGE}@${ONDEWO_VTSI_VERSION} version 2>/dev/null)" = "${ONDEWO_VTSI_VERSION}"; then \
 			echo "npm serves ${NPM_PACKAGE}@${ONDEWO_VTSI_VERSION}"; \
 			exit 0; \
 		fi; \
-		echo "npm does not serve ${NPM_PACKAGE}@${ONDEWO_VTSI_VERSION} yet (attempt $$attempt/20)"; \
-		sleep 30; \
+		echo "npm does not serve ${NPM_PACKAGE}@${ONDEWO_VTSI_VERSION} yet (attempt $$attempt/$(VERIFY_ATTEMPTS))"; \
+		test "$$attempt" -ge $(VERIFY_ATTEMPTS) || sleep $(VERIFY_INTERVAL_S); \
 	done; \
 	echo "${NPM_PACKAGE}@${ONDEWO_VTSI_VERSION} is not on npm"; \
 	exit 1
@@ -258,11 +274,10 @@ release_verify_npm: $(NODE_IMAGE_IF_NEEDED) ## Fails unless npm serves the relea
 release_verify: ## Fails unless origin has the tag, the GitHub release has notes and npm serves the version
 	@git ls-remote --exit-code --tags origin "refs/tags/${ONDEWO_VTSI_VERSION}" >/dev/null || { \
 		echo "release_verify: tag ${ONDEWO_VTSI_VERSION} is not on origin"; exit 1; }
-	@test -n "$(RELEASE_ENV_FILE)" && test -f "$(RELEASE_ENV_FILE)" || { \
-		echo "release_verify: RELEASE_ENV_FILE does not name a credentials file"; exit 1; }
 	@$(MAKE) --no-print-directory build_utils_docker_image >/dev/null
-	@docker run --rm --env-file "$(RELEASE_ENV_FILE)" ${IMAGE_UTILS_NAME} sh -ec ' \
-		body="$$(GH_TOKEN="$$GITHUB_GH_TOKEN" gh release view "${ONDEWO_VTSI_VERSION}" --repo ${GH_REPO_NAME} --json body --jq .body)"; \
+	@$(USE_CREDENTIALS_FILE) docker run --rm --env-file "$$env_file" ${IMAGE_UTILS_NAME} sh -ec ' \
+		body="$$(GH_TOKEN="$$GITHUB_GH_TOKEN" gh release view "${ONDEWO_VTSI_VERSION}" --repo ${GH_REPO_NAME} --json body --jq .body)" || { \
+			echo "release_verify: cannot read GitHub release ${ONDEWO_VTSI_VERSION} - GITHUB_GH_TOKEN rejected or no such release"; exit 1; }; \
 		test -n "$$(printf "%s" "$$body" | tr -d "[:space:]")" || { echo "release_verify: GitHub release ${ONDEWO_VTSI_VERSION} has no notes"; exit 1; }; \
 		echo "-- GitHub release ${ONDEWO_VTSI_VERSION} has notes"'
 	@$(MAKE) --no-print-directory release_verify_npm
@@ -327,8 +342,7 @@ ondewo_release: spc ## Release with credentials from devops-accounts (DEVOPS_ACC
 		git clone --quiet --depth 1 git@bitbucket.org:ondewo/${DEVOPS_ACCOUNT_GIT}.git ${DEVOPS_ACCOUNT_GIT}; \
 		accounts=${DEVOPS_ACCOUNT_GIT}; \
 	fi; \
-	( eval "$$(grep -h -E '^(GITHUB_GH_TOKEN|NPM_AUTOMATION_TOKEN)=' "$$accounts/account_github.env" "$$accounts/account_npm.env")"; \
-		printf 'GITHUB_GH_TOKEN=%s\nNPM_AUTOMATION_TOKEN=%s\n' "$$GITHUB_GH_TOKEN" "$$NPM_AUTOMATION_TOKEN" ) > "$$env_file"; \
+	$(WRITE_CREDENTIALS); \
 	rm -rf ${DEVOPS_ACCOUNT_GIT}; \
 	$(MAKE) release RELEASE_ENV_FILE="$$env_file"
 
