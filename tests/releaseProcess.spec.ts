@@ -427,6 +427,37 @@ describe('the build', () => {
 		}
 	});
 
+	it('keeps the dev tooling ranges of package.json through the codegen, and never re-resolves them', () => {
+		const root: { devDependencies: Record<string, string> } = JSON.parse(
+			readFileSync(join(REPO_ROOT, 'package.json'), 'utf8')
+		) as { devDependencies: Record<string, string> };
+		const ci: { devDependencies: Record<string, string> } = JSON.parse(
+			readFileSync(join(REPO_ROOT, '.ci-package.json'), 'utf8')
+		) as { devDependencies: Record<string, string> };
+		assert.deepEqual(ci.devDependencies, root.devDependencies, '.ci-package.json must carry every dev tool range');
+		assert.ok(!recipeOf('install_dependencies').includes('--save-dev'));
+
+		const dir: string = scratchRepository();
+		try {
+			// What the codegen leaves behind: src/package.json's (older) tooling ranges.
+			writeFileSync(
+				join(dir, 'package.json'),
+				JSON.stringify({ name: 'x', dependencies: { b: '1', a: '1' }, devDependencies: { eslint: '^9.13.0' } })
+			);
+			writeFileSync(join(dir, '.ci-package.json'), readFileSync(join(REPO_ROOT, '.ci-package.json'), 'utf8'));
+			const result: SpawnSyncReturns<string> = runMake(dir, ['restore_ci_test_setup']);
+			assert.equal(result.status, 0, result.stderr);
+			const restored: { dependencies: Record<string, string>; devDependencies: Record<string, string> } = JSON.parse(
+				readFileSync(join(dir, 'package.json'), 'utf8')
+			) as { dependencies: Record<string, string>; devDependencies: Record<string, string> };
+			assert.deepEqual(restored.devDependencies, root.devDependencies);
+			assert.deepEqual(Object.keys(restored.devDependencies), Object.keys(root.devDependencies).sort());
+			assert.deepEqual(Object.keys(restored.dependencies), ['a', 'b']);
+		} finally {
+			rmSync(dir, { recursive: true, force: true });
+		}
+	});
+
 	it('never runs make in ondewo-vtsi-api (its build commits and pushes it) and never needs sudo', () => {
 		assert.ok(!recipeOf('check_out_correct_submodule_versions').includes('make -C'));
 		assert.equal(

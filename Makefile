@@ -377,15 +377,11 @@ create_npm_package: ## Create NPM Package for Release
 	# the published tarball is ./npm, so the ROOT .npmignore is never consulted: write one here too
 	printf '%s\n' '*.spec.*' '*.test.*' > npm/.npmignore
 
-install_dependencies: $(if $(HOST_HAS_NODE),,build_utils_docker_image) ## Installs npm dev dependencies
-	$(IN_NODE)npm i --save-dev \
-		@eslint/eslintrc \
-		@eslint/js \
-		@typescript-eslint/eslint-plugin \
-		eslint \
-		global \
-		husky \
-		prettier
+# The codegen rewrites package.json; restore_ci_test_setup puts the dev tooling ranges of .ci-package.json
+# back. `npm install` then only brings package-lock.json in line with them. `npm i --save-dev <name>`
+# re-resolved every tool on each release and moved eslint 10 back to 9.
+install_dependencies: $(if $(HOST_HAS_NODE),,build_utils_docker_image) ## Brings package-lock.json in line with package.json
+	$(IN_NODE)npm install --no-audit --no-fund
 
 # ondewo-vtsi-api is used at the tag VTSI_API_GIT_BRANCH, which already holds every proto. Its own
 # `make build` is never called: on a branch it commits and pushes ondewo-vtsi-api.
@@ -410,4 +406,4 @@ npm_run_build: ## Generates api/, public-api.* and package.json with the proto c
 	@echo "DONE npm run build."
 
 restore_ci_test_setup: $(if $(HOST_HAS_NODE),,build_utils_docker_image) ## Re-add CI test scripts + devDeps (from .ci-package.json) stripped by the proto-compiler root regen
-	@$(IN_NODE)node -e 'const fs=require("fs");if(!fs.existsSync(".ci-package.json")){console.log("no .ci-package.json, skipping");process.exit(0)}const p=JSON.parse(fs.readFileSync("package.json","utf8"));const c=JSON.parse(fs.readFileSync(".ci-package.json","utf8"));p.scripts=Object.assign({},p.scripts||{},c.scripts||{});p.dependencies=Object.assign({},p.dependencies||{},c.dependencies||{});p.devDependencies=Object.assign({},p.devDependencies||{},c.devDependencies||{});if(c.allowScripts)p.allowScripts=Object.assign({},p.allowScripts||{},c.allowScripts);if(c.description)p.description=c.description;fs.writeFileSync("package.json",JSON.stringify(p,null,2)+"\n");console.log("restore-ci-package: merged CI test setup; scripts=["+Object.keys(p.scripts).join(",")+"]")'
+	@$(IN_NODE)node -e 'const fs=require("fs");if(!fs.existsSync(".ci-package.json")){console.log("no .ci-package.json, skipping");process.exit(0)}const sorted=(o)=>Object.fromEntries(Object.entries(o).sort(([a],[b])=>(a<b?-1:a>b?1:0)));const p=JSON.parse(fs.readFileSync("package.json","utf8"));const c=JSON.parse(fs.readFileSync(".ci-package.json","utf8"));p.scripts=Object.assign({},p.scripts||{},c.scripts||{});p.dependencies=sorted(Object.assign({},p.dependencies||{},c.dependencies||{}));p.devDependencies=sorted(Object.assign({},p.devDependencies||{},c.devDependencies||{}));if(c.allowScripts)p.allowScripts=Object.assign({},p.allowScripts||{},c.allowScripts);if(c.description)p.description=c.description;fs.writeFileSync("package.json",JSON.stringify(p,null,2)+"\n");console.log("restore-ci-package: merged CI test setup; scripts=["+Object.keys(p.scripts).join(",")+"]")'

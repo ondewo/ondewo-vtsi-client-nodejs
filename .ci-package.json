@@ -11,7 +11,14 @@
 		"typecheck:examples": "tsc examples/listCallers.ts examples/loginAndListCallers.ts examples/listCallers.spec.ts --ignoreConfig --noEmit --module commonjs --target es2020 --strict --lib es2020,dom --skipLibCheck --types node --typeRoots ./node_modules/@types"
 	},
 	"devDependencies": {
+		"@eslint/eslintrc": "^3.3.7",
+		"@eslint/js": "^10.0.1",
+		"@typescript-eslint/eslint-plugin": "^8.71.1",
 		"c8": "^11.0.0",
+		"eslint": "^10.12.0",
+		"global": "^4.4.0",
+		"husky": "^9.1.7",
+		"prettier": "^3.9.10",
 		"typescript": "^6.0.3"
 	},
 	"allowScripts": {
