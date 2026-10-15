@@ -1,14 +1,16 @@
 export
 # ---------------- BEFORE RELEASE ----------------
 # 1 - Update Version Number
-# 2 - Update RELEASE.md
-# 3 - make build
-# -------------- Release Process Steps --------------
-# 1 - Get Credentials from devops-accounts repo
-# 2 - Create Release Branch and push
-# 3 - Create Release Tag and push
-# 4 - GitHub Release
-# 5 - NPM Release
+# 2 - Update src/RELEASE.md
+# -------------- Release Process Steps (make ondewo_release) --------------
+# 1 - spc: the release branch and tag do not exist yet
+# 2 - Load the credentials from devops-accounts into a 0600 file outside the repository, delete the clone
+# 3 - release_preflight: credentials valid, version unreleased, notes present, host tools (read-only)
+# 4 - Build, then the full test suite and the pre-commit hooks
+# 5 - Commit locally; check_tag_matches_package: the tarball is exactly what is committed
+# 6 - npm publish, then wait until npm serves the version
+# 7 - Push, release branch, release tag, GitHub release
+# 8 - release_verify: tag on origin, GitHub release notes, npm version
 
 ########################################################
 # 		Variables
@@ -24,17 +26,38 @@ ONDEWO_PROTO_COMPILER_DIR=ondewo-proto-compiler
 VTSI_APIS_DIR=src/ondewo-vtsi-api
 VTSI_PROTOS_DIR=${VTSI_APIS_DIR}/ondewo
 GOOGLE_PROTOS_DIR=${VTSI_APIS_DIR}/google
-GITHUB_GH_TOKEN?=
-NPM_AUTOMATION_TOKEN?=
 IMAGE_UTILS_NAME=ondewo-vtsi-client-utils-nodejs:${ONDEWO_VTSI_VERSION}
 PRETTIER_WRITE?=
+NPM_PACKAGE=@ondewo/vtsi-client-nodejs
+GH_REPO_NAME=ondewo/ondewo-vtsi-client-nodejs
 
+# The credentials of a release live ONLY in this file (NAME=value lines, mode 0600, outside the repository),
+# written by ondewo_release and handed to exactly the docker runs that use them with `--env-file`. It is
+# never sourced into make or into a shell, so no token reaches npm ci, its install scripts, the tests or the
+# hooks.
+RELEASE_ENV_FILE?=
+# A token that is in the CALLER's environment is not passed on to any recipe either.
+unexport GITHUB_GH_TOKEN GH_TOKEN NPM_AUTOMATION_TOKEN
+
+# node/npm and pre-commit run on the host when it has them, else in the pinned utils image as the invoking
+# user. The image mounts the repository, which never holds the devops-accounts clone during a release.
+HOST_HAS_NODE?=$(shell command -v node >/dev/null 2>&1 && command -v npm >/dev/null 2>&1 && echo yes)
+HOST_HAS_PRE_COMMIT?=$(shell command -v pre-commit >/dev/null 2>&1 && echo yes)
+IN_TOOLS=docker run --rm --user "$$(id -u):$$(id -g)" -v "$(CURDIR)":/work -w /work ${IMAGE_UTILS_NAME}
+IN_NODE=$(if $(HOST_HAS_NODE),,$(IN_TOOLS) )
+IN_PRE_COMMIT=$(if $(HOST_HAS_PRE_COMMIT),,$(IN_TOOLS) )
+TOOLS_IMAGE_IF_NEEDED=$(if $(and $(HOST_HAS_NODE),$(HOST_HAS_PRE_COMMIT)),,build_utils_docker_image)
+
+# The release-notes section of ONDEWO_VTSI_VERSION: from its heading (anchored, the version taken literally)
+# to the next ***** separator.
+RELEASE_NOTES_RANGE=/^\#+ Release ONDEWO VTSI Nodejs Client \Q${ONDEWO_VTSI_VERSION}\E$$/../^\*{5}/
 CURRENT_RELEASE_NOTES=`cat RELEASE.md \
-	| perl -ne 'print if /Release ONDEWO VTSI Nodejs Client ${ONDEWO_VTSI_VERSION}/../^\*{5}/'`
+	| perl -ne 'print if $(RELEASE_NOTES_RANGE)'`
 
 GH_REPO="https://github.com/ondewo/ondewo-vtsi-client-nodejs"
 DEVOPS_ACCOUNT_GIT="ondewo-devops-accounts"
-DEVOPS_ACCOUNT_DIR="./${DEVOPS_ACCOUNT_GIT}"
+# An existing devops-accounts checkout to read instead of cloning one (the driver's single temp clone).
+DEVOPS_ACCOUNT_DIR?=
 .DEFAULT_GOAL := help
 
 ########################################################
@@ -54,16 +77,14 @@ run_precommit_hooks: ## Runs all precommit hooks
 	.husky/pre-commit
 
 prettier: ## Checks formatting with Prettier - Use PRETTIER_WRITE=-w to also automatically apply corrections where needed
-	node_modules/.bin/prettier --config .prettierrc --check --ignore-path .prettierignore $(PRETTIER_WRITE) ./
+	$(IN_NODE)node_modules/.bin/prettier --config .prettierrc --check --ignore-path .prettierignore $(PRETTIER_WRITE) ./
 
 eslint: ## Checks Code Logic and Typing
-	./node_modules/.bin/eslint --config eslint.config.mjs .
+	$(IN_NODE)./node_modules/.bin/eslint --config eslint.config.mjs .
 
 TEST: ## Prints some important variables
 	@echo "Release Notes: \n \n$(CURRENT_RELEASE_NOTES)"
-	@echo "GH Token: \t $(if $(GITHUB_GH_TOKEN),<set>,<unset>)"
-	@echo "NPM Name: \t $(if $(NPM_USERNAME),<set>,<unset>)"
-	@echo "NPM Password: \t $(if $(NPM_PASSWORD),<set>,<unset>)"
+	@echo "Release env file: \t $(if $(RELEASE_ENV_FILE),<set>,<unset>)"
 
 help: ## Print usage info about help targets
 	# (first comment after target starting with double hashes ##)
@@ -95,13 +116,16 @@ check_build: ## Checks if all built proto-code is there
 ########################################################
 #		Release
 
-release: ## Create Github and NPM Release
+# The ORDER is pinned by tests/releaseProcess.spec.ts. Nothing leaves this host before the tests passed and
+# the tarball is known to be exactly what is committed; nothing is pushed before npm SERVES the version, so
+# a rejected publish leaves origin untouched.
+release: ## Create the npm and GitHub release (use ondewo_release, which supplies RELEASE_ENV_FILE)
 	@echo "Start Release"
-	make install_precommit_hooks
-	make build
-	make check_build
-	make release_tests
-	make run_precommit_hooks
+	$(MAKE) release_preflight
+	$(MAKE) build
+	$(MAKE) check_build
+	$(MAKE) release_tests
+	$(MAKE) release_precommit_hooks
 	git status
 	git add api
 	git add Makefile
@@ -119,55 +143,128 @@ release: ## Create Github and NPM Release
 	git add RELEASE.md
 	git add package.json
 	git add package-lock.json
+# A regression test written while a release is prepared belongs in the tag it guards.
+	git add tests
+	git add .ci-package.json
 	git add ${ONDEWO_PROTO_COMPILER_DIR}
 	git add ${VTSI_APIS_DIR}
 	git status
-# Tolerate an empty commit: when a release is re-run after its content was already committed
-# by hand, `git commit` exits 1 on a clean tree and would take the whole target -- npm
-# publish, branch, tag, GitHub release -- down with it. spc still refuses an existing tag.
-	-git commit --no-verify -m "Preparing for Release ${ONDEWO_VTSI_VERSION}"
+# Skip only an EMPTY commit (a re-run after the content was committed by hand); a commit that fails
+# for any other reason fails the release before anything is published.
+	git diff --cached --quiet || git commit --no-verify -m "Preparing for Release ${ONDEWO_VTSI_VERSION}"
+	$(MAKE) check_tag_matches_package
+	$(MAKE) publish_npm_via_docker
+	$(MAKE) release_verify_npm
 	git push
-	make publish_npm_via_docker
-	make check_npm_published
-	make create_release_branch
-	make create_release_tag
-	make release_to_github_via_docker_image
+	$(MAKE) create_release_branch
+	$(MAKE) create_release_tag
+	$(MAKE) release_to_github_via_docker_image
+	$(MAKE) release_verify
 	@echo "Finished Release"
+
+# Read-only. Everything here can fail without leaving a trace, so it runs before anything is built,
+# committed, published or pushed.
+release_preflight: ## Fails unless the credentials are valid, the version is unreleased, its notes exist and the host tools are there
+	@echo "START release_preflight ${ONDEWO_VTSI_VERSION}"
+	@for tool in docker make git perl curl; do \
+		command -v $$tool >/dev/null 2>&1 || { echo "release_preflight: $$tool is not installed on this host"; exit 1; }; \
+	done
+	@test -n "$$(perl -ne 'print if $(RELEASE_NOTES_RANGE)' src/RELEASE.md | perl -ne 'print unless /^\#|^\*{5}|^\s*$$/')" || { \
+		echo "release_preflight: src/RELEASE.md has no non-empty '## Release ONDEWO VTSI Nodejs Client ${ONDEWO_VTSI_VERSION}' section"; exit 1; }
+	@$(MAKE) --no-print-directory spc
+	@code="$$(curl -s -o /dev/null -w '%{http_code}' "https://registry.npmjs.org/$(subst /,%2f,${NPM_PACKAGE})/${ONDEWO_VTSI_VERSION}")"; \
+		case "$$code" in \
+			404) echo "-- npm: ${NPM_PACKAGE}@${ONDEWO_VTSI_VERSION} is not published yet";; \
+			200) echo "release_preflight: ${NPM_PACKAGE}@${ONDEWO_VTSI_VERSION} is already on npm"; exit 1;; \
+			*) echo "release_preflight: cannot tell whether npm has ${NPM_PACKAGE}@${ONDEWO_VTSI_VERSION} (HTTP $$code)"; exit 1;; \
+		esac
+	@test -n "$(RELEASE_ENV_FILE)" && test -f "$(RELEASE_ENV_FILE)" || { \
+		echo "release_preflight: RELEASE_ENV_FILE does not name a credentials file - run 'make ondewo_release'"; exit 1; }
+	@for name in GITHUB_GH_TOKEN NPM_AUTOMATION_TOKEN; do \
+		grep -q "^$$name=." "$(RELEASE_ENV_FILE)" || { echo "release_preflight: $$name is missing or empty"; exit 1; }; \
+	done
+	@git push --dry-run origin HEAD >/dev/null 2>&1 || { echo "release_preflight: 'git push --dry-run origin HEAD' fails - check the SSH access to origin"; exit 1; }
+	@echo "-- git: may push to origin"
+	@$(MAKE) --no-print-directory build_utils_docker_image >/dev/null
+# npm reads the literal `${NPM_AUTOMATION_TOKEN}` from the temporary userconfig and substitutes the
+# container's environment value, so the token is on no argv and in no file.
+	@docker run --rm --env-file "$(RELEASE_ENV_FILE)" ${IMAGE_UTILS_NAME} sh -ec ' \
+		cfg="$$(mktemp)"; trap "rm -f \"$$cfg\"" EXIT; \
+		printf "%s\n" "//registry.npmjs.org/:_authToken=\$${NPM_AUTOMATION_TOKEN}" > "$$cfg"; \
+		user="$$(npm whoami --userconfig "$$cfg" --registry https://registry.npmjs.org/ 2>/dev/null)" || { echo "release_preflight: npm rejects NPM_AUTOMATION_TOKEN"; exit 1; }; \
+		echo "-- npm: NPM_AUTOMATION_TOKEN authenticates as $$user"; \
+		push="$$(GH_TOKEN="$$GITHUB_GH_TOKEN" gh api repos/${GH_REPO_NAME} --jq .permissions.push 2>/dev/null)" || { echo "release_preflight: GitHub rejects GITHUB_GH_TOKEN"; exit 1; }; \
+		test "$$push" = true || { echo "release_preflight: GITHUB_GH_TOKEN may not push to ${GH_REPO_NAME}"; exit 1; }; \
+		echo "-- GitHub: GITHUB_GH_TOKEN may push to ${GH_REPO_NAME}"'
+	@echo "DONE release_preflight ${ONDEWO_VTSI_VERSION}"
 
 # The suites the `tests` workflow runs, run BEFORE anything is committed or published: the workflow
 # runs only after the push, so on its own it cannot stop a release.
 release_tests: ## Runs the CI test suites against the built tree (gates the release)
-	npm ci --no-audit --no-fund
-	npm test
-	npm run test:protos
-	npm run typecheck:examples
-	npm run test:examples
+	$(IN_NODE)npm ci --no-audit --no-fund
+	$(IN_NODE)npm test
+	$(IN_NODE)npm run test:protos
+	$(IN_NODE)npm run typecheck:examples
+	$(IN_NODE)npm run test:examples
 	@before="$$(cat auth/*.js auth/*.d.ts | sha256sum)"; \
-		npm run build:auth && \
+		$(IN_NODE)npm run build:auth && \
 		if test "$$before" != "$$(cat auth/*.js auth/*.d.ts | sha256sum)"; then \
 			echo "auth/*.js or auth/*.d.ts was stale and has been regenerated: review it and re-run the release"; \
 			exit 1; \
 		fi
 
-# A publish that npm did not accept must fail the release before the branch, tag and GitHub release.
-check_npm_published: ## Fails unless npm serves the released version (retried: the registry lags)
-	@for attempt in 1 2 3 4 5 6 7 8 9 10; do \
-		if test "$$(npm view @ondewo/vtsi-client-nodejs@${ONDEWO_VTSI_VERSION} version 2>/dev/null)" = "${ONDEWO_VTSI_VERSION}"; then \
-			echo "npm serves @ondewo/vtsi-client-nodejs@${ONDEWO_VTSI_VERSION}"; \
+# The husky hook runs `pre-commit run` on the STAGED files and skips it when pre-commit is not installed;
+# a release has to run every hook on every file.
+release_precommit_hooks: $(TOOLS_IMAGE_IF_NEEDED) ## Runs eslint, prettier and every pre-commit hook on all files
+	$(MAKE) eslint
+	$(MAKE) prettier PRETTIER_WRITE=-w
+	$(IN_PRE_COMMIT)pre-commit run --all-files
+
+# Every file the tarball ships must be committed and byte-equal at HEAD, so the git tag of a version holds
+# exactly what npm serves for it. README.md (the GitHub-only part is cut out) and package.json (the
+# scripts are removed) are derived: package.json is compared without its scripts.
+check_tag_matches_package: $(if $(HOST_HAS_NODE),,build_utils_docker_image) ## Fails unless every file npm would publish is committed and byte-equal at HEAD
+	@files="$$($(IN_NODE)npm pack ./npm --dry-run --json --ignore-scripts 2>/dev/null \
+		| perl -MJSON::PP -0777 -ne 'print "$$_->{path}\n" for @{decode_json($$_)->[0]{files}}')" \
+		&& test -n "$$files" || { echo "check_tag_matches_package: npm pack listed no files"; exit 1; }; \
+	bad=0; \
+	for f in $$files; do \
+		case "$$f" in README.md|package.json) continue;; esac; \
+		if ! git cat-file -e "HEAD:$$f" 2>/dev/null; then echo "check_tag_matches_package: $$f is not committed"; bad=1; \
+		elif ! git show "HEAD:$$f" | cmp -s - "npm/$$f"; then echo "check_tag_matches_package: npm/$$f differs from HEAD:$$f"; bad=1; fi; \
+	done; \
+	strip='my $$p = decode_json($$_); delete $$p->{scripts}; print JSON::PP->new->canonical->encode($$p)'; \
+	if test "$$(git show HEAD:package.json | perl -MJSON::PP -0777 -ne "$$strip")" != "$$(perl -MJSON::PP -0777 -ne "$$strip" npm/package.json)"; then \
+		echo "check_tag_matches_package: npm/package.json differs from HEAD:package.json beyond its scripts"; bad=1; fi; \
+	test "$$(perl -MJSON::PP -0777 -ne 'print decode_json($$_)->{version}' npm/package.json)" = "${ONDEWO_VTSI_VERSION}" || { \
+		echo "check_tag_matches_package: npm/package.json is not version ${ONDEWO_VTSI_VERSION}"; bad=1; }; \
+	test $$bad -eq 0 && echo "check_tag_matches_package: the $$(echo "$$files" | wc -l) shipped files are committed at HEAD"
+
+# A publish that npm did not accept must fail the release before the push, branch, tag and GitHub release.
+release_verify_npm: $(if $(HOST_HAS_NODE),,build_utils_docker_image) ## Fails unless npm serves the released version (retried: the registry lags)
+	@for attempt in $$(seq 1 20); do \
+		if test "$$($(IN_NODE)npm view ${NPM_PACKAGE}@${ONDEWO_VTSI_VERSION} version 2>/dev/null)" = "${ONDEWO_VTSI_VERSION}"; then \
+			echo "npm serves ${NPM_PACKAGE}@${ONDEWO_VTSI_VERSION}"; \
 			exit 0; \
 		fi; \
-		echo "npm does not serve @ondewo/vtsi-client-nodejs@${ONDEWO_VTSI_VERSION} yet (attempt $$attempt/10)"; \
+		echo "npm does not serve ${NPM_PACKAGE}@${ONDEWO_VTSI_VERSION} yet (attempt $$attempt/20)"; \
 		sleep 30; \
 	done; \
-	echo "@ondewo/vtsi-client-nodejs@${ONDEWO_VTSI_VERSION} is not on npm"; \
+	echo "${NPM_PACKAGE}@${ONDEWO_VTSI_VERSION} is not on npm"; \
 	exit 1
 
-gh_release: build_utils_docker_image release_to_github_via_docker_image ## Builds Utils Image and Releases to Github
-
-npm_release: ## Releases to NPM
-	@echo "Start NPM Release"
-	npm publish ./npm --access public
-	@echo "Finished NPM Release"
+# Read-only, after the release: the tag is on origin, the GitHub release has notes, npm serves the version.
+release_verify: ## Fails unless origin has the tag, the GitHub release has notes and npm serves the version
+	@git ls-remote --exit-code --tags origin "refs/tags/${ONDEWO_VTSI_VERSION}" >/dev/null || { \
+		echo "release_verify: tag ${ONDEWO_VTSI_VERSION} is not on origin"; exit 1; }
+	@test -n "$(RELEASE_ENV_FILE)" && test -f "$(RELEASE_ENV_FILE)" || { \
+		echo "release_verify: RELEASE_ENV_FILE does not name a credentials file"; exit 1; }
+	@$(MAKE) --no-print-directory build_utils_docker_image >/dev/null
+	@docker run --rm --env-file "$(RELEASE_ENV_FILE)" ${IMAGE_UTILS_NAME} sh -ec ' \
+		body="$$(GH_TOKEN="$$GITHUB_GH_TOKEN" gh release view "${ONDEWO_VTSI_VERSION}" --repo ${GH_REPO_NAME} --json body --jq .body)"; \
+		test -n "$$(printf "%s" "$$body" | tr -d "[:space:]")" || { echo "release_verify: GitHub release ${ONDEWO_VTSI_VERSION} has no notes"; exit 1; }; \
+		echo "-- GitHub release ${ONDEWO_VTSI_VERSION} has notes"'
+	@$(MAKE) --no-print-directory release_verify_npm
 
 create_release_branch: ## Create Release Branch and push it to origin
 	git checkout -b "release/${ONDEWO_VTSI_VERSION}"
@@ -177,95 +274,86 @@ create_release_tag: ## Create Release Tag and push it to origin
 	git tag -a ${ONDEWO_VTSI_VERSION} -m "release/${ONDEWO_VTSI_VERSION}"
 	git push origin ${ONDEWO_VTSI_VERSION}
 
-# "$${GITHUB_GH_TOKEN}" is expanded by the shell from the environment. $(GITHUB_GH_TOKEN) would be
-# expanded by make INTO the recipe line, i.e. onto the argv of `/bin/sh -c`.
-login_to_gh: ## Login to Github CLI with Access Token
-	@printf '%s\n' "$${GITHUB_GH_TOKEN}" | gh auth login -p ssh --with-token
-
-build_gh_release: ## Generate Github Release with CLI
-	gh release create --repo $(GH_REPO) "$(ONDEWO_VTSI_VERSION)" -n "$(CURRENT_RELEASE_NOTES)" -t "Release ${ONDEWO_VTSI_VERSION}"
-
 ########################################################
 #		Docker
-
-push_to_gh: login_to_gh build_gh_release ## Logs into Github CLI and Releases
-	@echo 'Released to Github'
 
 build_compiler: ## Builds Ondewo-Proto-Compiler
 	cd ondewo-proto-compiler/nodejs && sh build.sh
 
-release_to_github_via_docker_image: ## Release to Github via docker
-	@docker run --rm \
-		-e GITHUB_GH_TOKEN \
-		${IMAGE_UTILS_NAME} make push_to_gh
-
 build_utils_docker_image: ## Build utils docker image
-	docker build -f Dockerfile.utils -t ${IMAGE_UTILS_NAME} .
+	docker build -q -f Dockerfile.utils -t ${IMAGE_UTILS_NAME} .
 
-publish_npm_via_docker: build_utils_docker_image ## Docker-Image and Releases to NPM
-	@docker run --rm \
-		-e NPM_AUTOMATION_TOKEN \
-		${IMAGE_UTILS_NAME} make docker_npm_release
+# The notes are sliced on the HOST and handed over as a read-only file; gh gets the token per call through
+# GH_TOKEN, so nothing logs in and nothing is stored.
+release_to_github_via_docker_image: build_utils_docker_image ## Creates the GitHub release (refuses empty notes)
+	@notes="$$(mktemp)"; trap 'rm -f "$$notes"' EXIT; \
+		printf '%s\n' "$(CURRENT_RELEASE_NOTES)" > "$$notes"; \
+		test -n "$$(tr -d '[:space:]' < "$$notes")" || { echo "ERROR: no 'Release ONDEWO VTSI Nodejs Client ${ONDEWO_VTSI_VERSION}' section in RELEASE.md"; exit 1; }; \
+		chmod 0644 "$$notes"; \
+		docker run --rm --env-file "$(RELEASE_ENV_FILE)" -v "$$notes":/release-notes.md:ro ${IMAGE_UTILS_NAME} \
+			sh -ec 'GH_TOKEN="$$GITHUB_GH_TOKEN" gh release create --repo ${GH_REPO_NAME} "${ONDEWO_VTSI_VERSION}" --notes-file /release-notes.md --title "Release ${ONDEWO_VTSI_VERSION}"'
 
-# npm reads the literal `${NPM_AUTOMATION_TOKEN}` from .npmrc and substitutes the environment value,
-# so the token itself never appears on npm's argv.
-docker_npm_release: ## Release to npm with docker image
-	node --version
-	npm --version
-	@npm config set '//registry.npmjs.org/:_authToken' '$${NPM_AUTOMATION_TOKEN}'
-	npm whoami
-	make npm_release
+# npm reads the literal `${NPM_AUTOMATION_TOKEN}` from the temporary userconfig and substitutes the
+# container's environment value, so the token is on no argv and in no file. npm/ is mounted read-only.
+publish_npm_via_docker: build_utils_docker_image ## Publishes npm/ to npmjs.com
+	@docker run --rm --env-file "$(RELEASE_ENV_FILE)" -v "$(CURDIR)/npm":/npm:ro ${IMAGE_UTILS_NAME} sh -ec ' \
+		cfg="$$(mktemp)"; trap "rm -f \"$$cfg\"" EXIT; \
+		printf "%s\n" "//registry.npmjs.org/:_authToken=\$${NPM_AUTOMATION_TOKEN}" > "$$cfg"; \
+		node --version; npm --version; \
+		npm whoami --userconfig "$$cfg" --registry https://registry.npmjs.org/; \
+		npm publish /npm --access public --userconfig "$$cfg" --registry https://registry.npmjs.org/'
 
 ########################################################
 #		DEVOPS-ACCOUNTS
 
-ondewo_release: spc clone_devops_accounts run_release_with_devops ## Release with credentials from devops-accounts repo
-	@rm -rf ${DEVOPS_ACCOUNT_GIT}
+# The credentials are copied into a 0600 file OUTSIDE the repository and the devops-accounts clone is
+# deleted BEFORE `$(MAKE) release`, so the clone is never inside the directory the codegen container
+# mounts; the trap deletes it (and the file) on every exit, a failed release included. The values pass
+# through a subshell only: neither make nor the release's environment ever holds one.
+ondewo_release: spc ## Release with credentials from devops-accounts (DEVOPS_ACCOUNT_DIR: an existing checkout to use)
+	@set -e; \
+	env_file="$$(mktemp)"; \
+	trap 'rm -f "$$env_file"; rm -rf ${DEVOPS_ACCOUNT_GIT}' EXIT; \
+	if test -n "${DEVOPS_ACCOUNT_DIR}" && test -d "${DEVOPS_ACCOUNT_DIR}"; then \
+		accounts="${DEVOPS_ACCOUNT_DIR}"; \
+	else \
+		rm -rf ${DEVOPS_ACCOUNT_GIT}; \
+		git clone --quiet --depth 1 git@bitbucket.org:ondewo/${DEVOPS_ACCOUNT_GIT}.git ${DEVOPS_ACCOUNT_GIT}; \
+		accounts=${DEVOPS_ACCOUNT_GIT}; \
+	fi; \
+	( eval "$$(grep -h -E '^(GITHUB_GH_TOKEN|NPM_AUTOMATION_TOKEN)=' "$$accounts/account_github.env" "$$accounts/account_npm.env")"; \
+		printf 'GITHUB_GH_TOKEN=%s\nNPM_AUTOMATION_TOKEN=%s\n' "$$GITHUB_GH_TOKEN" "$$NPM_AUTOMATION_TOKEN" ) > "$$env_file"; \
+	rm -rf ${DEVOPS_ACCOUNT_GIT}; \
+	$(MAKE) release RELEASE_ENV_FILE="$$env_file"
 
-clone_devops_accounts: ## Clones devops-accounts repo
-	if [ -d $(DEVOPS_ACCOUNT_GIT) ]; then rm -Rf $(DEVOPS_ACCOUNT_GIT); fi
-	git clone git@bitbucket.org:ondewo/${DEVOPS_ACCOUNT_GIT}.git
-
-# The credentials are exported into the sub-make's ENVIRONMENT (anchored `^NAME=` lines only, so a
-# comment mentioning a name cannot break a value). `make release NAME=<value>` would put every value
-# on make's argv, which /proc/<pid>/cmdline shows to every user on the host.
-run_release_with_devops: ## Runs the make release target with credentials from devops-accounts
-	@set -a \
-		&& eval "$$(grep -h -E '^(GITHUB_GH_TOKEN|NPM_AUTOMATION_TOKEN)=' \
-			${DEVOPS_ACCOUNT_DIR}/account_github.env ${DEVOPS_ACCOUNT_DIR}/account_npm.env)" \
-		&& set +a \
-		&& $(MAKE) release
-
-spc: ## Checks if the Release Branch, Tag and Pypi version already exist
-	$(eval filtered_branches:= $(shell git branch --all | grep "release/${ONDEWO_VTSI_VERSION}"))
-	$(eval filtered_tags:= $(shell git tag --list | grep "${ONDEWO_VTSI_VERSION}"))
-	@if test "$(filtered_branches)" != ""; then echo "-- Test 1: Branch exists!!" & exit 1; else echo "-- Test 1: Branch is fine";fi
-	@if test "$(filtered_tags)" != ""; then echo "-- Test 2: Tag exists!!" & exit 1; else echo "-- Test 2: Tag is fine";fi
+spc: ## Checks that neither the release branch nor the tag exists, locally or on origin (anchored)
+	@if git rev-parse -q --verify "refs/tags/${ONDEWO_VTSI_VERSION}" >/dev/null; then echo "-- Test 1: Tag ${ONDEWO_VTSI_VERSION} exists locally!!"; exit 1; fi
+	@if git rev-parse -q --verify "refs/heads/release/${ONDEWO_VTSI_VERSION}" >/dev/null || git rev-parse -q --verify "refs/remotes/origin/release/${ONDEWO_VTSI_VERSION}" >/dev/null; then \
+		echo "-- Test 2: Branch release/${ONDEWO_VTSI_VERSION} exists locally!!"; exit 1; fi
+	@git ls-remote --exit-code --tags origin "refs/tags/${ONDEWO_VTSI_VERSION}" >/dev/null 2>&1; rc=$$?; \
+		if test $$rc -eq 0; then echo "-- Test 3: Tag ${ONDEWO_VTSI_VERSION} exists on origin!!"; exit 1; \
+		elif test $$rc -ne 2; then echo "-- Test 3: cannot list the tags of origin (git ls-remote exit $$rc)"; exit 1; fi
+	@git ls-remote --exit-code --heads origin "refs/heads/release/${ONDEWO_VTSI_VERSION}" >/dev/null 2>&1; rc=$$?; \
+		if test $$rc -eq 0; then echo "-- Test 4: Branch release/${ONDEWO_VTSI_VERSION} exists on origin!!"; exit 1; \
+		elif test $$rc -ne 2; then echo "-- Test 4: cannot list the branches of origin (git ls-remote exit $$rc)"; exit 1; fi
+	@echo "-- spc: neither branch release/${ONDEWO_VTSI_VERSION} nor tag ${ONDEWO_VTSI_VERSION} exists"
 
 ########################################################
 # Build
 
 update_package: ## Updates Package Version in src/package.json
-	@perl -i -pe "s/\"version\": \"[0-9]*.[0-9]*.[0-9]\"/\"version\": \"${ONDEWO_VTSI_VERSION}\"/g" src/package.json
+	@perl -i -pe "s/\"version\": \"[0-9]+\.[0-9]+\.[0-9]+\"/\"version\": \"${ONDEWO_VTSI_VERSION}\"/g" src/package.json
 
 build: check_out_correct_submodule_versions build_compiler update_package npm_run_build ## Build Code with Proto-Compiler
-	@echo "################### PROMPT FOR CHANGING FILE OWNERSHIP FROM ROOT TO YOU ##########################"
-	@for f in `find . -group root`; \
-	do \
-		sudo chown -R `whoami`:`whoami` $$f && echo $$f; \
-	done
-	-cd src/ondewo-vtsi-api && git checkout -- '**/*.proto' && cd ../..
-	-cd src/ondewo-vtsi-api && git restore google && cd ../..
 	cp src/README.md .
 	cp src/RELEASE.md .
-	make restore_ci_test_setup
-	make create_npm_package
-	make remove_npm_script
+	$(MAKE) restore_ci_test_setup
+	$(MAKE) create_npm_package
+	$(MAKE) remove_npm_script
 	@$(eval README_CUT_LINES:=$(shell cat -n src/README.md | perl -ne 'print if /START OF GITHUB README/../END OF GITHUB README/' | grep -o -E '[0-9]+' | perl -pe 's/^0+//' | awk 'NR==1; END{print}'))
 	@$(eval DELETE_LINES:=$(shell echo ${README_CUT_LINES}| perl -pe "s/[[:space:]]/,/"))
 	@perl -i -ne 'BEGIN{($$s,$$e)=split/,/,"${DELETE_LINES}"} print unless $$. >= $$s && $$. <= $$e' npm/README.md
-	make install_dependencies
-	# rm -rf ${VTSI_APIS_DIR}/google
+	$(MAKE) install_dependencies
 
 remove_npm_script: ## Removes the scripts section from the npm/ package.json copy (root package.json is left intact)
 	@test -f npm/package.json || make create_npm_package
@@ -289,8 +377,8 @@ create_npm_package: ## Create NPM Package for Release
 	# the published tarball is ./npm, so the ROOT .npmignore is never consulted: write one here too
 	printf '%s\n' '*.spec.*' '*.test.*' > npm/.npmignore
 
-install_dependencies: ## Installs npm dev dependencies
-	npm i --save-dev \
+install_dependencies: $(if $(HOST_HAS_NODE),,build_utils_docker_image) ## Installs npm dev dependencies
+	$(IN_NODE)npm i --save-dev \
 		@eslint/eslintrc \
 		@eslint/js \
 		@typescript-eslint/eslint-plugin \
@@ -299,6 +387,8 @@ install_dependencies: ## Installs npm dev dependencies
 		husky \
 		prettier
 
+# ondewo-vtsi-api is used at the tag VTSI_API_GIT_BRANCH, which already holds every proto. Its own
+# `make build` is never called: on a branch it commits and pushes ondewo-vtsi-api.
 check_out_correct_submodule_versions: ## Fetches all Submodules and checks out specified branch
 	@echo "START checking out correct submodule versions ..."
 	git submodule update --init --recursive
@@ -306,14 +396,18 @@ check_out_correct_submodule_versions: ## Fetches all Submodules and checks out s
 	git -C ${VTSI_APIS_DIR} checkout ${VTSI_API_GIT_BRANCH}
 	git -C ${ONDEWO_PROTO_COMPILER_DIR} fetch --all
 	git -C ${ONDEWO_PROTO_COMPILER_DIR} checkout ${ONDEWO_PROTO_COMPILER_GIT_BRANCH}
-	make -C ${VTSI_APIS_DIR} build
-	#cp -R ${VTSI_APIS_DIR}/googleapis/google ${VTSI_APIS_DIR}/google
 	@echo "DONE checking out correct submodule versions."
 
-npm_run_build: ## Runs the build command in package.json
+# The codegen container writes into the repository root (its output volume), so it refuses to start while
+# a devops-accounts clone is there. It runs as root; the files it creates are handed back to the invoking
+# user from inside a container, so no sudo is needed.
+npm_run_build: ## Generates api/, public-api.* and package.json with the proto compiler image
 	@echo "START npm run build ..."
-	cd src/ && npm run build && cd ..
+	@test ! -e ${DEVOPS_ACCOUNT_GIT} || { echo "npm_run_build: refusing to mount the repository while ${DEVOPS_ACCOUNT_GIT}/ is in it"; exit 1; }
+	docker run --rm -v "$(CURDIR)/src":/input-volume -v "$(CURDIR)":/output-volume ondewo-nodejs-proto-compiler ondewo-vtsi-api ondewo
+	docker run --rm --entrypoint sh -v "$(CURDIR)":/output-volume ondewo-nodejs-proto-compiler \
+		-c "find /output-volume -xdev -user 0 -exec chown $$(id -u):$$(id -g) {} +"
 	@echo "DONE npm run build."
 
-restore_ci_test_setup: ## Re-add CI test scripts + devDeps (from .ci-package.json) stripped by the proto-compiler root regen
-	@node -e 'const fs=require("fs");if(!fs.existsSync(".ci-package.json")){console.log("no .ci-package.json, skipping");process.exit(0)}const p=JSON.parse(fs.readFileSync("package.json","utf8"));const c=JSON.parse(fs.readFileSync(".ci-package.json","utf8"));p.scripts=Object.assign({},p.scripts||{},c.scripts||{});p.dependencies=Object.assign({},p.dependencies||{},c.dependencies||{});p.devDependencies=Object.assign({},p.devDependencies||{},c.devDependencies||{});if(c.allowScripts)p.allowScripts=Object.assign({},p.allowScripts||{},c.allowScripts);if(c.description)p.description=c.description;fs.writeFileSync("package.json",JSON.stringify(p,null,2)+"\n");console.log("restore-ci-package: merged CI test setup; scripts=["+Object.keys(p.scripts).join(",")+"]")'
+restore_ci_test_setup: $(if $(HOST_HAS_NODE),,build_utils_docker_image) ## Re-add CI test scripts + devDeps (from .ci-package.json) stripped by the proto-compiler root regen
+	@$(IN_NODE)node -e 'const fs=require("fs");if(!fs.existsSync(".ci-package.json")){console.log("no .ci-package.json, skipping");process.exit(0)}const p=JSON.parse(fs.readFileSync("package.json","utf8"));const c=JSON.parse(fs.readFileSync(".ci-package.json","utf8"));p.scripts=Object.assign({},p.scripts||{},c.scripts||{});p.dependencies=Object.assign({},p.dependencies||{},c.dependencies||{});p.devDependencies=Object.assign({},p.devDependencies||{},c.devDependencies||{});if(c.allowScripts)p.allowScripts=Object.assign({},p.allowScripts||{},c.allowScripts);if(c.description)p.description=c.description;fs.writeFileSync("package.json",JSON.stringify(p,null,2)+"\n");console.log("restore-ci-package: merged CI test setup; scripts=["+Object.keys(p.scripts).join(",")+"]")'
