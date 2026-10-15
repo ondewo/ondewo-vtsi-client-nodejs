@@ -3,4 +3,4 @@
 	url = git@github.com:ondewo/ondewo-proto-compiler.git
 [submodule "src/ondewo-vtsi-api"]
 	path = src/ondewo-vtsi-api
-	url = git@github.com:ondewo/ondewo-vtsi-api.git
+	url = https://github.com/ondewo/ondewo-vtsi-api.git

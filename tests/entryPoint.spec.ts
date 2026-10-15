@@ -100,6 +100,33 @@ function generatedStubs(suffix: string, replacement: string): string[] {
 	return found.sort();
 }
 
+/** The ondewo/vtsi protos of the pinned ondewo-vtsi-api submodule. */
+const VTSI_PROTOS_DIR: string = join(REPO_ROOT, 'src', 'ondewo-vtsi-api', 'ondewo', 'vtsi');
+
+/**
+ * Read every `service` and its `rpc` names out of the pinned ondewo/vtsi protos, so the expectation moves
+ * with the API instead of being a list that the next API release breaks.
+ *
+ * @returns Service name to its RPCs as the generated client names them (lower camel case), sorted.
+ */
+function protoServices(): Map<string, string[]> {
+	assert.ok(
+		existsSync(VTSI_PROTOS_DIR),
+		`${VTSI_PROTOS_DIR} is missing: run git submodule update --init src/ondewo-vtsi-api`
+	);
+	const services: Map<string, string[]> = new Map<string, string[]>();
+	for (const file of readdirSync(VTSI_PROTOS_DIR).filter((name: string): boolean => name.endsWith('.proto'))) {
+		const source: string = readFileSync(join(VTSI_PROTOS_DIR, file), 'utf8').replace(/\/\/.*$/gm, '');
+		for (const block of source.matchAll(/^service\s+(\w+)\s*\{([\s\S]*?)^\}/gm)) {
+			const rpcs: string[] = [...block[2].matchAll(/\brpc\s+(\w+)\s*\(/g)].map(
+				(match: RegExpMatchArray): string => match[1].charAt(0).toLowerCase() + match[1].slice(1)
+			);
+			services.set(block[1], rpcs.sort());
+		}
+	}
+	return services;
+}
+
 describe('package entry point', () => {
 	// The release target once committed a regenerated api/ without the regenerated public-api.*, so
 	// the git tag of 9.1.0 lacked the call_configs exports that the npm tarball of 9.1.0 had.
@@ -159,55 +186,15 @@ describe('package entry point', () => {
 		}
 	});
 
-	it('the ondewo-vtsi-api 9.x services carry every RPC of their proto', () => {
-		// 9.1.0 added cancelCampaignCalls, cloneCampaign, getCampaignCall, retryCampaignCalls,
-		// redeliverWebhookEvents and getSoftphoneRegistration.
-		assert.deepEqual(serviceMethods('CampaignsClient'), [
-			'cancelCampaignCalls',
-			'cloneCampaign',
-			'createCampaign',
-			'deleteCampaign',
-			'getCampaign',
-			'getCampaignCall',
-			'getCampaignStatistics',
-			'hardStopCampaign',
-			'listCampaignCalls',
-			'listCampaigns',
-			'resumeCampaign',
-			'retryCampaignCalls',
-			'startCampaign',
-			'stopCampaign',
-			'streamCampaignStatus',
-			'updateCampaign'
-		]);
-		assert.deepEqual(serviceMethods('EventsClient'), [
-			'createVtsiEventSubscription',
-			'createWebhook',
-			'deleteVtsiEventSubscription',
-			'deleteWebhook',
-			'getVtsiEventSubscription',
-			'getWebhook',
-			'listVtsiEventSubscriptions',
-			'listWebhooks',
-			'redeliverWebhookEvents',
-			'subscribeVtsiEvents',
-			'testWebhook',
-			'updateVtsiEventSubscription',
-			'updateWebhook'
-		]);
-		assert.deepEqual(serviceMethods('SoftphonesClient'), [
-			'createSoftphoneAccount',
-			'deleteSoftphoneAccount',
-			'getSoftphoneAccount',
-			'getSoftphoneCertificate',
-			'getSoftphoneProvisioning',
-			'getSoftphoneRegistration',
-			'listSoftphoneAccounts',
-			'listSoftphoneCertificates',
-			'revokeSoftphoneCertificate',
-			'rotateSoftphoneCredentials',
-			'updateSoftphoneAccount'
-		]);
+	it('every service of the pinned ondewo-vtsi-api protos has a client carrying exactly its RPCs', () => {
+		const services: Map<string, string[]> = protoServices();
+		assert.ok(services.size > 0, 'no service found in the ondewo/vtsi protos');
+		const clients: Record<string, string[]> = evaluateOnPackage(
+			`Object.fromEntries(${JSON.stringify([...services.keys()])}.map((s) => [s, m[s + 'Client'] ? Object.keys(m[s + 'Client'].service).sort() : null]))`
+		) as Record<string, string[]>;
+		for (const [service, rpcs] of services) {
+			assert.deepEqual(clients[service], rpcs, `${service}Client does not match service ${service} of the proto`);
+		}
 	});
 
 	it('CallsClient carries the RPCs ondewo-vtsi-api 9.0.0 added', () => {

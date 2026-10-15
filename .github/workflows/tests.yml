@@ -3,6 +3,7 @@ name: tests
 on:
   push:
     branches: ['**']
+    tags: ['*']
   pull_request:
 
 jobs:
@@ -24,6 +25,10 @@ jobs:
         node-version: ['20', '22', '24']
     steps:
       - uses: actions/checkout@v7
+
+      # tests/entryPoint.spec.ts derives the expected RPCs of every client from the pinned protos.
+      - name: Check out the pinned ondewo-vtsi-api submodule
+        run: git submodule update --init src/ondewo-vtsi-api
 
       - name: Set up Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v7
