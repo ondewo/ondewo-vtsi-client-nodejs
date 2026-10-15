@@ -311,8 +311,13 @@ publish_npm_via_docker: build_utils_docker_image ## Publishes npm/ to npmjs.com
 # deleted BEFORE `$(MAKE) release`, so the clone is never inside the directory the codegen container
 # mounts; the trap deletes it (and the file) on every exit, a failed release included. The values pass
 # through a subshell only: neither make nor the release's environment ever holds one.
+# make runs a line that names $(MAKE) even under `make -n`, so a dry run is answered without credentials.
 ondewo_release: spc ## Release with credentials from devops-accounts (DEVOPS_ACCOUNT_DIR: an existing checkout to use)
-	@set -e; \
+	@if test -n "$(findstring n,$(firstword -$(MAKEFLAGS)))"; then \
+		echo "dry run: load the credentials into a 0600 file, delete ${DEVOPS_ACCOUNT_GIT}, then:"; \
+		$(MAKE) release RELEASE_ENV_FILE=/dev/null; exit 0; \
+	fi; \
+	set -e; \
 	env_file="$$(mktemp)"; \
 	trap 'rm -f "$$env_file"; rm -rf ${DEVOPS_ACCOUNT_GIT}' EXIT; \
 	if test -n "${DEVOPS_ACCOUNT_DIR}" && test -d "${DEVOPS_ACCOUNT_DIR}"; then \

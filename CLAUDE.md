@@ -257,7 +257,9 @@ not burned — wait and re-check before bumping to a new number.
 the `ondewo-devops-accounts` clone before `make release` starts; a trap deletes the clone and the file on every exit,
 a failed release included. No recipe expands a token (make would put it on the argv of `/bin/sh -c`); npm reads it
 through a temporary userconfig holding the literal `${NPM_AUTOMATION_TOKEN}`, and gh gets it per call as `GH_TOKEN`.
-Set `DEVOPS_ACCOUNT_DIR` to an existing checkout to use it instead of cloning.
+Set `DEVOPS_ACCOUNT_DIR` to an existing checkout to use it instead of cloning. `make -n ondewo_release` reads no
+credential (make runs a `$(MAKE)` line even under `-n`, so the recipe detects the dry run) and prints the release
+order.
 
 ### Run the release from `master`, and check with `git branch --show-current`
 

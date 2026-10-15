@@ -265,9 +265,32 @@ describe('ondewo_release', () => {
 		const trap: number = recipe.indexOf('trap \'rm -f "$$env_file"; rm -rf ${DEVOPS_ACCOUNT_GIT}\' EXIT;');
 		const clone: number = recipe.indexOf('git clone');
 		const deleted: number = recipe.lastIndexOf('rm -rf ${DEVOPS_ACCOUNT_GIT};');
-		const release: number = recipe.indexOf('$(MAKE) release RELEASE_ENV_FILE=');
+		const release: number = recipe.indexOf('$(MAKE) release RELEASE_ENV_FILE="$$env_file"');
 		assert.ok(trap >= 0 && trap < clone, 'the trap must be set before the clone');
 		assert.ok(clone < deleted && deleted < release, 'the clone must be deleted before $(MAKE) release');
+	});
+
+	it('a dry run (make -n) reads no credential', () => {
+		const dir: string = scratchRepository();
+		const origin: string = mkdtempSync(join(tmpdir(), 'vtsi-nodejs-origin-'));
+		try {
+			git(origin, 'init', '-q', '--bare');
+			git(dir, 'commit', '-q', '--allow-empty', '-m', 'init');
+			git(dir, 'remote', 'add', 'origin', origin);
+			// A real run reads this checkout and deletes it (it sits inside the repository); a dry run must not.
+			const accounts: string = join(dir, 'ondewo-devops-accounts');
+			mkdirSync(accounts);
+			const result: SpawnSyncReturns<string> = runMake(dir, ['-n', 'ondewo_release', 'ONDEWO_VTSI_VERSION=0.0.1'], {
+				DEVOPS_ACCOUNT_DIR: 'ondewo-devops-accounts'
+			});
+			assert.equal(result.status, 0, result.stderr);
+			assert.match(result.stdout, /^dry run: /m);
+			assert.match(result.stdout, /^make.* release_preflight$/m);
+			assert.ok(existsSync(accounts), 'the dry run ran the credential step');
+		} finally {
+			rmSync(dir, { recursive: true, force: true });
+			rmSync(origin, { recursive: true, force: true });
+		}
 	});
 
 	it('uses an existing DEVOPS_ACCOUNT_DIR instead of cloning', () => {
