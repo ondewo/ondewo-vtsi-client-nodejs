@@ -677,4 +677,33 @@ describe('the tests workflow', () => {
 		assert.ok(!/\bnpm (?:install|i)\b/.test(workflows));
 		assert.ok(workflows.includes('git submodule update --init src/ondewo-vtsi-api'));
 	});
+
+	it('compiles and runs every tests/*.spec.ts through an npm script the workflow runs, also after the codegen', () => {
+		// A spec no script compiles is never run and never fails: campaignsAndEvents.spec.ts was on the
+		// OND233-367 branches only, and the 9.5.0 release line shipped without it unnoticed.
+		const specs: string[] = readdirSync(join(REPO_ROOT, 'tests')).filter((file: string): boolean =>
+			file.endsWith('.spec.ts')
+		);
+		assert.ok(specs.length > 1, 'found no tests/*.spec.ts');
+		for (const manifestFile of ['package.json', '.ci-package.json']) {
+			const scripts: Record<string, string> = (
+				JSON.parse(readFileSync(join(REPO_ROOT, manifestFile), 'utf8')) as { scripts: Record<string, string> }
+			).scripts;
+			for (const spec of specs) {
+				const compiled: string = `/${spec.replace(/\.ts$/, '.js')}`;
+				const runners: string[] = Object.keys(scripts).filter(
+					(name: string): boolean =>
+						(scripts[`pre${name}`] ?? '').split(' ').includes(`tests/${spec}`) &&
+						scripts[name].split(' ').some((token: string): boolean => token.endsWith(compiled))
+				);
+				assert.equal(runners.length, 1, `${manifestFile}: tests/${spec} must be compiled and run by one script`);
+				const invocation: string = runners[0] === 'test' ? 'npm test' : `npm run ${runners[0]}`;
+				assert.match(
+					workflows,
+					new RegExp(`^\\s+run: ${invocation}$`, 'm'),
+					`${manifestFile}: the workflow never runs ${invocation}`
+				);
+			}
+		}
+	});
 });

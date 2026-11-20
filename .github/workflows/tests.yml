@@ -64,5 +64,7 @@ jobs:
 
       # tests/asteriskVersion.spec.ts drives the GENERATED projects_pb stub: AsteriskConfigs.asteriskVersion
       # must keep explicit presence (has/clear), so regenerating from a .proto without `optional` fails here.
+      # tests/campaignsAndEvents.spec.ts and tests/callControl.spec.ts check the campaigns, events and
+      # call-control stubs against the pinned protos the submodule step above checks out.
       - name: Generated proto stubs keep the field presence the server relies on
         run: npm run test:protos
