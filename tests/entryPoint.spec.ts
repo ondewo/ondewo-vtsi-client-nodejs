@@ -197,6 +197,21 @@ describe('package entry point', () => {
 		}
 	});
 
+	it('the package root LogsClient is the ondewo.vtsi.Logs client, not the vendored ondewo.nlu one', () => {
+		// ondewo-nlu-api 7.6.0 declares a second `service Logs`; the Makefile keeps ondewo/nlu/logs.proto
+		// out of the codegen (CODEGEN_EXCLUDED_PROTOS), because the barrel binds a name to the first stub
+		// in sorted order and nlu sorts before vtsi.
+		const paths: string[] = evaluateOnPackage(
+			`Object.values(m.LogsClient.service).map((d) => d.path).sort()`
+		) as string[];
+		assert.ok(paths.length > 0, 'LogsClient declares no RPC');
+		assert.deepEqual(
+			paths.filter((path: string): boolean => !path.startsWith('/ondewo.vtsi.Logs/')),
+			[]
+		);
+		assert.equal(existsSync(join(REPO_ROOT, 'api', 'ondewo', 'nlu', 'logs_grpc_pb.js')), false);
+	});
+
 	it('CallsClient carries the RPCs ondewo-vtsi-api 9.0.0 added', () => {
 		const methods: string[] = serviceMethods('CallsClient');
 		for (const name of [
