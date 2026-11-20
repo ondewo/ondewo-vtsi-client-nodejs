@@ -73,6 +73,8 @@ export class SoftphoneAccount extends jspb.Message {
     setLockedAt(value?: google_protobuf_timestamp_pb.Timestamp): SoftphoneAccount;
     getLockedReason(): string;
     setLockedReason(value: string): SoftphoneAccount;
+    getDescription(): string;
+    setDescription(value: string): SoftphoneAccount;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): SoftphoneAccount.AsObject;
@@ -108,6 +110,7 @@ export namespace SoftphoneAccount {
         locked: boolean,
         lockedAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
         lockedReason: string,
+        description: string,
     }
 }
 

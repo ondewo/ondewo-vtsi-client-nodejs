@@ -13,13 +13,13 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global = (function() {
-  if (this) { return this; }
-  if (typeof window !== 'undefined') { return window; }
-  if (typeof global !== 'undefined') { return global; }
-  if (typeof self !== 'undefined') { return self; }
-  return Function('return this')();
-}.call(null));
+var global =
+    (typeof globalThis !== 'undefined' && globalThis) ||
+    (typeof window !== 'undefined' && window) ||
+    (typeof global !== 'undefined' && global) ||
+    (typeof self !== 'undefined' && self) ||
+    (function () { return this; }).call(null) ||
+    Function('return this')();
 
 var google_protobuf_duration_pb = require('google-protobuf/google/protobuf/duration_pb.js');
 goog.object.extend(proto, google_protobuf_duration_pb);
@@ -772,29 +772,29 @@ proto.ondewo.vtsi.Campaign.prototype.toObject = function(opt_includeInstance) {
  */
 proto.ondewo.vtsi.Campaign.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    campaignId: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    displayName: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    maxParallelCalls: jspb.Message.getFieldWithDefault(msg, 5, 0),
-    maxAttempts: jspb.Message.getFieldWithDefault(msg, 6, 0),
-    retryDelay: (f = msg.getRetryDelay()) && google_protobuf_duration_pb.Duration.toObject(includeInstance, f),
-    state: jspb.Message.getFieldWithDefault(msg, 8, 0),
-    stateReason: jspb.Message.getFieldWithDefault(msg, 9, ""),
-    statistics: (f = msg.getStatistics()) && proto.ondewo.vtsi.CampaignStatistics.toObject(includeInstance, f),
-    createdBy: jspb.Message.getFieldWithDefault(msg, 11, ""),
-    createdAt: (f = msg.getCreatedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    modifiedBy: jspb.Message.getFieldWithDefault(msg, 13, ""),
-    modifiedAt: (f = msg.getModifiedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    startedAt: (f = msg.getStartedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    stoppedAt: (f = msg.getStoppedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    completedAt: (f = msg.getCompletedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    campaignCommonServicesConfig: (f = msg.getCampaignCommonServicesConfig()) && ondewo_vtsi_call_configs_pb.CommonServicesConfig.toObject(includeInstance, f),
-    campaignSipCallerConfig: (f = msg.getCampaignSipCallerConfig()) && ondewo_vtsi_call_configs_pb.SipCallerConfig.toObject(includeInstance, f),
-    campaignCallersList: (f = jspb.Message.getRepeatedField(msg, 20)) == null ? undefined : f,
-    campaignCallersTruncated: jspb.Message.getBooleanFieldWithDefault(msg, 21, false),
-    callingWindow: (f = msg.getCallingWindow()) && proto.ondewo.vtsi.CampaignCallingWindow.toObject(includeInstance, f),
-    outsideCallingWindow: jspb.Message.getBooleanFieldWithDefault(msg, 23, false)
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+campaignId: jspb.Message.getFieldWithDefault(msg, 2, ""),
+vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 3, ""),
+displayName: jspb.Message.getFieldWithDefault(msg, 4, ""),
+maxParallelCalls: jspb.Message.getFieldWithDefault(msg, 5, 0),
+maxAttempts: jspb.Message.getFieldWithDefault(msg, 6, 0),
+retryDelay: (f = msg.getRetryDelay()) && google_protobuf_duration_pb.Duration.toObject(includeInstance, f),
+state: jspb.Message.getFieldWithDefault(msg, 8, 0),
+stateReason: jspb.Message.getFieldWithDefault(msg, 9, ""),
+statistics: (f = msg.getStatistics()) && proto.ondewo.vtsi.CampaignStatistics.toObject(includeInstance, f),
+createdBy: jspb.Message.getFieldWithDefault(msg, 11, ""),
+createdAt: (f = msg.getCreatedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+modifiedBy: jspb.Message.getFieldWithDefault(msg, 13, ""),
+modifiedAt: (f = msg.getModifiedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+startedAt: (f = msg.getStartedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+stoppedAt: (f = msg.getStoppedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+completedAt: (f = msg.getCompletedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+campaignCommonServicesConfig: (f = msg.getCampaignCommonServicesConfig()) && ondewo_vtsi_call_configs_pb.CommonServicesConfig.toObject(includeInstance, f),
+campaignSipCallerConfig: (f = msg.getCampaignSipCallerConfig()) && ondewo_vtsi_call_configs_pb.SipCallerConfig.toObject(includeInstance, f),
+campaignCallersList: (f = jspb.Message.getRepeatedField(msg, 20)) == null ? undefined : f,
+campaignCallersTruncated: jspb.Message.getBooleanFieldWithDefault(msg, 21, false),
+callingWindow: (f = msg.getCallingWindow()) && proto.ondewo.vtsi.CampaignCallingWindow.toObject(includeInstance, f),
+outsideCallingWindow: jspb.Message.getBooleanFieldWithDefault(msg, 23, false)
   };
 
   if (includeInstance) {
@@ -1798,10 +1798,10 @@ proto.ondewo.vtsi.CampaignCallingWindow.prototype.toObject = function(opt_includ
  */
 proto.ondewo.vtsi.CampaignCallingWindow.toObject = function(includeInstance, msg) {
   var f, obj = {
-    timeZone: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    slotsList: jspb.Message.toObjectList(msg.getSlotsList(),
+timeZone: jspb.Message.getFieldWithDefault(msg, 1, ""),
+slotsList: jspb.Message.toObjectList(msg.getSlotsList(),
     proto.ondewo.vtsi.CallingWindowSlot.toObject, includeInstance),
-    nextWindowStart: (f = msg.getNextWindowStart()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+nextWindowStart: (f = msg.getNextWindowStart()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -2032,9 +2032,9 @@ proto.ondewo.vtsi.CallingWindowSlot.prototype.toObject = function(opt_includeIns
  */
 proto.ondewo.vtsi.CallingWindowSlot.toObject = function(includeInstance, msg) {
   var f, obj = {
-    dayOfWeek: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    startMinute: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    endMinute: jspb.Message.getFieldWithDefault(msg, 3, 0)
+dayOfWeek: jspb.Message.getFieldWithDefault(msg, 1, 0),
+startMinute: jspb.Message.getFieldWithDefault(msg, 2, 0),
+endMinute: jspb.Message.getFieldWithDefault(msg, 3, 0)
   };
 
   if (includeInstance) {
@@ -2222,20 +2222,20 @@ proto.ondewo.vtsi.CampaignStatistics.prototype.toObject = function(opt_includeIn
  */
 proto.ondewo.vtsi.CampaignStatistics.toObject = function(includeInstance, msg) {
   var f, obj = {
-    campaignName: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    total: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    notStarted: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    inProgress: jspb.Message.getFieldWithDefault(msg, 4, 0),
-    retryPending: jspb.Message.getFieldWithDefault(msg, 5, 0),
-    completed: jspb.Message.getFieldWithDefault(msg, 6, 0),
-    failed: jspb.Message.getFieldWithDefault(msg, 7, 0),
-    cancelled: jspb.Message.getFieldWithDefault(msg, 8, 0),
-    totalAttempts: jspb.Message.getFieldWithDefault(msg, 9, 0),
-    progressPercent: jspb.Message.getFloatingPointFieldWithDefault(msg, 10, 0.0),
-    scheduledNotDue: jspb.Message.getFieldWithDefault(msg, 11, 0),
-    callsRetried: jspb.Message.getFieldWithDefault(msg, 12, 0),
-    averageConnectedDuration: (f = msg.getAverageConnectedDuration()) && google_protobuf_duration_pb.Duration.toObject(includeInstance, f),
-    answeringMachineDetected: jspb.Message.getFieldWithDefault(msg, 14, 0)
+campaignName: jspb.Message.getFieldWithDefault(msg, 1, ""),
+total: jspb.Message.getFieldWithDefault(msg, 2, 0),
+notStarted: jspb.Message.getFieldWithDefault(msg, 3, 0),
+inProgress: jspb.Message.getFieldWithDefault(msg, 4, 0),
+retryPending: jspb.Message.getFieldWithDefault(msg, 5, 0),
+completed: jspb.Message.getFieldWithDefault(msg, 6, 0),
+failed: jspb.Message.getFieldWithDefault(msg, 7, 0),
+cancelled: jspb.Message.getFieldWithDefault(msg, 8, 0),
+totalAttempts: jspb.Message.getFieldWithDefault(msg, 9, 0),
+progressPercent: jspb.Message.getFloatingPointFieldWithDefault(msg, 10, 0.0),
+scheduledNotDue: jspb.Message.getFieldWithDefault(msg, 11, 0),
+callsRetried: jspb.Message.getFieldWithDefault(msg, 12, 0),
+averageConnectedDuration: (f = msg.getAverageConnectedDuration()) && google_protobuf_duration_pb.Duration.toObject(includeInstance, f),
+answeringMachineDetected: jspb.Message.getFieldWithDefault(msg, 14, 0)
   };
 
   if (includeInstance) {
@@ -2763,15 +2763,15 @@ proto.ondewo.vtsi.CampaignCallAttempt.prototype.toObject = function(opt_includeI
  */
 proto.ondewo.vtsi.CampaignCallAttempt.toObject = function(includeInstance, msg) {
   var f, obj = {
-    attemptNumber: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    callerName: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    callName: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    startTime: (f = msg.getStartTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    endTime: (f = msg.getEndTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    outcome: jspb.Message.getFieldWithDefault(msg, 6, 0),
-    sipStatusType: jspb.Message.getFieldWithDefault(msg, 7, 0),
-    sipStatusDescription: jspb.Message.getFieldWithDefault(msg, 8, ""),
-    errorMessage: jspb.Message.getFieldWithDefault(msg, 9, "")
+attemptNumber: jspb.Message.getFieldWithDefault(msg, 1, 0),
+callerName: jspb.Message.getFieldWithDefault(msg, 2, ""),
+callName: jspb.Message.getFieldWithDefault(msg, 3, ""),
+startTime: (f = msg.getStartTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+endTime: (f = msg.getEndTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+outcome: jspb.Message.getFieldWithDefault(msg, 6, 0),
+sipStatusType: jspb.Message.getFieldWithDefault(msg, 7, 0),
+sipStatusDescription: jspb.Message.getFieldWithDefault(msg, 8, ""),
+errorMessage: jspb.Message.getFieldWithDefault(msg, 9, "")
   };
 
   if (includeInstance) {
@@ -3182,28 +3182,28 @@ proto.ondewo.vtsi.CampaignCall.prototype.toObject = function(opt_includeInstance
  */
 proto.ondewo.vtsi.CampaignCall.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    campaignName: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    position: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    state: jspb.Message.getFieldWithDefault(msg, 4, 0),
-    phoneNumber: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    source: jspb.Message.getFieldWithDefault(msg, 6, 0),
-    scheduledCallerName: jspb.Message.getFieldWithDefault(msg, 7, ""),
-    scheduledTime: (f = msg.getScheduledTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    attempts: jspb.Message.getFieldWithDefault(msg, 9, 0),
-    maxAttempts: jspb.Message.getFieldWithDefault(msg, 10, 0),
-    callerName: jspb.Message.getFieldWithDefault(msg, 11, ""),
-    callName: jspb.Message.getFieldWithDefault(msg, 12, ""),
-    sipStatusType: jspb.Message.getFieldWithDefault(msg, 13, 0),
-    sipStatusDescription: jspb.Message.getFieldWithDefault(msg, 14, ""),
-    lastError: jspb.Message.getFieldWithDefault(msg, 15, ""),
-    nextAttemptTime: (f = msg.getNextAttemptTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    firstAttemptTime: (f = msg.getFirstAttemptTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    lastAttemptTime: (f = msg.getLastAttemptTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    finishTime: (f = msg.getFinishTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    createdAt: (f = msg.getCreatedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    modifiedAt: (f = msg.getModifiedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    attemptHistoryList: jspb.Message.toObjectList(msg.getAttemptHistoryList(),
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+campaignName: jspb.Message.getFieldWithDefault(msg, 2, ""),
+position: jspb.Message.getFieldWithDefault(msg, 3, 0),
+state: jspb.Message.getFieldWithDefault(msg, 4, 0),
+phoneNumber: jspb.Message.getFieldWithDefault(msg, 5, ""),
+source: jspb.Message.getFieldWithDefault(msg, 6, 0),
+scheduledCallerName: jspb.Message.getFieldWithDefault(msg, 7, ""),
+scheduledTime: (f = msg.getScheduledTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+attempts: jspb.Message.getFieldWithDefault(msg, 9, 0),
+maxAttempts: jspb.Message.getFieldWithDefault(msg, 10, 0),
+callerName: jspb.Message.getFieldWithDefault(msg, 11, ""),
+callName: jspb.Message.getFieldWithDefault(msg, 12, ""),
+sipStatusType: jspb.Message.getFieldWithDefault(msg, 13, 0),
+sipStatusDescription: jspb.Message.getFieldWithDefault(msg, 14, ""),
+lastError: jspb.Message.getFieldWithDefault(msg, 15, ""),
+nextAttemptTime: (f = msg.getNextAttemptTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+firstAttemptTime: (f = msg.getFirstAttemptTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+lastAttemptTime: (f = msg.getLastAttemptTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+finishTime: (f = msg.getFinishTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+createdAt: (f = msg.getCreatedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+modifiedAt: (f = msg.getModifiedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+attemptHistoryList: jspb.Message.toObjectList(msg.getAttemptHistoryList(),
     proto.ondewo.vtsi.CampaignCallAttempt.toObject, includeInstance)
   };
 
@@ -4139,10 +4139,10 @@ proto.ondewo.vtsi.CampaignAssignment.prototype.toObject = function(opt_includeIn
  */
 proto.ondewo.vtsi.CampaignAssignment.toObject = function(includeInstance, msg) {
   var f, obj = {
-    campaignName: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    newCampaign: (f = msg.getNewCampaign()) && proto.ondewo.vtsi.Campaign.toObject(includeInstance, f),
-    displayName: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    startMode: jspb.Message.getFieldWithDefault(msg, 3, 0)
+campaignName: (f = jspb.Message.getField(msg, 1)) == null ? undefined : f,
+newCampaign: (f = msg.getNewCampaign()) && proto.ondewo.vtsi.Campaign.toObject(includeInstance, f),
+displayName: (f = jspb.Message.getField(msg, 5)) == null ? undefined : f,
+startMode: jspb.Message.getFieldWithDefault(msg, 3, 0)
   };
 
   if (includeInstance) {
@@ -4416,10 +4416,10 @@ proto.ondewo.vtsi.CreateCampaignRequest.prototype.toObject = function(opt_includ
  */
 proto.ondewo.vtsi.CreateCampaignRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    campaign: (f = msg.getCampaign()) && proto.ondewo.vtsi.Campaign.toObject(includeInstance, f),
-    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f),
-    idempotencyKey: jspb.Message.getFieldWithDefault(msg, 4, "")
+vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 1, ""),
+campaign: (f = msg.getCampaign()) && proto.ondewo.vtsi.Campaign.toObject(includeInstance, f),
+fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f),
+idempotencyKey: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
 
   if (includeInstance) {
@@ -4704,10 +4704,10 @@ proto.ondewo.vtsi.GetCampaignRequest.prototype.toObject = function(opt_includeIn
  */
 proto.ondewo.vtsi.GetCampaignRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    displayName: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
+name: (f = jspb.Message.getField(msg, 1)) == null ? undefined : f,
+displayName: (f = jspb.Message.getField(msg, 3)) == null ? undefined : f,
+vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 4, ""),
+fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -4981,9 +4981,9 @@ proto.ondewo.vtsi.UpdateCampaignRequest.prototype.toObject = function(opt_includ
  */
 proto.ondewo.vtsi.UpdateCampaignRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    campaign: (f = msg.getCampaign()) && proto.ondewo.vtsi.Campaign.toObject(includeInstance, f),
-    updateMask: (f = msg.getUpdateMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f),
-    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
+campaign: (f = msg.getCampaign()) && proto.ondewo.vtsi.Campaign.toObject(includeInstance, f),
+updateMask: (f = msg.getUpdateMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f),
+fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -5260,11 +5260,11 @@ proto.ondewo.vtsi.DeleteCampaignRequest.prototype.toObject = function(opt_includ
  */
 proto.ondewo.vtsi.DeleteCampaignRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    displayName: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f),
-    force: jspb.Message.getBooleanFieldWithDefault(msg, 6, false)
+name: (f = jspb.Message.getField(msg, 1)) == null ? undefined : f,
+displayName: (f = jspb.Message.getField(msg, 3)) == null ? undefined : f,
+vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 4, ""),
+fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f),
+force: jspb.Message.getBooleanFieldWithDefault(msg, 6, false)
   };
 
   if (includeInstance) {
@@ -5567,9 +5567,9 @@ proto.ondewo.vtsi.DeleteCampaignResponse.prototype.toObject = function(opt_inclu
  */
 proto.ondewo.vtsi.DeleteCampaignResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    deletedCampaignCallCount: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    cancelledScheduledCallerCount: jspb.Message.getFieldWithDefault(msg, 3, 0)
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+deletedCampaignCallCount: jspb.Message.getFieldWithDefault(msg, 2, 0),
+cancelledScheduledCallerCount: jspb.Message.getFieldWithDefault(msg, 3, 0)
   };
 
   if (includeInstance) {
@@ -5764,13 +5764,13 @@ proto.ondewo.vtsi.CampaignFilter.prototype.toObject = function(opt_includeInstan
  */
 proto.ondewo.vtsi.CampaignFilter.toObject = function(includeInstance, msg) {
   var f, obj = {
-    statesList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f,
-    displayNameContains: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    displayName: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    createdAfter: (f = msg.getCreatedAfter()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    createdBefore: (f = msg.getCreatedBefore()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    createdBy: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    modifiedSince: (f = msg.getModifiedSince()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+statesList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f,
+displayNameContains: jspb.Message.getFieldWithDefault(msg, 2, ""),
+displayName: jspb.Message.getFieldWithDefault(msg, 3, ""),
+createdAfter: (f = msg.getCreatedAfter()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+createdBefore: (f = msg.getCreatedBefore()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+createdBy: jspb.Message.getFieldWithDefault(msg, 6, ""),
+modifiedSince: (f = msg.getModifiedSince()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -6158,12 +6158,12 @@ proto.ondewo.vtsi.ListCampaignsRequest.prototype.toObject = function(opt_include
  */
 proto.ondewo.vtsi.ListCampaignsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    filter: (f = msg.getFilter()) && proto.ondewo.vtsi.CampaignFilter.toObject(includeInstance, f),
-    pageSize: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    pageToken: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f),
-    orderBy: jspb.Message.getFieldWithDefault(msg, 6, 0)
+vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 1, ""),
+filter: (f = msg.getFilter()) && proto.ondewo.vtsi.CampaignFilter.toObject(includeInstance, f),
+pageSize: jspb.Message.getFieldWithDefault(msg, 3, 0),
+pageToken: (f = jspb.Message.getField(msg, 4)) == null ? undefined : f,
+fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f),
+orderBy: jspb.Message.getFieldWithDefault(msg, 6, 0)
   };
 
   if (includeInstance) {
@@ -6505,9 +6505,9 @@ proto.ondewo.vtsi.ListCampaignsResponse.prototype.toObject = function(opt_includ
  */
 proto.ondewo.vtsi.ListCampaignsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    campaignsList: jspb.Message.toObjectList(msg.getCampaignsList(),
+campaignsList: jspb.Message.toObjectList(msg.getCampaignsList(),
     proto.ondewo.vtsi.Campaign.toObject, includeInstance),
-    nextPageToken: jspb.Message.getFieldWithDefault(msg, 2, "")
+nextPageToken: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -6714,9 +6714,9 @@ proto.ondewo.vtsi.GetCampaignStatisticsRequest.prototype.toObject = function(opt
  */
 proto.ondewo.vtsi.GetCampaignStatisticsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    displayName: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 4, "")
+name: (f = jspb.Message.getField(msg, 1)) == null ? undefined : f,
+displayName: (f = jspb.Message.getField(msg, 3)) == null ? undefined : f,
+vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
 
   if (includeInstance) {
@@ -6973,22 +6973,22 @@ proto.ondewo.vtsi.ListCampaignCallsRequest.prototype.toObject = function(opt_inc
  */
 proto.ondewo.vtsi.ListCampaignCallsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    campaignName: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    displayName: jspb.Message.getFieldWithDefault(msg, 8, ""),
-    vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 9, ""),
-    statesList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f,
-    phoneNumber: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    pageSize: jspb.Message.getFieldWithDefault(msg, 4, 0),
-    pageToken: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    includeAttempts: jspb.Message.getBooleanFieldWithDefault(msg, 6, false),
-    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f),
-    phoneNumbersList: (f = jspb.Message.getRepeatedField(msg, 11)) == null ? undefined : f,
-    sourcesList: (f = jspb.Message.getRepeatedField(msg, 12)) == null ? undefined : f,
-    finishTimeMin: (f = msg.getFinishTimeMin()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    finishTimeMax: (f = msg.getFinishTimeMax()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    modifiedSince: (f = msg.getModifiedSince()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    minAttempts: jspb.Message.getFieldWithDefault(msg, 16, 0),
-    campaignCallNamesList: (f = jspb.Message.getRepeatedField(msg, 17)) == null ? undefined : f
+campaignName: (f = jspb.Message.getField(msg, 1)) == null ? undefined : f,
+displayName: (f = jspb.Message.getField(msg, 8)) == null ? undefined : f,
+vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 9, ""),
+statesList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f,
+phoneNumber: jspb.Message.getFieldWithDefault(msg, 3, ""),
+pageSize: jspb.Message.getFieldWithDefault(msg, 4, 0),
+pageToken: (f = jspb.Message.getField(msg, 5)) == null ? undefined : f,
+includeAttempts: jspb.Message.getBooleanFieldWithDefault(msg, 6, false),
+fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f),
+phoneNumbersList: (f = jspb.Message.getRepeatedField(msg, 11)) == null ? undefined : f,
+sourcesList: (f = jspb.Message.getRepeatedField(msg, 12)) == null ? undefined : f,
+finishTimeMin: (f = msg.getFinishTimeMin()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+finishTimeMax: (f = msg.getFinishTimeMax()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+modifiedSince: (f = msg.getModifiedSince()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+minAttempts: jspb.Message.getFieldWithDefault(msg, 16, 0),
+campaignCallNamesList: (f = jspb.Message.getRepeatedField(msg, 17)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -7778,9 +7778,9 @@ proto.ondewo.vtsi.ListCampaignCallsResponse.prototype.toObject = function(opt_in
  */
 proto.ondewo.vtsi.ListCampaignCallsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    campaignCallsList: jspb.Message.toObjectList(msg.getCampaignCallsList(),
+campaignCallsList: jspb.Message.toObjectList(msg.getCampaignCallsList(),
     proto.ondewo.vtsi.CampaignCall.toObject, includeInstance),
-    nextPageToken: jspb.Message.getFieldWithDefault(msg, 2, "")
+nextPageToken: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -7987,10 +7987,10 @@ proto.ondewo.vtsi.StartCampaignRequest.prototype.toObject = function(opt_include
  */
 proto.ondewo.vtsi.StartCampaignRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    displayName: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
+name: (f = jspb.Message.getField(msg, 1)) == null ? undefined : f,
+displayName: (f = jspb.Message.getField(msg, 3)) == null ? undefined : f,
+vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 4, ""),
+fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -8290,10 +8290,10 @@ proto.ondewo.vtsi.StopCampaignRequest.prototype.toObject = function(opt_includeI
  */
 proto.ondewo.vtsi.StopCampaignRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    displayName: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
+name: (f = jspb.Message.getField(msg, 1)) == null ? undefined : f,
+displayName: (f = jspb.Message.getField(msg, 3)) == null ? undefined : f,
+vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 4, ""),
+fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -8593,10 +8593,10 @@ proto.ondewo.vtsi.HardStopCampaignRequest.prototype.toObject = function(opt_incl
  */
 proto.ondewo.vtsi.HardStopCampaignRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    displayName: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
+name: (f = jspb.Message.getField(msg, 1)) == null ? undefined : f,
+displayName: (f = jspb.Message.getField(msg, 3)) == null ? undefined : f,
+vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 4, ""),
+fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -8896,10 +8896,10 @@ proto.ondewo.vtsi.ResumeCampaignRequest.prototype.toObject = function(opt_includ
  */
 proto.ondewo.vtsi.ResumeCampaignRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    displayName: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
+name: (f = jspb.Message.getField(msg, 1)) == null ? undefined : f,
+displayName: (f = jspb.Message.getField(msg, 3)) == null ? undefined : f,
+vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 4, ""),
+fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -9180,11 +9180,11 @@ proto.ondewo.vtsi.StreamCampaignStatusRequest.prototype.toObject = function(opt_
  */
 proto.ondewo.vtsi.StreamCampaignStatusRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    campaignNamesList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f,
-    campaignDisplayNamesList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f,
-    includeCalls: jspb.Message.getBooleanFieldWithDefault(msg, 3, false),
-    statesList: (f = jspb.Message.getRepeatedField(msg, 5)) == null ? undefined : f
+vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 1, ""),
+campaignNamesList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f,
+campaignDisplayNamesList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f,
+includeCalls: jspb.Message.getBooleanFieldWithDefault(msg, 3, false),
+statesList: (f = jspb.Message.getRepeatedField(msg, 5)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -9496,14 +9496,14 @@ proto.ondewo.vtsi.StreamCampaignStatusResponse.prototype.toObject = function(opt
  */
 proto.ondewo.vtsi.StreamCampaignStatusResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    campaignsList: jspb.Message.toObjectList(msg.getCampaignsList(),
+campaignsList: jspb.Message.toObjectList(msg.getCampaignsList(),
     proto.ondewo.vtsi.Campaign.toObject, includeInstance),
-    campaignCallsList: jspb.Message.toObjectList(msg.getCampaignCallsList(),
+campaignCallsList: jspb.Message.toObjectList(msg.getCampaignCallsList(),
     proto.ondewo.vtsi.CampaignCall.toObject, includeInstance),
-    deletedCampaignNamesList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f,
-    snapshot: jspb.Message.getBooleanFieldWithDefault(msg, 4, false),
-    endReason: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    endReasonType: jspb.Message.getFieldWithDefault(msg, 6, 0)
+deletedCampaignNamesList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f,
+snapshot: jspb.Message.getBooleanFieldWithDefault(msg, 4, false),
+endReason: jspb.Message.getFieldWithDefault(msg, 5, ""),
+endReasonType: jspb.Message.getFieldWithDefault(msg, 6, 0)
   };
 
   if (includeInstance) {
@@ -9841,9 +9841,9 @@ proto.ondewo.vtsi.GetCampaignCallRequest.prototype.toObject = function(opt_inclu
  */
 proto.ondewo.vtsi.GetCampaignCallRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    includeAttempts: jspb.Message.getBooleanFieldWithDefault(msg, 2, false),
-    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+includeAttempts: jspb.Message.getBooleanFieldWithDefault(msg, 2, false),
+fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -10052,9 +10052,9 @@ proto.ondewo.vtsi.CampaignCallRefusal.prototype.toObject = function(opt_includeI
  */
 proto.ondewo.vtsi.CampaignCallRefusal.toObject = function(includeInstance, msg) {
   var f, obj = {
-    campaignCallName: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    state: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    reason: jspb.Message.getFieldWithDefault(msg, 3, "")
+campaignCallName: jspb.Message.getFieldWithDefault(msg, 1, ""),
+state: jspb.Message.getFieldWithDefault(msg, 2, 0),
+reason: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -10275,11 +10275,11 @@ proto.ondewo.vtsi.CancelCampaignCallsRequest.prototype.toObject = function(opt_i
  */
 proto.ondewo.vtsi.CancelCampaignCallsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    displayName: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    campaignCallNamesList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f,
-    statesList: (f = jspb.Message.getRepeatedField(msg, 5)) == null ? undefined : f
+name: (f = jspb.Message.getField(msg, 1)) == null ? undefined : f,
+displayName: (f = jspb.Message.getField(msg, 2)) == null ? undefined : f,
+vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 3, ""),
+campaignCallNamesList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f,
+statesList: (f = jspb.Message.getRepeatedField(msg, 5)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -10608,11 +10608,11 @@ proto.ondewo.vtsi.CancelCampaignCallsResponse.prototype.toObject = function(opt_
  */
 proto.ondewo.vtsi.CancelCampaignCallsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    campaignName: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    cancelledCampaignCallNamesList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f,
-    refusedList: jspb.Message.toObjectList(msg.getRefusedList(),
+campaignName: jspb.Message.getFieldWithDefault(msg, 1, ""),
+cancelledCampaignCallNamesList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f,
+refusedList: jspb.Message.toObjectList(msg.getRefusedList(),
     proto.ondewo.vtsi.CampaignCallRefusal.toObject, includeInstance),
-    remainingCount: jspb.Message.getFieldWithDefault(msg, 4, 0)
+remainingCount: jspb.Message.getFieldWithDefault(msg, 4, 0)
   };
 
   if (includeInstance) {
@@ -10903,13 +10903,13 @@ proto.ondewo.vtsi.RetryCampaignCallsRequest.prototype.toObject = function(opt_in
  */
 proto.ondewo.vtsi.RetryCampaignCallsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    displayName: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    campaignCallNamesList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f,
-    statesList: (f = jspb.Message.getRepeatedField(msg, 5)) == null ? undefined : f,
-    additionalAttempts: jspb.Message.getFieldWithDefault(msg, 6, 0),
-    notBefore: (f = msg.getNotBefore()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+name: (f = jspb.Message.getField(msg, 1)) == null ? undefined : f,
+displayName: (f = jspb.Message.getField(msg, 2)) == null ? undefined : f,
+vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 3, ""),
+campaignCallNamesList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f,
+statesList: (f = jspb.Message.getRepeatedField(msg, 5)) == null ? undefined : f,
+additionalAttempts: jspb.Message.getFieldWithDefault(msg, 6, 0),
+notBefore: (f = msg.getNotBefore()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -11317,12 +11317,12 @@ proto.ondewo.vtsi.RetryCampaignCallsResponse.prototype.toObject = function(opt_i
  */
 proto.ondewo.vtsi.RetryCampaignCallsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    campaignName: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    requeuedCampaignCallNamesList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f,
-    refusedList: jspb.Message.toObjectList(msg.getRefusedList(),
+campaignName: jspb.Message.getFieldWithDefault(msg, 1, ""),
+requeuedCampaignCallNamesList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f,
+refusedList: jspb.Message.toObjectList(msg.getRefusedList(),
     proto.ondewo.vtsi.CampaignCallRefusal.toObject, includeInstance),
-    remainingCount: jspb.Message.getFieldWithDefault(msg, 4, 0),
-    campaignState: jspb.Message.getFieldWithDefault(msg, 5, 0)
+remainingCount: jspb.Message.getFieldWithDefault(msg, 4, 0),
+campaignState: jspb.Message.getFieldWithDefault(msg, 5, 0)
   };
 
   if (includeInstance) {
@@ -11642,14 +11642,14 @@ proto.ondewo.vtsi.CloneCampaignRequest.prototype.toObject = function(opt_include
  */
 proto.ondewo.vtsi.CloneCampaignRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    sourceName: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    sourceDisplayName: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    newDisplayName: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    includeCalls: jspb.Message.getBooleanFieldWithDefault(msg, 5, false),
-    callStatesList: (f = jspb.Message.getRepeatedField(msg, 6)) == null ? undefined : f,
-    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f),
-    idempotencyKey: jspb.Message.getFieldWithDefault(msg, 8, "")
+sourceName: (f = jspb.Message.getField(msg, 1)) == null ? undefined : f,
+sourceDisplayName: (f = jspb.Message.getField(msg, 2)) == null ? undefined : f,
+vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 3, ""),
+newDisplayName: jspb.Message.getFieldWithDefault(msg, 4, ""),
+includeCalls: jspb.Message.getBooleanFieldWithDefault(msg, 5, false),
+callStatesList: (f = jspb.Message.getRepeatedField(msg, 6)) == null ? undefined : f,
+fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f),
+idempotencyKey: jspb.Message.getFieldWithDefault(msg, 8, "")
   };
 
   if (includeInstance) {

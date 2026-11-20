@@ -13,13 +13,13 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global = (function() {
-  if (this) { return this; }
-  if (typeof window !== 'undefined') { return window; }
-  if (typeof global !== 'undefined') { return global; }
-  if (typeof self !== 'undefined') { return self; }
-  return Function('return this')();
-}.call(null));
+var global =
+    (typeof globalThis !== 'undefined' && globalThis) ||
+    (typeof window !== 'undefined' && window) ||
+    (typeof global !== 'undefined' && global) ||
+    (typeof self !== 'undefined' && self) ||
+    (function () { return this; }).call(null) ||
+    Function('return this')();
 
 var google_protobuf_field_mask_pb = require('google-protobuf/google/protobuf/field_mask_pb.js');
 goog.object.extend(proto, google_protobuf_field_mask_pb);
@@ -397,21 +397,21 @@ proto.ondewo.vtsi.CallLogEntry.prototype.toObject = function(opt_includeInstance
  */
 proto.ondewo.vtsi.CallLogEntry.toObject = function(includeInstance, msg) {
   var f, obj = {
-    seq: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    timestamp: (f = msg.getTimestamp()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    timestampIsExact: jspb.Message.getBooleanFieldWithDefault(msg, 3, false),
-    level: jspb.Message.getFieldWithDefault(msg, 4, 0),
-    message: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    containerId: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    containerName: jspb.Message.getFieldWithDefault(msg, 7, ""),
-    logSource: jspb.Message.getFieldWithDefault(msg, 8, 0),
-    channel: jspb.Message.getFieldWithDefault(msg, 9, 0),
-    emitter: jspb.Message.getFieldWithDefault(msg, 10, ""),
-    threadName: jspb.Message.getFieldWithDefault(msg, 11, ""),
-    logStream: jspb.Message.getFieldWithDefault(msg, 12, ""),
-    call: jspb.Message.getFieldWithDefault(msg, 13, ""),
-    nluSessionName: jspb.Message.getFieldWithDefault(msg, 14, ""),
-    physicalLineCount: jspb.Message.getFieldWithDefault(msg, 15, 0)
+seq: jspb.Message.getFieldWithDefault(msg, 1, 0),
+timestamp: (f = msg.getTimestamp()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+timestampIsExact: jspb.Message.getBooleanFieldWithDefault(msg, 3, false),
+level: jspb.Message.getFieldWithDefault(msg, 4, 0),
+message: jspb.Message.getFieldWithDefault(msg, 5, ""),
+containerId: jspb.Message.getFieldWithDefault(msg, 6, ""),
+containerName: jspb.Message.getFieldWithDefault(msg, 7, ""),
+logSource: jspb.Message.getFieldWithDefault(msg, 8, 0),
+channel: jspb.Message.getFieldWithDefault(msg, 9, 0),
+emitter: jspb.Message.getFieldWithDefault(msg, 10, ""),
+threadName: jspb.Message.getFieldWithDefault(msg, 11, ""),
+logStream: jspb.Message.getFieldWithDefault(msg, 12, ""),
+call: jspb.Message.getFieldWithDefault(msg, 13, ""),
+nluSessionName: jspb.Message.getFieldWithDefault(msg, 14, ""),
+physicalLineCount: jspb.Message.getFieldWithDefault(msg, 15, 0)
   };
 
   if (includeInstance) {
@@ -968,8 +968,8 @@ proto.ondewo.vtsi.SipHeaderFilter.prototype.toObject = function(opt_includeInsta
  */
 proto.ondewo.vtsi.SipHeaderFilter.toObject = function(includeInstance, msg) {
   var f, obj = {
-    key: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    value: jspb.Message.getFieldWithDefault(msg, 2, "")
+key: jspb.Message.getFieldWithDefault(msg, 1, ""),
+value: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -1135,41 +1135,41 @@ proto.ondewo.vtsi.CallLogFilter.prototype.toObject = function(opt_includeInstanc
  */
 proto.ondewo.vtsi.CallLogFilter.toObject = function(includeInstance, msg) {
   var f, obj = {
-    callNamesList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f,
-    callerNamesList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f,
-    listenerNamesList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f,
-    callerIdsList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f,
-    listenerIdsList: (f = jspb.Message.getRepeatedField(msg, 5)) == null ? undefined : f,
-    callIdsList: (f = jspb.Message.getRepeatedField(msg, 6)) == null ? undefined : f,
-    containerNamesList: (f = jspb.Message.getRepeatedField(msg, 7)) == null ? undefined : f,
-    containerIdsList: (f = jspb.Message.getRepeatedField(msg, 8)) == null ? undefined : f,
-    logStreamNamesList: (f = jspb.Message.getRepeatedField(msg, 9)) == null ? undefined : f,
-    sipAccountsList: (f = jspb.Message.getRepeatedField(msg, 10)) == null ? undefined : f,
-    sipPortsList: (f = jspb.Message.getRepeatedField(msg, 11)) == null ? undefined : f,
-    csiPortsList: (f = jspb.Message.getRepeatedField(msg, 12)) == null ? undefined : f,
-    asteriskPortsList: (f = jspb.Message.getRepeatedField(msg, 13)) == null ? undefined : f,
-    phoneNumbersList: (f = jspb.Message.getRepeatedField(msg, 14)) == null ? undefined : f,
-    calleeIdsList: (f = jspb.Message.getRepeatedField(msg, 15)) == null ? undefined : f,
-    nluSessionNamesList: (f = jspb.Message.getRepeatedField(msg, 16)) == null ? undefined : f,
-    nluSessionUuidsList: (f = jspb.Message.getRepeatedField(msg, 17)) == null ? undefined : f,
-    nluProjectUuidsList: (f = jspb.Message.getRepeatedField(msg, 18)) == null ? undefined : f,
-    callTypesList: (f = jspb.Message.getRepeatedField(msg, 19)) == null ? undefined : f,
-    sipHeadersList: jspb.Message.toObjectList(msg.getSipHeadersList(),
+callNamesList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f,
+callerNamesList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f,
+listenerNamesList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f,
+callerIdsList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f,
+listenerIdsList: (f = jspb.Message.getRepeatedField(msg, 5)) == null ? undefined : f,
+callIdsList: (f = jspb.Message.getRepeatedField(msg, 6)) == null ? undefined : f,
+containerNamesList: (f = jspb.Message.getRepeatedField(msg, 7)) == null ? undefined : f,
+containerIdsList: (f = jspb.Message.getRepeatedField(msg, 8)) == null ? undefined : f,
+logStreamNamesList: (f = jspb.Message.getRepeatedField(msg, 9)) == null ? undefined : f,
+sipAccountsList: (f = jspb.Message.getRepeatedField(msg, 10)) == null ? undefined : f,
+sipPortsList: (f = jspb.Message.getRepeatedField(msg, 11)) == null ? undefined : f,
+csiPortsList: (f = jspb.Message.getRepeatedField(msg, 12)) == null ? undefined : f,
+asteriskPortsList: (f = jspb.Message.getRepeatedField(msg, 13)) == null ? undefined : f,
+phoneNumbersList: (f = jspb.Message.getRepeatedField(msg, 14)) == null ? undefined : f,
+calleeIdsList: (f = jspb.Message.getRepeatedField(msg, 15)) == null ? undefined : f,
+nluSessionNamesList: (f = jspb.Message.getRepeatedField(msg, 16)) == null ? undefined : f,
+nluSessionUuidsList: (f = jspb.Message.getRepeatedField(msg, 17)) == null ? undefined : f,
+nluProjectUuidsList: (f = jspb.Message.getRepeatedField(msg, 18)) == null ? undefined : f,
+callTypesList: (f = jspb.Message.getRepeatedField(msg, 19)) == null ? undefined : f,
+sipHeadersList: jspb.Message.toObjectList(msg.getSipHeadersList(),
     proto.ondewo.vtsi.SipHeaderFilter.toObject, includeInstance),
-    logSourcesList: (f = jspb.Message.getRepeatedField(msg, 21)) == null ? undefined : f,
-    channelsList: (f = jspb.Message.getRepeatedField(msg, 22)) == null ? undefined : f,
-    minLogLevel: jspb.Message.getFieldWithDefault(msg, 23, 0),
-    logLevelsList: (f = jspb.Message.getRepeatedField(msg, 24)) == null ? undefined : f,
-    includeUnleveledLines: jspb.Message.getBooleanFieldWithDefault(msg, 25, false),
-    text: jspb.Message.getFieldWithDefault(msg, 26, ""),
-    regex: jspb.Message.getFieldWithDefault(msg, 27, ""),
-    emitterPrefixesList: (f = jspb.Message.getRepeatedField(msg, 28)) == null ? undefined : f,
-    threadNamesList: (f = jspb.Message.getRepeatedField(msg, 29)) == null ? undefined : f,
-    startTime: (f = msg.getStartTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    endTime: (f = msg.getEndTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    sipPortNumbersList: (f = jspb.Message.getRepeatedField(msg, 32)) == null ? undefined : f,
-    csiPortNumbersList: (f = jspb.Message.getRepeatedField(msg, 33)) == null ? undefined : f,
-    asteriskPortNumbersList: (f = jspb.Message.getRepeatedField(msg, 34)) == null ? undefined : f
+logSourcesList: (f = jspb.Message.getRepeatedField(msg, 21)) == null ? undefined : f,
+channelsList: (f = jspb.Message.getRepeatedField(msg, 22)) == null ? undefined : f,
+minLogLevel: jspb.Message.getFieldWithDefault(msg, 23, 0),
+logLevelsList: (f = jspb.Message.getRepeatedField(msg, 24)) == null ? undefined : f,
+includeUnleveledLines: (f = jspb.Message.getBooleanField(msg, 25)) == null ? undefined : f,
+text: (f = jspb.Message.getField(msg, 26)) == null ? undefined : f,
+regex: (f = jspb.Message.getField(msg, 27)) == null ? undefined : f,
+emitterPrefixesList: (f = jspb.Message.getRepeatedField(msg, 28)) == null ? undefined : f,
+threadNamesList: (f = jspb.Message.getRepeatedField(msg, 29)) == null ? undefined : f,
+startTime: (f = msg.getStartTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+endTime: (f = msg.getEndTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+sipPortNumbersList: (f = jspb.Message.getRepeatedField(msg, 32)) == null ? undefined : f,
+csiPortNumbersList: (f = jspb.Message.getRepeatedField(msg, 33)) == null ? undefined : f,
+asteriskPortNumbersList: (f = jspb.Message.getRepeatedField(msg, 34)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -2901,28 +2901,28 @@ proto.ondewo.vtsi.CallLogStream.prototype.toObject = function(opt_includeInstanc
  */
 proto.ondewo.vtsi.CallLogStream.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    containerName: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    containerId: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    channel: jspb.Message.getFieldWithDefault(msg, 4, 0),
-    projectId: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    voipCallName: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    callType: jspb.Message.getFieldWithDefault(msg, 7, 0),
-    sipAccount: jspb.Message.getFieldWithDefault(msg, 8, ""),
-    sipPort: jspb.Message.getFieldWithDefault(msg, 9, 0),
-    csiPort: jspb.Message.getFieldWithDefault(msg, 10, 0),
-    asteriskPort: jspb.Message.getFieldWithDefault(msg, 11, 0),
-    image: jspb.Message.getFieldWithDefault(msg, 12, ""),
-    captureState: jspb.Message.getFieldWithDefault(msg, 13, 0),
-    captureError: jspb.Message.getFieldWithDefault(msg, 14, ""),
-    captureStartedAt: (f = msg.getCaptureStartedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    captureFinishedAt: (f = msg.getCaptureFinishedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    partialCapture: jspb.Message.getBooleanFieldWithDefault(msg, 17, false),
-    minAvailableSeq: jspb.Message.getFieldWithDefault(msg, 18, 0),
-    maxAvailableSeq: jspb.Message.getFieldWithDefault(msg, 19, 0),
-    lineCount: jspb.Message.getFieldWithDefault(msg, 20, 0),
-    droppedLineCount: jspb.Message.getFieldWithDefault(msg, 21, 0),
-    vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 22, "")
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+containerName: jspb.Message.getFieldWithDefault(msg, 2, ""),
+containerId: jspb.Message.getFieldWithDefault(msg, 3, ""),
+channel: jspb.Message.getFieldWithDefault(msg, 4, 0),
+projectId: jspb.Message.getFieldWithDefault(msg, 5, ""),
+voipCallName: jspb.Message.getFieldWithDefault(msg, 6, ""),
+callType: jspb.Message.getFieldWithDefault(msg, 7, 0),
+sipAccount: jspb.Message.getFieldWithDefault(msg, 8, ""),
+sipPort: jspb.Message.getFieldWithDefault(msg, 9, 0),
+csiPort: jspb.Message.getFieldWithDefault(msg, 10, 0),
+asteriskPort: jspb.Message.getFieldWithDefault(msg, 11, 0),
+image: jspb.Message.getFieldWithDefault(msg, 12, ""),
+captureState: jspb.Message.getFieldWithDefault(msg, 13, 0),
+captureError: jspb.Message.getFieldWithDefault(msg, 14, ""),
+captureStartedAt: (f = msg.getCaptureStartedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+captureFinishedAt: (f = msg.getCaptureFinishedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+partialCapture: jspb.Message.getBooleanFieldWithDefault(msg, 17, false),
+minAvailableSeq: jspb.Message.getFieldWithDefault(msg, 18, 0),
+maxAvailableSeq: jspb.Message.getFieldWithDefault(msg, 19, 0),
+lineCount: jspb.Message.getFieldWithDefault(msg, 20, 0),
+droppedLineCount: jspb.Message.getFieldWithDefault(msg, 21, 0),
+vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 22, "")
   };
 
   if (includeInstance) {
@@ -3703,11 +3703,11 @@ proto.ondewo.vtsi.StreamCallLogsRequest.prototype.toObject = function(opt_includ
  */
 proto.ondewo.vtsi.StreamCallLogsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    filter: (f = msg.getFilter()) && proto.ondewo.vtsi.CallLogFilter.toObject(includeInstance, f),
-    tailLines: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    resumeToken: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    afterSeq: jspb.Message.getFieldWithDefault(msg, 5, 0)
+vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 1, ""),
+filter: (f = msg.getFilter()) && proto.ondewo.vtsi.CallLogFilter.toObject(includeInstance, f),
+tailLines: (f = jspb.Message.getField(msg, 3)) == null ? undefined : f,
+resumeToken: (f = jspb.Message.getField(msg, 4)) == null ? undefined : f,
+afterSeq: (f = jspb.Message.getField(msg, 5)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -4035,14 +4035,14 @@ proto.ondewo.vtsi.StreamCallLogsResponse.prototype.toObject = function(opt_inclu
  */
 proto.ondewo.vtsi.StreamCallLogsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    logEntriesList: jspb.Message.toObjectList(msg.getLogEntriesList(),
+logEntriesList: jspb.Message.toObjectList(msg.getLogEntriesList(),
     proto.ondewo.vtsi.CallLogEntry.toObject, includeInstance),
-    captureState: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    captureError: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    droppedLineCount: jspb.Message.getFieldWithDefault(msg, 4, 0),
-    resumeToken: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    endReason: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    endReasonCode: jspb.Message.getFieldWithDefault(msg, 7, 0)
+captureState: jspb.Message.getFieldWithDefault(msg, 2, 0),
+captureError: jspb.Message.getFieldWithDefault(msg, 3, ""),
+droppedLineCount: jspb.Message.getFieldWithDefault(msg, 4, 0),
+resumeToken: jspb.Message.getFieldWithDefault(msg, 5, ""),
+endReason: jspb.Message.getFieldWithDefault(msg, 6, ""),
+endReasonCode: jspb.Message.getFieldWithDefault(msg, 7, 0)
   };
 
   if (includeInstance) {
@@ -4368,15 +4368,15 @@ proto.ondewo.vtsi.ListCallLogsRequest.prototype.toObject = function(opt_includeI
  */
 proto.ondewo.vtsi.ListCallLogsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    filter: (f = msg.getFilter()) && proto.ondewo.vtsi.CallLogFilter.toObject(includeInstance, f),
-    maxLines: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    beforeSeq: jspb.Message.getFieldWithDefault(msg, 4, 0),
-    afterSeq: jspb.Message.getFieldWithDefault(msg, 5, 0),
-    resumeToken: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    oldestFirst: jspb.Message.getBooleanFieldWithDefault(msg, 7, false),
-    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f),
-    includeCounts: jspb.Message.getBooleanFieldWithDefault(msg, 9, false)
+vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 1, ""),
+filter: (f = msg.getFilter()) && proto.ondewo.vtsi.CallLogFilter.toObject(includeInstance, f),
+maxLines: (f = jspb.Message.getField(msg, 3)) == null ? undefined : f,
+beforeSeq: (f = jspb.Message.getField(msg, 4)) == null ? undefined : f,
+afterSeq: (f = jspb.Message.getField(msg, 5)) == null ? undefined : f,
+resumeToken: (f = jspb.Message.getField(msg, 6)) == null ? undefined : f,
+oldestFirst: (f = jspb.Message.getBooleanField(msg, 7)) == null ? undefined : f,
+fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f),
+includeCounts: jspb.Message.getBooleanFieldWithDefault(msg, 9, false)
   };
 
   if (includeInstance) {
@@ -4877,17 +4877,17 @@ proto.ondewo.vtsi.ListCallLogsResponse.prototype.toObject = function(opt_include
  */
 proto.ondewo.vtsi.ListCallLogsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    logEntriesList: jspb.Message.toObjectList(msg.getLogEntriesList(),
+logEntriesList: jspb.Message.toObjectList(msg.getLogEntriesList(),
     proto.ondewo.vtsi.CallLogEntry.toObject, includeInstance),
-    truncated: jspb.Message.getBooleanFieldWithDefault(msg, 2, false),
-    minAvailableSeq: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    maxAvailableSeq: jspb.Message.getFieldWithDefault(msg, 4, 0),
-    hasMoreOlder: jspb.Message.getBooleanFieldWithDefault(msg, 5, false),
-    hasMoreNewer: jspb.Message.getBooleanFieldWithDefault(msg, 6, false),
-    nextResumeToken: jspb.Message.getFieldWithDefault(msg, 7, ""),
-    scopeLimitedFiltersList: (f = jspb.Message.getRepeatedField(msg, 8)) == null ? undefined : f,
-    totalMatchingCount: jspb.Message.getFieldWithDefault(msg, 9, 0),
-    countByLevelMap: (f = msg.getCountByLevelMap()) ? f.toObject(includeInstance, undefined) : []
+truncated: jspb.Message.getBooleanFieldWithDefault(msg, 2, false),
+minAvailableSeq: jspb.Message.getFieldWithDefault(msg, 3, 0),
+maxAvailableSeq: jspb.Message.getFieldWithDefault(msg, 4, 0),
+hasMoreOlder: jspb.Message.getBooleanFieldWithDefault(msg, 5, false),
+hasMoreNewer: jspb.Message.getBooleanFieldWithDefault(msg, 6, false),
+nextResumeToken: jspb.Message.getFieldWithDefault(msg, 7, ""),
+scopeLimitedFiltersList: (f = jspb.Message.getRepeatedField(msg, 8)) == null ? undefined : f,
+totalMatchingCount: (f = jspb.Message.getField(msg, 9)) == null ? undefined : f,
+countByLevelMap: (f = msg.getCountByLevelMap()) ? f.toObject(includeInstance, undefined) : []
   };
 
   if (includeInstance) {
@@ -5307,7 +5307,8 @@ proto.ondewo.vtsi.ListCallLogsResponse.prototype.getCountByLevelMap = function(o
  */
 proto.ondewo.vtsi.ListCallLogsResponse.prototype.clearCountByLevelMap = function() {
   this.getCountByLevelMap().clear();
-  return this;};
+  return this;
+};
 
 
 
@@ -5342,9 +5343,9 @@ proto.ondewo.vtsi.GetCallLogStreamRequest.prototype.toObject = function(opt_incl
  */
 proto.ondewo.vtsi.GetCallLogStreamRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    name: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
+vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 1, ""),
+name: jspb.Message.getFieldWithDefault(msg, 2, ""),
+fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -5560,12 +5561,12 @@ proto.ondewo.vtsi.ListCallLogStreamsRequest.prototype.toObject = function(opt_in
  */
 proto.ondewo.vtsi.ListCallLogStreamsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    filter: (f = msg.getFilter()) && proto.ondewo.vtsi.CallLogFilter.toObject(includeInstance, f),
-    pageToken: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f),
-    pageSize: jspb.Message.getFieldWithDefault(msg, 5, 0),
-    captureStatesList: (f = jspb.Message.getRepeatedField(msg, 6)) == null ? undefined : f
+vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 1, ""),
+filter: (f = msg.getFilter()) && proto.ondewo.vtsi.CallLogFilter.toObject(includeInstance, f),
+pageToken: (f = jspb.Message.getField(msg, 3)) == null ? undefined : f,
+fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f),
+pageSize: jspb.Message.getFieldWithDefault(msg, 5, 0),
+captureStatesList: (f = jspb.Message.getRepeatedField(msg, 6)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -5928,9 +5929,9 @@ proto.ondewo.vtsi.ListCallLogStreamsResponse.prototype.toObject = function(opt_i
  */
 proto.ondewo.vtsi.ListCallLogStreamsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    logStreamsList: jspb.Message.toObjectList(msg.getLogStreamsList(),
+logStreamsList: jspb.Message.toObjectList(msg.getLogStreamsList(),
     proto.ondewo.vtsi.CallLogStream.toObject, includeInstance),
-    nextPageToken: jspb.Message.getFieldWithDefault(msg, 2, "")
+nextPageToken: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -6111,9 +6112,9 @@ proto.ondewo.vtsi.DeleteCallLogsRequest.prototype.toObject = function(opt_includ
  */
 proto.ondewo.vtsi.DeleteCallLogsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    filter: (f = msg.getFilter()) && proto.ondewo.vtsi.CallLogFilter.toObject(includeInstance, f),
-    validateOnly: jspb.Message.getBooleanFieldWithDefault(msg, 3, false)
+vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 1, ""),
+filter: (f = msg.getFilter()) && proto.ondewo.vtsi.CallLogFilter.toObject(includeInstance, f),
+validateOnly: jspb.Message.getBooleanFieldWithDefault(msg, 3, false)
   };
 
   if (includeInstance) {
@@ -6322,8 +6323,8 @@ proto.ondewo.vtsi.DeleteCallLogsResponse.prototype.toObject = function(opt_inclu
  */
 proto.ondewo.vtsi.DeleteCallLogsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    deletedLogEntryCount: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    deletedLogStreamCount: jspb.Message.getFieldWithDefault(msg, 2, 0)
+deletedLogEntryCount: jspb.Message.getFieldWithDefault(msg, 1, 0),
+deletedLogStreamCount: jspb.Message.getFieldWithDefault(msg, 2, 0)
   };
 
   if (includeInstance) {
@@ -6482,10 +6483,10 @@ proto.ondewo.vtsi.ExportCallLogsRequest.prototype.toObject = function(opt_includ
  */
 proto.ondewo.vtsi.ExportCallLogsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    filter: (f = msg.getFilter()) && proto.ondewo.vtsi.CallLogFilter.toObject(includeInstance, f),
-    format: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    includeMetadata: jspb.Message.getBooleanFieldWithDefault(msg, 4, false)
+vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 1, ""),
+filter: (f = msg.getFilter()) && proto.ondewo.vtsi.CallLogFilter.toObject(includeInstance, f),
+format: jspb.Message.getFieldWithDefault(msg, 3, 0),
+includeMetadata: jspb.Message.getBooleanFieldWithDefault(msg, 4, false)
   };
 
   if (includeInstance) {
@@ -6723,10 +6724,10 @@ proto.ondewo.vtsi.ExportCallLogsResponse.prototype.toObject = function(opt_inclu
  */
 proto.ondewo.vtsi.ExportCallLogsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    chunk: msg.getChunk_asB64(),
-    entryCount: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    last: jspb.Message.getBooleanFieldWithDefault(msg, 3, false),
-    truncated: jspb.Message.getBooleanFieldWithDefault(msg, 4, false)
+chunk: msg.getChunk_asB64(),
+entryCount: jspb.Message.getFieldWithDefault(msg, 2, 0),
+last: jspb.Message.getBooleanFieldWithDefault(msg, 3, false),
+truncated: jspb.Message.getBooleanFieldWithDefault(msg, 4, false)
   };
 
   if (includeInstance) {

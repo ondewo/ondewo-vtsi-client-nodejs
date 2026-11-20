@@ -2149,6 +2149,11 @@ export class TransferCallRequest extends jspb.Message {
     getRequestId(): string;
     setRequestId(value: string): TransferCallRequest;
 
+    hasWarmTransferConfig(): boolean;
+    clearWarmTransferConfig(): void;
+    getWarmTransferConfig(): ondewo_vtsi_call_configs_pb.WarmTransferConfig | undefined;
+    setWarmTransferConfig(value?: ondewo_vtsi_call_configs_pb.WarmTransferConfig): TransferCallRequest;
+
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): TransferCallRequest.AsObject;
     static toObject(includeInstance: boolean, msg: TransferCallRequest): TransferCallRequest.AsObject;
@@ -2170,6 +2175,7 @@ export namespace TransferCallRequest {
         headersMap: Array<[string, string]>,
         ringTimeoutS: number,
         requestId: string,
+        warmTransferConfig?: ondewo_vtsi_call_configs_pb.WarmTransferConfig.AsObject,
     }
 }
 
@@ -2195,6 +2201,11 @@ export class CallTarget extends jspb.Message {
     getListenerQueue(): ListenerQueueTarget | undefined;
     setListenerQueue(value?: ListenerQueueTarget): CallTarget;
 
+    hasIvrMenuName(): boolean;
+    clearIvrMenuName(): void;
+    getIvrMenuName(): string;
+    setIvrMenuName(value: string): CallTarget;
+
     getTargetCase(): CallTarget.TargetCase;
 
     serializeBinary(): Uint8Array;
@@ -2213,6 +2224,7 @@ export namespace CallTarget {
         softphoneAccountName: string,
         listenerName: string,
         listenerQueue?: ListenerQueueTarget.AsObject,
+        ivrMenuName: string,
     }
 
     export enum TargetCase {
@@ -2221,6 +2233,7 @@ export namespace CallTarget {
         SOFTPHONE_ACCOUNT_NAME = 2,
         LISTENER_NAME = 3,
         LISTENER_QUEUE = 4,
+        IVR_MENU_NAME = 5,
     }
 
 }
@@ -2303,6 +2316,16 @@ export class CallTransferRecord extends jspb.Message {
     getTime(): google_protobuf_timestamp_pb.Timestamp | undefined;
     setTime(value?: google_protobuf_timestamp_pb.Timestamp): CallTransferRecord;
 
+    hasWarmIntro(): boolean;
+    clearWarmIntro(): void;
+    getWarmIntro(): ondewo_vtsi_call_configs_pb.WarmIntroRecord | undefined;
+    setWarmIntro(value?: ondewo_vtsi_call_configs_pb.WarmIntroRecord): CallTransferRecord;
+
+    hasEffectiveWarmTransferConfig(): boolean;
+    clearEffectiveWarmTransferConfig(): void;
+    getEffectiveWarmTransferConfig(): ondewo_vtsi_call_configs_pb.WarmTransferConfig | undefined;
+    setEffectiveWarmTransferConfig(value?: ondewo_vtsi_call_configs_pb.WarmTransferConfig): CallTransferRecord;
+
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): CallTransferRecord.AsObject;
     static toObject(includeInstance: boolean, msg: CallTransferRecord): CallTransferRecord.AsObject;
@@ -2321,6 +2344,8 @@ export namespace CallTransferRecord {
         outcome: TransferOutcome,
         sipResponseCode: number,
         time?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+        warmIntro?: ondewo_vtsi_call_configs_pb.WarmIntroRecord.AsObject,
+        effectiveWarmTransferConfig?: ondewo_vtsi_call_configs_pb.WarmTransferConfig.AsObject,
     }
 }
 
@@ -2482,6 +2507,58 @@ export namespace InviteToCallResponse {
         callName: string,
         participant?: CallParticipant.AsObject,
         errorMessage: string,
+    }
+}
+
+export class SendCallDtmfRequest extends jspb.Message { 
+    getVtsiProjectName(): string;
+    setVtsiProjectName(value: string): SendCallDtmfRequest;
+    getCallName(): string;
+    setCallName(value: string): SendCallDtmfRequest;
+    getDigits(): string;
+    setDigits(value: string): SendCallDtmfRequest;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): SendCallDtmfRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: SendCallDtmfRequest): SendCallDtmfRequest.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: SendCallDtmfRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): SendCallDtmfRequest;
+    static deserializeBinaryFromReader(message: SendCallDtmfRequest, reader: jspb.BinaryReader): SendCallDtmfRequest;
+}
+
+export namespace SendCallDtmfRequest {
+    export type AsObject = {
+        vtsiProjectName: string,
+        callName: string,
+        digits: string,
+    }
+}
+
+export class SendCallDtmfResponse extends jspb.Message { 
+    getVtsiProjectName(): string;
+    setVtsiProjectName(value: string): SendCallDtmfResponse;
+    getCallName(): string;
+    setCallName(value: string): SendCallDtmfResponse;
+    getQueuedKeys(): number;
+    setQueuedKeys(value: number): SendCallDtmfResponse;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): SendCallDtmfResponse.AsObject;
+    static toObject(includeInstance: boolean, msg: SendCallDtmfResponse): SendCallDtmfResponse.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: SendCallDtmfResponse, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): SendCallDtmfResponse;
+    static deserializeBinaryFromReader(message: SendCallDtmfResponse, reader: jspb.BinaryReader): SendCallDtmfResponse;
+}
+
+export namespace SendCallDtmfResponse {
+    export type AsObject = {
+        vtsiProjectName: string,
+        callName: string,
+        queuedKeys: number,
     }
 }
 
@@ -3060,6 +3137,12 @@ export class Call extends jspb.Message {
 
     getLabelsMap(): jspb.Map<string, string>;
     clearLabelsMap(): void;
+    getIvrMenuDisplayName(): string;
+    setIvrMenuDisplayName(value: string): Call;
+    getIvrPath(): string;
+    setIvrPath(value: string): Call;
+    getIvrMenuName(): string;
+    setIvrMenuName(value: string): Call;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): Call.AsObject;
@@ -3100,6 +3183,9 @@ export namespace Call {
         sipCallId: string,
 
         labelsMap: Array<[string, string]>,
+        ivrMenuDisplayName: string,
+        ivrPath: string,
+        ivrMenuName: string,
     }
 }
 
@@ -3951,6 +4037,10 @@ export enum TransferOutcome {
     TRANSFER_OUTCOME_CALL_ENDED = 6,
     TRANSFER_OUTCOME_CALL_SCOPE_MISMATCH = 7,
     TRANSFER_OUTCOME_SIP_UNREACHABLE = 8,
+    TRANSFER_OUTCOME_DECLINED = 9,
+    TRANSFER_OUTCOME_NO_DECISION = 10,
+    TRANSFER_OUTCOME_TARGET_UNAVAILABLE = 11,
+    TRANSFER_OUTCOME_INTRO_UNAVAILABLE = 12,
 }
 
 export enum CallMediaSetting {

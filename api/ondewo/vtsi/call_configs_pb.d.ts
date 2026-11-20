@@ -5,6 +5,7 @@
 /* eslint-disable */
 
 import * as jspb from "google-protobuf";
+import * as google_protobuf_duration_pb from "google-protobuf/google/protobuf/duration_pb";
 import * as ondewo_nlu_context_pb from "../../ondewo/nlu/context_pb";
 import * as ondewo_nlu_intent_pb from "../../ondewo/nlu/intent_pb";
 import * as ondewo_s2t_speech_to_text_pb from "../../ondewo/s2t/speech-to-text_pb";
@@ -93,6 +94,11 @@ export class NluVtsiConfig extends jspb.Message {
     getPlatform(): ondewo_nlu_intent_pb.Intent.Message.Platform | undefined;
     setPlatform(value: ondewo_nlu_intent_pb.Intent.Message.Platform): NluVtsiConfig;
 
+    hasPreemptiveGenerationConfig(): boolean;
+    clearPreemptiveGenerationConfig(): void;
+    getPreemptiveGenerationConfig(): NluPreemptiveGenerationConfig | undefined;
+    setPreemptiveGenerationConfig(value?: NluPreemptiveGenerationConfig): NluVtsiConfig;
+
     getAuthenticationCase(): NluVtsiConfig.AuthenticationCase;
 
     serializeBinary(): Uint8Array;
@@ -116,6 +122,7 @@ export namespace NluVtsiConfig {
         contextsList: Array<ondewo_nlu_context_pb.Context.AsObject>,
         httpBasicAuthToken: string,
         platform?: ondewo_nlu_intent_pb.Intent.Message.Platform,
+        preemptiveGenerationConfig?: NluPreemptiveGenerationConfig.AsObject,
     }
 
     export enum AuthenticationCase {
@@ -124,6 +131,41 @@ export namespace NluVtsiConfig {
         AUTH_TOKEN = 3,
     }
 
+}
+
+export class NluPreemptiveGenerationConfig extends jspb.Message { 
+
+    hasMaxDraftsPerTurn(): boolean;
+    clearMaxDraftsPerTurn(): void;
+    getMaxDraftsPerTurn(): number | undefined;
+    setMaxDraftsPerTurn(value: number): NluPreemptiveGenerationConfig;
+
+    hasMinStableDwellSeconds(): boolean;
+    clearMinStableDwellSeconds(): void;
+    getMinStableDwellSeconds(): number | undefined;
+    setMinStableDwellSeconds(value: number): NluPreemptiveGenerationConfig;
+
+    hasMinIntervalSeconds(): boolean;
+    clearMinIntervalSeconds(): void;
+    getMinIntervalSeconds(): number | undefined;
+    setMinIntervalSeconds(value: number): NluPreemptiveGenerationConfig;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): NluPreemptiveGenerationConfig.AsObject;
+    static toObject(includeInstance: boolean, msg: NluPreemptiveGenerationConfig): NluPreemptiveGenerationConfig.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: NluPreemptiveGenerationConfig, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): NluPreemptiveGenerationConfig;
+    static deserializeBinaryFromReader(message: NluPreemptiveGenerationConfig, reader: jspb.BinaryReader): NluPreemptiveGenerationConfig;
+}
+
+export namespace NluPreemptiveGenerationConfig {
+    export type AsObject = {
+        maxDraftsPerTurn?: number,
+        minStableDwellSeconds?: number,
+        minIntervalSeconds?: number,
+    }
 }
 
 export class T2sVtsiConfig extends jspb.Message { 
@@ -137,6 +179,11 @@ export class T2sVtsiConfig extends jspb.Message {
     clearT2sRequestConfig(): void;
     getT2sRequestConfig(): ondewo_t2s_text_to_speech_pb.RequestConfig | undefined;
     setT2sRequestConfig(value?: ondewo_t2s_text_to_speech_pb.RequestConfig): T2sVtsiConfig;
+
+    hasPreemptiveSynthesisConfig(): boolean;
+    clearPreemptiveSynthesisConfig(): void;
+    getPreemptiveSynthesisConfig(): T2sPreemptiveSynthesisConfig | undefined;
+    setPreemptiveSynthesisConfig(value?: T2sPreemptiveSynthesisConfig): T2sVtsiConfig;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): T2sVtsiConfig.AsObject;
@@ -152,6 +199,36 @@ export namespace T2sVtsiConfig {
     export type AsObject = {
         t2sBaseConfig?: BaseServiceConfig.AsObject,
         t2sRequestConfig?: ondewo_t2s_text_to_speech_pb.RequestConfig.AsObject,
+        preemptiveSynthesisConfig?: T2sPreemptiveSynthesisConfig.AsObject,
+    }
+}
+
+export class T2sPreemptiveSynthesisConfig extends jspb.Message { 
+
+    hasEnabled(): boolean;
+    clearEnabled(): void;
+    getEnabled(): boolean | undefined;
+    setEnabled(value: boolean): T2sPreemptiveSynthesisConfig;
+
+    hasChunked(): boolean;
+    clearChunked(): void;
+    getChunked(): boolean | undefined;
+    setChunked(value: boolean): T2sPreemptiveSynthesisConfig;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): T2sPreemptiveSynthesisConfig.AsObject;
+    static toObject(includeInstance: boolean, msg: T2sPreemptiveSynthesisConfig): T2sPreemptiveSynthesisConfig.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: T2sPreemptiveSynthesisConfig, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): T2sPreemptiveSynthesisConfig;
+    static deserializeBinaryFromReader(message: T2sPreemptiveSynthesisConfig, reader: jspb.BinaryReader): T2sPreemptiveSynthesisConfig;
+}
+
+export namespace T2sPreemptiveSynthesisConfig {
+    export type AsObject = {
+        enabled?: boolean,
+        chunked?: boolean,
     }
 }
 
@@ -253,6 +330,16 @@ export class VoiceInteractionConfig extends jspb.Message {
     getAnsweringMachineDetectionConfig(): AnsweringMachineDetectionConfig | undefined;
     setAnsweringMachineDetectionConfig(value?: AnsweringMachineDetectionConfig): VoiceInteractionConfig;
 
+    hasDtmfConfig(): boolean;
+    clearDtmfConfig(): void;
+    getDtmfConfig(): DtmfConfig | undefined;
+    setDtmfConfig(value?: DtmfConfig): VoiceInteractionConfig;
+
+    hasWarmTransferConfig(): boolean;
+    clearWarmTransferConfig(): void;
+    getWarmTransferConfig(): WarmTransferConfig | undefined;
+    setWarmTransferConfig(value?: WarmTransferConfig): VoiceInteractionConfig;
+
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): VoiceInteractionConfig.AsObject;
     static toObject(includeInstance: boolean, msg: VoiceInteractionConfig): VoiceInteractionConfig.AsObject;
@@ -269,6 +356,268 @@ export namespace VoiceInteractionConfig {
         interruptionHandlingConfig?: InterruptionHandlingConfig.AsObject,
         responseTimingConfig?: ResponseTimingConfig.AsObject,
         answeringMachineDetectionConfig?: AnsweringMachineDetectionConfig.AsObject,
+        dtmfConfig?: DtmfConfig.AsObject,
+        warmTransferConfig?: WarmTransferConfig.AsObject,
+    }
+}
+
+export class DtmfConfig extends jspb.Message { 
+
+    hasEnabled(): boolean;
+    clearEnabled(): void;
+    getEnabled(): boolean | undefined;
+    setEnabled(value: boolean): DtmfConfig;
+
+    hasBargeIn(): boolean;
+    clearBargeIn(): void;
+    getBargeIn(): boolean | undefined;
+    setBargeIn(value: boolean): DtmfConfig;
+
+    hasInterDigitTimeoutMs(): boolean;
+    clearInterDigitTimeoutMs(): void;
+    getInterDigitTimeoutMs(): number | undefined;
+    setInterDigitTimeoutMs(value: number): DtmfConfig;
+
+    hasUndeclaredPolicy(): boolean;
+    clearUndeclaredPolicy(): void;
+    getUndeclaredPolicy(): string | undefined;
+    setUndeclaredPolicy(value: string): DtmfConfig;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): DtmfConfig.AsObject;
+    static toObject(includeInstance: boolean, msg: DtmfConfig): DtmfConfig.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: DtmfConfig, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): DtmfConfig;
+    static deserializeBinaryFromReader(message: DtmfConfig, reader: jspb.BinaryReader): DtmfConfig;
+}
+
+export namespace DtmfConfig {
+    export type AsObject = {
+        enabled?: boolean,
+        bargeIn?: boolean,
+        interDigitTimeoutMs?: number,
+        undeclaredPolicy?: string,
+    }
+}
+
+export class WarmTransferConfig extends jspb.Message { 
+
+    hasEnabled(): boolean;
+    clearEnabled(): void;
+    getEnabled(): boolean | undefined;
+    setEnabled(value: boolean): WarmTransferConfig;
+
+    hasIntroPrompt(): boolean;
+    clearIntroPrompt(): void;
+    getIntroPrompt(): string | undefined;
+    setIntroPrompt(value: string): WarmTransferConfig;
+    getIntroTextSource(): WarmIntroTextSource;
+    setIntroTextSource(value: WarmIntroTextSource): WarmTransferConfig;
+
+    hasReadyQuestion(): boolean;
+    clearReadyQuestion(): void;
+    getReadyQuestion(): string | undefined;
+    setReadyQuestion(value: string): WarmTransferConfig;
+
+    hasConfirmHumanBeforeIntro(): boolean;
+    clearConfirmHumanBeforeIntro(): void;
+    getConfirmHumanBeforeIntro(): boolean | undefined;
+    setConfirmHumanBeforeIntro(value: boolean): WarmTransferConfig;
+
+    hasAcceptQuestion(): boolean;
+    clearAcceptQuestion(): void;
+    getAcceptQuestion(): string | undefined;
+    setAcceptQuestion(value: string): WarmTransferConfig;
+
+    hasDeclineReasonQuestion(): boolean;
+    clearDeclineReasonQuestion(): void;
+    getDeclineReasonQuestion(): string | undefined;
+    setDeclineReasonQuestion(value: string): WarmTransferConfig;
+
+    hasCallerDeclinedMessage(): boolean;
+    clearCallerDeclinedMessage(): void;
+    getCallerDeclinedMessage(): string | undefined;
+    setCallerDeclinedMessage(value: string): WarmTransferConfig;
+
+    hasCallerUnreachableMessage(): boolean;
+    clearCallerUnreachableMessage(): void;
+    getCallerUnreachableMessage(): string | undefined;
+    setCallerUnreachableMessage(value: string): WarmTransferConfig;
+
+    hasAcceptDtmf(): boolean;
+    clearAcceptDtmf(): void;
+    getAcceptDtmf(): string | undefined;
+    setAcceptDtmf(value: string): WarmTransferConfig;
+
+    hasDeclineDtmf(): boolean;
+    clearDeclineDtmf(): void;
+    getDeclineDtmf(): string | undefined;
+    setDeclineDtmf(value: string): WarmTransferConfig;
+
+    hasDecisionTimeoutS(): boolean;
+    clearDecisionTimeoutS(): void;
+    getDecisionTimeoutS(): number | undefined;
+    setDecisionTimeoutS(value: number): WarmTransferConfig;
+
+    hasMaxIntroDurationS(): boolean;
+    clearMaxIntroDurationS(): void;
+    getMaxIntroDurationS(): number | undefined;
+    setMaxIntroDurationS(value: number): WarmTransferConfig;
+
+    hasCalleeDisplayName(): boolean;
+    clearCalleeDisplayName(): void;
+    getCalleeDisplayName(): string | undefined;
+    setCalleeDisplayName(value: string): WarmTransferConfig;
+
+    hasCalleeDescription(): boolean;
+    clearCalleeDescription(): void;
+    getCalleeDescription(): string | undefined;
+    setCalleeDescription(value: string): WarmTransferConfig;
+    getOnIntroUnavailable(): WarmIntroUnavailablePolicy;
+    setOnIntroUnavailable(value: WarmIntroUnavailablePolicy): WarmTransferConfig;
+
+    hasApplyToBotTransfers(): boolean;
+    clearApplyToBotTransfers(): void;
+    getApplyToBotTransfers(): boolean | undefined;
+    setApplyToBotTransfers(value: boolean): WarmTransferConfig;
+
+    hasCallerHoldMessage(): boolean;
+    clearCallerHoldMessage(): void;
+    getCallerHoldMessage(): string | undefined;
+    setCallerHoldMessage(value: string): WarmTransferConfig;
+
+    hasCallerHoldMusic(): boolean;
+    clearCallerHoldMusic(): void;
+    getCallerHoldMusic(): boolean | undefined;
+    setCallerHoldMusic(value: boolean): WarmTransferConfig;
+
+    hasCallerReassureIntervalS(): boolean;
+    clearCallerReassureIntervalS(): void;
+    getCallerReassureIntervalS(): number | undefined;
+    setCallerReassureIntervalS(value: number): WarmTransferConfig;
+
+    hasLlmCcaiServiceName(): boolean;
+    clearLlmCcaiServiceName(): void;
+    getLlmCcaiServiceName(): string | undefined;
+    setLlmCcaiServiceName(value: string): WarmTransferConfig;
+
+    hasCallerDisclosureMessage(): boolean;
+    clearCallerDisclosureMessage(): void;
+    getCallerDisclosureMessage(): string | undefined;
+    setCallerDisclosureMessage(value: string): WarmTransferConfig;
+
+    hasCallerAcceptedMessage(): boolean;
+    clearCallerAcceptedMessage(): void;
+    getCallerAcceptedMessage(): string | undefined;
+    setCallerAcceptedMessage(value: string): WarmTransferConfig;
+
+    hasStoreIntroAudio(): boolean;
+    clearStoreIntroAudio(): void;
+    getStoreIntroAudio(): boolean | undefined;
+    setStoreIntroAudio(value: boolean): WarmTransferConfig;
+    clearIntroListenerNamesList(): void;
+    getIntroListenerNamesList(): Array<string>;
+    setIntroListenerNamesList(value: Array<string>): WarmTransferConfig;
+    addIntroListenerNames(value: string, index?: number): string;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): WarmTransferConfig.AsObject;
+    static toObject(includeInstance: boolean, msg: WarmTransferConfig): WarmTransferConfig.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: WarmTransferConfig, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): WarmTransferConfig;
+    static deserializeBinaryFromReader(message: WarmTransferConfig, reader: jspb.BinaryReader): WarmTransferConfig;
+}
+
+export namespace WarmTransferConfig {
+    export type AsObject = {
+        enabled?: boolean,
+        introPrompt?: string,
+        introTextSource: WarmIntroTextSource,
+        readyQuestion?: string,
+        confirmHumanBeforeIntro?: boolean,
+        acceptQuestion?: string,
+        declineReasonQuestion?: string,
+        callerDeclinedMessage?: string,
+        callerUnreachableMessage?: string,
+        acceptDtmf?: string,
+        declineDtmf?: string,
+        decisionTimeoutS?: number,
+        maxIntroDurationS?: number,
+        calleeDisplayName?: string,
+        calleeDescription?: string,
+        onIntroUnavailable: WarmIntroUnavailablePolicy,
+        applyToBotTransfers?: boolean,
+        callerHoldMessage?: string,
+        callerHoldMusic?: boolean,
+        callerReassureIntervalS?: number,
+        llmCcaiServiceName?: string,
+        callerDisclosureMessage?: string,
+        callerAcceptedMessage?: string,
+        storeIntroAudio?: boolean,
+        introListenerNamesList: Array<string>,
+    }
+}
+
+export class WarmIntroRecord extends jspb.Message { 
+    getIntroId(): string;
+    setIntroId(value: string): WarmIntroRecord;
+    getDecision(): WarmIntroDecision;
+    setDecision(value: WarmIntroDecision): WarmIntroRecord;
+    getDecidedBy(): WarmIntroDecidedBy;
+    setDecidedBy(value: WarmIntroDecidedBy): WarmIntroRecord;
+    getDeclineReasonPresent(): boolean;
+    setDeclineReasonPresent(value: boolean): WarmIntroRecord;
+    getIntroCallName(): string;
+    setIntroCallName(value: string): WarmIntroRecord;
+
+    hasRingDuration(): boolean;
+    clearRingDuration(): void;
+    getRingDuration(): google_protobuf_duration_pb.Duration | undefined;
+    setRingDuration(value?: google_protobuf_duration_pb.Duration): WarmIntroRecord;
+
+    hasIntroDuration(): boolean;
+    clearIntroDuration(): void;
+    getIntroDuration(): google_protobuf_duration_pb.Duration | undefined;
+    setIntroDuration(value?: google_protobuf_duration_pb.Duration): WarmIntroRecord;
+    getTextSource(): WarmIntroTextSource;
+    setTextSource(value: WarmIntroTextSource): WarmIntroRecord;
+    getTextFellBack(): boolean;
+    setTextFellBack(value: boolean): WarmIntroRecord;
+    getCause(): string;
+    setCause(value: string): WarmIntroRecord;
+    getNoticeDelivered(): boolean;
+    setNoticeDelivered(value: boolean): WarmIntroRecord;
+    getIntroStarted(): boolean;
+    setIntroStarted(value: boolean): WarmIntroRecord;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): WarmIntroRecord.AsObject;
+    static toObject(includeInstance: boolean, msg: WarmIntroRecord): WarmIntroRecord.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: WarmIntroRecord, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): WarmIntroRecord;
+    static deserializeBinaryFromReader(message: WarmIntroRecord, reader: jspb.BinaryReader): WarmIntroRecord;
+}
+
+export namespace WarmIntroRecord {
+    export type AsObject = {
+        introId: string,
+        decision: WarmIntroDecision,
+        decidedBy: WarmIntroDecidedBy,
+        declineReasonPresent: boolean,
+        introCallName: string,
+        ringDuration?: google_protobuf_duration_pb.Duration.AsObject,
+        introDuration?: google_protobuf_duration_pb.Duration.AsObject,
+        textSource: WarmIntroTextSource,
+        textFellBack: boolean,
+        cause: string,
+        noticeDelivered: boolean,
+        introStarted: boolean,
     }
 }
 
@@ -298,6 +647,51 @@ export class TurnDetectionConfig extends jspb.Message {
     getTurnDetectionUserPrompt(): string | undefined;
     setTurnDetectionUserPrompt(value: string): TurnDetectionConfig;
 
+    hasConversationContextTurns(): boolean;
+    clearConversationContextTurns(): void;
+    getConversationContextTurns(): number | undefined;
+    setConversationContextTurns(value: number): TurnDetectionConfig;
+
+    hasSemanticModelName(): boolean;
+    clearSemanticModelName(): void;
+    getSemanticModelName(): string | undefined;
+    setSemanticModelName(value: string): TurnDetectionConfig;
+
+    hasEndOfTurnProbabilityThreshold(): boolean;
+    clearEndOfTurnProbabilityThreshold(): void;
+    getEndOfTurnProbabilityThreshold(): number | undefined;
+    setEndOfTurnProbabilityThreshold(value: number): TurnDetectionConfig;
+
+    hasHoldBands(): boolean;
+    clearHoldBands(): void;
+    getHoldBands(): TurnDetectionConfig.EndOfTurnHoldBands | undefined;
+    setHoldBands(value?: TurnDetectionConfig.EndOfTurnHoldBands): TurnDetectionConfig;
+
+    hasUncertainMinWords(): boolean;
+    clearUncertainMinWords(): void;
+    getUncertainMinWords(): number | undefined;
+    setUncertainMinWords(value: number): TurnDetectionConfig;
+
+    hasIncompleteMaxSilenceSeconds(): boolean;
+    clearIncompleteMaxSilenceSeconds(): void;
+    getIncompleteMaxSilenceSeconds(): number | undefined;
+    setIncompleteMaxSilenceSeconds(value: number): TurnDetectionConfig;
+
+    hasExactProbability(): boolean;
+    clearExactProbability(): void;
+    getExactProbability(): boolean | undefined;
+    setExactProbability(value: boolean): TurnDetectionConfig;
+
+    hasFinalMergeWindowSeconds(): boolean;
+    clearFinalMergeWindowSeconds(): void;
+    getFinalMergeWindowSeconds(): number | undefined;
+    setFinalMergeWindowSeconds(value: number): TurnDetectionConfig;
+
+    hasDictationConfig(): boolean;
+    clearDictationConfig(): void;
+    getDictationConfig(): DictationConfig | undefined;
+    setDictationConfig(value?: DictationConfig): TurnDetectionConfig;
+
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): TurnDetectionConfig.AsObject;
     static toObject(includeInstance: boolean, msg: TurnDetectionConfig): TurnDetectionConfig.AsObject;
@@ -316,7 +710,63 @@ export namespace TurnDetectionConfig {
         turnEagerness: TurnDetectionConfig.TurnEagerness,
         turnDetectionSystemPrompt?: string,
         turnDetectionUserPrompt?: string,
+        conversationContextTurns?: number,
+        semanticModelName?: string,
+        endOfTurnProbabilityThreshold?: number,
+        holdBands?: TurnDetectionConfig.EndOfTurnHoldBands.AsObject,
+        uncertainMinWords?: number,
+        incompleteMaxSilenceSeconds?: number,
+        exactProbability?: boolean,
+        finalMergeWindowSeconds?: number,
+        dictationConfig?: DictationConfig.AsObject,
     }
+
+
+    export class EndOfTurnHoldBands extends jspb.Message { 
+        clearBandsList(): void;
+        getBandsList(): Array<TurnDetectionConfig.EndOfTurnHoldBand>;
+        setBandsList(value: Array<TurnDetectionConfig.EndOfTurnHoldBand>): EndOfTurnHoldBands;
+        addBands(value?: TurnDetectionConfig.EndOfTurnHoldBand, index?: number): TurnDetectionConfig.EndOfTurnHoldBand;
+
+        serializeBinary(): Uint8Array;
+        toObject(includeInstance?: boolean): EndOfTurnHoldBands.AsObject;
+        static toObject(includeInstance: boolean, msg: EndOfTurnHoldBands): EndOfTurnHoldBands.AsObject;
+        static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+        static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+        static serializeBinaryToWriter(message: EndOfTurnHoldBands, writer: jspb.BinaryWriter): void;
+        static deserializeBinary(bytes: Uint8Array): EndOfTurnHoldBands;
+        static deserializeBinaryFromReader(message: EndOfTurnHoldBands, reader: jspb.BinaryReader): EndOfTurnHoldBands;
+    }
+
+    export namespace EndOfTurnHoldBands {
+        export type AsObject = {
+            bandsList: Array<TurnDetectionConfig.EndOfTurnHoldBand.AsObject>,
+        }
+    }
+
+    export class EndOfTurnHoldBand extends jspb.Message { 
+        getUpperProbability(): number;
+        setUpperProbability(value: number): EndOfTurnHoldBand;
+        getMaxSilenceSeconds(): number;
+        setMaxSilenceSeconds(value: number): EndOfTurnHoldBand;
+
+        serializeBinary(): Uint8Array;
+        toObject(includeInstance?: boolean): EndOfTurnHoldBand.AsObject;
+        static toObject(includeInstance: boolean, msg: EndOfTurnHoldBand): EndOfTurnHoldBand.AsObject;
+        static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+        static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+        static serializeBinaryToWriter(message: EndOfTurnHoldBand, writer: jspb.BinaryWriter): void;
+        static deserializeBinary(bytes: Uint8Array): EndOfTurnHoldBand;
+        static deserializeBinaryFromReader(message: EndOfTurnHoldBand, reader: jspb.BinaryReader): EndOfTurnHoldBand;
+    }
+
+    export namespace EndOfTurnHoldBand {
+        export type AsObject = {
+            upperProbability: number,
+            maxSilenceSeconds: number,
+        }
+    }
+
 
     export enum TurnDetectionMode {
     TURN_DETECTION_MODE_UNSPECIFIED = 0,
@@ -332,6 +782,76 @@ export namespace TurnDetectionConfig {
     EAGER = 3,
     }
 
+}
+
+export class DictationConfig extends jspb.Message { 
+
+    hasHoldEnabled(): boolean;
+    clearHoldEnabled(): void;
+    getHoldEnabled(): boolean | undefined;
+    setHoldEnabled(value: boolean): DictationConfig;
+
+    hasExpectedInputEnabled(): boolean;
+    clearExpectedInputEnabled(): void;
+    getExpectedInputEnabled(): boolean | undefined;
+    setExpectedInputEnabled(value: boolean): DictationConfig;
+
+    hasReadBackFromBotTextEnabled(): boolean;
+    clearReadBackFromBotTextEnabled(): void;
+    getReadBackFromBotTextEnabled(): boolean | undefined;
+    setReadBackFromBotTextEnabled(value: boolean): DictationConfig;
+
+    hasHoldGenericMaxSeconds(): boolean;
+    clearHoldGenericMaxSeconds(): void;
+    getHoldGenericMaxSeconds(): number | undefined;
+    setHoldGenericMaxSeconds(value: number): DictationConfig;
+
+    getHoldMaxSecondsByCategoryMap(): jspb.Map<string, number>;
+    clearHoldMaxSecondsByCategoryMap(): void;
+
+    hasHoldInvalidChecksumSeconds(): boolean;
+    clearHoldInvalidChecksumSeconds(): void;
+    getHoldInvalidChecksumSeconds(): number | undefined;
+    setHoldInvalidChecksumSeconds(value: number): DictationConfig;
+
+    hasEarlyCommitOnCompleteValue(): boolean;
+    clearEarlyCommitOnCompleteValue(): void;
+    getEarlyCommitOnCompleteValue(): boolean | undefined;
+    setEarlyCommitOnCompleteValue(value: boolean): DictationConfig;
+
+    hasS2tSlotMinDurationOffSeconds(): boolean;
+    clearS2tSlotMinDurationOffSeconds(): void;
+    getS2tSlotMinDurationOffSeconds(): number | undefined;
+    setS2tSlotMinDurationOffSeconds(value: number): DictationConfig;
+
+    hasS2tSlotMinDurationOffRestoreSeconds(): boolean;
+    clearS2tSlotMinDurationOffRestoreSeconds(): void;
+    getS2tSlotMinDurationOffRestoreSeconds(): number | undefined;
+    setS2tSlotMinDurationOffRestoreSeconds(value: number): DictationConfig;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): DictationConfig.AsObject;
+    static toObject(includeInstance: boolean, msg: DictationConfig): DictationConfig.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: DictationConfig, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): DictationConfig;
+    static deserializeBinaryFromReader(message: DictationConfig, reader: jspb.BinaryReader): DictationConfig;
+}
+
+export namespace DictationConfig {
+    export type AsObject = {
+        holdEnabled?: boolean,
+        expectedInputEnabled?: boolean,
+        readBackFromBotTextEnabled?: boolean,
+        holdGenericMaxSeconds?: number,
+
+        holdMaxSecondsByCategoryMap: Array<[string, number]>,
+        holdInvalidChecksumSeconds?: number,
+        earlyCommitOnCompleteValue?: boolean,
+        s2tSlotMinDurationOffSeconds?: number,
+        s2tSlotMinDurationOffRestoreSeconds?: number,
+    }
 }
 
 export class InterruptionHandlingConfig extends jspb.Message { 
@@ -376,6 +896,11 @@ export class InterruptionHandlingConfig extends jspb.Message {
     getTranscribeOnDisabledInterruptions(): boolean | undefined;
     setTranscribeOnDisabledInterruptions(value: boolean): InterruptionHandlingConfig;
 
+    hasInterruptionFadeOutMs(): boolean;
+    clearInterruptionFadeOutMs(): void;
+    getInterruptionFadeOutMs(): number | undefined;
+    setInterruptionFadeOutMs(value: number): InterruptionHandlingConfig;
+
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): InterruptionHandlingConfig.AsObject;
     static toObject(includeInstance: boolean, msg: InterruptionHandlingConfig): InterruptionHandlingConfig.AsObject;
@@ -396,6 +921,7 @@ export namespace InterruptionHandlingConfig {
         backoffSeconds?: number,
         firstMessageProtectedSeconds?: number,
         transcribeOnDisabledInterruptions?: boolean,
+        interruptionFadeOutMs?: number,
     }
 }
 
@@ -719,6 +1245,11 @@ export class CsiVtsiConfig extends jspb.Message {
     getActivateControlMessages(): boolean | undefined;
     setActivateControlMessages(value: boolean): CsiVtsiConfig;
 
+    hasPreemptiveGenerationConfig(): boolean;
+    clearPreemptiveGenerationConfig(): void;
+    getPreemptiveGenerationConfig(): CsiPreemptiveGenerationConfig | undefined;
+    setPreemptiveGenerationConfig(value?: CsiPreemptiveGenerationConfig): CsiVtsiConfig;
+
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): CsiVtsiConfig.AsObject;
     static toObject(includeInstance: boolean, msg: CsiVtsiConfig): CsiVtsiConfig.AsObject;
@@ -737,6 +1268,36 @@ export namespace CsiVtsiConfig {
         audioObjectStoreConfig?: AudioObjectStorageConfig.AsObject,
         messageBrokerConfig?: MessageBrokerConfig.AsObject,
         activateControlMessages?: boolean,
+        preemptiveGenerationConfig?: CsiPreemptiveGenerationConfig.AsObject,
+    }
+}
+
+export class CsiPreemptiveGenerationConfig extends jspb.Message { 
+
+    hasEnabled(): boolean;
+    clearEnabled(): void;
+    getEnabled(): boolean | undefined;
+    setEnabled(value: boolean): CsiPreemptiveGenerationConfig;
+
+    hasCommitWaitTimeoutSeconds(): boolean;
+    clearCommitWaitTimeoutSeconds(): void;
+    getCommitWaitTimeoutSeconds(): number | undefined;
+    setCommitWaitTimeoutSeconds(value: number): CsiPreemptiveGenerationConfig;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): CsiPreemptiveGenerationConfig.AsObject;
+    static toObject(includeInstance: boolean, msg: CsiPreemptiveGenerationConfig): CsiPreemptiveGenerationConfig.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: CsiPreemptiveGenerationConfig, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): CsiPreemptiveGenerationConfig;
+    static deserializeBinaryFromReader(message: CsiPreemptiveGenerationConfig, reader: jspb.BinaryReader): CsiPreemptiveGenerationConfig;
+}
+
+export namespace CsiPreemptiveGenerationConfig {
+    export type AsObject = {
+        enabled?: boolean,
+        commitWaitTimeoutSeconds?: number,
     }
 }
 
@@ -993,4 +1554,30 @@ export namespace T2sVtsiCallbacks {
         preT2sCallbacksList: Array<string>,
         postT2sCallbacksList: Array<string>,
     }
+}
+
+export enum WarmIntroTextSource {
+    WARM_INTRO_TEXT_SOURCE_UNSPECIFIED = 0,
+    WARM_INTRO_TEXT_SOURCE_TEMPLATE = 1,
+    WARM_INTRO_TEXT_SOURCE_LLM_SUMMARY = 2,
+}
+
+export enum WarmIntroUnavailablePolicy {
+    WARM_INTRO_UNAVAILABLE_POLICY_UNSPECIFIED = 0,
+    WARM_INTRO_UNAVAILABLE_POLICY_CONNECT_WITHOUT_INTRO = 1,
+    WARM_INTRO_UNAVAILABLE_POLICY_RETURN_TO_CALLER = 2,
+}
+
+export enum WarmIntroDecision {
+    WARM_INTRO_DECISION_UNSPECIFIED = 0,
+    WARM_INTRO_DECISION_ACCEPTED = 1,
+    WARM_INTRO_DECISION_DECLINED = 2,
+    WARM_INTRO_DECISION_NO_DECISION = 3,
+}
+
+export enum WarmIntroDecidedBy {
+    WARM_INTRO_DECIDED_BY_UNSPECIFIED = 0,
+    WARM_INTRO_DECIDED_BY_DTMF = 1,
+    WARM_INTRO_DECIDED_BY_SPEECH = 2,
+    WARM_INTRO_DECIDED_BY_TIMEOUT = 3,
 }

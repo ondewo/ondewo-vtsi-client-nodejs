@@ -466,6 +466,28 @@ function deserialize_ondewo_vtsi_ScheduledCaller(buffer_arg) {
   return ondewo_vtsi_calls_pb.ScheduledCaller.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_ondewo_vtsi_SendCallDtmfRequest(arg) {
+  if (!(arg instanceof ondewo_vtsi_calls_pb.SendCallDtmfRequest)) {
+    throw new Error('Expected argument of type ondewo.vtsi.SendCallDtmfRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_ondewo_vtsi_SendCallDtmfRequest(buffer_arg) {
+  return ondewo_vtsi_calls_pb.SendCallDtmfRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_ondewo_vtsi_SendCallDtmfResponse(arg) {
+  if (!(arg instanceof ondewo_vtsi_calls_pb.SendCallDtmfResponse)) {
+    throw new Error('Expected argument of type ondewo.vtsi.SendCallDtmfResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_ondewo_vtsi_SendCallDtmfResponse(buffer_arg) {
+  return ondewo_vtsi_calls_pb.SendCallDtmfResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_ondewo_vtsi_SetCallMediaControlRequest(arg) {
   if (!(arg instanceof ondewo_vtsi_calls_pb.SetCallMediaControlRequest)) {
     throw new Error('Expected argument of type ondewo.vtsi.SetCallMediaControlRequest');
@@ -1686,13 +1708,21 @@ stopAllCalls: {
     responseSerialize: serialize_ondewo_vtsi_StopCallsResponse,
     responseDeserialize: deserialize_ondewo_vtsi_StopCallsResponse,
   },
-  // <p>Transfer a call to a phone number, a softphone account, another listener or the listener queue.</p>
+  // <p>Transfer a call to a phone number, a softphone account, another listener, the listener queue or a published
+// IVR menu.</p>
 // <p>The target is either the typed <code>target</code> or the legacy raw <code>transfer_id</code>, never both. It is
 // resolved and validated before anything is sent; an invalid target is answered with
 // <code>TRANSFER_OUTCOME_TARGET_INVALID</code> and an <code>error_reason</code>, and the call is untouched.</p>
 // <p><code>TRANSFER_MODE_BLIND</code> (default) sends a SIP REFER and reports its outcome: a refused REFER keeps the
 // call with the bot. <code>TRANSFER_MODE_WARM</code> rings the target into the call first, and the bot leaves only
 // after the target joined (Asterisk 22 only).</p>
+// <p>A WARM transfer whose effective <code>WarmTransferConfig</code> is enabled runs a WARM INTRO: once the human
+// target answers, an ONDEWO bot asks whether a person is on the line, briefs them and asks whether they accept;
+// only an accepting target is joined. It answers <code>TRANSFER_OUTCOME_PENDING</code>, and the final outcome
+// (<code>TRANSFER_OUTCOME_ACCEPTED</code>, <code>_DECLINED</code>, <code>_NO_DECISION</code>,
+// <code>_TARGET_UNAVAILABLE</code>, <code>_INTRO_UNAVAILABLE</code>, or a busy / unanswered target&apos;s
+// usual outcome) arrives in <code>Call.last_transfer</code> and the events. See
+// <code>TransferCallRequest.warm_transfer_config</code> for its refusals.</p>
 // <p>Telephony outcomes (busy, no answer, REFER rejected) are successful RPCs carrying an <code>outcome</code>.
 // Refusals before any side effect also return a gRPC status with <code>reason=&lt;token&gt;</code> in its details:
 // <code>INVALID_ARGUMENT</code> (both targets set, malformed target), <code>NOT_FOUND</code> (call or target not
@@ -1965,6 +1995,34 @@ setCallMediaControl: {
     requestDeserialize: deserialize_ondewo_vtsi_SetCallMediaControlRequest,
     responseSerialize: serialize_ondewo_vtsi_SetCallMediaControlResponse,
     responseDeserialize: deserialize_ondewo_vtsi_SetCallMediaControlResponse,
+  },
+  // <p>Press DTMF keys on a connected call, e.g. to navigate the IVR an outbound call reached or to enter a code on
+// the caller&apos;s behalf. The keys go out as RFC 4733 telephone events from the bot&apos;s leg, one every
+// 250 ms, in order; a later request for the same call follows the earlier one and never interleaves with it.
+// No tone is played into the call audio, so the bot does not hear the keys. The response means the keys were
+// queued: if the call ends meanwhile, the remaining keys are dropped. A peer that did not negotiate
+// <code>telephone-event</code> receives no key.</p>
+// <p>Events: <code>VTSI_EVENT_CALL_DTMF_SENT</code>. The keys are never written to a log, an event or an audit
+// record: only their number is.</p>
+// <p>Errors: <code>INVALID_ARGUMENT</code> (<code>reason=invalid-digits</code>: <code>digits</code> empty, longer
+// than 64 or outside <code>0-9 * # A-D</code>), <code>NOT_FOUND</code> (<code>reason=call-not-found</code>),
+// <code>FAILED_PRECONDITION</code> (<code>call-not-connected</code>, <code>amd-in-progress</code>,
+// <code>call-not-yet-identified</code>, <code>sip-image-too-old</code>, <code>no-audio-stream</code>),
+// <code>ABORTED</code> (<code>call-control-busy</code>), <code>UNAVAILABLE</code> (<code>sip-unreachable</code>).</p>
+// <p>Authorization: requires the role <code>PROJECT_DEVELOPER</code> or higher on the project, and the server&apos;s
+// Keycloak auth mode <code>ENFORCE</code>; otherwise <code>PERMISSION_DENIED</code>, or
+// <code>FAILED_PRECONDITION</code> with <code>reason=call-supervision-requires-auth</code> when auth is not enforced.
+// Every action writes an audit record (who, call, when, number of keys). No announcement is played to the caller.</p>
+sendCallDtmf: {
+    path: '/ondewo.vtsi.Calls/SendCallDtmf',
+    requestStream: false,
+    responseStream: false,
+    requestType: ondewo_vtsi_calls_pb.SendCallDtmfRequest,
+    responseType: ondewo_vtsi_calls_pb.SendCallDtmfResponse,
+    requestSerialize: serialize_ondewo_vtsi_SendCallDtmfRequest,
+    requestDeserialize: deserialize_ondewo_vtsi_SendCallDtmfRequest,
+    responseSerialize: serialize_ondewo_vtsi_SendCallDtmfResponse,
+    responseDeserialize: deserialize_ondewo_vtsi_SendCallDtmfResponse,
   },
   // <p>Live audio of a connected call, both ways. The first request MUST be <code>config</code> (within 2 seconds).
 // LISTEN receives the caller mixed with the bot. TALK sends the agent&apos;s audio to the caller and REQUIRES

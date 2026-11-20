@@ -13,13 +13,13 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global = (function() {
-  if (this) { return this; }
-  if (typeof window !== 'undefined') { return window; }
-  if (typeof global !== 'undefined') { return global; }
-  if (typeof self !== 'undefined') { return self; }
-  return Function('return this')();
-}.call(null));
+var global =
+    (typeof globalThis !== 'undefined' && globalThis) ||
+    (typeof window !== 'undefined' && window) ||
+    (typeof global !== 'undefined' && global) ||
+    (typeof self !== 'undefined' && self) ||
+    (function () { return this; }).call(null) ||
+    Function('return this')();
 
 var google_protobuf_duration_pb = require('google-protobuf/google/protobuf/duration_pb.js');
 goog.object.extend(proto, google_protobuf_duration_pb);
@@ -616,20 +616,20 @@ proto.ondewo.vtsi.VtsiEventMessage.prototype.toObject = function(opt_includeInst
  */
 proto.ondewo.vtsi.VtsiEventMessage.toObject = function(includeInstance, msg) {
   var f, obj = {
-    eventId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    event: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    resourceName: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    eventTime: (f = msg.getEventTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    sipStatusType: jspb.Message.getFieldWithDefault(msg, 6, 0),
-    sipStatusDescription: jspb.Message.getFieldWithDefault(msg, 7, ""),
-    previousSipStatusType: jspb.Message.getFieldWithDefault(msg, 8, 0),
-    callName: jspb.Message.getFieldWithDefault(msg, 9, ""),
-    campaignName: jspb.Message.getFieldWithDefault(msg, 10, ""),
-    description: jspb.Message.getFieldWithDefault(msg, 11, ""),
-    attributesMap: (f = msg.getAttributesMap()) ? f.toObject(includeInstance, undefined) : [],
-    campaignStatistics: (f = msg.getCampaignStatistics()) && ondewo_vtsi_campaigns_pb.CampaignStatistics.toObject(includeInstance, f),
-    resourceSequence: jspb.Message.getFieldWithDefault(msg, 14, 0)
+eventId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+event: jspb.Message.getFieldWithDefault(msg, 2, 0),
+vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 3, ""),
+resourceName: jspb.Message.getFieldWithDefault(msg, 4, ""),
+eventTime: (f = msg.getEventTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+sipStatusType: (f = jspb.Message.getField(msg, 6)) == null ? undefined : f,
+sipStatusDescription: jspb.Message.getFieldWithDefault(msg, 7, ""),
+previousSipStatusType: (f = jspb.Message.getField(msg, 8)) == null ? undefined : f,
+callName: jspb.Message.getFieldWithDefault(msg, 9, ""),
+campaignName: jspb.Message.getFieldWithDefault(msg, 10, ""),
+description: jspb.Message.getFieldWithDefault(msg, 11, ""),
+attributesMap: (f = msg.getAttributesMap()) ? f.toObject(includeInstance, undefined) : [],
+campaignStatistics: (f = msg.getCampaignStatistics()) && ondewo_vtsi_campaigns_pb.CampaignStatistics.toObject(includeInstance, f),
+resourceSequence: jspb.Message.getFieldWithDefault(msg, 14, 0)
   };
 
   if (includeInstance) {
@@ -1127,7 +1127,8 @@ proto.ondewo.vtsi.VtsiEventMessage.prototype.getAttributesMap = function(opt_noL
  */
 proto.ondewo.vtsi.VtsiEventMessage.prototype.clearAttributesMap = function() {
   this.getAttributesMap().clear();
-  return this;};
+  return this;
+};
 
 
 /**
@@ -1224,20 +1225,20 @@ proto.ondewo.vtsi.VtsiEventSubscription.prototype.toObject = function(opt_includ
  */
 proto.ondewo.vtsi.VtsiEventSubscription.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    displayName: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    eventsList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f,
-    allEvents: jspb.Message.getBooleanFieldWithDefault(msg, 5, false),
-    resourceNamePrefixesList: (f = jspb.Message.getRepeatedField(msg, 6)) == null ? undefined : f,
-    webhookNamesList: (f = jspb.Message.getRepeatedField(msg, 7)) == null ? undefined : f,
-    disabled: jspb.Message.getBooleanFieldWithDefault(msg, 8, false),
-    createdBy: jspb.Message.getFieldWithDefault(msg, 9, ""),
-    createdAt: (f = msg.getCreatedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    modifiedBy: jspb.Message.getFieldWithDefault(msg, 11, ""),
-    modifiedAt: (f = msg.getModifiedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    campaignNamesList: (f = jspb.Message.getRepeatedField(msg, 13)) == null ? undefined : f,
-    excludedEventsList: (f = jspb.Message.getRepeatedField(msg, 14)) == null ? undefined : f
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 2, ""),
+displayName: jspb.Message.getFieldWithDefault(msg, 3, ""),
+eventsList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f,
+allEvents: jspb.Message.getBooleanFieldWithDefault(msg, 5, false),
+resourceNamePrefixesList: (f = jspb.Message.getRepeatedField(msg, 6)) == null ? undefined : f,
+webhookNamesList: (f = jspb.Message.getRepeatedField(msg, 7)) == null ? undefined : f,
+disabled: jspb.Message.getBooleanFieldWithDefault(msg, 8, false),
+createdBy: jspb.Message.getFieldWithDefault(msg, 9, ""),
+createdAt: (f = msg.getCreatedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+modifiedBy: jspb.Message.getFieldWithDefault(msg, 11, ""),
+modifiedAt: (f = msg.getModifiedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+campaignNamesList: (f = jspb.Message.getRepeatedField(msg, 13)) == null ? undefined : f,
+excludedEventsList: (f = jspb.Message.getRepeatedField(msg, 14)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -1885,13 +1886,13 @@ proto.ondewo.vtsi.WebhookDeliveryStatistics.prototype.toObject = function(opt_in
  */
 proto.ondewo.vtsi.WebhookDeliveryStatistics.toObject = function(includeInstance, msg) {
   var f, obj = {
-    deliveredCount: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    failedCount: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    droppedCount: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    lastDeliveryTime: (f = msg.getLastDeliveryTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    lastSuccessTime: (f = msg.getLastSuccessTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    lastHttpStatusCode: jspb.Message.getFieldWithDefault(msg, 6, 0),
-    lastError: jspb.Message.getFieldWithDefault(msg, 7, "")
+deliveredCount: jspb.Message.getFieldWithDefault(msg, 1, 0),
+failedCount: jspb.Message.getFieldWithDefault(msg, 2, 0),
+droppedCount: jspb.Message.getFieldWithDefault(msg, 3, 0),
+lastDeliveryTime: (f = msg.getLastDeliveryTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+lastSuccessTime: (f = msg.getLastSuccessTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+lastHttpStatusCode: jspb.Message.getFieldWithDefault(msg, 6, 0),
+lastError: jspb.Message.getFieldWithDefault(msg, 7, "")
   };
 
   if (includeInstance) {
@@ -2237,20 +2238,20 @@ proto.ondewo.vtsi.Webhook.prototype.toObject = function(opt_includeInstance) {
  */
 proto.ondewo.vtsi.Webhook.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    displayName: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    url: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    httpMethod: jspb.Message.getFieldWithDefault(msg, 5, 0),
-    customHeadersMap: (f = msg.getCustomHeadersMap()) ? f.toObject(includeInstance, undefined) : [],
-    disabled: jspb.Message.getBooleanFieldWithDefault(msg, 7, false),
-    timeout: (f = msg.getTimeout()) && google_protobuf_duration_pb.Duration.toObject(includeInstance, f),
-    deliveryStatistics: (f = msg.getDeliveryStatistics()) && proto.ondewo.vtsi.WebhookDeliveryStatistics.toObject(includeInstance, f),
-    createdBy: jspb.Message.getFieldWithDefault(msg, 10, ""),
-    createdAt: (f = msg.getCreatedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    modifiedBy: jspb.Message.getFieldWithDefault(msg, 12, ""),
-    modifiedAt: (f = msg.getModifiedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    signingSecret: jspb.Message.getFieldWithDefault(msg, 14, "")
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 2, ""),
+displayName: jspb.Message.getFieldWithDefault(msg, 3, ""),
+url: jspb.Message.getFieldWithDefault(msg, 4, ""),
+httpMethod: jspb.Message.getFieldWithDefault(msg, 5, 0),
+customHeadersMap: (f = msg.getCustomHeadersMap()) ? f.toObject(includeInstance, undefined) : [],
+disabled: jspb.Message.getBooleanFieldWithDefault(msg, 7, false),
+timeout: (f = msg.getTimeout()) && google_protobuf_duration_pb.Duration.toObject(includeInstance, f),
+deliveryStatistics: (f = msg.getDeliveryStatistics()) && proto.ondewo.vtsi.WebhookDeliveryStatistics.toObject(includeInstance, f),
+createdBy: jspb.Message.getFieldWithDefault(msg, 10, ""),
+createdAt: (f = msg.getCreatedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+modifiedBy: jspb.Message.getFieldWithDefault(msg, 12, ""),
+modifiedAt: (f = msg.getModifiedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+signingSecret: jspb.Message.getFieldWithDefault(msg, 14, "")
   };
 
   if (includeInstance) {
@@ -2589,7 +2590,8 @@ proto.ondewo.vtsi.Webhook.prototype.getCustomHeadersMap = function(opt_noLazyCre
  */
 proto.ondewo.vtsi.Webhook.prototype.clearCustomHeadersMap = function() {
   this.getCustomHeadersMap().clear();
-  return this;};
+  return this;
+};
 
 
 /**
@@ -2851,11 +2853,11 @@ proto.ondewo.vtsi.VtsiEventFilter.prototype.toObject = function(opt_includeInsta
  */
 proto.ondewo.vtsi.VtsiEventFilter.toObject = function(includeInstance, msg) {
   var f, obj = {
-    eventsList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f,
-    resourceNamePrefixesList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f,
-    campaignNamesList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f,
-    allEvents: jspb.Message.getBooleanFieldWithDefault(msg, 4, false),
-    excludedEventsList: (f = jspb.Message.getRepeatedField(msg, 5)) == null ? undefined : f
+eventsList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f,
+resourceNamePrefixesList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f,
+campaignNamesList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f,
+allEvents: jspb.Message.getBooleanFieldWithDefault(msg, 4, false),
+excludedEventsList: (f = jspb.Message.getRepeatedField(msg, 5)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -3181,9 +3183,9 @@ proto.ondewo.vtsi.CreateVtsiEventSubscriptionRequest.prototype.toObject = functi
  */
 proto.ondewo.vtsi.CreateVtsiEventSubscriptionRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    eventSubscription: (f = msg.getEventSubscription()) && proto.ondewo.vtsi.VtsiEventSubscription.toObject(includeInstance, f),
-    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
+vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 1, ""),
+eventSubscription: (f = msg.getEventSubscription()) && proto.ondewo.vtsi.VtsiEventSubscription.toObject(includeInstance, f),
+fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -3413,8 +3415,8 @@ proto.ondewo.vtsi.GetVtsiEventSubscriptionRequest.prototype.toObject = function(
  */
 proto.ondewo.vtsi.GetVtsiEventSubscriptionRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -3594,9 +3596,9 @@ proto.ondewo.vtsi.UpdateVtsiEventSubscriptionRequest.prototype.toObject = functi
  */
 proto.ondewo.vtsi.UpdateVtsiEventSubscriptionRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    eventSubscription: (f = msg.getEventSubscription()) && proto.ondewo.vtsi.VtsiEventSubscription.toObject(includeInstance, f),
-    updateMask: (f = msg.getUpdateMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f),
-    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
+eventSubscription: (f = msg.getEventSubscription()) && proto.ondewo.vtsi.VtsiEventSubscription.toObject(includeInstance, f),
+updateMask: (f = msg.getUpdateMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f),
+fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -3847,8 +3849,8 @@ proto.ondewo.vtsi.DeleteVtsiEventSubscriptionRequest.prototype.toObject = functi
  */
 proto.ondewo.vtsi.DeleteVtsiEventSubscriptionRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -4028,7 +4030,7 @@ proto.ondewo.vtsi.DeleteVtsiEventSubscriptionResponse.prototype.toObject = funct
  */
 proto.ondewo.vtsi.DeleteVtsiEventSubscriptionResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, "")
+name: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -4158,10 +4160,10 @@ proto.ondewo.vtsi.ListVtsiEventSubscriptionsRequest.prototype.toObject = functio
  */
 proto.ondewo.vtsi.ListVtsiEventSubscriptionsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    pageSize: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    pageToken: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
+vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 1, ""),
+pageSize: jspb.Message.getFieldWithDefault(msg, 2, 0),
+pageToken: (f = jspb.Message.getField(msg, 3)) == null ? undefined : f,
+fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -4424,9 +4426,9 @@ proto.ondewo.vtsi.ListVtsiEventSubscriptionsResponse.prototype.toObject = functi
  */
 proto.ondewo.vtsi.ListVtsiEventSubscriptionsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    eventSubscriptionsList: jspb.Message.toObjectList(msg.getEventSubscriptionsList(),
+eventSubscriptionsList: jspb.Message.toObjectList(msg.getEventSubscriptionsList(),
     proto.ondewo.vtsi.VtsiEventSubscription.toObject, includeInstance),
-    nextPageToken: jspb.Message.getFieldWithDefault(msg, 2, "")
+nextPageToken: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -4607,9 +4609,9 @@ proto.ondewo.vtsi.CreateWebhookRequest.prototype.toObject = function(opt_include
  */
 proto.ondewo.vtsi.CreateWebhookRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    webhook: (f = msg.getWebhook()) && proto.ondewo.vtsi.Webhook.toObject(includeInstance, f),
-    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
+vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 1, ""),
+webhook: (f = msg.getWebhook()) && proto.ondewo.vtsi.Webhook.toObject(includeInstance, f),
+fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -4839,8 +4841,8 @@ proto.ondewo.vtsi.GetWebhookRequest.prototype.toObject = function(opt_includeIns
  */
 proto.ondewo.vtsi.GetWebhookRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -5020,9 +5022,9 @@ proto.ondewo.vtsi.UpdateWebhookRequest.prototype.toObject = function(opt_include
  */
 proto.ondewo.vtsi.UpdateWebhookRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    webhook: (f = msg.getWebhook()) && proto.ondewo.vtsi.Webhook.toObject(includeInstance, f),
-    updateMask: (f = msg.getUpdateMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f),
-    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
+webhook: (f = msg.getWebhook()) && proto.ondewo.vtsi.Webhook.toObject(includeInstance, f),
+updateMask: (f = msg.getUpdateMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f),
+fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -5273,8 +5275,8 @@ proto.ondewo.vtsi.DeleteWebhookRequest.prototype.toObject = function(opt_include
  */
 proto.ondewo.vtsi.DeleteWebhookRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -5454,8 +5456,8 @@ proto.ondewo.vtsi.DeleteWebhookResponse.prototype.toObject = function(opt_includ
  */
 proto.ondewo.vtsi.DeleteWebhookResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    detachedSubscriptionCount: jspb.Message.getFieldWithDefault(msg, 2, 0)
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+detachedSubscriptionCount: jspb.Message.getFieldWithDefault(msg, 2, 0)
   };
 
   if (includeInstance) {
@@ -5614,10 +5616,10 @@ proto.ondewo.vtsi.ListWebhooksRequest.prototype.toObject = function(opt_includeI
  */
 proto.ondewo.vtsi.ListWebhooksRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    pageSize: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    pageToken: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
+vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 1, ""),
+pageSize: jspb.Message.getFieldWithDefault(msg, 2, 0),
+pageToken: (f = jspb.Message.getField(msg, 3)) == null ? undefined : f,
+fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -5880,9 +5882,9 @@ proto.ondewo.vtsi.ListWebhooksResponse.prototype.toObject = function(opt_include
  */
 proto.ondewo.vtsi.ListWebhooksResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    webhooksList: jspb.Message.toObjectList(msg.getWebhooksList(),
+webhooksList: jspb.Message.toObjectList(msg.getWebhooksList(),
     proto.ondewo.vtsi.Webhook.toObject, includeInstance),
-    nextPageToken: jspb.Message.getFieldWithDefault(msg, 2, "")
+nextPageToken: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -6063,8 +6065,8 @@ proto.ondewo.vtsi.TestWebhookRequest.prototype.toObject = function(opt_includeIn
  */
 proto.ondewo.vtsi.TestWebhookRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    sampleEvent: jspb.Message.getFieldWithDefault(msg, 2, 0)
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+sampleEvent: jspb.Message.getFieldWithDefault(msg, 2, 0)
   };
 
   if (includeInstance) {
@@ -6223,11 +6225,11 @@ proto.ondewo.vtsi.TestWebhookResponse.prototype.toObject = function(opt_includeI
  */
 proto.ondewo.vtsi.TestWebhookResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    success: jspb.Message.getBooleanFieldWithDefault(msg, 1, false),
-    httpStatusCode: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    latency: (f = msg.getLatency()) && google_protobuf_duration_pb.Duration.toObject(includeInstance, f),
-    errorMessage: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    eventId: jspb.Message.getFieldWithDefault(msg, 5, "")
+success: jspb.Message.getBooleanFieldWithDefault(msg, 1, false),
+httpStatusCode: jspb.Message.getFieldWithDefault(msg, 2, 0),
+latency: (f = msg.getLatency()) && google_protobuf_duration_pb.Duration.toObject(includeInstance, f),
+errorMessage: jspb.Message.getFieldWithDefault(msg, 4, ""),
+eventId: jspb.Message.getFieldWithDefault(msg, 5, "")
   };
 
   if (includeInstance) {
@@ -6520,11 +6522,11 @@ proto.ondewo.vtsi.SubscribeVtsiEventsRequest.prototype.toObject = function(opt_i
  */
 proto.ondewo.vtsi.SubscribeVtsiEventsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    eventSubscriptionName: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    filter: (f = msg.getFilter()) && proto.ondewo.vtsi.VtsiEventFilter.toObject(includeInstance, f),
-    resumeToken: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    startTime: (f = msg.getStartTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 1, ""),
+eventSubscriptionName: (f = jspb.Message.getField(msg, 2)) == null ? undefined : f,
+filter: (f = msg.getFilter()) && proto.ondewo.vtsi.VtsiEventFilter.toObject(includeInstance, f),
+resumeToken: (f = jspb.Message.getField(msg, 4)) == null ? undefined : f,
+startTime: (f = msg.getStartTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -6855,12 +6857,12 @@ proto.ondewo.vtsi.SubscribeVtsiEventsResponse.prototype.toObject = function(opt_
  */
 proto.ondewo.vtsi.SubscribeVtsiEventsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    eventsList: jspb.Message.toObjectList(msg.getEventsList(),
+eventsList: jspb.Message.toObjectList(msg.getEventsList(),
     proto.ondewo.vtsi.VtsiEventMessage.toObject, includeInstance),
-    resumeToken: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    droppedEventCount: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    endReason: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    endReasonType: jspb.Message.getFieldWithDefault(msg, 5, 0)
+resumeToken: jspb.Message.getFieldWithDefault(msg, 2, ""),
+droppedEventCount: jspb.Message.getFieldWithDefault(msg, 3, 0),
+endReason: jspb.Message.getFieldWithDefault(msg, 4, ""),
+endReasonType: jspb.Message.getFieldWithDefault(msg, 5, 0)
   };
 
   if (includeInstance) {
@@ -7135,11 +7137,11 @@ proto.ondewo.vtsi.RedeliverWebhookEventsRequest.prototype.toObject = function(op
  */
 proto.ondewo.vtsi.RedeliverWebhookEventsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    webhookName: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    eventIdsList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f,
-    startTime: (f = msg.getStartTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    endTime: (f = msg.getEndTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    filter: (f = msg.getFilter()) && proto.ondewo.vtsi.VtsiEventFilter.toObject(includeInstance, f)
+webhookName: jspb.Message.getFieldWithDefault(msg, 1, ""),
+eventIdsList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f,
+startTime: (f = msg.getStartTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+endTime: (f = msg.getEndTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+filter: (f = msg.getFilter()) && proto.ondewo.vtsi.VtsiEventFilter.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -7467,10 +7469,10 @@ proto.ondewo.vtsi.RedeliverWebhookEventsResponse.prototype.toObject = function(o
  */
 proto.ondewo.vtsi.RedeliverWebhookEventsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    enqueuedCount: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    notInJournalCount: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    notEnqueuedCount: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    nextStartTime: (f = msg.getNextStartTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+enqueuedCount: jspb.Message.getFieldWithDefault(msg, 1, 0),
+notInJournalCount: jspb.Message.getFieldWithDefault(msg, 2, 0),
+notEnqueuedCount: jspb.Message.getFieldWithDefault(msg, 3, 0),
+nextStartTime: (f = msg.getNextStartTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -7704,6 +7706,13 @@ proto.ondewo.vtsi.VtsiEvent = {
   VTSI_EVENT_CALL_AUDIO_STREAM_CONNECTED: 120,
   VTSI_EVENT_CALL_AUDIO_STREAM_DISCONNECTED: 121,
   VTSI_EVENT_CALL_UPDATED: 122,
+  VTSI_EVENT_CALL_DTMF_SENT: 123,
+  VTSI_EVENT_CALL_WARM_INTRO_STARTED: 124,
+  VTSI_EVENT_CALL_WARM_INTRO_ACCEPTED: 125,
+  VTSI_EVENT_CALL_WARM_INTRO_DECLINED: 126,
+  VTSI_EVENT_CALL_WARM_INTRO_NO_DECISION: 127,
+  VTSI_EVENT_CALL_WARM_INTRO_TARGET_UNAVAILABLE: 128,
+  VTSI_EVENT_CALL_WARM_TRANSFER_OUTCOME_NOTICE_UNDELIVERED: 129,
   VTSI_EVENT_CALLER_STARTED: 200,
   VTSI_EVENT_CALLER_START_FAILED: 201,
   VTSI_EVENT_CALLER_STOPPED: 202,
@@ -7777,7 +7786,13 @@ proto.ondewo.vtsi.VtsiEvent = {
   VTSI_EVENT_WEBHOOK_DELETED: 903,
   VTSI_EVENT_EVENT_SUBSCRIPTION_CREATED: 904,
   VTSI_EVENT_EVENT_SUBSCRIPTION_UPDATED: 905,
-  VTSI_EVENT_EVENT_SUBSCRIPTION_DELETED: 906
+  VTSI_EVENT_EVENT_SUBSCRIPTION_DELETED: 906,
+  VTSI_EVENT_IVR_MENU_CREATED: 1001,
+  VTSI_EVENT_IVR_MENU_UPDATED: 1002,
+  VTSI_EVENT_IVR_MENU_DELETED: 1003,
+  VTSI_EVENT_IVR_MENU_PUBLISHED: 1004,
+  VTSI_EVENT_IVR_MENU_PUBLISH_FAILED: 1005,
+  VTSI_EVENT_IVR_MENU_TESTED: 1006
 };
 
 /**

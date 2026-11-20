@@ -13,13 +13,13 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global = (function() {
-  if (this) { return this; }
-  if (typeof window !== 'undefined') { return window; }
-  if (typeof global !== 'undefined') { return global; }
-  if (typeof self !== 'undefined') { return self; }
-  return Function('return this')();
-}.call(null));
+var global =
+    (typeof globalThis !== 'undefined' && globalThis) ||
+    (typeof window !== 'undefined' && window) ||
+    (typeof global !== 'undefined' && global) ||
+    (typeof self !== 'undefined' && self) ||
+    (function () { return this; }).call(null) ||
+    Function('return this')();
 
 var google_api_annotations_pb = require('../../google/api/annotations_pb.js');
 goog.object.extend(proto, google_api_annotations_pb);
@@ -56,6 +56,8 @@ goog.exportSymbol('proto.ondewo.nlu.AddSessionStepFeedbackRequest', null, global
 goog.exportSymbol('proto.ondewo.nlu.AudioEncoding', null, global);
 goog.exportSymbol('proto.ondewo.nlu.AudioFileResource', null, global);
 goog.exportSymbol('proto.ondewo.nlu.AudioFileResourceType', null, global);
+goog.exportSymbol('proto.ondewo.nlu.BackgroundWorkPolicy', null, global);
+goog.exportSymbol('proto.ondewo.nlu.CancelTurn', null, global);
 goog.exportSymbol('proto.ondewo.nlu.ComparisonOperator', null, global);
 goog.exportSymbol('proto.ondewo.nlu.ContextFilter', null, global);
 goog.exportSymbol('proto.ondewo.nlu.CreateSessionRequest', null, global);
@@ -71,6 +73,7 @@ goog.exportSymbol('proto.ondewo.nlu.DeleteSessionStepRequest', null, global);
 goog.exportSymbol('proto.ondewo.nlu.DetectIntentRequest', null, global);
 goog.exportSymbol('proto.ondewo.nlu.DetectIntentResponse', null, global);
 goog.exportSymbol('proto.ondewo.nlu.DetectedIntent', null, global);
+goog.exportSymbol('proto.ondewo.nlu.DiscardDraft', null, global);
 goog.exportSymbol('proto.ondewo.nlu.DocumentFileResource', null, global);
 goog.exportSymbol('proto.ondewo.nlu.EventInput', null, global);
 goog.exportSymbol('proto.ondewo.nlu.FeedbackAuthorType', null, global);
@@ -95,8 +98,14 @@ goog.exportSymbol('proto.ondewo.nlu.GetSessionFeedbackRequest', null, global);
 goog.exportSymbol('proto.ondewo.nlu.GetSessionRequest', null, global);
 goog.exportSymbol('proto.ondewo.nlu.GetSessionReviewRequest', null, global);
 goog.exportSymbol('proto.ondewo.nlu.GetSessionStepRequest', null, global);
+goog.exportSymbol('proto.ondewo.nlu.GetWarmTransferIntroOutcomeRequest', null, global);
+goog.exportSymbol('proto.ondewo.nlu.HeardMessage', null, global);
+goog.exportSymbol('proto.ondewo.nlu.HeardReport', null, global);
+goog.exportSymbol('proto.ondewo.nlu.HeardTextPrecision', null, global);
 goog.exportSymbol('proto.ondewo.nlu.ImageFileResource', null, global);
 goog.exportSymbol('proto.ondewo.nlu.InputAudioConfig', null, global);
+goog.exportSymbol('proto.ondewo.nlu.InterruptTurnRequest', null, global);
+goog.exportSymbol('proto.ondewo.nlu.InterruptTurnResponse', null, global);
 goog.exportSymbol('proto.ondewo.nlu.ListAccountIdsOfAllSessionsRequest', null, global);
 goog.exportSymbol('proto.ondewo.nlu.ListAccountIdsResponse', null, global);
 goog.exportSymbol('proto.ondewo.nlu.ListAudioFilesRequest', null, global);
@@ -170,6 +179,8 @@ goog.exportSymbol('proto.ondewo.nlu.LlmToolCallFinishedEvent', null, global);
 goog.exportSymbol('proto.ondewo.nlu.LlmToolCallMetadata', null, global);
 goog.exportSymbol('proto.ondewo.nlu.LlmToolCallStartedEvent', null, global);
 goog.exportSymbol('proto.ondewo.nlu.LlmToolUsage', null, global);
+goog.exportSymbol('proto.ondewo.nlu.PrepareWarmTransferIntroRequest', null, global);
+goog.exportSymbol('proto.ondewo.nlu.PrepareWarmTransferIntroResponse', null, global);
 goog.exportSymbol('proto.ondewo.nlu.QueryInput', null, global);
 goog.exportSymbol('proto.ondewo.nlu.QueryInput.InputCase', null, global);
 goog.exportSymbol('proto.ondewo.nlu.QueryParameters', null, global);
@@ -195,10 +206,21 @@ goog.exportSymbol('proto.ondewo.nlu.StreamingRecognitionResult', null, global);
 goog.exportSymbol('proto.ondewo.nlu.StreamingRecognitionResult.MessageType', null, global);
 goog.exportSymbol('proto.ondewo.nlu.TextInput', null, global);
 goog.exportSymbol('proto.ondewo.nlu.TranscriptionType', null, global);
+goog.exportSymbol('proto.ondewo.nlu.TurnControl', null, global);
+goog.exportSymbol('proto.ondewo.nlu.TurnControl.TurnControlCase', null, global);
+goog.exportSymbol('proto.ondewo.nlu.TurnControlAck', null, global);
+goog.exportSymbol('proto.ondewo.nlu.TurnControlAckStatus', null, global);
+goog.exportSymbol('proto.ondewo.nlu.TurnInterruptionReason', null, global);
 goog.exportSymbol('proto.ondewo.nlu.UpdateSessionCommentsRequest', null, global);
 goog.exportSymbol('proto.ondewo.nlu.UpdateSessionFeedbackRequest', null, global);
 goog.exportSymbol('proto.ondewo.nlu.UpdateSessionStepRequest', null, global);
 goog.exportSymbol('proto.ondewo.nlu.VideoFileResource', null, global);
+goog.exportSymbol('proto.ondewo.nlu.WarmTransferIntroConfig', null, global);
+goog.exportSymbol('proto.ondewo.nlu.WarmTransferIntroDecidedBy', null, global);
+goog.exportSymbol('proto.ondewo.nlu.WarmTransferIntroDecision', null, global);
+goog.exportSymbol('proto.ondewo.nlu.WarmTransferIntroOutcome', null, global);
+goog.exportSymbol('proto.ondewo.nlu.WarmTransferIntroStage', null, global);
+goog.exportSymbol('proto.ondewo.nlu.WarmTransferIntroTextSource', null, global);
 /**
  * Generated by JsPbCodeGenerator.
  * @param {Array=} opt_data Optional initial data array, typically from a
@@ -1017,6 +1039,279 @@ if (goog.DEBUG && !COMPILED) {
    * @override
    */
   proto.ondewo.nlu.StreamingDetectIntentResponse.displayName = 'proto.ondewo.nlu.StreamingDetectIntentResponse';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.ondewo.nlu.TurnControl = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, proto.ondewo.nlu.TurnControl.oneofGroups_);
+};
+goog.inherits(proto.ondewo.nlu.TurnControl, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.ondewo.nlu.TurnControl.displayName = 'proto.ondewo.nlu.TurnControl';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.ondewo.nlu.CancelTurn = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.ondewo.nlu.CancelTurn, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.ondewo.nlu.CancelTurn.displayName = 'proto.ondewo.nlu.CancelTurn';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.ondewo.nlu.HeardMessage = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.ondewo.nlu.HeardMessage, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.ondewo.nlu.HeardMessage.displayName = 'proto.ondewo.nlu.HeardMessage';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.ondewo.nlu.HeardReport = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.ondewo.nlu.HeardReport.repeatedFields_, null);
+};
+goog.inherits(proto.ondewo.nlu.HeardReport, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.ondewo.nlu.HeardReport.displayName = 'proto.ondewo.nlu.HeardReport';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.ondewo.nlu.DiscardDraft = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.ondewo.nlu.DiscardDraft, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.ondewo.nlu.DiscardDraft.displayName = 'proto.ondewo.nlu.DiscardDraft';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.ondewo.nlu.TurnControlAck = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.ondewo.nlu.TurnControlAck, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.ondewo.nlu.TurnControlAck.displayName = 'proto.ondewo.nlu.TurnControlAck';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.ondewo.nlu.InterruptTurnRequest = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.ondewo.nlu.InterruptTurnRequest, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.ondewo.nlu.InterruptTurnRequest.displayName = 'proto.ondewo.nlu.InterruptTurnRequest';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.ondewo.nlu.InterruptTurnResponse = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.ondewo.nlu.InterruptTurnResponse, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.ondewo.nlu.InterruptTurnResponse.displayName = 'proto.ondewo.nlu.InterruptTurnResponse';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.ondewo.nlu.WarmTransferIntroConfig = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.ondewo.nlu.WarmTransferIntroConfig, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.ondewo.nlu.WarmTransferIntroConfig.displayName = 'proto.ondewo.nlu.WarmTransferIntroConfig';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.ondewo.nlu.PrepareWarmTransferIntroRequest = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.ondewo.nlu.PrepareWarmTransferIntroRequest, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.ondewo.nlu.PrepareWarmTransferIntroRequest.displayName = 'proto.ondewo.nlu.PrepareWarmTransferIntroRequest';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.ondewo.nlu.PrepareWarmTransferIntroResponse = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.ondewo.nlu.PrepareWarmTransferIntroResponse, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.ondewo.nlu.PrepareWarmTransferIntroResponse.displayName = 'proto.ondewo.nlu.PrepareWarmTransferIntroResponse';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.ondewo.nlu.GetWarmTransferIntroOutcomeRequest = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.ondewo.nlu.GetWarmTransferIntroOutcomeRequest, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.ondewo.nlu.GetWarmTransferIntroOutcomeRequest.displayName = 'proto.ondewo.nlu.GetWarmTransferIntroOutcomeRequest';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.ondewo.nlu.WarmTransferIntroOutcome = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.ondewo.nlu.WarmTransferIntroOutcome, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.ondewo.nlu.WarmTransferIntroOutcome.displayName = 'proto.ondewo.nlu.WarmTransferIntroOutcome';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -3045,10 +3340,10 @@ proto.ondewo.nlu.DetectIntentRequest.prototype.toObject = function(opt_includeIn
  */
 proto.ondewo.nlu.DetectIntentRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    session: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    queryParams: (f = msg.getQueryParams()) && proto.ondewo.nlu.QueryParameters.toObject(includeInstance, f),
-    queryInput: (f = msg.getQueryInput()) && proto.ondewo.nlu.QueryInput.toObject(includeInstance, f),
-    inputAudio: msg.getInputAudio_asB64()
+session: jspb.Message.getFieldWithDefault(msg, 1, ""),
+queryParams: (f = msg.getQueryParams()) && proto.ondewo.nlu.QueryParameters.toObject(includeInstance, f),
+queryInput: (f = msg.getQueryInput()) && proto.ondewo.nlu.QueryInput.toObject(includeInstance, f),
+inputAudio: msg.getInputAudio_asB64()
   };
 
   if (includeInstance) {
@@ -3331,10 +3626,10 @@ proto.ondewo.nlu.DetectIntentResponse.prototype.toObject = function(opt_includeI
  */
 proto.ondewo.nlu.DetectIntentResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    responseId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    queryResult: (f = msg.getQueryResult()) && proto.ondewo.nlu.QueryResult.toObject(includeInstance, f),
-    webhookStatus: (f = msg.getWebhookStatus()) && google_rpc_status_pb.Status.toObject(includeInstance, f),
-    llmTelemetryReport: (f = msg.getLlmTelemetryReport()) && proto.ondewo.nlu.LlmTelemetryReport.toObject(includeInstance, f)
+responseId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+queryResult: (f = msg.getQueryResult()) && proto.ondewo.nlu.QueryResult.toObject(includeInstance, f),
+webhookStatus: (f = msg.getWebhookStatus()) && google_rpc_status_pb.Status.toObject(includeInstance, f),
+llmTelemetryReport: (f = msg.getLlmTelemetryReport()) && proto.ondewo.nlu.LlmTelemetryReport.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -3621,21 +3916,22 @@ proto.ondewo.nlu.QueryParameters.prototype.toObject = function(opt_includeInstan
  */
 proto.ondewo.nlu.QueryParameters.toObject = function(includeInstance, msg) {
   var f, obj = {
-    timeZone: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    geoLocation: (f = msg.getGeoLocation()) && google_type_latlng_pb.LatLng.toObject(includeInstance, f),
-    contextsList: jspb.Message.toObjectList(msg.getContextsList(),
+timeZone: jspb.Message.getFieldWithDefault(msg, 1, ""),
+geoLocation: (f = msg.getGeoLocation()) && google_type_latlng_pb.LatLng.toObject(includeInstance, f),
+contextsList: jspb.Message.toObjectList(msg.getContextsList(),
     ondewo_nlu_context_pb.Context.toObject, includeInstance),
-    resetContexts: jspb.Message.getBooleanFieldWithDefault(msg, 4, false),
-    payload: (f = msg.getPayload()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
-    labelsList: (f = jspb.Message.getRepeatedField(msg, 7)) == null ? undefined : f,
-    platformsList: (f = jspb.Message.getRepeatedField(msg, 8)) == null ? undefined : f,
-    accountId: jspb.Message.getFieldWithDefault(msg, 9, ""),
-    propertyId: jspb.Message.getFieldWithDefault(msg, 10, ""),
-    datastreamId: jspb.Message.getFieldWithDefault(msg, 11, ""),
-    originId: jspb.Message.getFieldWithDefault(msg, 12, ""),
-    identifiedUserId: jspb.Message.getFieldWithDefault(msg, 13, ""),
-    transcriptionsList: jspb.Message.toObjectList(msg.getTranscriptionsList(),
-    proto.ondewo.nlu.S2tTranscription.toObject, includeInstance)
+resetContexts: jspb.Message.getBooleanFieldWithDefault(msg, 4, false),
+payload: (f = msg.getPayload()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
+labelsList: (f = jspb.Message.getRepeatedField(msg, 7)) == null ? undefined : f,
+platformsList: (f = jspb.Message.getRepeatedField(msg, 8)) == null ? undefined : f,
+accountId: jspb.Message.getFieldWithDefault(msg, 9, ""),
+propertyId: jspb.Message.getFieldWithDefault(msg, 10, ""),
+datastreamId: jspb.Message.getFieldWithDefault(msg, 11, ""),
+originId: jspb.Message.getFieldWithDefault(msg, 12, ""),
+identifiedUserId: jspb.Message.getFieldWithDefault(msg, 13, ""),
+transcriptionsList: jspb.Message.toObjectList(msg.getTranscriptionsList(),
+    proto.ondewo.nlu.S2tTranscription.toObject, includeInstance),
+preemptiveDraft: jspb.Message.getBooleanFieldWithDefault(msg, 15, false)
   };
 
   if (includeInstance) {
@@ -3729,6 +4025,10 @@ proto.ondewo.nlu.QueryParameters.deserializeBinaryFromReader = function(msg, rea
       var value = new proto.ondewo.nlu.S2tTranscription;
       reader.readMessage(value,proto.ondewo.nlu.S2tTranscription.deserializeBinaryFromReader);
       msg.addTranscriptions(value);
+      break;
+    case 15:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setPreemptiveDraft(value);
       break;
     default:
       reader.skipField();
@@ -3852,6 +4152,13 @@ proto.ondewo.nlu.QueryParameters.serializeBinaryToWriter = function(message, wri
       14,
       f,
       proto.ondewo.nlu.S2tTranscription.serializeBinaryToWriter
+    );
+  }
+  f = message.getPreemptiveDraft();
+  if (f) {
+    writer.writeBool(
+      15,
+      f
     );
   }
 };
@@ -4207,6 +4514,24 @@ proto.ondewo.nlu.QueryParameters.prototype.clearTranscriptionsList = function() 
 };
 
 
+/**
+ * optional bool preemptive_draft = 15;
+ * @return {boolean}
+ */
+proto.ondewo.nlu.QueryParameters.prototype.getPreemptiveDraft = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 15, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.ondewo.nlu.QueryParameters} returns this
+ */
+proto.ondewo.nlu.QueryParameters.prototype.setPreemptiveDraft = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 15, value);
+};
+
+
 
 
 
@@ -4239,18 +4564,18 @@ proto.ondewo.nlu.S2tTranscription.prototype.toObject = function(opt_includeInsta
  */
 proto.ondewo.nlu.S2tTranscription.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    text: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    score: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
-    languageCode: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    audioResourceName: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    pipelineId: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    durationInS: jspb.Message.getFloatingPointFieldWithDefault(msg, 7, 0.0),
-    transcriptionType: jspb.Message.getFieldWithDefault(msg, 8, 0),
-    createdAt: (f = msg.getCreatedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    modifiedAt: (f = msg.getModifiedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    createdBy: jspb.Message.getFieldWithDefault(msg, 11, ""),
-    modifiedBy: jspb.Message.getFieldWithDefault(msg, 12, "")
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+text: jspb.Message.getFieldWithDefault(msg, 2, ""),
+score: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
+languageCode: jspb.Message.getFieldWithDefault(msg, 4, ""),
+audioResourceName: jspb.Message.getFieldWithDefault(msg, 5, ""),
+pipelineId: jspb.Message.getFieldWithDefault(msg, 6, ""),
+durationInS: jspb.Message.getFloatingPointFieldWithDefault(msg, 7, 0.0),
+transcriptionType: jspb.Message.getFieldWithDefault(msg, 8, 0),
+createdAt: (f = msg.getCreatedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+modifiedAt: (f = msg.getModifiedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+createdBy: jspb.Message.getFieldWithDefault(msg, 11, ""),
+modifiedBy: jspb.Message.getFieldWithDefault(msg, 12, "")
   };
 
   if (includeInstance) {
@@ -4775,10 +5100,10 @@ proto.ondewo.nlu.QueryInput.prototype.toObject = function(opt_includeInstance) {
  */
 proto.ondewo.nlu.QueryInput.toObject = function(includeInstance, msg) {
   var f, obj = {
-    audioConfig: (f = msg.getAudioConfig()) && proto.ondewo.nlu.InputAudioConfig.toObject(includeInstance, f),
-    text: (f = msg.getText()) && proto.ondewo.nlu.TextInput.toObject(includeInstance, f),
-    event: (f = msg.getEvent()) && proto.ondewo.nlu.EventInput.toObject(includeInstance, f),
-    fileResourcesList: jspb.Message.toObjectList(msg.getFileResourcesList(),
+audioConfig: (f = msg.getAudioConfig()) && proto.ondewo.nlu.InputAudioConfig.toObject(includeInstance, f),
+text: (f = msg.getText()) && proto.ondewo.nlu.TextInput.toObject(includeInstance, f),
+event: (f = msg.getEvent()) && proto.ondewo.nlu.EventInput.toObject(includeInstance, f),
+fileResourcesList: jspb.Message.toObjectList(msg.getFileResourcesList(),
     proto.ondewo.nlu.FileResource.toObject, includeInstance)
   };
 
@@ -5081,9 +5406,9 @@ proto.ondewo.nlu.LlmTokenUsage.prototype.toObject = function(opt_includeInstance
  */
 proto.ondewo.nlu.LlmTokenUsage.toObject = function(includeInstance, msg) {
   var f, obj = {
-    totalTokens: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    inputTokens: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    outputTokens: jspb.Message.getFieldWithDefault(msg, 3, 0)
+totalTokens: jspb.Message.getFieldWithDefault(msg, 1, 0),
+inputTokens: jspb.Message.getFieldWithDefault(msg, 2, 0),
+outputTokens: jspb.Message.getFieldWithDefault(msg, 3, 0)
   };
 
   if (includeInstance) {
@@ -5271,15 +5596,15 @@ proto.ondewo.nlu.LlmToolCallMetadata.prototype.toObject = function(opt_includeIn
  */
 proto.ondewo.nlu.LlmToolCallMetadata.toObject = function(includeInstance, msg) {
   var f, obj = {
-    toolCallId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    toolName: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    startTime: (f = msg.getStartTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    endTime: (f = msg.getEndTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    durationInS: jspb.Message.getFloatingPointFieldWithDefault(msg, 5, 0.0),
-    llmTokenUsage: (f = msg.getLlmTokenUsage()) && proto.ondewo.nlu.LlmTokenUsage.toObject(includeInstance, f),
-    arguments: (f = msg.getArguments()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
-    result: (f = msg.getResult()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
-    errorMessage: jspb.Message.getFieldWithDefault(msg, 9, "")
+toolCallId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+toolName: jspb.Message.getFieldWithDefault(msg, 2, ""),
+startTime: (f = msg.getStartTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+endTime: (f = msg.getEndTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+durationInS: jspb.Message.getFloatingPointFieldWithDefault(msg, 5, 0.0),
+llmTokenUsage: (f = msg.getLlmTokenUsage()) && proto.ondewo.nlu.LlmTokenUsage.toObject(includeInstance, f),
+arguments: (f = msg.getArguments()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
+result: (f = msg.getResult()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
+errorMessage: jspb.Message.getFieldWithDefault(msg, 9, "")
   };
 
   if (includeInstance) {
@@ -5746,11 +6071,11 @@ proto.ondewo.nlu.LlmThinkingMetadata.prototype.toObject = function(opt_includeIn
  */
 proto.ondewo.nlu.LlmThinkingMetadata.toObject = function(includeInstance, msg) {
   var f, obj = {
-    llmTokenUsage: (f = msg.getLlmTokenUsage()) && proto.ondewo.nlu.LlmTokenUsage.toObject(includeInstance, f),
-    startTime: (f = msg.getStartTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    endTime: (f = msg.getEndTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    durationInS: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0),
-    thinkingText: jspb.Message.getFieldWithDefault(msg, 5, "")
+llmTokenUsage: (f = msg.getLlmTokenUsage()) && proto.ondewo.nlu.LlmTokenUsage.toObject(includeInstance, f),
+startTime: (f = msg.getStartTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+endTime: (f = msg.getEndTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+durationInS: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0),
+thinkingText: jspb.Message.getFieldWithDefault(msg, 5, "")
   };
 
   if (includeInstance) {
@@ -6066,71 +6391,71 @@ proto.ondewo.nlu.LlmTelemetry.prototype.toObject = function(opt_includeInstance)
  */
 proto.ondewo.nlu.LlmTelemetry.toObject = function(includeInstance, msg) {
   var f, obj = {
-    provider: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    modelName: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    agentName: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    llmTokenUsage: (f = msg.getLlmTokenUsage()) && proto.ondewo.nlu.LlmTokenUsage.toObject(includeInstance, f),
-    llmToolCallMetadatasList: jspb.Message.toObjectList(msg.getLlmToolCallMetadatasList(),
+provider: jspb.Message.getFieldWithDefault(msg, 1, ""),
+modelName: jspb.Message.getFieldWithDefault(msg, 2, ""),
+agentName: jspb.Message.getFieldWithDefault(msg, 3, ""),
+llmTokenUsage: (f = msg.getLlmTokenUsage()) && proto.ondewo.nlu.LlmTokenUsage.toObject(includeInstance, f),
+llmToolCallMetadatasList: jspb.Message.toObjectList(msg.getLlmToolCallMetadatasList(),
     proto.ondewo.nlu.LlmToolCallMetadata.toObject, includeInstance),
-    toolCallCount: jspb.Message.getFieldWithDefault(msg, 6, 0),
-    llmThinkingMetadata: (f = msg.getLlmThinkingMetadata()) && proto.ondewo.nlu.LlmThinkingMetadata.toObject(includeInstance, f),
-    startTime: (f = msg.getStartTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    endTime: (f = msg.getEndTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    durationInS: jspb.Message.getFloatingPointFieldWithDefault(msg, 10, 0.0),
-    runId: jspb.Message.getFieldWithDefault(msg, 11, ""),
-    parentRunId: jspb.Message.getFieldWithDefault(msg, 12, ""),
-    runType: jspb.Message.getFieldWithDefault(msg, 13, ""),
-    componentName: jspb.Message.getFieldWithDefault(msg, 14, ""),
-    tagsList: (f = jspb.Message.getRepeatedField(msg, 15)) == null ? undefined : f,
-    metadata: (f = msg.getMetadata()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
-    inputs: (f = msg.getInputs()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
-    outputs: (f = msg.getOutputs()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
-    errorClass: jspb.Message.getFieldWithDefault(msg, 19, ""),
-    errorMessage: jspb.Message.getFieldWithDefault(msg, 20, ""),
-    traceback: jspb.Message.getFieldWithDefault(msg, 21, ""),
-    streamingChunkCount: jspb.Message.getFieldWithDefault(msg, 22, 0),
-    firstTokenLatencySeconds: jspb.Message.getFloatingPointFieldWithDefault(msg, 23, 0.0),
-    systemFingerprint: jspb.Message.getFieldWithDefault(msg, 24, ""),
-    cached: jspb.Message.getBooleanFieldWithDefault(msg, 25, false),
-    retryCount: jspb.Message.getFieldWithDefault(msg, 26, 0),
-    fallbackDepth: jspb.Message.getFieldWithDefault(msg, 27, 0),
-    temperature: jspb.Message.getFloatingPointFieldWithDefault(msg, 28, 0.0),
-    topP: jspb.Message.getFloatingPointFieldWithDefault(msg, 29, 0.0),
-    maxTokens: jspb.Message.getFieldWithDefault(msg, 30, 0),
-    nGenerations: jspb.Message.getFieldWithDefault(msg, 31, 0),
-    finishReasonsList: (f = jspb.Message.getRepeatedField(msg, 32)) == null ? undefined : f,
-    cachedInputTokens: jspb.Message.getFieldWithDefault(msg, 33, 0),
-    cacheCreationInputTokens: jspb.Message.getFieldWithDefault(msg, 34, 0),
-    langsmithRunUrl: jspb.Message.getFieldWithDefault(msg, 35, ""),
-    teamName: jspb.Message.getFieldWithDefault(msg, 36, ""),
-    teamId: jspb.Message.getFieldWithDefault(msg, 37, ""),
-    agentRole: jspb.Message.getFieldWithDefault(msg, 38, ""),
-    senderAgent: jspb.Message.getFieldWithDefault(msg, 39, ""),
-    recipientAgent: jspb.Message.getFieldWithDefault(msg, 40, ""),
-    turnIndex: jspb.Message.getFieldWithDefault(msg, 41, 0),
-    reflectionIterations: jspb.Message.getFieldWithDefault(msg, 42, 0),
-    terminationReason: jspb.Message.getFieldWithDefault(msg, 43, ""),
-    evaluatorRunsJoinKey: jspb.Message.getFieldWithDefault(msg, 44, ""),
-    llmEvaluationFeedbacksList: jspb.Message.toObjectList(msg.getLlmEvaluationFeedbacksList(),
+toolCallCount: jspb.Message.getFieldWithDefault(msg, 6, 0),
+llmThinkingMetadata: (f = msg.getLlmThinkingMetadata()) && proto.ondewo.nlu.LlmThinkingMetadata.toObject(includeInstance, f),
+startTime: (f = msg.getStartTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+endTime: (f = msg.getEndTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+durationInS: jspb.Message.getFloatingPointFieldWithDefault(msg, 10, 0.0),
+runId: jspb.Message.getFieldWithDefault(msg, 11, ""),
+parentRunId: jspb.Message.getFieldWithDefault(msg, 12, ""),
+runType: jspb.Message.getFieldWithDefault(msg, 13, ""),
+componentName: jspb.Message.getFieldWithDefault(msg, 14, ""),
+tagsList: (f = jspb.Message.getRepeatedField(msg, 15)) == null ? undefined : f,
+metadata: (f = msg.getMetadata()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
+inputs: (f = msg.getInputs()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
+outputs: (f = msg.getOutputs()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
+errorClass: jspb.Message.getFieldWithDefault(msg, 19, ""),
+errorMessage: jspb.Message.getFieldWithDefault(msg, 20, ""),
+traceback: jspb.Message.getFieldWithDefault(msg, 21, ""),
+streamingChunkCount: jspb.Message.getFieldWithDefault(msg, 22, 0),
+firstTokenLatencySeconds: jspb.Message.getFloatingPointFieldWithDefault(msg, 23, 0.0),
+systemFingerprint: jspb.Message.getFieldWithDefault(msg, 24, ""),
+cached: jspb.Message.getBooleanFieldWithDefault(msg, 25, false),
+retryCount: jspb.Message.getFieldWithDefault(msg, 26, 0),
+fallbackDepth: jspb.Message.getFieldWithDefault(msg, 27, 0),
+temperature: jspb.Message.getFloatingPointFieldWithDefault(msg, 28, 0.0),
+topP: jspb.Message.getFloatingPointFieldWithDefault(msg, 29, 0.0),
+maxTokens: jspb.Message.getFieldWithDefault(msg, 30, 0),
+nGenerations: jspb.Message.getFieldWithDefault(msg, 31, 0),
+finishReasonsList: (f = jspb.Message.getRepeatedField(msg, 32)) == null ? undefined : f,
+cachedInputTokens: jspb.Message.getFieldWithDefault(msg, 33, 0),
+cacheCreationInputTokens: jspb.Message.getFieldWithDefault(msg, 34, 0),
+langsmithRunUrl: jspb.Message.getFieldWithDefault(msg, 35, ""),
+teamName: jspb.Message.getFieldWithDefault(msg, 36, ""),
+teamId: jspb.Message.getFieldWithDefault(msg, 37, ""),
+agentRole: jspb.Message.getFieldWithDefault(msg, 38, ""),
+senderAgent: jspb.Message.getFieldWithDefault(msg, 39, ""),
+recipientAgent: jspb.Message.getFieldWithDefault(msg, 40, ""),
+turnIndex: jspb.Message.getFieldWithDefault(msg, 41, 0),
+reflectionIterations: jspb.Message.getFieldWithDefault(msg, 42, 0),
+terminationReason: jspb.Message.getFieldWithDefault(msg, 43, ""),
+evaluatorRunsJoinKey: jspb.Message.getFieldWithDefault(msg, 44, ""),
+llmEvaluationFeedbacksList: jspb.Message.toObjectList(msg.getLlmEvaluationFeedbacksList(),
     ondewo_nlu_llm_evaluation_pb.LlmEvaluationFeedback.toObject, includeInstance),
-    ccaiServiceName: jspb.Message.getFieldWithDefault(msg, 46, ""),
-    baseUrl: jspb.Message.getFieldWithDefault(msg, 47, ""),
-    defaultHeaders: (f = msg.getDefaultHeaders()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
-    defaultQuery: (f = msg.getDefaultQuery()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
-    frequencyPenalty: jspb.Message.getFloatingPointFieldWithDefault(msg, 50, 0.0),
-    openaiMetadata: (f = msg.getOpenaiMetadata()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
-    presencePenalty: jspb.Message.getFloatingPointFieldWithDefault(msg, 52, 0.0),
-    reasoningEffort: jspb.Message.getFieldWithDefault(msg, 53, 0),
-    user: jspb.Message.getFieldWithDefault(msg, 54, ""),
-    timeout: jspb.Message.getFloatingPointFieldWithDefault(msg, 55, 0.0),
-    strictResponseValidation: jspb.Message.getBooleanFieldWithDefault(msg, 56, false),
-    extraHeaders: (f = msg.getExtraHeaders()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
-    extraQuery: (f = msg.getExtraQuery()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
-    extraBody: (f = msg.getExtraBody()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
-    ccaiServiceProvider: jspb.Message.getFieldWithDefault(msg, 60, 0),
-    llmSafetyAssessment: (f = msg.getLlmSafetyAssessment()) && proto.ondewo.nlu.LlmSafetyAssessment.toObject(includeInstance, f),
-    llmRetrievalMetadata: (f = msg.getLlmRetrievalMetadata()) && proto.ondewo.nlu.LlmRetrievalMetadata.toObject(includeInstance, f),
-    llmCallId: jspb.Message.getFieldWithDefault(msg, 63, "")
+ccaiServiceName: jspb.Message.getFieldWithDefault(msg, 46, ""),
+baseUrl: jspb.Message.getFieldWithDefault(msg, 47, ""),
+defaultHeaders: (f = msg.getDefaultHeaders()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
+defaultQuery: (f = msg.getDefaultQuery()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
+frequencyPenalty: (f = jspb.Message.getOptionalFloatingPointField(msg, 50)) == null ? undefined : f,
+openaiMetadata: (f = msg.getOpenaiMetadata()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
+presencePenalty: (f = jspb.Message.getOptionalFloatingPointField(msg, 52)) == null ? undefined : f,
+reasoningEffort: (f = jspb.Message.getField(msg, 53)) == null ? undefined : f,
+user: (f = jspb.Message.getField(msg, 54)) == null ? undefined : f,
+timeout: (f = jspb.Message.getOptionalFloatingPointField(msg, 55)) == null ? undefined : f,
+strictResponseValidation: (f = jspb.Message.getBooleanField(msg, 56)) == null ? undefined : f,
+extraHeaders: (f = msg.getExtraHeaders()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
+extraQuery: (f = msg.getExtraQuery()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
+extraBody: (f = msg.getExtraBody()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
+ccaiServiceProvider: jspb.Message.getFieldWithDefault(msg, 60, 0),
+llmSafetyAssessment: (f = msg.getLlmSafetyAssessment()) && proto.ondewo.nlu.LlmSafetyAssessment.toObject(includeInstance, f),
+llmRetrievalMetadata: (f = msg.getLlmRetrievalMetadata()) && proto.ondewo.nlu.LlmRetrievalMetadata.toObject(includeInstance, f),
+llmCallId: jspb.Message.getFieldWithDefault(msg, 63, "")
   };
 
   if (includeInstance) {
@@ -8563,10 +8888,10 @@ proto.ondewo.nlu.LlmSafetyFinding.prototype.toObject = function(opt_includeInsta
  */
 proto.ondewo.nlu.LlmSafetyFinding.toObject = function(includeInstance, msg) {
   var f, obj = {
-    category: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    severity: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    matchedPattern: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    location: jspb.Message.getFieldWithDefault(msg, 4, 0)
+category: jspb.Message.getFieldWithDefault(msg, 1, ""),
+severity: jspb.Message.getFieldWithDefault(msg, 2, ""),
+matchedPattern: jspb.Message.getFieldWithDefault(msg, 3, ""),
+location: jspb.Message.getFieldWithDefault(msg, 4, 0)
   };
 
   if (includeInstance) {
@@ -8790,12 +9115,12 @@ proto.ondewo.nlu.LlmSafetyAssessment.prototype.toObject = function(opt_includeIn
  */
 proto.ondewo.nlu.LlmSafetyAssessment.toObject = function(includeInstance, msg) {
   var f, obj = {
-    flaggedCategoriesList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f,
-    hasPii: jspb.Message.getBooleanFieldWithDefault(msg, 2, false),
-    hasInjectionAttempt: jspb.Message.getBooleanFieldWithDefault(msg, 3, false),
-    hasJailbreakAttempt: jspb.Message.getBooleanFieldWithDefault(msg, 4, false),
-    safetyScore: jspb.Message.getFloatingPointFieldWithDefault(msg, 5, 0.0),
-    findingsList: jspb.Message.toObjectList(msg.getFindingsList(),
+flaggedCategoriesList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f,
+hasPii: jspb.Message.getBooleanFieldWithDefault(msg, 2, false),
+hasInjectionAttempt: jspb.Message.getBooleanFieldWithDefault(msg, 3, false),
+hasJailbreakAttempt: jspb.Message.getBooleanFieldWithDefault(msg, 4, false),
+safetyScore: jspb.Message.getFloatingPointFieldWithDefault(msg, 5, 0.0),
+findingsList: jspb.Message.toObjectList(msg.getFindingsList(),
     proto.ondewo.nlu.LlmSafetyFinding.toObject, includeInstance)
   };
 
@@ -9112,12 +9437,12 @@ proto.ondewo.nlu.LlmRetrievedChunk.prototype.toObject = function(opt_includeInst
  */
 proto.ondewo.nlu.LlmRetrievedChunk.toObject = function(includeInstance, msg) {
   var f, obj = {
-    documentId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    chunkId: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    score: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
-    text: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    sourceUri: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    rank: jspb.Message.getFieldWithDefault(msg, 6, 0)
+documentId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+chunkId: jspb.Message.getFieldWithDefault(msg, 2, ""),
+score: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
+text: jspb.Message.getFieldWithDefault(msg, 4, ""),
+sourceUri: jspb.Message.getFieldWithDefault(msg, 5, ""),
+rank: jspb.Message.getFieldWithDefault(msg, 6, 0)
   };
 
   if (includeInstance) {
@@ -9399,7 +9724,7 @@ proto.ondewo.nlu.LlmRetrievalMetadata.prototype.toObject = function(opt_includeI
  */
 proto.ondewo.nlu.LlmRetrievalMetadata.toObject = function(includeInstance, msg) {
   var f, obj = {
-    chunksList: jspb.Message.toObjectList(msg.getChunksList(),
+chunksList: jspb.Message.toObjectList(msg.getChunksList(),
     proto.ondewo.nlu.LlmRetrievedChunk.toObject, includeInstance)
   };
 
@@ -9552,14 +9877,14 @@ proto.ondewo.nlu.LlmLatencyStats.prototype.toObject = function(opt_includeInstan
  */
 proto.ondewo.nlu.LlmLatencyStats.toObject = function(includeInstance, msg) {
   var f, obj = {
-    callCount: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    meanDurationSeconds: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0),
-    p50DurationSeconds: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
-    p95DurationSeconds: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0),
-    p99DurationSeconds: jspb.Message.getFloatingPointFieldWithDefault(msg, 5, 0.0),
-    maxDurationSeconds: jspb.Message.getFloatingPointFieldWithDefault(msg, 6, 0.0),
-    meanFirstTokenLatencySeconds: jspb.Message.getFloatingPointFieldWithDefault(msg, 7, 0.0),
-    p95FirstTokenLatencySeconds: jspb.Message.getFloatingPointFieldWithDefault(msg, 8, 0.0)
+callCount: jspb.Message.getFieldWithDefault(msg, 1, 0),
+meanDurationSeconds: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0),
+p50DurationSeconds: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
+p95DurationSeconds: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0),
+p99DurationSeconds: jspb.Message.getFloatingPointFieldWithDefault(msg, 5, 0.0),
+maxDurationSeconds: jspb.Message.getFloatingPointFieldWithDefault(msg, 6, 0.0),
+meanFirstTokenLatencySeconds: jspb.Message.getFloatingPointFieldWithDefault(msg, 7, 0.0),
+p95FirstTokenLatencySeconds: jspb.Message.getFloatingPointFieldWithDefault(msg, 8, 0.0)
   };
 
   if (includeInstance) {
@@ -9892,11 +10217,11 @@ proto.ondewo.nlu.LlmCacheStats.prototype.toObject = function(opt_includeInstance
  */
 proto.ondewo.nlu.LlmCacheStats.toObject = function(includeInstance, msg) {
   var f, obj = {
-    cachedInputTokens: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    cacheCreationInputTokens: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    uncachedInputTokens: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    cacheHitRate: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0),
-    tokenSavings: jspb.Message.getFieldWithDefault(msg, 5, 0)
+cachedInputTokens: jspb.Message.getFieldWithDefault(msg, 1, 0),
+cacheCreationInputTokens: jspb.Message.getFieldWithDefault(msg, 2, 0),
+uncachedInputTokens: jspb.Message.getFieldWithDefault(msg, 3, 0),
+cacheHitRate: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0),
+tokenSavings: jspb.Message.getFieldWithDefault(msg, 5, 0)
   };
 
   if (includeInstance) {
@@ -10142,21 +10467,21 @@ proto.ondewo.nlu.LlmModelUsage.prototype.toObject = function(opt_includeInstance
  */
 proto.ondewo.nlu.LlmModelUsage.toObject = function(includeInstance, msg) {
   var f, obj = {
-    modelName: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    provider: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    callCount: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    llmTokenUsage: (f = msg.getLlmTokenUsage()) && proto.ondewo.nlu.LlmTokenUsage.toObject(includeInstance, f),
-    toolCallCount: jspb.Message.getFieldWithDefault(msg, 5, 0),
-    errorCount: jspb.Message.getFieldWithDefault(msg, 6, 0),
-    durationSecondsTotal: jspb.Message.getFloatingPointFieldWithDefault(msg, 7, 0.0),
-    cacheStats: (f = msg.getCacheStats()) && proto.ondewo.nlu.LlmCacheStats.toObject(includeInstance, f),
-    ccaiServiceName: jspb.Message.getFieldWithDefault(msg, 9, ""),
-    ccaiServiceProvider: jspb.Message.getFieldWithDefault(msg, 10, 0),
-    baseUrl: jspb.Message.getFieldWithDefault(msg, 11, ""),
-    thinkingTokensTotal: jspb.Message.getFieldWithDefault(msg, 12, 0),
-    thinkingDurationSecondsTotal: jspb.Message.getFloatingPointFieldWithDefault(msg, 13, 0.0),
-    toolCallTokensTotal: jspb.Message.getFieldWithDefault(msg, 14, 0),
-    toolCallDurationSecondsTotal: jspb.Message.getFloatingPointFieldWithDefault(msg, 15, 0.0)
+modelName: jspb.Message.getFieldWithDefault(msg, 1, ""),
+provider: jspb.Message.getFieldWithDefault(msg, 2, ""),
+callCount: jspb.Message.getFieldWithDefault(msg, 3, 0),
+llmTokenUsage: (f = msg.getLlmTokenUsage()) && proto.ondewo.nlu.LlmTokenUsage.toObject(includeInstance, f),
+toolCallCount: jspb.Message.getFieldWithDefault(msg, 5, 0),
+errorCount: jspb.Message.getFieldWithDefault(msg, 6, 0),
+durationSecondsTotal: jspb.Message.getFloatingPointFieldWithDefault(msg, 7, 0.0),
+cacheStats: (f = msg.getCacheStats()) && proto.ondewo.nlu.LlmCacheStats.toObject(includeInstance, f),
+ccaiServiceName: jspb.Message.getFieldWithDefault(msg, 9, ""),
+ccaiServiceProvider: jspb.Message.getFieldWithDefault(msg, 10, 0),
+baseUrl: jspb.Message.getFieldWithDefault(msg, 11, ""),
+thinkingTokensTotal: jspb.Message.getFieldWithDefault(msg, 12, 0),
+thinkingDurationSecondsTotal: jspb.Message.getFloatingPointFieldWithDefault(msg, 13, 0.0),
+toolCallTokensTotal: jspb.Message.getFieldWithDefault(msg, 14, 0),
+toolCallDurationSecondsTotal: jspb.Message.getFloatingPointFieldWithDefault(msg, 15, 0.0)
   };
 
   if (includeInstance) {
@@ -10741,12 +11066,12 @@ proto.ondewo.nlu.LlmProviderUsage.prototype.toObject = function(opt_includeInsta
  */
 proto.ondewo.nlu.LlmProviderUsage.toObject = function(includeInstance, msg) {
   var f, obj = {
-    provider: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    callCount: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    llmTokenUsage: (f = msg.getLlmTokenUsage()) && proto.ondewo.nlu.LlmTokenUsage.toObject(includeInstance, f),
-    errorCount: jspb.Message.getFieldWithDefault(msg, 4, 0),
-    durationSecondsTotal: jspb.Message.getFloatingPointFieldWithDefault(msg, 5, 0.0),
-    modelNamesList: (f = jspb.Message.getRepeatedField(msg, 6)) == null ? undefined : f
+provider: jspb.Message.getFieldWithDefault(msg, 1, ""),
+callCount: jspb.Message.getFieldWithDefault(msg, 2, 0),
+llmTokenUsage: (f = msg.getLlmTokenUsage()) && proto.ondewo.nlu.LlmTokenUsage.toObject(includeInstance, f),
+errorCount: jspb.Message.getFieldWithDefault(msg, 4, 0),
+durationSecondsTotal: jspb.Message.getFloatingPointFieldWithDefault(msg, 5, 0.0),
+modelNamesList: (f = jspb.Message.getRepeatedField(msg, 6)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -11068,12 +11393,12 @@ proto.ondewo.nlu.LlmCcaiServiceUsage.prototype.toObject = function(opt_includeIn
  */
 proto.ondewo.nlu.LlmCcaiServiceUsage.toObject = function(includeInstance, msg) {
   var f, obj = {
-    ccaiServiceProvider: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    ccaiServiceName: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    callCount: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    llmTokenUsage: (f = msg.getLlmTokenUsage()) && proto.ondewo.nlu.LlmTokenUsage.toObject(includeInstance, f),
-    baseUrl: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    modelNamesList: (f = jspb.Message.getRepeatedField(msg, 6)) == null ? undefined : f
+ccaiServiceProvider: jspb.Message.getFieldWithDefault(msg, 1, 0),
+ccaiServiceName: jspb.Message.getFieldWithDefault(msg, 2, ""),
+callCount: jspb.Message.getFieldWithDefault(msg, 3, 0),
+llmTokenUsage: (f = msg.getLlmTokenUsage()) && proto.ondewo.nlu.LlmTokenUsage.toObject(includeInstance, f),
+baseUrl: jspb.Message.getFieldWithDefault(msg, 5, ""),
+modelNamesList: (f = jspb.Message.getRepeatedField(msg, 6)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -11395,10 +11720,10 @@ proto.ondewo.nlu.LlmBaseUrlUsage.prototype.toObject = function(opt_includeInstan
  */
 proto.ondewo.nlu.LlmBaseUrlUsage.toObject = function(includeInstance, msg) {
   var f, obj = {
-    baseUrl: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    callCount: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    llmTokenUsage: (f = msg.getLlmTokenUsage()) && proto.ondewo.nlu.LlmTokenUsage.toObject(includeInstance, f),
-    modelNamesList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f
+baseUrl: jspb.Message.getFieldWithDefault(msg, 1, ""),
+callCount: jspb.Message.getFieldWithDefault(msg, 2, 0),
+llmTokenUsage: (f = msg.getLlmTokenUsage()) && proto.ondewo.nlu.LlmTokenUsage.toObject(includeInstance, f),
+modelNamesList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -11655,12 +11980,12 @@ proto.ondewo.nlu.LlmAgentUsage.prototype.toObject = function(opt_includeInstance
  */
 proto.ondewo.nlu.LlmAgentUsage.toObject = function(includeInstance, msg) {
   var f, obj = {
-    agentName: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    agentRole: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    teamName: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    callCount: jspb.Message.getFieldWithDefault(msg, 4, 0),
-    llmTokenUsage: (f = msg.getLlmTokenUsage()) && proto.ondewo.nlu.LlmTokenUsage.toObject(includeInstance, f),
-    toolCallCount: jspb.Message.getFieldWithDefault(msg, 6, 0)
+agentName: jspb.Message.getFieldWithDefault(msg, 1, ""),
+agentRole: jspb.Message.getFieldWithDefault(msg, 2, ""),
+teamName: jspb.Message.getFieldWithDefault(msg, 3, ""),
+callCount: jspb.Message.getFieldWithDefault(msg, 4, 0),
+llmTokenUsage: (f = msg.getLlmTokenUsage()) && proto.ondewo.nlu.LlmTokenUsage.toObject(includeInstance, f),
+toolCallCount: jspb.Message.getFieldWithDefault(msg, 6, 0)
   };
 
   if (includeInstance) {
@@ -11956,16 +12281,16 @@ proto.ondewo.nlu.LlmToolUsage.prototype.toObject = function(opt_includeInstance)
  */
 proto.ondewo.nlu.LlmToolUsage.toObject = function(includeInstance, msg) {
   var f, obj = {
-    toolName: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    callCount: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    errorCount: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    errorRate: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0),
-    durationSecondsTotal: jspb.Message.getFloatingPointFieldWithDefault(msg, 5, 0.0),
-    meanDurationSeconds: jspb.Message.getFloatingPointFieldWithDefault(msg, 6, 0.0),
-    llmTokenUsage: (f = msg.getLlmTokenUsage()) && proto.ondewo.nlu.LlmTokenUsage.toObject(includeInstance, f),
-    arguments: (f = msg.getArguments()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
-    llmCallId: jspb.Message.getFieldWithDefault(msg, 9, ""),
-    toolCallId: jspb.Message.getFieldWithDefault(msg, 10, "")
+toolName: jspb.Message.getFieldWithDefault(msg, 1, ""),
+callCount: jspb.Message.getFieldWithDefault(msg, 2, 0),
+errorCount: jspb.Message.getFieldWithDefault(msg, 3, 0),
+errorRate: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0),
+durationSecondsTotal: jspb.Message.getFloatingPointFieldWithDefault(msg, 5, 0.0),
+meanDurationSeconds: jspb.Message.getFloatingPointFieldWithDefault(msg, 6, 0.0),
+llmTokenUsage: (f = msg.getLlmTokenUsage()) && proto.ondewo.nlu.LlmTokenUsage.toObject(includeInstance, f),
+arguments: (f = msg.getArguments()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
+llmCallId: jspb.Message.getFieldWithDefault(msg, 9, ""),
+toolCallId: jspb.Message.getFieldWithDefault(msg, 10, "")
   };
 
   if (includeInstance) {
@@ -12398,10 +12723,10 @@ proto.ondewo.nlu.LlmErrorStat.prototype.toObject = function(opt_includeInstance)
  */
 proto.ondewo.nlu.LlmErrorStat.toObject = function(includeInstance, msg) {
   var f, obj = {
-    errorClass: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    count: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    rate: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
-    sampleMessage: jspb.Message.getFieldWithDefault(msg, 4, "")
+errorClass: jspb.Message.getFieldWithDefault(msg, 1, ""),
+count: jspb.Message.getFieldWithDefault(msg, 2, 0),
+rate: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
+sampleMessage: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
 
   if (includeInstance) {
@@ -12625,12 +12950,12 @@ proto.ondewo.nlu.LlmErrorStats.prototype.toObject = function(opt_includeInstance
  */
 proto.ondewo.nlu.LlmErrorStats.toObject = function(includeInstance, msg) {
   var f, obj = {
-    totalErrorCount: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    overallErrorRate: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0),
-    errorsByClassList: jspb.Message.toObjectList(msg.getErrorsByClassList(),
+totalErrorCount: jspb.Message.getFieldWithDefault(msg, 1, 0),
+overallErrorRate: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0),
+errorsByClassList: jspb.Message.toObjectList(msg.getErrorsByClassList(),
     proto.ondewo.nlu.LlmErrorStat.toObject, includeInstance),
-    retryCountTotal: jspb.Message.getFieldWithDefault(msg, 4, 0),
-    maxFallbackDepth: jspb.Message.getFieldWithDefault(msg, 5, 0)
+retryCountTotal: jspb.Message.getFieldWithDefault(msg, 4, 0),
+maxFallbackDepth: jspb.Message.getFieldWithDefault(msg, 5, 0)
   };
 
   if (includeInstance) {
@@ -12898,9 +13223,9 @@ proto.ondewo.nlu.LlmFinishReasonStat.prototype.toObject = function(opt_includeIn
  */
 proto.ondewo.nlu.LlmFinishReasonStat.toObject = function(includeInstance, msg) {
   var f, obj = {
-    finishReason: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    count: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    rate: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0)
+finishReason: jspb.Message.getFieldWithDefault(msg, 1, ""),
+count: jspb.Message.getFieldWithDefault(msg, 2, 0),
+rate: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0)
   };
 
   if (includeInstance) {
@@ -13088,10 +13413,10 @@ proto.ondewo.nlu.LlmReasoningEffortStat.prototype.toObject = function(opt_includ
  */
 proto.ondewo.nlu.LlmReasoningEffortStat.toObject = function(includeInstance, msg) {
   var f, obj = {
-    reasoningEffort: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    count: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    rate: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
-    llmTokenUsage: (f = msg.getLlmTokenUsage()) && proto.ondewo.nlu.LlmTokenUsage.toObject(includeInstance, f)
+reasoningEffort: jspb.Message.getFieldWithDefault(msg, 1, 0),
+count: jspb.Message.getFieldWithDefault(msg, 2, 0),
+rate: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
+llmTokenUsage: (f = msg.getLlmTokenUsage()) && proto.ondewo.nlu.LlmTokenUsage.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -13336,35 +13661,35 @@ proto.ondewo.nlu.LlmTelemetryReport.prototype.toObject = function(opt_includeIns
  */
 proto.ondewo.nlu.LlmTelemetryReport.toObject = function(includeInstance, msg) {
   var f, obj = {
-    llmTokenUsage: (f = msg.getLlmTokenUsage()) && proto.ondewo.nlu.LlmTokenUsage.toObject(includeInstance, f),
-    toolCallCountTotal: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    llmCallCount: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    llmTelemetriesList: jspb.Message.toObjectList(msg.getLlmTelemetriesList(),
+llmTokenUsage: (f = msg.getLlmTokenUsage()) && proto.ondewo.nlu.LlmTokenUsage.toObject(includeInstance, f),
+toolCallCountTotal: jspb.Message.getFieldWithDefault(msg, 2, 0),
+llmCallCount: jspb.Message.getFieldWithDefault(msg, 3, 0),
+llmTelemetriesList: jspb.Message.toObjectList(msg.getLlmTelemetriesList(),
     proto.ondewo.nlu.LlmTelemetry.toObject, includeInstance),
-    durationSecondsTotal: jspb.Message.getFloatingPointFieldWithDefault(msg, 5, 0.0),
-    modelsUsedList: jspb.Message.toObjectList(msg.getModelsUsedList(),
+durationSecondsTotal: jspb.Message.getFloatingPointFieldWithDefault(msg, 5, 0.0),
+modelsUsedList: jspb.Message.toObjectList(msg.getModelsUsedList(),
     proto.ondewo.nlu.LlmModelUsage.toObject, includeInstance),
-    providersUsedList: jspb.Message.toObjectList(msg.getProvidersUsedList(),
+providersUsedList: jspb.Message.toObjectList(msg.getProvidersUsedList(),
     proto.ondewo.nlu.LlmProviderUsage.toObject, includeInstance),
-    ccaiServicesUsedList: jspb.Message.toObjectList(msg.getCcaiServicesUsedList(),
+ccaiServicesUsedList: jspb.Message.toObjectList(msg.getCcaiServicesUsedList(),
     proto.ondewo.nlu.LlmCcaiServiceUsage.toObject, includeInstance),
-    agentsUsedList: jspb.Message.toObjectList(msg.getAgentsUsedList(),
+agentsUsedList: jspb.Message.toObjectList(msg.getAgentsUsedList(),
     proto.ondewo.nlu.LlmAgentUsage.toObject, includeInstance),
-    toolsUsedList: jspb.Message.toObjectList(msg.getToolsUsedList(),
+toolsUsedList: jspb.Message.toObjectList(msg.getToolsUsedList(),
     proto.ondewo.nlu.LlmToolUsage.toObject, includeInstance),
-    latencyStats: (f = msg.getLatencyStats()) && proto.ondewo.nlu.LlmLatencyStats.toObject(includeInstance, f),
-    cacheStats: (f = msg.getCacheStats()) && proto.ondewo.nlu.LlmCacheStats.toObject(includeInstance, f),
-    errorStats: (f = msg.getErrorStats()) && proto.ondewo.nlu.LlmErrorStats.toObject(includeInstance, f),
-    finishReasonDistributionList: jspb.Message.toObjectList(msg.getFinishReasonDistributionList(),
+latencyStats: (f = msg.getLatencyStats()) && proto.ondewo.nlu.LlmLatencyStats.toObject(includeInstance, f),
+cacheStats: (f = msg.getCacheStats()) && proto.ondewo.nlu.LlmCacheStats.toObject(includeInstance, f),
+errorStats: (f = msg.getErrorStats()) && proto.ondewo.nlu.LlmErrorStats.toObject(includeInstance, f),
+finishReasonDistributionList: jspb.Message.toObjectList(msg.getFinishReasonDistributionList(),
     proto.ondewo.nlu.LlmFinishReasonStat.toObject, includeInstance),
-    reasoningEffortDistributionList: jspb.Message.toObjectList(msg.getReasoningEffortDistributionList(),
+reasoningEffortDistributionList: jspb.Message.toObjectList(msg.getReasoningEffortDistributionList(),
     proto.ondewo.nlu.LlmReasoningEffortStat.toObject, includeInstance),
-    thinkingTokensTotal: jspb.Message.getFieldWithDefault(msg, 16, 0),
-    thinkingDurationSecondsTotal: jspb.Message.getFloatingPointFieldWithDefault(msg, 17, 0.0),
-    toolCallTokensTotal: jspb.Message.getFieldWithDefault(msg, 18, 0),
-    toolCallDurationSecondsTotal: jspb.Message.getFloatingPointFieldWithDefault(msg, 19, 0.0),
-    safetyStats: (f = msg.getSafetyStats()) && proto.ondewo.nlu.LlmSafetyStats.toObject(includeInstance, f),
-    baseUrlsUsedList: jspb.Message.toObjectList(msg.getBaseUrlsUsedList(),
+thinkingTokensTotal: jspb.Message.getFieldWithDefault(msg, 16, 0),
+thinkingDurationSecondsTotal: jspb.Message.getFloatingPointFieldWithDefault(msg, 17, 0.0),
+toolCallTokensTotal: jspb.Message.getFieldWithDefault(msg, 18, 0),
+toolCallDurationSecondsTotal: jspb.Message.getFloatingPointFieldWithDefault(msg, 19, 0.0),
+safetyStats: (f = msg.getSafetyStats()) && proto.ondewo.nlu.LlmSafetyStats.toObject(includeInstance, f),
+baseUrlsUsedList: jspb.Message.toObjectList(msg.getBaseUrlsUsedList(),
     proto.ondewo.nlu.LlmBaseUrlUsage.toObject, includeInstance)
   };
 
@@ -14378,9 +14703,9 @@ proto.ondewo.nlu.LlmSafetyCategoryStat.prototype.toObject = function(opt_include
  */
 proto.ondewo.nlu.LlmSafetyCategoryStat.toObject = function(includeInstance, msg) {
   var f, obj = {
-    category: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    count: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    rate: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0)
+category: jspb.Message.getFieldWithDefault(msg, 1, ""),
+count: jspb.Message.getFieldWithDefault(msg, 2, 0),
+rate: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0)
   };
 
   if (includeInstance) {
@@ -14575,10 +14900,10 @@ proto.ondewo.nlu.LlmSafetyStats.prototype.toObject = function(opt_includeInstanc
  */
 proto.ondewo.nlu.LlmSafetyStats.toObject = function(includeInstance, msg) {
   var f, obj = {
-    totalAssessed: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    flaggedCount: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    overallSafetyScore: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
-    categoryStatsList: jspb.Message.toObjectList(msg.getCategoryStatsList(),
+totalAssessed: jspb.Message.getFieldWithDefault(msg, 1, 0),
+flaggedCount: jspb.Message.getFieldWithDefault(msg, 2, 0),
+overallSafetyScore: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
+categoryStatsList: jspb.Message.toObjectList(msg.getCategoryStatsList(),
     proto.ondewo.nlu.LlmSafetyCategoryStat.toObject, includeInstance)
   };
 
@@ -14818,11 +15143,11 @@ proto.ondewo.nlu.LlmCallStartedEvent.prototype.toObject = function(opt_includeIn
  */
 proto.ondewo.nlu.LlmCallStartedEvent.toObject = function(includeInstance, msg) {
   var f, obj = {
-    llmCallId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    provider: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    modelName: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    agentName: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    startTime: (f = msg.getStartTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+llmCallId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+provider: jspb.Message.getFieldWithDefault(msg, 2, ""),
+modelName: jspb.Message.getFieldWithDefault(msg, 3, ""),
+agentName: jspb.Message.getFieldWithDefault(msg, 4, ""),
+startTime: (f = msg.getStartTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -15089,10 +15414,10 @@ proto.ondewo.nlu.LlmCallFinishedEvent.prototype.toObject = function(opt_includeI
  */
 proto.ondewo.nlu.LlmCallFinishedEvent.toObject = function(includeInstance, msg) {
   var f, obj = {
-    llmCallId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    endTime: (f = msg.getEndTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    durationInS: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
-    llmTokenUsage: (f = msg.getLlmTokenUsage()) && proto.ondewo.nlu.LlmTokenUsage.toObject(includeInstance, f)
+llmCallId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+endTime: (f = msg.getEndTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+durationInS: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
+llmTokenUsage: (f = msg.getLlmTokenUsage()) && proto.ondewo.nlu.LlmTokenUsage.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -15351,11 +15676,11 @@ proto.ondewo.nlu.LlmToolCallStartedEvent.prototype.toObject = function(opt_inclu
  */
 proto.ondewo.nlu.LlmToolCallStartedEvent.toObject = function(includeInstance, msg) {
   var f, obj = {
-    toolCallId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    toolName: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    arguments: (f = msg.getArguments()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
-    startTime: (f = msg.getStartTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    llmCallId: jspb.Message.getFieldWithDefault(msg, 5, "")
+toolCallId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+toolName: jspb.Message.getFieldWithDefault(msg, 2, ""),
+arguments: (f = msg.getArguments()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
+startTime: (f = msg.getStartTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+llmCallId: jspb.Message.getFieldWithDefault(msg, 5, "")
   };
 
   if (includeInstance) {
@@ -15643,13 +15968,13 @@ proto.ondewo.nlu.LlmToolCallFinishedEvent.prototype.toObject = function(opt_incl
  */
 proto.ondewo.nlu.LlmToolCallFinishedEvent.toObject = function(includeInstance, msg) {
   var f, obj = {
-    toolCallId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    endTime: (f = msg.getEndTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    durationInS: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
-    llmTokenUsage: (f = msg.getLlmTokenUsage()) && proto.ondewo.nlu.LlmTokenUsage.toObject(includeInstance, f),
-    result: (f = msg.getResult()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
-    errorMessage: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    llmCallId: jspb.Message.getFieldWithDefault(msg, 7, "")
+toolCallId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+endTime: (f = msg.getEndTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+durationInS: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
+llmTokenUsage: (f = msg.getLlmTokenUsage()) && proto.ondewo.nlu.LlmTokenUsage.toObject(includeInstance, f),
+result: (f = msg.getResult()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
+errorMessage: jspb.Message.getFieldWithDefault(msg, 6, ""),
+llmCallId: jspb.Message.getFieldWithDefault(msg, 7, "")
   };
 
   if (includeInstance) {
@@ -16016,9 +16341,9 @@ proto.ondewo.nlu.LlmThinkingDeltaEvent.prototype.toObject = function(opt_include
  */
 proto.ondewo.nlu.LlmThinkingDeltaEvent.toObject = function(includeInstance, msg) {
   var f, obj = {
-    llmCallId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    textDelta: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    timestamp: (f = msg.getTimestamp()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+llmCallId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+textDelta: jspb.Message.getFieldWithDefault(msg, 2, ""),
+timestamp: (f = msg.getTimestamp()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -16227,8 +16552,8 @@ proto.ondewo.nlu.LlmTokenUsageUpdateEvent.prototype.toObject = function(opt_incl
  */
 proto.ondewo.nlu.LlmTokenUsageUpdateEvent.toObject = function(includeInstance, msg) {
   var f, obj = {
-    llmCallId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    llmTokenUsage: (f = msg.getLlmTokenUsage()) && proto.ondewo.nlu.LlmTokenUsage.toObject(includeInstance, f)
+llmCallId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+llmTokenUsage: (f = msg.getLlmTokenUsage()) && proto.ondewo.nlu.LlmTokenUsage.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -16415,14 +16740,14 @@ proto.ondewo.nlu.LlmAgentNodeEvent.prototype.toObject = function(opt_includeInst
  */
 proto.ondewo.nlu.LlmAgentNodeEvent.toObject = function(includeInstance, msg) {
   var f, obj = {
-    llmAgentNodeEventNodeRunId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    llmAgentNodeEventParentNodeRunId: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    llmAgentNodeEventNodeDisplayName: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    llmAgentNodeEventNodePathList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f,
-    llmAgentNodePhase: jspb.Message.getFieldWithDefault(msg, 5, 0),
-    timestamp: (f = msg.getTimestamp()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    llmAgentNodeEventDurationInS: jspb.Message.getFloatingPointFieldWithDefault(msg, 7, 0.0),
-    llmAgentNodeEventErrorMessage: jspb.Message.getFieldWithDefault(msg, 8, "")
+llmAgentNodeEventNodeRunId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+llmAgentNodeEventParentNodeRunId: jspb.Message.getFieldWithDefault(msg, 2, ""),
+llmAgentNodeEventNodeDisplayName: jspb.Message.getFieldWithDefault(msg, 3, ""),
+llmAgentNodeEventNodePathList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f,
+llmAgentNodePhase: jspb.Message.getFieldWithDefault(msg, 5, 0),
+timestamp: (f = msg.getTimestamp()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+llmAgentNodeEventDurationInS: jspb.Message.getFloatingPointFieldWithDefault(msg, 7, 0.0),
+llmAgentNodeEventErrorMessage: jspb.Message.getFieldWithDefault(msg, 8, "")
   };
 
   if (includeInstance) {
@@ -16795,15 +17120,16 @@ proto.ondewo.nlu.ReferencedChunk.prototype.toObject = function(opt_includeInstan
  */
 proto.ondewo.nlu.ReferencedChunk.toObject = function(includeInstance, msg) {
   var f, obj = {
-    referenceIndex: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    datasetId: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    documentId: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    chunkId: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    documentName: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    content: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    similarity: jspb.Message.getFloatingPointFieldWithDefault(msg, 7, 0.0),
-    documentUrl: jspb.Message.getFieldWithDefault(msg, 8, ""),
-    deepLinkUrl: jspb.Message.getFieldWithDefault(msg, 9, "")
+referenceIndex: jspb.Message.getFieldWithDefault(msg, 1, 0),
+datasetId: jspb.Message.getFieldWithDefault(msg, 2, ""),
+documentId: jspb.Message.getFieldWithDefault(msg, 3, ""),
+chunkId: jspb.Message.getFieldWithDefault(msg, 4, ""),
+documentName: jspb.Message.getFieldWithDefault(msg, 5, ""),
+content: jspb.Message.getFieldWithDefault(msg, 6, ""),
+similarity: jspb.Message.getFloatingPointFieldWithDefault(msg, 7, 0.0),
+documentUrl: jspb.Message.getFieldWithDefault(msg, 8, ""),
+deepLinkUrl: jspb.Message.getFieldWithDefault(msg, 9, ""),
+documentTitle: jspb.Message.getFieldWithDefault(msg, 10, "")
   };
 
   if (includeInstance) {
@@ -16875,6 +17201,10 @@ proto.ondewo.nlu.ReferencedChunk.deserializeBinaryFromReader = function(msg, rea
     case 9:
       var value = /** @type {string} */ (reader.readString());
       msg.setDeepLinkUrl(value);
+      break;
+    case 10:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setDocumentTitle(value);
       break;
     default:
       reader.skipField();
@@ -16965,6 +17295,13 @@ proto.ondewo.nlu.ReferencedChunk.serializeBinaryToWriter = function(message, wri
   if (f.length > 0) {
     writer.writeString(
       9,
+      f
+    );
+  }
+  f = message.getDocumentTitle();
+  if (f.length > 0) {
+    writer.writeString(
+      10,
       f
     );
   }
@@ -17133,6 +17470,24 @@ proto.ondewo.nlu.ReferencedChunk.prototype.setDeepLinkUrl = function(value) {
 };
 
 
+/**
+ * optional string document_title = 10;
+ * @return {string}
+ */
+proto.ondewo.nlu.ReferencedChunk.prototype.getDocumentTitle = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 10, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.nlu.ReferencedChunk} returns this
+ */
+proto.ondewo.nlu.ReferencedChunk.prototype.setDocumentTitle = function(value) {
+  return jspb.Message.setProto3StringField(this, 10, value);
+};
+
+
 
 /**
  * List of repeated fields within this message type.
@@ -17172,27 +17527,27 @@ proto.ondewo.nlu.QueryResult.prototype.toObject = function(opt_includeInstance) 
  */
 proto.ondewo.nlu.QueryResult.toObject = function(includeInstance, msg) {
   var f, obj = {
-    queryText: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    speechRecognitionConfidence: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0),
-    action: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    parameters: (f = msg.getParameters()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
-    allRequiredParamsPresent: jspb.Message.getBooleanFieldWithDefault(msg, 5, false),
-    fulfillmentText: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    fulfillmentMessagesList: jspb.Message.toObjectList(msg.getFulfillmentMessagesList(),
+queryText: jspb.Message.getFieldWithDefault(msg, 1, ""),
+speechRecognitionConfidence: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0),
+action: jspb.Message.getFieldWithDefault(msg, 3, ""),
+parameters: (f = msg.getParameters()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
+allRequiredParamsPresent: jspb.Message.getBooleanFieldWithDefault(msg, 5, false),
+fulfillmentText: jspb.Message.getFieldWithDefault(msg, 6, ""),
+fulfillmentMessagesList: jspb.Message.toObjectList(msg.getFulfillmentMessagesList(),
     ondewo_nlu_intent_pb.Intent.Message.toObject, includeInstance),
-    webhookSource: jspb.Message.getFieldWithDefault(msg, 8, ""),
-    webhookPayload: (f = msg.getWebhookPayload()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
-    outputContextsList: jspb.Message.toObjectList(msg.getOutputContextsList(),
+webhookSource: jspb.Message.getFieldWithDefault(msg, 8, ""),
+webhookPayload: (f = msg.getWebhookPayload()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
+outputContextsList: jspb.Message.toObjectList(msg.getOutputContextsList(),
     ondewo_nlu_context_pb.Context.toObject, includeInstance),
-    intent: (f = msg.getIntent()) && ondewo_nlu_intent_pb.Intent.toObject(includeInstance, f),
-    intentDetectionConfidence: jspb.Message.getFloatingPointFieldWithDefault(msg, 12, 0.0),
-    queryTextOriginal: jspb.Message.getFieldWithDefault(msg, 13, ""),
-    diagnosticInfo: (f = msg.getDiagnosticInfo()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
-    languageCode: jspb.Message.getFieldWithDefault(msg, 15, ""),
-    fileResourcesList: jspb.Message.toObjectList(msg.getFileResourcesList(),
+intent: (f = msg.getIntent()) && ondewo_nlu_intent_pb.Intent.toObject(includeInstance, f),
+intentDetectionConfidence: jspb.Message.getFloatingPointFieldWithDefault(msg, 12, 0.0),
+queryTextOriginal: jspb.Message.getFieldWithDefault(msg, 13, ""),
+diagnosticInfo: (f = msg.getDiagnosticInfo()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
+languageCode: jspb.Message.getFieldWithDefault(msg, 15, ""),
+fileResourcesList: jspb.Message.toObjectList(msg.getFileResourcesList(),
     proto.ondewo.nlu.FileResource.toObject, includeInstance),
-    llmTelemetryReport: (f = msg.getLlmTelemetryReport()) && proto.ondewo.nlu.LlmTelemetryReport.toObject(includeInstance, f),
-    referencedChunksList: jspb.Message.toObjectList(msg.getReferencedChunksList(),
+llmTelemetryReport: (f = msg.getLlmTelemetryReport()) && proto.ondewo.nlu.LlmTelemetryReport.toObject(includeInstance, f),
+referencedChunksList: jspb.Message.toObjectList(msg.getReferencedChunksList(),
     proto.ondewo.nlu.ReferencedChunk.toObject, includeInstance)
   };
 
@@ -18009,11 +18364,13 @@ proto.ondewo.nlu.StreamingDetectIntentRequest.prototype.toObject = function(opt_
  */
 proto.ondewo.nlu.StreamingDetectIntentRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    session: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    queryParams: (f = msg.getQueryParams()) && proto.ondewo.nlu.QueryParameters.toObject(includeInstance, f),
-    queryInput: (f = msg.getQueryInput()) && proto.ondewo.nlu.QueryInput.toObject(includeInstance, f),
-    singleUtterance: jspb.Message.getBooleanFieldWithDefault(msg, 4, false),
-    inputAudio: msg.getInputAudio_asB64()
+session: jspb.Message.getFieldWithDefault(msg, 1, ""),
+queryParams: (f = msg.getQueryParams()) && proto.ondewo.nlu.QueryParameters.toObject(includeInstance, f),
+queryInput: (f = msg.getQueryInput()) && proto.ondewo.nlu.QueryInput.toObject(includeInstance, f),
+singleUtterance: jspb.Message.getBooleanFieldWithDefault(msg, 4, false),
+inputAudio: msg.getInputAudio_asB64(),
+turnControl: (f = msg.getTurnControl()) && proto.ondewo.nlu.TurnControl.toObject(includeInstance, f),
+clientTurnId: jspb.Message.getFieldWithDefault(msg, 8, "")
   };
 
   if (includeInstance) {
@@ -18071,6 +18428,15 @@ proto.ondewo.nlu.StreamingDetectIntentRequest.deserializeBinaryFromReader = func
     case 6:
       var value = /** @type {!Uint8Array} */ (reader.readBytes());
       msg.setInputAudio(value);
+      break;
+    case 7:
+      var value = new proto.ondewo.nlu.TurnControl;
+      reader.readMessage(value,proto.ondewo.nlu.TurnControl.deserializeBinaryFromReader);
+      msg.setTurnControl(value);
+      break;
+    case 8:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setClientTurnId(value);
       break;
     default:
       reader.skipField();
@@ -18135,6 +18501,21 @@ proto.ondewo.nlu.StreamingDetectIntentRequest.serializeBinaryToWriter = function
   if (f.length > 0) {
     writer.writeBytes(
       6,
+      f
+    );
+  }
+  f = message.getTurnControl();
+  if (f != null) {
+    writer.writeMessage(
+      7,
+      f,
+      proto.ondewo.nlu.TurnControl.serializeBinaryToWriter
+    );
+  }
+  f = message.getClientTurnId();
+  if (f.length > 0) {
+    writer.writeString(
+      8,
       f
     );
   }
@@ -18293,6 +18674,61 @@ proto.ondewo.nlu.StreamingDetectIntentRequest.prototype.setInputAudio = function
 };
 
 
+/**
+ * optional TurnControl turn_control = 7;
+ * @return {?proto.ondewo.nlu.TurnControl}
+ */
+proto.ondewo.nlu.StreamingDetectIntentRequest.prototype.getTurnControl = function() {
+  return /** @type{?proto.ondewo.nlu.TurnControl} */ (
+    jspb.Message.getWrapperField(this, proto.ondewo.nlu.TurnControl, 7));
+};
+
+
+/**
+ * @param {?proto.ondewo.nlu.TurnControl|undefined} value
+ * @return {!proto.ondewo.nlu.StreamingDetectIntentRequest} returns this
+*/
+proto.ondewo.nlu.StreamingDetectIntentRequest.prototype.setTurnControl = function(value) {
+  return jspb.Message.setWrapperField(this, 7, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.ondewo.nlu.StreamingDetectIntentRequest} returns this
+ */
+proto.ondewo.nlu.StreamingDetectIntentRequest.prototype.clearTurnControl = function() {
+  return this.setTurnControl(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.nlu.StreamingDetectIntentRequest.prototype.hasTurnControl = function() {
+  return jspb.Message.getField(this, 7) != null;
+};
+
+
+/**
+ * optional string client_turn_id = 8;
+ * @return {string}
+ */
+proto.ondewo.nlu.StreamingDetectIntentRequest.prototype.getClientTurnId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.nlu.StreamingDetectIntentRequest} returns this
+ */
+proto.ondewo.nlu.StreamingDetectIntentRequest.prototype.setClientTurnId = function(value) {
+  return jspb.Message.setProto3StringField(this, 8, value);
+};
+
+
 
 /**
  * Oneof group definitions for this message. Each group defines the field
@@ -18356,17 +18792,19 @@ proto.ondewo.nlu.StreamingDetectIntentResponse.prototype.toObject = function(opt
  */
 proto.ondewo.nlu.StreamingDetectIntentResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    responseId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    recognitionResult: (f = msg.getRecognitionResult()) && proto.ondewo.nlu.StreamingRecognitionResult.toObject(includeInstance, f),
-    queryResult: (f = msg.getQueryResult()) && proto.ondewo.nlu.QueryResult.toObject(includeInstance, f),
-    webhookStatus: (f = msg.getWebhookStatus()) && google_rpc_status_pb.Status.toObject(includeInstance, f),
-    llmCallStarted: (f = msg.getLlmCallStarted()) && proto.ondewo.nlu.LlmCallStartedEvent.toObject(includeInstance, f),
-    llmCallFinished: (f = msg.getLlmCallFinished()) && proto.ondewo.nlu.LlmCallFinishedEvent.toObject(includeInstance, f),
-    llmToolCallStarted: (f = msg.getLlmToolCallStarted()) && proto.ondewo.nlu.LlmToolCallStartedEvent.toObject(includeInstance, f),
-    llmToolCallFinished: (f = msg.getLlmToolCallFinished()) && proto.ondewo.nlu.LlmToolCallFinishedEvent.toObject(includeInstance, f),
-    llmThinkingDelta: (f = msg.getLlmThinkingDelta()) && proto.ondewo.nlu.LlmThinkingDeltaEvent.toObject(includeInstance, f),
-    llmTokenUsageUpdate: (f = msg.getLlmTokenUsageUpdate()) && proto.ondewo.nlu.LlmTokenUsageUpdateEvent.toObject(includeInstance, f),
-    llmAgentNodeEvent: (f = msg.getLlmAgentNodeEvent()) && proto.ondewo.nlu.LlmAgentNodeEvent.toObject(includeInstance, f)
+responseId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+recognitionResult: (f = msg.getRecognitionResult()) && proto.ondewo.nlu.StreamingRecognitionResult.toObject(includeInstance, f),
+queryResult: (f = msg.getQueryResult()) && proto.ondewo.nlu.QueryResult.toObject(includeInstance, f),
+webhookStatus: (f = msg.getWebhookStatus()) && google_rpc_status_pb.Status.toObject(includeInstance, f),
+llmCallStarted: (f = msg.getLlmCallStarted()) && proto.ondewo.nlu.LlmCallStartedEvent.toObject(includeInstance, f),
+llmCallFinished: (f = msg.getLlmCallFinished()) && proto.ondewo.nlu.LlmCallFinishedEvent.toObject(includeInstance, f),
+llmToolCallStarted: (f = msg.getLlmToolCallStarted()) && proto.ondewo.nlu.LlmToolCallStartedEvent.toObject(includeInstance, f),
+llmToolCallFinished: (f = msg.getLlmToolCallFinished()) && proto.ondewo.nlu.LlmToolCallFinishedEvent.toObject(includeInstance, f),
+llmThinkingDelta: (f = msg.getLlmThinkingDelta()) && proto.ondewo.nlu.LlmThinkingDeltaEvent.toObject(includeInstance, f),
+llmTokenUsageUpdate: (f = msg.getLlmTokenUsageUpdate()) && proto.ondewo.nlu.LlmTokenUsageUpdateEvent.toObject(includeInstance, f),
+llmAgentNodeEvent: (f = msg.getLlmAgentNodeEvent()) && proto.ondewo.nlu.LlmAgentNodeEvent.toObject(includeInstance, f),
+turnControlAck: (f = msg.getTurnControlAck()) && proto.ondewo.nlu.TurnControlAck.toObject(includeInstance, f),
+clientTurnId: jspb.Message.getFieldWithDefault(msg, 13, "")
   };
 
   if (includeInstance) {
@@ -18456,6 +18894,15 @@ proto.ondewo.nlu.StreamingDetectIntentResponse.deserializeBinaryFromReader = fun
       var value = new proto.ondewo.nlu.LlmAgentNodeEvent;
       reader.readMessage(value,proto.ondewo.nlu.LlmAgentNodeEvent.deserializeBinaryFromReader);
       msg.setLlmAgentNodeEvent(value);
+      break;
+    case 12:
+      var value = new proto.ondewo.nlu.TurnControlAck;
+      reader.readMessage(value,proto.ondewo.nlu.TurnControlAck.deserializeBinaryFromReader);
+      msg.setTurnControlAck(value);
+      break;
+    case 13:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setClientTurnId(value);
       break;
     default:
       reader.skipField();
@@ -18571,6 +19018,21 @@ proto.ondewo.nlu.StreamingDetectIntentResponse.serializeBinaryToWriter = functio
       11,
       f,
       proto.ondewo.nlu.LlmAgentNodeEvent.serializeBinaryToWriter
+    );
+  }
+  f = message.getTurnControlAck();
+  if (f != null) {
+    writer.writeMessage(
+      12,
+      f,
+      proto.ondewo.nlu.TurnControlAck.serializeBinaryToWriter
+    );
+  }
+  f = message.getClientTurnId();
+  if (f.length > 0) {
+    writer.writeString(
+      13,
+      f
     );
   }
 };
@@ -18964,6 +19426,3551 @@ proto.ondewo.nlu.StreamingDetectIntentResponse.prototype.hasLlmAgentNodeEvent = 
 };
 
 
+/**
+ * optional TurnControlAck turn_control_ack = 12;
+ * @return {?proto.ondewo.nlu.TurnControlAck}
+ */
+proto.ondewo.nlu.StreamingDetectIntentResponse.prototype.getTurnControlAck = function() {
+  return /** @type{?proto.ondewo.nlu.TurnControlAck} */ (
+    jspb.Message.getWrapperField(this, proto.ondewo.nlu.TurnControlAck, 12));
+};
+
+
+/**
+ * @param {?proto.ondewo.nlu.TurnControlAck|undefined} value
+ * @return {!proto.ondewo.nlu.StreamingDetectIntentResponse} returns this
+*/
+proto.ondewo.nlu.StreamingDetectIntentResponse.prototype.setTurnControlAck = function(value) {
+  return jspb.Message.setWrapperField(this, 12, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.ondewo.nlu.StreamingDetectIntentResponse} returns this
+ */
+proto.ondewo.nlu.StreamingDetectIntentResponse.prototype.clearTurnControlAck = function() {
+  return this.setTurnControlAck(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.nlu.StreamingDetectIntentResponse.prototype.hasTurnControlAck = function() {
+  return jspb.Message.getField(this, 12) != null;
+};
+
+
+/**
+ * optional string client_turn_id = 13;
+ * @return {string}
+ */
+proto.ondewo.nlu.StreamingDetectIntentResponse.prototype.getClientTurnId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 13, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.nlu.StreamingDetectIntentResponse} returns this
+ */
+proto.ondewo.nlu.StreamingDetectIntentResponse.prototype.setClientTurnId = function(value) {
+  return jspb.Message.setProto3StringField(this, 13, value);
+};
+
+
+
+/**
+ * Oneof group definitions for this message. Each group defines the field
+ * numbers belonging to that group. When of these fields' value is set, all
+ * other fields in the group are cleared. During deserialization, if multiple
+ * fields are encountered for a group, only the last value seen will be kept.
+ * @private {!Array<!Array<number>>}
+ * @const
+ */
+proto.ondewo.nlu.TurnControl.oneofGroups_ = [[1,2,3]];
+
+/**
+ * @enum {number}
+ */
+proto.ondewo.nlu.TurnControl.TurnControlCase = {
+  TURN_CONTROL_NOT_SET: 0,
+  CANCEL_TURN: 1,
+  HEARD_REPORT: 2,
+  DISCARD_DRAFT: 3
+};
+
+/**
+ * @return {proto.ondewo.nlu.TurnControl.TurnControlCase}
+ */
+proto.ondewo.nlu.TurnControl.prototype.getTurnControlCase = function() {
+  return /** @type {proto.ondewo.nlu.TurnControl.TurnControlCase} */(jspb.Message.computeOneofCase(this, proto.ondewo.nlu.TurnControl.oneofGroups_[0]));
+};
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.ondewo.nlu.TurnControl.prototype.toObject = function(opt_includeInstance) {
+  return proto.ondewo.nlu.TurnControl.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.ondewo.nlu.TurnControl} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.nlu.TurnControl.toObject = function(includeInstance, msg) {
+  var f, obj = {
+cancelTurn: (f = msg.getCancelTurn()) && proto.ondewo.nlu.CancelTurn.toObject(includeInstance, f),
+heardReport: (f = msg.getHeardReport()) && proto.ondewo.nlu.HeardReport.toObject(includeInstance, f),
+discardDraft: (f = msg.getDiscardDraft()) && proto.ondewo.nlu.DiscardDraft.toObject(includeInstance, f)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.ondewo.nlu.TurnControl}
+ */
+proto.ondewo.nlu.TurnControl.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.ondewo.nlu.TurnControl;
+  return proto.ondewo.nlu.TurnControl.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.ondewo.nlu.TurnControl} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.ondewo.nlu.TurnControl}
+ */
+proto.ondewo.nlu.TurnControl.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = new proto.ondewo.nlu.CancelTurn;
+      reader.readMessage(value,proto.ondewo.nlu.CancelTurn.deserializeBinaryFromReader);
+      msg.setCancelTurn(value);
+      break;
+    case 2:
+      var value = new proto.ondewo.nlu.HeardReport;
+      reader.readMessage(value,proto.ondewo.nlu.HeardReport.deserializeBinaryFromReader);
+      msg.setHeardReport(value);
+      break;
+    case 3:
+      var value = new proto.ondewo.nlu.DiscardDraft;
+      reader.readMessage(value,proto.ondewo.nlu.DiscardDraft.deserializeBinaryFromReader);
+      msg.setDiscardDraft(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.ondewo.nlu.TurnControl.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.ondewo.nlu.TurnControl.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.ondewo.nlu.TurnControl} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.nlu.TurnControl.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getCancelTurn();
+  if (f != null) {
+    writer.writeMessage(
+      1,
+      f,
+      proto.ondewo.nlu.CancelTurn.serializeBinaryToWriter
+    );
+  }
+  f = message.getHeardReport();
+  if (f != null) {
+    writer.writeMessage(
+      2,
+      f,
+      proto.ondewo.nlu.HeardReport.serializeBinaryToWriter
+    );
+  }
+  f = message.getDiscardDraft();
+  if (f != null) {
+    writer.writeMessage(
+      3,
+      f,
+      proto.ondewo.nlu.DiscardDraft.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * optional CancelTurn cancel_turn = 1;
+ * @return {?proto.ondewo.nlu.CancelTurn}
+ */
+proto.ondewo.nlu.TurnControl.prototype.getCancelTurn = function() {
+  return /** @type{?proto.ondewo.nlu.CancelTurn} */ (
+    jspb.Message.getWrapperField(this, proto.ondewo.nlu.CancelTurn, 1));
+};
+
+
+/**
+ * @param {?proto.ondewo.nlu.CancelTurn|undefined} value
+ * @return {!proto.ondewo.nlu.TurnControl} returns this
+*/
+proto.ondewo.nlu.TurnControl.prototype.setCancelTurn = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 1, proto.ondewo.nlu.TurnControl.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.ondewo.nlu.TurnControl} returns this
+ */
+proto.ondewo.nlu.TurnControl.prototype.clearCancelTurn = function() {
+  return this.setCancelTurn(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.nlu.TurnControl.prototype.hasCancelTurn = function() {
+  return jspb.Message.getField(this, 1) != null;
+};
+
+
+/**
+ * optional HeardReport heard_report = 2;
+ * @return {?proto.ondewo.nlu.HeardReport}
+ */
+proto.ondewo.nlu.TurnControl.prototype.getHeardReport = function() {
+  return /** @type{?proto.ondewo.nlu.HeardReport} */ (
+    jspb.Message.getWrapperField(this, proto.ondewo.nlu.HeardReport, 2));
+};
+
+
+/**
+ * @param {?proto.ondewo.nlu.HeardReport|undefined} value
+ * @return {!proto.ondewo.nlu.TurnControl} returns this
+*/
+proto.ondewo.nlu.TurnControl.prototype.setHeardReport = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 2, proto.ondewo.nlu.TurnControl.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.ondewo.nlu.TurnControl} returns this
+ */
+proto.ondewo.nlu.TurnControl.prototype.clearHeardReport = function() {
+  return this.setHeardReport(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.nlu.TurnControl.prototype.hasHeardReport = function() {
+  return jspb.Message.getField(this, 2) != null;
+};
+
+
+/**
+ * optional DiscardDraft discard_draft = 3;
+ * @return {?proto.ondewo.nlu.DiscardDraft}
+ */
+proto.ondewo.nlu.TurnControl.prototype.getDiscardDraft = function() {
+  return /** @type{?proto.ondewo.nlu.DiscardDraft} */ (
+    jspb.Message.getWrapperField(this, proto.ondewo.nlu.DiscardDraft, 3));
+};
+
+
+/**
+ * @param {?proto.ondewo.nlu.DiscardDraft|undefined} value
+ * @return {!proto.ondewo.nlu.TurnControl} returns this
+*/
+proto.ondewo.nlu.TurnControl.prototype.setDiscardDraft = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 3, proto.ondewo.nlu.TurnControl.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.ondewo.nlu.TurnControl} returns this
+ */
+proto.ondewo.nlu.TurnControl.prototype.clearDiscardDraft = function() {
+  return this.setDiscardDraft(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.nlu.TurnControl.prototype.hasDiscardDraft = function() {
+  return jspb.Message.getField(this, 3) != null;
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.ondewo.nlu.CancelTurn.prototype.toObject = function(opt_includeInstance) {
+  return proto.ondewo.nlu.CancelTurn.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.ondewo.nlu.CancelTurn} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.nlu.CancelTurn.toObject = function(includeInstance, msg) {
+  var f, obj = {
+responseId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+clientTurnId: jspb.Message.getFieldWithDefault(msg, 2, ""),
+turnInterruptionReason: jspb.Message.getFieldWithDefault(msg, 3, 0),
+decidedAt: (f = msg.getDecidedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+backgroundWorkPolicy: jspb.Message.getFieldWithDefault(msg, 5, 0)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.ondewo.nlu.CancelTurn}
+ */
+proto.ondewo.nlu.CancelTurn.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.ondewo.nlu.CancelTurn;
+  return proto.ondewo.nlu.CancelTurn.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.ondewo.nlu.CancelTurn} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.ondewo.nlu.CancelTurn}
+ */
+proto.ondewo.nlu.CancelTurn.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setResponseId(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setClientTurnId(value);
+      break;
+    case 3:
+      var value = /** @type {!proto.ondewo.nlu.TurnInterruptionReason} */ (reader.readEnum());
+      msg.setTurnInterruptionReason(value);
+      break;
+    case 4:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setDecidedAt(value);
+      break;
+    case 5:
+      var value = /** @type {!proto.ondewo.nlu.BackgroundWorkPolicy} */ (reader.readEnum());
+      msg.setBackgroundWorkPolicy(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.ondewo.nlu.CancelTurn.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.ondewo.nlu.CancelTurn.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.ondewo.nlu.CancelTurn} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.nlu.CancelTurn.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getResponseId();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getClientTurnId();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+  f = message.getTurnInterruptionReason();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      3,
+      f
+    );
+  }
+  f = message.getDecidedAt();
+  if (f != null) {
+    writer.writeMessage(
+      4,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+  f = message.getBackgroundWorkPolicy();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      5,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string response_id = 1;
+ * @return {string}
+ */
+proto.ondewo.nlu.CancelTurn.prototype.getResponseId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.nlu.CancelTurn} returns this
+ */
+proto.ondewo.nlu.CancelTurn.prototype.setResponseId = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional string client_turn_id = 2;
+ * @return {string}
+ */
+proto.ondewo.nlu.CancelTurn.prototype.getClientTurnId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.nlu.CancelTurn} returns this
+ */
+proto.ondewo.nlu.CancelTurn.prototype.setClientTurnId = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional TurnInterruptionReason turn_interruption_reason = 3;
+ * @return {!proto.ondewo.nlu.TurnInterruptionReason}
+ */
+proto.ondewo.nlu.CancelTurn.prototype.getTurnInterruptionReason = function() {
+  return /** @type {!proto.ondewo.nlu.TurnInterruptionReason} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+};
+
+
+/**
+ * @param {!proto.ondewo.nlu.TurnInterruptionReason} value
+ * @return {!proto.ondewo.nlu.CancelTurn} returns this
+ */
+proto.ondewo.nlu.CancelTurn.prototype.setTurnInterruptionReason = function(value) {
+  return jspb.Message.setProto3EnumField(this, 3, value);
+};
+
+
+/**
+ * optional google.protobuf.Timestamp decided_at = 4;
+ * @return {?proto.google.protobuf.Timestamp}
+ */
+proto.ondewo.nlu.CancelTurn.prototype.getDecidedAt = function() {
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 4));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Timestamp|undefined} value
+ * @return {!proto.ondewo.nlu.CancelTurn} returns this
+*/
+proto.ondewo.nlu.CancelTurn.prototype.setDecidedAt = function(value) {
+  return jspb.Message.setWrapperField(this, 4, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.ondewo.nlu.CancelTurn} returns this
+ */
+proto.ondewo.nlu.CancelTurn.prototype.clearDecidedAt = function() {
+  return this.setDecidedAt(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.nlu.CancelTurn.prototype.hasDecidedAt = function() {
+  return jspb.Message.getField(this, 4) != null;
+};
+
+
+/**
+ * optional BackgroundWorkPolicy background_work_policy = 5;
+ * @return {!proto.ondewo.nlu.BackgroundWorkPolicy}
+ */
+proto.ondewo.nlu.CancelTurn.prototype.getBackgroundWorkPolicy = function() {
+  return /** @type {!proto.ondewo.nlu.BackgroundWorkPolicy} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
+};
+
+
+/**
+ * @param {!proto.ondewo.nlu.BackgroundWorkPolicy} value
+ * @return {!proto.ondewo.nlu.CancelTurn} returns this
+ */
+proto.ondewo.nlu.CancelTurn.prototype.setBackgroundWorkPolicy = function(value) {
+  return jspb.Message.setProto3EnumField(this, 5, value);
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.ondewo.nlu.HeardMessage.prototype.toObject = function(opt_includeInstance) {
+  return proto.ondewo.nlu.HeardMessage.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.ondewo.nlu.HeardMessage} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.nlu.HeardMessage.toObject = function(includeInstance, msg) {
+  var f, obj = {
+fulfillmentMessageIndex: jspb.Message.getFieldWithDefault(msg, 1, 0),
+platform: jspb.Message.getFieldWithDefault(msg, 2, 0),
+fullText: jspb.Message.getFieldWithDefault(msg, 3, ""),
+heardText: jspb.Message.getFieldWithDefault(msg, 4, ""),
+heardCharCount: jspb.Message.getFieldWithDefault(msg, 5, 0),
+heardAudioDurationInS: jspb.Message.getFloatingPointFieldWithDefault(msg, 6, 0.0),
+totalAudioDurationInS: jspb.Message.getFloatingPointFieldWithDefault(msg, 7, 0.0),
+completed: jspb.Message.getBooleanFieldWithDefault(msg, 8, false),
+neverStarted: jspb.Message.getBooleanFieldWithDefault(msg, 9, false),
+skippedSipTrigger: jspb.Message.getBooleanFieldWithDefault(msg, 10, false),
+fillerId: jspb.Message.getFieldWithDefault(msg, 11, "")
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.ondewo.nlu.HeardMessage}
+ */
+proto.ondewo.nlu.HeardMessage.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.ondewo.nlu.HeardMessage;
+  return proto.ondewo.nlu.HeardMessage.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.ondewo.nlu.HeardMessage} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.ondewo.nlu.HeardMessage}
+ */
+proto.ondewo.nlu.HeardMessage.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setFulfillmentMessageIndex(value);
+      break;
+    case 2:
+      var value = /** @type {!proto.ondewo.nlu.Intent.Message.Platform} */ (reader.readEnum());
+      msg.setPlatform(value);
+      break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setFullText(value);
+      break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setHeardText(value);
+      break;
+    case 5:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setHeardCharCount(value);
+      break;
+    case 6:
+      var value = /** @type {number} */ (reader.readFloat());
+      msg.setHeardAudioDurationInS(value);
+      break;
+    case 7:
+      var value = /** @type {number} */ (reader.readFloat());
+      msg.setTotalAudioDurationInS(value);
+      break;
+    case 8:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setCompleted(value);
+      break;
+    case 9:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setNeverStarted(value);
+      break;
+    case 10:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setSkippedSipTrigger(value);
+      break;
+    case 11:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setFillerId(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.ondewo.nlu.HeardMessage.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.ondewo.nlu.HeardMessage.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.ondewo.nlu.HeardMessage} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.nlu.HeardMessage.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getFulfillmentMessageIndex();
+  if (f !== 0) {
+    writer.writeInt32(
+      1,
+      f
+    );
+  }
+  f = message.getPlatform();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      2,
+      f
+    );
+  }
+  f = message.getFullText();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
+      f
+    );
+  }
+  f = message.getHeardText();
+  if (f.length > 0) {
+    writer.writeString(
+      4,
+      f
+    );
+  }
+  f = message.getHeardCharCount();
+  if (f !== 0) {
+    writer.writeInt32(
+      5,
+      f
+    );
+  }
+  f = message.getHeardAudioDurationInS();
+  if (f !== 0.0) {
+    writer.writeFloat(
+      6,
+      f
+    );
+  }
+  f = message.getTotalAudioDurationInS();
+  if (f !== 0.0) {
+    writer.writeFloat(
+      7,
+      f
+    );
+  }
+  f = message.getCompleted();
+  if (f) {
+    writer.writeBool(
+      8,
+      f
+    );
+  }
+  f = message.getNeverStarted();
+  if (f) {
+    writer.writeBool(
+      9,
+      f
+    );
+  }
+  f = message.getSkippedSipTrigger();
+  if (f) {
+    writer.writeBool(
+      10,
+      f
+    );
+  }
+  f = message.getFillerId();
+  if (f.length > 0) {
+    writer.writeString(
+      11,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional int32 fulfillment_message_index = 1;
+ * @return {number}
+ */
+proto.ondewo.nlu.HeardMessage.prototype.getFulfillmentMessageIndex = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.ondewo.nlu.HeardMessage} returns this
+ */
+proto.ondewo.nlu.HeardMessage.prototype.setFulfillmentMessageIndex = function(value) {
+  return jspb.Message.setProto3IntField(this, 1, value);
+};
+
+
+/**
+ * optional Intent.Message.Platform platform = 2;
+ * @return {!proto.ondewo.nlu.Intent.Message.Platform}
+ */
+proto.ondewo.nlu.HeardMessage.prototype.getPlatform = function() {
+  return /** @type {!proto.ondewo.nlu.Intent.Message.Platform} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+};
+
+
+/**
+ * @param {!proto.ondewo.nlu.Intent.Message.Platform} value
+ * @return {!proto.ondewo.nlu.HeardMessage} returns this
+ */
+proto.ondewo.nlu.HeardMessage.prototype.setPlatform = function(value) {
+  return jspb.Message.setProto3EnumField(this, 2, value);
+};
+
+
+/**
+ * optional string full_text = 3;
+ * @return {string}
+ */
+proto.ondewo.nlu.HeardMessage.prototype.getFullText = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.nlu.HeardMessage} returns this
+ */
+proto.ondewo.nlu.HeardMessage.prototype.setFullText = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
+};
+
+
+/**
+ * optional string heard_text = 4;
+ * @return {string}
+ */
+proto.ondewo.nlu.HeardMessage.prototype.getHeardText = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.nlu.HeardMessage} returns this
+ */
+proto.ondewo.nlu.HeardMessage.prototype.setHeardText = function(value) {
+  return jspb.Message.setProto3StringField(this, 4, value);
+};
+
+
+/**
+ * optional int32 heard_char_count = 5;
+ * @return {number}
+ */
+proto.ondewo.nlu.HeardMessage.prototype.getHeardCharCount = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.ondewo.nlu.HeardMessage} returns this
+ */
+proto.ondewo.nlu.HeardMessage.prototype.setHeardCharCount = function(value) {
+  return jspb.Message.setProto3IntField(this, 5, value);
+};
+
+
+/**
+ * optional float heard_audio_duration_in_s = 6;
+ * @return {number}
+ */
+proto.ondewo.nlu.HeardMessage.prototype.getHeardAudioDurationInS = function() {
+  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 6, 0.0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.ondewo.nlu.HeardMessage} returns this
+ */
+proto.ondewo.nlu.HeardMessage.prototype.setHeardAudioDurationInS = function(value) {
+  return jspb.Message.setProto3FloatField(this, 6, value);
+};
+
+
+/**
+ * optional float total_audio_duration_in_s = 7;
+ * @return {number}
+ */
+proto.ondewo.nlu.HeardMessage.prototype.getTotalAudioDurationInS = function() {
+  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 7, 0.0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.ondewo.nlu.HeardMessage} returns this
+ */
+proto.ondewo.nlu.HeardMessage.prototype.setTotalAudioDurationInS = function(value) {
+  return jspb.Message.setProto3FloatField(this, 7, value);
+};
+
+
+/**
+ * optional bool completed = 8;
+ * @return {boolean}
+ */
+proto.ondewo.nlu.HeardMessage.prototype.getCompleted = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 8, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.ondewo.nlu.HeardMessage} returns this
+ */
+proto.ondewo.nlu.HeardMessage.prototype.setCompleted = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 8, value);
+};
+
+
+/**
+ * optional bool never_started = 9;
+ * @return {boolean}
+ */
+proto.ondewo.nlu.HeardMessage.prototype.getNeverStarted = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 9, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.ondewo.nlu.HeardMessage} returns this
+ */
+proto.ondewo.nlu.HeardMessage.prototype.setNeverStarted = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 9, value);
+};
+
+
+/**
+ * optional bool skipped_sip_trigger = 10;
+ * @return {boolean}
+ */
+proto.ondewo.nlu.HeardMessage.prototype.getSkippedSipTrigger = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 10, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.ondewo.nlu.HeardMessage} returns this
+ */
+proto.ondewo.nlu.HeardMessage.prototype.setSkippedSipTrigger = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 10, value);
+};
+
+
+/**
+ * optional string filler_id = 11;
+ * @return {string}
+ */
+proto.ondewo.nlu.HeardMessage.prototype.getFillerId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 11, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.nlu.HeardMessage} returns this
+ */
+proto.ondewo.nlu.HeardMessage.prototype.setFillerId = function(value) {
+  return jspb.Message.setProto3StringField(this, 11, value);
+};
+
+
+
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.ondewo.nlu.HeardReport.repeatedFields_ = [5];
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.ondewo.nlu.HeardReport.prototype.toObject = function(opt_includeInstance) {
+  return proto.ondewo.nlu.HeardReport.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.ondewo.nlu.HeardReport} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.nlu.HeardReport.toObject = function(includeInstance, msg) {
+  var f, obj = {
+responseId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+clientTurnId: jspb.Message.getFieldWithDefault(msg, 2, ""),
+revision: jspb.Message.getFieldWithDefault(msg, 3, 0),
+turnInterruptionReason: jspb.Message.getFieldWithDefault(msg, 4, 0),
+heardMessagesList: jspb.Message.toObjectList(msg.getHeardMessagesList(),
+    proto.ondewo.nlu.HeardMessage.toObject, includeInstance),
+heardTextPrecision: jspb.Message.getFieldWithDefault(msg, 6, 0),
+callerOverlapDurationInS: jspb.Message.getFloatingPointFieldWithDefault(msg, 7, 0.0)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.ondewo.nlu.HeardReport}
+ */
+proto.ondewo.nlu.HeardReport.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.ondewo.nlu.HeardReport;
+  return proto.ondewo.nlu.HeardReport.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.ondewo.nlu.HeardReport} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.ondewo.nlu.HeardReport}
+ */
+proto.ondewo.nlu.HeardReport.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setResponseId(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setClientTurnId(value);
+      break;
+    case 3:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setRevision(value);
+      break;
+    case 4:
+      var value = /** @type {!proto.ondewo.nlu.TurnInterruptionReason} */ (reader.readEnum());
+      msg.setTurnInterruptionReason(value);
+      break;
+    case 5:
+      var value = new proto.ondewo.nlu.HeardMessage;
+      reader.readMessage(value,proto.ondewo.nlu.HeardMessage.deserializeBinaryFromReader);
+      msg.addHeardMessages(value);
+      break;
+    case 6:
+      var value = /** @type {!proto.ondewo.nlu.HeardTextPrecision} */ (reader.readEnum());
+      msg.setHeardTextPrecision(value);
+      break;
+    case 7:
+      var value = /** @type {number} */ (reader.readFloat());
+      msg.setCallerOverlapDurationInS(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.ondewo.nlu.HeardReport.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.ondewo.nlu.HeardReport.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.ondewo.nlu.HeardReport} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.nlu.HeardReport.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getResponseId();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getClientTurnId();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+  f = message.getRevision();
+  if (f !== 0) {
+    writer.writeInt32(
+      3,
+      f
+    );
+  }
+  f = message.getTurnInterruptionReason();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      4,
+      f
+    );
+  }
+  f = message.getHeardMessagesList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      5,
+      f,
+      proto.ondewo.nlu.HeardMessage.serializeBinaryToWriter
+    );
+  }
+  f = message.getHeardTextPrecision();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      6,
+      f
+    );
+  }
+  f = message.getCallerOverlapDurationInS();
+  if (f !== 0.0) {
+    writer.writeFloat(
+      7,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string response_id = 1;
+ * @return {string}
+ */
+proto.ondewo.nlu.HeardReport.prototype.getResponseId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.nlu.HeardReport} returns this
+ */
+proto.ondewo.nlu.HeardReport.prototype.setResponseId = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional string client_turn_id = 2;
+ * @return {string}
+ */
+proto.ondewo.nlu.HeardReport.prototype.getClientTurnId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.nlu.HeardReport} returns this
+ */
+proto.ondewo.nlu.HeardReport.prototype.setClientTurnId = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional int32 revision = 3;
+ * @return {number}
+ */
+proto.ondewo.nlu.HeardReport.prototype.getRevision = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.ondewo.nlu.HeardReport} returns this
+ */
+proto.ondewo.nlu.HeardReport.prototype.setRevision = function(value) {
+  return jspb.Message.setProto3IntField(this, 3, value);
+};
+
+
+/**
+ * optional TurnInterruptionReason turn_interruption_reason = 4;
+ * @return {!proto.ondewo.nlu.TurnInterruptionReason}
+ */
+proto.ondewo.nlu.HeardReport.prototype.getTurnInterruptionReason = function() {
+  return /** @type {!proto.ondewo.nlu.TurnInterruptionReason} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
+};
+
+
+/**
+ * @param {!proto.ondewo.nlu.TurnInterruptionReason} value
+ * @return {!proto.ondewo.nlu.HeardReport} returns this
+ */
+proto.ondewo.nlu.HeardReport.prototype.setTurnInterruptionReason = function(value) {
+  return jspb.Message.setProto3EnumField(this, 4, value);
+};
+
+
+/**
+ * repeated HeardMessage heard_messages = 5;
+ * @return {!Array<!proto.ondewo.nlu.HeardMessage>}
+ */
+proto.ondewo.nlu.HeardReport.prototype.getHeardMessagesList = function() {
+  return /** @type{!Array<!proto.ondewo.nlu.HeardMessage>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.ondewo.nlu.HeardMessage, 5));
+};
+
+
+/**
+ * @param {!Array<!proto.ondewo.nlu.HeardMessage>} value
+ * @return {!proto.ondewo.nlu.HeardReport} returns this
+*/
+proto.ondewo.nlu.HeardReport.prototype.setHeardMessagesList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 5, value);
+};
+
+
+/**
+ * @param {!proto.ondewo.nlu.HeardMessage=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.ondewo.nlu.HeardMessage}
+ */
+proto.ondewo.nlu.HeardReport.prototype.addHeardMessages = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 5, opt_value, proto.ondewo.nlu.HeardMessage, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.ondewo.nlu.HeardReport} returns this
+ */
+proto.ondewo.nlu.HeardReport.prototype.clearHeardMessagesList = function() {
+  return this.setHeardMessagesList([]);
+};
+
+
+/**
+ * optional HeardTextPrecision heard_text_precision = 6;
+ * @return {!proto.ondewo.nlu.HeardTextPrecision}
+ */
+proto.ondewo.nlu.HeardReport.prototype.getHeardTextPrecision = function() {
+  return /** @type {!proto.ondewo.nlu.HeardTextPrecision} */ (jspb.Message.getFieldWithDefault(this, 6, 0));
+};
+
+
+/**
+ * @param {!proto.ondewo.nlu.HeardTextPrecision} value
+ * @return {!proto.ondewo.nlu.HeardReport} returns this
+ */
+proto.ondewo.nlu.HeardReport.prototype.setHeardTextPrecision = function(value) {
+  return jspb.Message.setProto3EnumField(this, 6, value);
+};
+
+
+/**
+ * optional float caller_overlap_duration_in_s = 7;
+ * @return {number}
+ */
+proto.ondewo.nlu.HeardReport.prototype.getCallerOverlapDurationInS = function() {
+  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 7, 0.0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.ondewo.nlu.HeardReport} returns this
+ */
+proto.ondewo.nlu.HeardReport.prototype.setCallerOverlapDurationInS = function(value) {
+  return jspb.Message.setProto3FloatField(this, 7, value);
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.ondewo.nlu.DiscardDraft.prototype.toObject = function(opt_includeInstance) {
+  return proto.ondewo.nlu.DiscardDraft.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.ondewo.nlu.DiscardDraft} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.nlu.DiscardDraft.toObject = function(includeInstance, msg) {
+  var f, obj = {
+responseId: jspb.Message.getFieldWithDefault(msg, 1, "")
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.ondewo.nlu.DiscardDraft}
+ */
+proto.ondewo.nlu.DiscardDraft.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.ondewo.nlu.DiscardDraft;
+  return proto.ondewo.nlu.DiscardDraft.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.ondewo.nlu.DiscardDraft} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.ondewo.nlu.DiscardDraft}
+ */
+proto.ondewo.nlu.DiscardDraft.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setResponseId(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.ondewo.nlu.DiscardDraft.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.ondewo.nlu.DiscardDraft.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.ondewo.nlu.DiscardDraft} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.nlu.DiscardDraft.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getResponseId();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string response_id = 1;
+ * @return {string}
+ */
+proto.ondewo.nlu.DiscardDraft.prototype.getResponseId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.nlu.DiscardDraft} returns this
+ */
+proto.ondewo.nlu.DiscardDraft.prototype.setResponseId = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.ondewo.nlu.TurnControlAck.prototype.toObject = function(opt_includeInstance) {
+  return proto.ondewo.nlu.TurnControlAck.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.ondewo.nlu.TurnControlAck} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.nlu.TurnControlAck.toObject = function(includeInstance, msg) {
+  var f, obj = {
+responseId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+clientTurnId: jspb.Message.getFieldWithDefault(msg, 2, ""),
+turnControlAckStatus: jspb.Message.getFieldWithDefault(msg, 3, 0),
+serverCancelDurationInS: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.ondewo.nlu.TurnControlAck}
+ */
+proto.ondewo.nlu.TurnControlAck.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.ondewo.nlu.TurnControlAck;
+  return proto.ondewo.nlu.TurnControlAck.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.ondewo.nlu.TurnControlAck} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.ondewo.nlu.TurnControlAck}
+ */
+proto.ondewo.nlu.TurnControlAck.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setResponseId(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setClientTurnId(value);
+      break;
+    case 3:
+      var value = /** @type {!proto.ondewo.nlu.TurnControlAckStatus} */ (reader.readEnum());
+      msg.setTurnControlAckStatus(value);
+      break;
+    case 4:
+      var value = /** @type {number} */ (reader.readFloat());
+      msg.setServerCancelDurationInS(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.ondewo.nlu.TurnControlAck.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.ondewo.nlu.TurnControlAck.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.ondewo.nlu.TurnControlAck} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.nlu.TurnControlAck.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getResponseId();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getClientTurnId();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+  f = message.getTurnControlAckStatus();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      3,
+      f
+    );
+  }
+  f = message.getServerCancelDurationInS();
+  if (f !== 0.0) {
+    writer.writeFloat(
+      4,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string response_id = 1;
+ * @return {string}
+ */
+proto.ondewo.nlu.TurnControlAck.prototype.getResponseId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.nlu.TurnControlAck} returns this
+ */
+proto.ondewo.nlu.TurnControlAck.prototype.setResponseId = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional string client_turn_id = 2;
+ * @return {string}
+ */
+proto.ondewo.nlu.TurnControlAck.prototype.getClientTurnId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.nlu.TurnControlAck} returns this
+ */
+proto.ondewo.nlu.TurnControlAck.prototype.setClientTurnId = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional TurnControlAckStatus turn_control_ack_status = 3;
+ * @return {!proto.ondewo.nlu.TurnControlAckStatus}
+ */
+proto.ondewo.nlu.TurnControlAck.prototype.getTurnControlAckStatus = function() {
+  return /** @type {!proto.ondewo.nlu.TurnControlAckStatus} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+};
+
+
+/**
+ * @param {!proto.ondewo.nlu.TurnControlAckStatus} value
+ * @return {!proto.ondewo.nlu.TurnControlAck} returns this
+ */
+proto.ondewo.nlu.TurnControlAck.prototype.setTurnControlAckStatus = function(value) {
+  return jspb.Message.setProto3EnumField(this, 3, value);
+};
+
+
+/**
+ * optional float server_cancel_duration_in_s = 4;
+ * @return {number}
+ */
+proto.ondewo.nlu.TurnControlAck.prototype.getServerCancelDurationInS = function() {
+  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 4, 0.0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.ondewo.nlu.TurnControlAck} returns this
+ */
+proto.ondewo.nlu.TurnControlAck.prototype.setServerCancelDurationInS = function(value) {
+  return jspb.Message.setProto3FloatField(this, 4, value);
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.ondewo.nlu.InterruptTurnRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.ondewo.nlu.InterruptTurnRequest.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.ondewo.nlu.InterruptTurnRequest} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.nlu.InterruptTurnRequest.toObject = function(includeInstance, msg) {
+  var f, obj = {
+session: jspb.Message.getFieldWithDefault(msg, 1, ""),
+turnControl: (f = msg.getTurnControl()) && proto.ondewo.nlu.TurnControl.toObject(includeInstance, f)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.ondewo.nlu.InterruptTurnRequest}
+ */
+proto.ondewo.nlu.InterruptTurnRequest.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.ondewo.nlu.InterruptTurnRequest;
+  return proto.ondewo.nlu.InterruptTurnRequest.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.ondewo.nlu.InterruptTurnRequest} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.ondewo.nlu.InterruptTurnRequest}
+ */
+proto.ondewo.nlu.InterruptTurnRequest.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setSession(value);
+      break;
+    case 2:
+      var value = new proto.ondewo.nlu.TurnControl;
+      reader.readMessage(value,proto.ondewo.nlu.TurnControl.deserializeBinaryFromReader);
+      msg.setTurnControl(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.ondewo.nlu.InterruptTurnRequest.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.ondewo.nlu.InterruptTurnRequest.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.ondewo.nlu.InterruptTurnRequest} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.nlu.InterruptTurnRequest.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getSession();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getTurnControl();
+  if (f != null) {
+    writer.writeMessage(
+      2,
+      f,
+      proto.ondewo.nlu.TurnControl.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * optional string session = 1;
+ * @return {string}
+ */
+proto.ondewo.nlu.InterruptTurnRequest.prototype.getSession = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.nlu.InterruptTurnRequest} returns this
+ */
+proto.ondewo.nlu.InterruptTurnRequest.prototype.setSession = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional TurnControl turn_control = 2;
+ * @return {?proto.ondewo.nlu.TurnControl}
+ */
+proto.ondewo.nlu.InterruptTurnRequest.prototype.getTurnControl = function() {
+  return /** @type{?proto.ondewo.nlu.TurnControl} */ (
+    jspb.Message.getWrapperField(this, proto.ondewo.nlu.TurnControl, 2));
+};
+
+
+/**
+ * @param {?proto.ondewo.nlu.TurnControl|undefined} value
+ * @return {!proto.ondewo.nlu.InterruptTurnRequest} returns this
+*/
+proto.ondewo.nlu.InterruptTurnRequest.prototype.setTurnControl = function(value) {
+  return jspb.Message.setWrapperField(this, 2, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.ondewo.nlu.InterruptTurnRequest} returns this
+ */
+proto.ondewo.nlu.InterruptTurnRequest.prototype.clearTurnControl = function() {
+  return this.setTurnControl(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.nlu.InterruptTurnRequest.prototype.hasTurnControl = function() {
+  return jspb.Message.getField(this, 2) != null;
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.ondewo.nlu.InterruptTurnResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.ondewo.nlu.InterruptTurnResponse.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.ondewo.nlu.InterruptTurnResponse} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.nlu.InterruptTurnResponse.toObject = function(includeInstance, msg) {
+  var f, obj = {
+turnControlAck: (f = msg.getTurnControlAck()) && proto.ondewo.nlu.TurnControlAck.toObject(includeInstance, f)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.ondewo.nlu.InterruptTurnResponse}
+ */
+proto.ondewo.nlu.InterruptTurnResponse.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.ondewo.nlu.InterruptTurnResponse;
+  return proto.ondewo.nlu.InterruptTurnResponse.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.ondewo.nlu.InterruptTurnResponse} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.ondewo.nlu.InterruptTurnResponse}
+ */
+proto.ondewo.nlu.InterruptTurnResponse.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = new proto.ondewo.nlu.TurnControlAck;
+      reader.readMessage(value,proto.ondewo.nlu.TurnControlAck.deserializeBinaryFromReader);
+      msg.setTurnControlAck(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.ondewo.nlu.InterruptTurnResponse.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.ondewo.nlu.InterruptTurnResponse.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.ondewo.nlu.InterruptTurnResponse} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.nlu.InterruptTurnResponse.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getTurnControlAck();
+  if (f != null) {
+    writer.writeMessage(
+      1,
+      f,
+      proto.ondewo.nlu.TurnControlAck.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * optional TurnControlAck turn_control_ack = 1;
+ * @return {?proto.ondewo.nlu.TurnControlAck}
+ */
+proto.ondewo.nlu.InterruptTurnResponse.prototype.getTurnControlAck = function() {
+  return /** @type{?proto.ondewo.nlu.TurnControlAck} */ (
+    jspb.Message.getWrapperField(this, proto.ondewo.nlu.TurnControlAck, 1));
+};
+
+
+/**
+ * @param {?proto.ondewo.nlu.TurnControlAck|undefined} value
+ * @return {!proto.ondewo.nlu.InterruptTurnResponse} returns this
+*/
+proto.ondewo.nlu.InterruptTurnResponse.prototype.setTurnControlAck = function(value) {
+  return jspb.Message.setWrapperField(this, 1, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.ondewo.nlu.InterruptTurnResponse} returns this
+ */
+proto.ondewo.nlu.InterruptTurnResponse.prototype.clearTurnControlAck = function() {
+  return this.setTurnControlAck(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.nlu.InterruptTurnResponse.prototype.hasTurnControlAck = function() {
+  return jspb.Message.getField(this, 1) != null;
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.ondewo.nlu.WarmTransferIntroConfig.prototype.toObject = function(opt_includeInstance) {
+  return proto.ondewo.nlu.WarmTransferIntroConfig.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.ondewo.nlu.WarmTransferIntroConfig} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.nlu.WarmTransferIntroConfig.toObject = function(includeInstance, msg) {
+  var f, obj = {
+introPrompt: jspb.Message.getFieldWithDefault(msg, 1, ""),
+textSource: jspb.Message.getFieldWithDefault(msg, 2, 0),
+readyQuestion: jspb.Message.getFieldWithDefault(msg, 3, ""),
+confirmHumanBeforeIntro: (f = jspb.Message.getBooleanField(msg, 4)) == null ? undefined : f,
+acceptQuestion: jspb.Message.getFieldWithDefault(msg, 5, ""),
+declineReasonQuestion: (f = jspb.Message.getField(msg, 6)) == null ? undefined : f,
+callerDeclinedMessage: jspb.Message.getFieldWithDefault(msg, 7, ""),
+callerUnreachableMessage: jspb.Message.getFieldWithDefault(msg, 8, ""),
+acceptDtmf: jspb.Message.getFieldWithDefault(msg, 9, ""),
+declineDtmf: jspb.Message.getFieldWithDefault(msg, 10, ""),
+calleeDisplayName: jspb.Message.getFieldWithDefault(msg, 11, ""),
+calleeDescription: jspb.Message.getFieldWithDefault(msg, 12, ""),
+llmCcaiServiceName: jspb.Message.getFieldWithDefault(msg, 13, ""),
+maxHistorySteps: jspb.Message.getFieldWithDefault(msg, 14, 0),
+decisionTimeoutS: jspb.Message.getFieldWithDefault(msg, 15, 0),
+projectDisplayName: jspb.Message.getFieldWithDefault(msg, 16, "")
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.ondewo.nlu.WarmTransferIntroConfig}
+ */
+proto.ondewo.nlu.WarmTransferIntroConfig.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.ondewo.nlu.WarmTransferIntroConfig;
+  return proto.ondewo.nlu.WarmTransferIntroConfig.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.ondewo.nlu.WarmTransferIntroConfig} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.ondewo.nlu.WarmTransferIntroConfig}
+ */
+proto.ondewo.nlu.WarmTransferIntroConfig.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setIntroPrompt(value);
+      break;
+    case 2:
+      var value = /** @type {!proto.ondewo.nlu.WarmTransferIntroTextSource} */ (reader.readEnum());
+      msg.setTextSource(value);
+      break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setReadyQuestion(value);
+      break;
+    case 4:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setConfirmHumanBeforeIntro(value);
+      break;
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setAcceptQuestion(value);
+      break;
+    case 6:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setDeclineReasonQuestion(value);
+      break;
+    case 7:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setCallerDeclinedMessage(value);
+      break;
+    case 8:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setCallerUnreachableMessage(value);
+      break;
+    case 9:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setAcceptDtmf(value);
+      break;
+    case 10:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setDeclineDtmf(value);
+      break;
+    case 11:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setCalleeDisplayName(value);
+      break;
+    case 12:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setCalleeDescription(value);
+      break;
+    case 13:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setLlmCcaiServiceName(value);
+      break;
+    case 14:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setMaxHistorySteps(value);
+      break;
+    case 15:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setDecisionTimeoutS(value);
+      break;
+    case 16:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setProjectDisplayName(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.ondewo.nlu.WarmTransferIntroConfig.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.ondewo.nlu.WarmTransferIntroConfig.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.ondewo.nlu.WarmTransferIntroConfig} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.nlu.WarmTransferIntroConfig.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getIntroPrompt();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getTextSource();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      2,
+      f
+    );
+  }
+  f = message.getReadyQuestion();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
+      f
+    );
+  }
+  f = /** @type {boolean} */ (jspb.Message.getField(message, 4));
+  if (f != null) {
+    writer.writeBool(
+      4,
+      f
+    );
+  }
+  f = message.getAcceptQuestion();
+  if (f.length > 0) {
+    writer.writeString(
+      5,
+      f
+    );
+  }
+  f = /** @type {string} */ (jspb.Message.getField(message, 6));
+  if (f != null) {
+    writer.writeString(
+      6,
+      f
+    );
+  }
+  f = message.getCallerDeclinedMessage();
+  if (f.length > 0) {
+    writer.writeString(
+      7,
+      f
+    );
+  }
+  f = message.getCallerUnreachableMessage();
+  if (f.length > 0) {
+    writer.writeString(
+      8,
+      f
+    );
+  }
+  f = message.getAcceptDtmf();
+  if (f.length > 0) {
+    writer.writeString(
+      9,
+      f
+    );
+  }
+  f = message.getDeclineDtmf();
+  if (f.length > 0) {
+    writer.writeString(
+      10,
+      f
+    );
+  }
+  f = message.getCalleeDisplayName();
+  if (f.length > 0) {
+    writer.writeString(
+      11,
+      f
+    );
+  }
+  f = message.getCalleeDescription();
+  if (f.length > 0) {
+    writer.writeString(
+      12,
+      f
+    );
+  }
+  f = message.getLlmCcaiServiceName();
+  if (f.length > 0) {
+    writer.writeString(
+      13,
+      f
+    );
+  }
+  f = message.getMaxHistorySteps();
+  if (f !== 0) {
+    writer.writeInt32(
+      14,
+      f
+    );
+  }
+  f = message.getDecisionTimeoutS();
+  if (f !== 0) {
+    writer.writeInt32(
+      15,
+      f
+    );
+  }
+  f = message.getProjectDisplayName();
+  if (f.length > 0) {
+    writer.writeString(
+      16,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string intro_prompt = 1;
+ * @return {string}
+ */
+proto.ondewo.nlu.WarmTransferIntroConfig.prototype.getIntroPrompt = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.nlu.WarmTransferIntroConfig} returns this
+ */
+proto.ondewo.nlu.WarmTransferIntroConfig.prototype.setIntroPrompt = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional WarmTransferIntroTextSource text_source = 2;
+ * @return {!proto.ondewo.nlu.WarmTransferIntroTextSource}
+ */
+proto.ondewo.nlu.WarmTransferIntroConfig.prototype.getTextSource = function() {
+  return /** @type {!proto.ondewo.nlu.WarmTransferIntroTextSource} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+};
+
+
+/**
+ * @param {!proto.ondewo.nlu.WarmTransferIntroTextSource} value
+ * @return {!proto.ondewo.nlu.WarmTransferIntroConfig} returns this
+ */
+proto.ondewo.nlu.WarmTransferIntroConfig.prototype.setTextSource = function(value) {
+  return jspb.Message.setProto3EnumField(this, 2, value);
+};
+
+
+/**
+ * optional string ready_question = 3;
+ * @return {string}
+ */
+proto.ondewo.nlu.WarmTransferIntroConfig.prototype.getReadyQuestion = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.nlu.WarmTransferIntroConfig} returns this
+ */
+proto.ondewo.nlu.WarmTransferIntroConfig.prototype.setReadyQuestion = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
+};
+
+
+/**
+ * optional bool confirm_human_before_intro = 4;
+ * @return {boolean}
+ */
+proto.ondewo.nlu.WarmTransferIntroConfig.prototype.getConfirmHumanBeforeIntro = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 4, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.ondewo.nlu.WarmTransferIntroConfig} returns this
+ */
+proto.ondewo.nlu.WarmTransferIntroConfig.prototype.setConfirmHumanBeforeIntro = function(value) {
+  return jspb.Message.setField(this, 4, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.ondewo.nlu.WarmTransferIntroConfig} returns this
+ */
+proto.ondewo.nlu.WarmTransferIntroConfig.prototype.clearConfirmHumanBeforeIntro = function() {
+  return jspb.Message.setField(this, 4, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.nlu.WarmTransferIntroConfig.prototype.hasConfirmHumanBeforeIntro = function() {
+  return jspb.Message.getField(this, 4) != null;
+};
+
+
+/**
+ * optional string accept_question = 5;
+ * @return {string}
+ */
+proto.ondewo.nlu.WarmTransferIntroConfig.prototype.getAcceptQuestion = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.nlu.WarmTransferIntroConfig} returns this
+ */
+proto.ondewo.nlu.WarmTransferIntroConfig.prototype.setAcceptQuestion = function(value) {
+  return jspb.Message.setProto3StringField(this, 5, value);
+};
+
+
+/**
+ * optional string decline_reason_question = 6;
+ * @return {string}
+ */
+proto.ondewo.nlu.WarmTransferIntroConfig.prototype.getDeclineReasonQuestion = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.nlu.WarmTransferIntroConfig} returns this
+ */
+proto.ondewo.nlu.WarmTransferIntroConfig.prototype.setDeclineReasonQuestion = function(value) {
+  return jspb.Message.setField(this, 6, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.ondewo.nlu.WarmTransferIntroConfig} returns this
+ */
+proto.ondewo.nlu.WarmTransferIntroConfig.prototype.clearDeclineReasonQuestion = function() {
+  return jspb.Message.setField(this, 6, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.nlu.WarmTransferIntroConfig.prototype.hasDeclineReasonQuestion = function() {
+  return jspb.Message.getField(this, 6) != null;
+};
+
+
+/**
+ * optional string caller_declined_message = 7;
+ * @return {string}
+ */
+proto.ondewo.nlu.WarmTransferIntroConfig.prototype.getCallerDeclinedMessage = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.nlu.WarmTransferIntroConfig} returns this
+ */
+proto.ondewo.nlu.WarmTransferIntroConfig.prototype.setCallerDeclinedMessage = function(value) {
+  return jspb.Message.setProto3StringField(this, 7, value);
+};
+
+
+/**
+ * optional string caller_unreachable_message = 8;
+ * @return {string}
+ */
+proto.ondewo.nlu.WarmTransferIntroConfig.prototype.getCallerUnreachableMessage = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.nlu.WarmTransferIntroConfig} returns this
+ */
+proto.ondewo.nlu.WarmTransferIntroConfig.prototype.setCallerUnreachableMessage = function(value) {
+  return jspb.Message.setProto3StringField(this, 8, value);
+};
+
+
+/**
+ * optional string accept_dtmf = 9;
+ * @return {string}
+ */
+proto.ondewo.nlu.WarmTransferIntroConfig.prototype.getAcceptDtmf = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 9, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.nlu.WarmTransferIntroConfig} returns this
+ */
+proto.ondewo.nlu.WarmTransferIntroConfig.prototype.setAcceptDtmf = function(value) {
+  return jspb.Message.setProto3StringField(this, 9, value);
+};
+
+
+/**
+ * optional string decline_dtmf = 10;
+ * @return {string}
+ */
+proto.ondewo.nlu.WarmTransferIntroConfig.prototype.getDeclineDtmf = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 10, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.nlu.WarmTransferIntroConfig} returns this
+ */
+proto.ondewo.nlu.WarmTransferIntroConfig.prototype.setDeclineDtmf = function(value) {
+  return jspb.Message.setProto3StringField(this, 10, value);
+};
+
+
+/**
+ * optional string callee_display_name = 11;
+ * @return {string}
+ */
+proto.ondewo.nlu.WarmTransferIntroConfig.prototype.getCalleeDisplayName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 11, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.nlu.WarmTransferIntroConfig} returns this
+ */
+proto.ondewo.nlu.WarmTransferIntroConfig.prototype.setCalleeDisplayName = function(value) {
+  return jspb.Message.setProto3StringField(this, 11, value);
+};
+
+
+/**
+ * optional string callee_description = 12;
+ * @return {string}
+ */
+proto.ondewo.nlu.WarmTransferIntroConfig.prototype.getCalleeDescription = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 12, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.nlu.WarmTransferIntroConfig} returns this
+ */
+proto.ondewo.nlu.WarmTransferIntroConfig.prototype.setCalleeDescription = function(value) {
+  return jspb.Message.setProto3StringField(this, 12, value);
+};
+
+
+/**
+ * optional string llm_ccai_service_name = 13;
+ * @return {string}
+ */
+proto.ondewo.nlu.WarmTransferIntroConfig.prototype.getLlmCcaiServiceName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 13, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.nlu.WarmTransferIntroConfig} returns this
+ */
+proto.ondewo.nlu.WarmTransferIntroConfig.prototype.setLlmCcaiServiceName = function(value) {
+  return jspb.Message.setProto3StringField(this, 13, value);
+};
+
+
+/**
+ * optional int32 max_history_steps = 14;
+ * @return {number}
+ */
+proto.ondewo.nlu.WarmTransferIntroConfig.prototype.getMaxHistorySteps = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 14, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.ondewo.nlu.WarmTransferIntroConfig} returns this
+ */
+proto.ondewo.nlu.WarmTransferIntroConfig.prototype.setMaxHistorySteps = function(value) {
+  return jspb.Message.setProto3IntField(this, 14, value);
+};
+
+
+/**
+ * optional int32 decision_timeout_s = 15;
+ * @return {number}
+ */
+proto.ondewo.nlu.WarmTransferIntroConfig.prototype.getDecisionTimeoutS = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 15, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.ondewo.nlu.WarmTransferIntroConfig} returns this
+ */
+proto.ondewo.nlu.WarmTransferIntroConfig.prototype.setDecisionTimeoutS = function(value) {
+  return jspb.Message.setProto3IntField(this, 15, value);
+};
+
+
+/**
+ * optional string project_display_name = 16;
+ * @return {string}
+ */
+proto.ondewo.nlu.WarmTransferIntroConfig.prototype.getProjectDisplayName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 16, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.nlu.WarmTransferIntroConfig} returns this
+ */
+proto.ondewo.nlu.WarmTransferIntroConfig.prototype.setProjectDisplayName = function(value) {
+  return jspb.Message.setProto3StringField(this, 16, value);
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.ondewo.nlu.PrepareWarmTransferIntroRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.ondewo.nlu.PrepareWarmTransferIntroRequest.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.ondewo.nlu.PrepareWarmTransferIntroRequest} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.nlu.PrepareWarmTransferIntroRequest.toObject = function(includeInstance, msg) {
+  var f, obj = {
+introSession: jspb.Message.getFieldWithDefault(msg, 1, ""),
+sourceSession: jspb.Message.getFieldWithDefault(msg, 2, ""),
+config: (f = msg.getConfig()) && proto.ondewo.nlu.WarmTransferIntroConfig.toObject(includeInstance, f),
+languageCode: jspb.Message.getFieldWithDefault(msg, 4, ""),
+transferRequestId: jspb.Message.getFieldWithDefault(msg, 5, "")
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.ondewo.nlu.PrepareWarmTransferIntroRequest}
+ */
+proto.ondewo.nlu.PrepareWarmTransferIntroRequest.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.ondewo.nlu.PrepareWarmTransferIntroRequest;
+  return proto.ondewo.nlu.PrepareWarmTransferIntroRequest.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.ondewo.nlu.PrepareWarmTransferIntroRequest} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.ondewo.nlu.PrepareWarmTransferIntroRequest}
+ */
+proto.ondewo.nlu.PrepareWarmTransferIntroRequest.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setIntroSession(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setSourceSession(value);
+      break;
+    case 3:
+      var value = new proto.ondewo.nlu.WarmTransferIntroConfig;
+      reader.readMessage(value,proto.ondewo.nlu.WarmTransferIntroConfig.deserializeBinaryFromReader);
+      msg.setConfig(value);
+      break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setLanguageCode(value);
+      break;
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setTransferRequestId(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.ondewo.nlu.PrepareWarmTransferIntroRequest.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.ondewo.nlu.PrepareWarmTransferIntroRequest.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.ondewo.nlu.PrepareWarmTransferIntroRequest} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.nlu.PrepareWarmTransferIntroRequest.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getIntroSession();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getSourceSession();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+  f = message.getConfig();
+  if (f != null) {
+    writer.writeMessage(
+      3,
+      f,
+      proto.ondewo.nlu.WarmTransferIntroConfig.serializeBinaryToWriter
+    );
+  }
+  f = message.getLanguageCode();
+  if (f.length > 0) {
+    writer.writeString(
+      4,
+      f
+    );
+  }
+  f = message.getTransferRequestId();
+  if (f.length > 0) {
+    writer.writeString(
+      5,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string intro_session = 1;
+ * @return {string}
+ */
+proto.ondewo.nlu.PrepareWarmTransferIntroRequest.prototype.getIntroSession = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.nlu.PrepareWarmTransferIntroRequest} returns this
+ */
+proto.ondewo.nlu.PrepareWarmTransferIntroRequest.prototype.setIntroSession = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional string source_session = 2;
+ * @return {string}
+ */
+proto.ondewo.nlu.PrepareWarmTransferIntroRequest.prototype.getSourceSession = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.nlu.PrepareWarmTransferIntroRequest} returns this
+ */
+proto.ondewo.nlu.PrepareWarmTransferIntroRequest.prototype.setSourceSession = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional WarmTransferIntroConfig config = 3;
+ * @return {?proto.ondewo.nlu.WarmTransferIntroConfig}
+ */
+proto.ondewo.nlu.PrepareWarmTransferIntroRequest.prototype.getConfig = function() {
+  return /** @type{?proto.ondewo.nlu.WarmTransferIntroConfig} */ (
+    jspb.Message.getWrapperField(this, proto.ondewo.nlu.WarmTransferIntroConfig, 3));
+};
+
+
+/**
+ * @param {?proto.ondewo.nlu.WarmTransferIntroConfig|undefined} value
+ * @return {!proto.ondewo.nlu.PrepareWarmTransferIntroRequest} returns this
+*/
+proto.ondewo.nlu.PrepareWarmTransferIntroRequest.prototype.setConfig = function(value) {
+  return jspb.Message.setWrapperField(this, 3, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.ondewo.nlu.PrepareWarmTransferIntroRequest} returns this
+ */
+proto.ondewo.nlu.PrepareWarmTransferIntroRequest.prototype.clearConfig = function() {
+  return this.setConfig(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ondewo.nlu.PrepareWarmTransferIntroRequest.prototype.hasConfig = function() {
+  return jspb.Message.getField(this, 3) != null;
+};
+
+
+/**
+ * optional string language_code = 4;
+ * @return {string}
+ */
+proto.ondewo.nlu.PrepareWarmTransferIntroRequest.prototype.getLanguageCode = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.nlu.PrepareWarmTransferIntroRequest} returns this
+ */
+proto.ondewo.nlu.PrepareWarmTransferIntroRequest.prototype.setLanguageCode = function(value) {
+  return jspb.Message.setProto3StringField(this, 4, value);
+};
+
+
+/**
+ * optional string transfer_request_id = 5;
+ * @return {string}
+ */
+proto.ondewo.nlu.PrepareWarmTransferIntroRequest.prototype.getTransferRequestId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.nlu.PrepareWarmTransferIntroRequest} returns this
+ */
+proto.ondewo.nlu.PrepareWarmTransferIntroRequest.prototype.setTransferRequestId = function(value) {
+  return jspb.Message.setProto3StringField(this, 5, value);
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.ondewo.nlu.PrepareWarmTransferIntroResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.ondewo.nlu.PrepareWarmTransferIntroResponse.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.ondewo.nlu.PrepareWarmTransferIntroResponse} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.nlu.PrepareWarmTransferIntroResponse.toObject = function(includeInstance, msg) {
+  var f, obj = {
+textSourceUsed: jspb.Message.getFieldWithDefault(msg, 1, 0),
+textFellBack: jspb.Message.getBooleanFieldWithDefault(msg, 2, false),
+introTextChars: jspb.Message.getFieldWithDefault(msg, 3, 0),
+promptDigest: jspb.Message.getFieldWithDefault(msg, 4, "")
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.ondewo.nlu.PrepareWarmTransferIntroResponse}
+ */
+proto.ondewo.nlu.PrepareWarmTransferIntroResponse.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.ondewo.nlu.PrepareWarmTransferIntroResponse;
+  return proto.ondewo.nlu.PrepareWarmTransferIntroResponse.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.ondewo.nlu.PrepareWarmTransferIntroResponse} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.ondewo.nlu.PrepareWarmTransferIntroResponse}
+ */
+proto.ondewo.nlu.PrepareWarmTransferIntroResponse.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {!proto.ondewo.nlu.WarmTransferIntroTextSource} */ (reader.readEnum());
+      msg.setTextSourceUsed(value);
+      break;
+    case 2:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setTextFellBack(value);
+      break;
+    case 3:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setIntroTextChars(value);
+      break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setPromptDigest(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.ondewo.nlu.PrepareWarmTransferIntroResponse.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.ondewo.nlu.PrepareWarmTransferIntroResponse.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.ondewo.nlu.PrepareWarmTransferIntroResponse} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.nlu.PrepareWarmTransferIntroResponse.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getTextSourceUsed();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      1,
+      f
+    );
+  }
+  f = message.getTextFellBack();
+  if (f) {
+    writer.writeBool(
+      2,
+      f
+    );
+  }
+  f = message.getIntroTextChars();
+  if (f !== 0) {
+    writer.writeInt32(
+      3,
+      f
+    );
+  }
+  f = message.getPromptDigest();
+  if (f.length > 0) {
+    writer.writeString(
+      4,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional WarmTransferIntroTextSource text_source_used = 1;
+ * @return {!proto.ondewo.nlu.WarmTransferIntroTextSource}
+ */
+proto.ondewo.nlu.PrepareWarmTransferIntroResponse.prototype.getTextSourceUsed = function() {
+  return /** @type {!proto.ondewo.nlu.WarmTransferIntroTextSource} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+};
+
+
+/**
+ * @param {!proto.ondewo.nlu.WarmTransferIntroTextSource} value
+ * @return {!proto.ondewo.nlu.PrepareWarmTransferIntroResponse} returns this
+ */
+proto.ondewo.nlu.PrepareWarmTransferIntroResponse.prototype.setTextSourceUsed = function(value) {
+  return jspb.Message.setProto3EnumField(this, 1, value);
+};
+
+
+/**
+ * optional bool text_fell_back = 2;
+ * @return {boolean}
+ */
+proto.ondewo.nlu.PrepareWarmTransferIntroResponse.prototype.getTextFellBack = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 2, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.ondewo.nlu.PrepareWarmTransferIntroResponse} returns this
+ */
+proto.ondewo.nlu.PrepareWarmTransferIntroResponse.prototype.setTextFellBack = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 2, value);
+};
+
+
+/**
+ * optional int32 intro_text_chars = 3;
+ * @return {number}
+ */
+proto.ondewo.nlu.PrepareWarmTransferIntroResponse.prototype.getIntroTextChars = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.ondewo.nlu.PrepareWarmTransferIntroResponse} returns this
+ */
+proto.ondewo.nlu.PrepareWarmTransferIntroResponse.prototype.setIntroTextChars = function(value) {
+  return jspb.Message.setProto3IntField(this, 3, value);
+};
+
+
+/**
+ * optional string prompt_digest = 4;
+ * @return {string}
+ */
+proto.ondewo.nlu.PrepareWarmTransferIntroResponse.prototype.getPromptDigest = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.nlu.PrepareWarmTransferIntroResponse} returns this
+ */
+proto.ondewo.nlu.PrepareWarmTransferIntroResponse.prototype.setPromptDigest = function(value) {
+  return jspb.Message.setProto3StringField(this, 4, value);
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.ondewo.nlu.GetWarmTransferIntroOutcomeRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.ondewo.nlu.GetWarmTransferIntroOutcomeRequest.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.ondewo.nlu.GetWarmTransferIntroOutcomeRequest} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.nlu.GetWarmTransferIntroOutcomeRequest.toObject = function(includeInstance, msg) {
+  var f, obj = {
+introSession: jspb.Message.getFieldWithDefault(msg, 1, "")
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.ondewo.nlu.GetWarmTransferIntroOutcomeRequest}
+ */
+proto.ondewo.nlu.GetWarmTransferIntroOutcomeRequest.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.ondewo.nlu.GetWarmTransferIntroOutcomeRequest;
+  return proto.ondewo.nlu.GetWarmTransferIntroOutcomeRequest.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.ondewo.nlu.GetWarmTransferIntroOutcomeRequest} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.ondewo.nlu.GetWarmTransferIntroOutcomeRequest}
+ */
+proto.ondewo.nlu.GetWarmTransferIntroOutcomeRequest.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setIntroSession(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.ondewo.nlu.GetWarmTransferIntroOutcomeRequest.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.ondewo.nlu.GetWarmTransferIntroOutcomeRequest.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.ondewo.nlu.GetWarmTransferIntroOutcomeRequest} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.nlu.GetWarmTransferIntroOutcomeRequest.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getIntroSession();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string intro_session = 1;
+ * @return {string}
+ */
+proto.ondewo.nlu.GetWarmTransferIntroOutcomeRequest.prototype.getIntroSession = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.nlu.GetWarmTransferIntroOutcomeRequest} returns this
+ */
+proto.ondewo.nlu.GetWarmTransferIntroOutcomeRequest.prototype.setIntroSession = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.ondewo.nlu.WarmTransferIntroOutcome.prototype.toObject = function(opt_includeInstance) {
+  return proto.ondewo.nlu.WarmTransferIntroOutcome.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.ondewo.nlu.WarmTransferIntroOutcome} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.nlu.WarmTransferIntroOutcome.toObject = function(includeInstance, msg) {
+  var f, obj = {
+decision: jspb.Message.getFieldWithDefault(msg, 1, 0),
+decidedBy: jspb.Message.getFieldWithDefault(msg, 2, 0),
+declineReasonPresent: jspb.Message.getBooleanFieldWithDefault(msg, 3, false),
+stage: jspb.Message.getFieldWithDefault(msg, 4, 0),
+cause: jspb.Message.getFieldWithDefault(msg, 5, "")
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.ondewo.nlu.WarmTransferIntroOutcome}
+ */
+proto.ondewo.nlu.WarmTransferIntroOutcome.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.ondewo.nlu.WarmTransferIntroOutcome;
+  return proto.ondewo.nlu.WarmTransferIntroOutcome.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.ondewo.nlu.WarmTransferIntroOutcome} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.ondewo.nlu.WarmTransferIntroOutcome}
+ */
+proto.ondewo.nlu.WarmTransferIntroOutcome.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {!proto.ondewo.nlu.WarmTransferIntroDecision} */ (reader.readEnum());
+      msg.setDecision(value);
+      break;
+    case 2:
+      var value = /** @type {!proto.ondewo.nlu.WarmTransferIntroDecidedBy} */ (reader.readEnum());
+      msg.setDecidedBy(value);
+      break;
+    case 3:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setDeclineReasonPresent(value);
+      break;
+    case 4:
+      var value = /** @type {!proto.ondewo.nlu.WarmTransferIntroStage} */ (reader.readEnum());
+      msg.setStage(value);
+      break;
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setCause(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.ondewo.nlu.WarmTransferIntroOutcome.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.ondewo.nlu.WarmTransferIntroOutcome.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.ondewo.nlu.WarmTransferIntroOutcome} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ondewo.nlu.WarmTransferIntroOutcome.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getDecision();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      1,
+      f
+    );
+  }
+  f = message.getDecidedBy();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      2,
+      f
+    );
+  }
+  f = message.getDeclineReasonPresent();
+  if (f) {
+    writer.writeBool(
+      3,
+      f
+    );
+  }
+  f = message.getStage();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      4,
+      f
+    );
+  }
+  f = message.getCause();
+  if (f.length > 0) {
+    writer.writeString(
+      5,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional WarmTransferIntroDecision decision = 1;
+ * @return {!proto.ondewo.nlu.WarmTransferIntroDecision}
+ */
+proto.ondewo.nlu.WarmTransferIntroOutcome.prototype.getDecision = function() {
+  return /** @type {!proto.ondewo.nlu.WarmTransferIntroDecision} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+};
+
+
+/**
+ * @param {!proto.ondewo.nlu.WarmTransferIntroDecision} value
+ * @return {!proto.ondewo.nlu.WarmTransferIntroOutcome} returns this
+ */
+proto.ondewo.nlu.WarmTransferIntroOutcome.prototype.setDecision = function(value) {
+  return jspb.Message.setProto3EnumField(this, 1, value);
+};
+
+
+/**
+ * optional WarmTransferIntroDecidedBy decided_by = 2;
+ * @return {!proto.ondewo.nlu.WarmTransferIntroDecidedBy}
+ */
+proto.ondewo.nlu.WarmTransferIntroOutcome.prototype.getDecidedBy = function() {
+  return /** @type {!proto.ondewo.nlu.WarmTransferIntroDecidedBy} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+};
+
+
+/**
+ * @param {!proto.ondewo.nlu.WarmTransferIntroDecidedBy} value
+ * @return {!proto.ondewo.nlu.WarmTransferIntroOutcome} returns this
+ */
+proto.ondewo.nlu.WarmTransferIntroOutcome.prototype.setDecidedBy = function(value) {
+  return jspb.Message.setProto3EnumField(this, 2, value);
+};
+
+
+/**
+ * optional bool decline_reason_present = 3;
+ * @return {boolean}
+ */
+proto.ondewo.nlu.WarmTransferIntroOutcome.prototype.getDeclineReasonPresent = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 3, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.ondewo.nlu.WarmTransferIntroOutcome} returns this
+ */
+proto.ondewo.nlu.WarmTransferIntroOutcome.prototype.setDeclineReasonPresent = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 3, value);
+};
+
+
+/**
+ * optional WarmTransferIntroStage stage = 4;
+ * @return {!proto.ondewo.nlu.WarmTransferIntroStage}
+ */
+proto.ondewo.nlu.WarmTransferIntroOutcome.prototype.getStage = function() {
+  return /** @type {!proto.ondewo.nlu.WarmTransferIntroStage} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
+};
+
+
+/**
+ * @param {!proto.ondewo.nlu.WarmTransferIntroStage} value
+ * @return {!proto.ondewo.nlu.WarmTransferIntroOutcome} returns this
+ */
+proto.ondewo.nlu.WarmTransferIntroOutcome.prototype.setStage = function(value) {
+  return jspb.Message.setProto3EnumField(this, 4, value);
+};
+
+
+/**
+ * optional string cause = 5;
+ * @return {string}
+ */
+proto.ondewo.nlu.WarmTransferIntroOutcome.prototype.getCause = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.nlu.WarmTransferIntroOutcome} returns this
+ */
+proto.ondewo.nlu.WarmTransferIntroOutcome.prototype.setCause = function(value) {
+  return jspb.Message.setProto3StringField(this, 5, value);
+};
+
+
 
 
 
@@ -18996,10 +23003,10 @@ proto.ondewo.nlu.StreamingRecognitionResult.prototype.toObject = function(opt_in
  */
 proto.ondewo.nlu.StreamingRecognitionResult.toObject = function(includeInstance, msg) {
   var f, obj = {
-    messageType: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    transcript: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    isFinal: jspb.Message.getBooleanFieldWithDefault(msg, 3, false),
-    confidence: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0)
+messageType: jspb.Message.getFieldWithDefault(msg, 1, 0),
+transcript: jspb.Message.getFieldWithDefault(msg, 2, ""),
+isFinal: jspb.Message.getBooleanFieldWithDefault(msg, 3, false),
+confidence: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0)
   };
 
   if (includeInstance) {
@@ -19232,10 +23239,10 @@ proto.ondewo.nlu.InputAudioConfig.prototype.toObject = function(opt_includeInsta
  */
 proto.ondewo.nlu.InputAudioConfig.toObject = function(includeInstance, msg) {
   var f, obj = {
-    audioEncoding: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    sampleRateHertz: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    languageCode: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    phraseHintsList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f
+audioEncoding: jspb.Message.getFieldWithDefault(msg, 1, 0),
+sampleRateHertz: jspb.Message.getFieldWithDefault(msg, 2, 0),
+languageCode: jspb.Message.getFieldWithDefault(msg, 3, ""),
+phraseHintsList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -19471,8 +23478,8 @@ proto.ondewo.nlu.TextInput.prototype.toObject = function(opt_includeInstance) {
  */
 proto.ondewo.nlu.TextInput.toObject = function(includeInstance, msg) {
   var f, obj = {
-    text: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    languageCode: jspb.Message.getFieldWithDefault(msg, 2, "")
+text: jspb.Message.getFieldWithDefault(msg, 1, ""),
+languageCode: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -19631,9 +23638,9 @@ proto.ondewo.nlu.EventInput.prototype.toObject = function(opt_includeInstance) {
  */
 proto.ondewo.nlu.EventInput.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    parameters: (f = msg.getParameters()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
-    languageCode: jspb.Message.getFieldWithDefault(msg, 3, "")
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+parameters: (f = msg.getParameters()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
+languageCode: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -19849,14 +23856,14 @@ proto.ondewo.nlu.Session.prototype.toObject = function(opt_includeInstance) {
  */
 proto.ondewo.nlu.Session.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    sessionStepsList: jspb.Message.toObjectList(msg.getSessionStepsList(),
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+sessionStepsList: jspb.Message.toObjectList(msg.getSessionStepsList(),
     proto.ondewo.nlu.SessionStep.toObject, includeInstance),
-    sessionInfo: (f = msg.getSessionInfo()) && proto.ondewo.nlu.SessionInfo.toObject(includeInstance, f),
-    createdAt: (f = msg.getCreatedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    modifiedAt: (f = msg.getModifiedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    createdBy: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    modifiedBy: jspb.Message.getFieldWithDefault(msg, 7, "")
+sessionInfo: (f = msg.getSessionInfo()) && proto.ondewo.nlu.SessionInfo.toObject(includeInstance, f),
+createdAt: (f = msg.getCreatedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+modifiedAt: (f = msg.getModifiedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+createdBy: jspb.Message.getFieldWithDefault(msg, 6, ""),
+modifiedBy: jspb.Message.getFieldWithDefault(msg, 7, "")
   };
 
   if (includeInstance) {
@@ -20261,19 +24268,19 @@ proto.ondewo.nlu.SessionStep.prototype.toObject = function(opt_includeInstance) 
  */
 proto.ondewo.nlu.SessionStep.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    detectIntentRequest: (f = msg.getDetectIntentRequest()) && proto.ondewo.nlu.DetectIntentRequest.toObject(includeInstance, f),
-    detectIntentResponse: (f = msg.getDetectIntentResponse()) && proto.ondewo.nlu.DetectIntentResponse.toObject(includeInstance, f),
-    contextsList: jspb.Message.toObjectList(msg.getContextsList(),
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+detectIntentRequest: (f = msg.getDetectIntentRequest()) && proto.ondewo.nlu.DetectIntentRequest.toObject(includeInstance, f),
+detectIntentResponse: (f = msg.getDetectIntentResponse()) && proto.ondewo.nlu.DetectIntentResponse.toObject(includeInstance, f),
+contextsList: jspb.Message.toObjectList(msg.getContextsList(),
     ondewo_nlu_context_pb.Context.toObject, includeInstance),
-    timestamp: (f = msg.getTimestamp()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    createdAt: (f = msg.getCreatedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    modifiedAt: (f = msg.getModifiedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    createdBy: jspb.Message.getFieldWithDefault(msg, 8, ""),
-    modifiedBy: jspb.Message.getFieldWithDefault(msg, 9, ""),
-    audioFileResourcesList: jspb.Message.toObjectList(msg.getAudioFileResourcesList(),
+timestamp: (f = msg.getTimestamp()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+createdAt: (f = msg.getCreatedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+modifiedAt: (f = msg.getModifiedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+createdBy: jspb.Message.getFieldWithDefault(msg, 8, ""),
+modifiedBy: jspb.Message.getFieldWithDefault(msg, 9, ""),
+audioFileResourcesList: jspb.Message.toObjectList(msg.getAudioFileResourcesList(),
     proto.ondewo.nlu.AudioFileResource.toObject, includeInstance),
-    llmTelemetryReport: (f = msg.getLlmTelemetryReport()) && proto.ondewo.nlu.LlmTelemetryReport.toObject(includeInstance, f)
+llmTelemetryReport: (f = msg.getLlmTelemetryReport()) && proto.ondewo.nlu.LlmTelemetryReport.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -20863,8 +24870,8 @@ proto.ondewo.nlu.GetSessionStepRequest.prototype.toObject = function(opt_include
  */
 proto.ondewo.nlu.GetSessionStepRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -21044,9 +25051,9 @@ proto.ondewo.nlu.UpdateSessionStepRequest.prototype.toObject = function(opt_incl
  */
 proto.ondewo.nlu.UpdateSessionStepRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    sessionStep: (f = msg.getSessionStep()) && proto.ondewo.nlu.SessionStep.toObject(includeInstance, f),
-    updateMask: (f = msg.getUpdateMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f),
-    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
+sessionStep: (f = msg.getSessionStep()) && proto.ondewo.nlu.SessionStep.toObject(includeInstance, f),
+updateMask: (f = msg.getUpdateMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f),
+fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -21297,7 +25304,7 @@ proto.ondewo.nlu.DeleteSessionStepRequest.prototype.toObject = function(opt_incl
  */
 proto.ondewo.nlu.DeleteSessionStepRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, "")
+name: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -21427,9 +25434,9 @@ proto.ondewo.nlu.CreateSessionStepRequest.prototype.toObject = function(opt_incl
  */
 proto.ondewo.nlu.CreateSessionStepRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    sessionId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    sessionStep: (f = msg.getSessionStep()) && proto.ondewo.nlu.SessionStep.toObject(includeInstance, f),
-    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
+sessionId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+sessionStep: (f = msg.getSessionStep()) && proto.ondewo.nlu.SessionStep.toObject(includeInstance, f),
+fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -21659,11 +25666,11 @@ proto.ondewo.nlu.ListSessionsRequest.prototype.toObject = function(opt_includeIn
  */
 proto.ondewo.nlu.ListSessionsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    parent: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    sessionView: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    pageToken: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    sessionFilter: (f = msg.getSessionFilter()) && proto.ondewo.nlu.SessionFilter.toObject(includeInstance, f),
-    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
+parent: jspb.Message.getFieldWithDefault(msg, 1, ""),
+sessionView: jspb.Message.getFieldWithDefault(msg, 2, 0),
+pageToken: jspb.Message.getFieldWithDefault(msg, 4, ""),
+sessionFilter: (f = msg.getSessionFilter()) && proto.ondewo.nlu.SessionFilter.toObject(includeInstance, f),
+fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -21951,10 +25958,10 @@ proto.ondewo.nlu.ContextFilter.prototype.toObject = function(opt_includeInstance
  */
 proto.ondewo.nlu.ContextFilter.toObject = function(includeInstance, msg) {
   var f, obj = {
-    contextName: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    key: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    value: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    operator: jspb.Message.getFieldWithDefault(msg, 4, 0)
+contextName: jspb.Message.getFieldWithDefault(msg, 1, ""),
+key: jspb.Message.getFieldWithDefault(msg, 2, ""),
+value: jspb.Message.getFieldWithDefault(msg, 3, ""),
+operator: jspb.Message.getFieldWithDefault(msg, 4, 0)
   };
 
   if (includeInstance) {
@@ -22178,59 +26185,59 @@ proto.ondewo.nlu.SessionFilter.prototype.toObject = function(opt_includeInstance
  */
 proto.ondewo.nlu.SessionFilter.toObject = function(includeInstance, msg) {
   var f, obj = {
-    languageCodesList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f,
-    matchedIntentsList: jspb.Message.toObjectList(msg.getMatchedIntentsList(),
+languageCodesList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f,
+matchedIntentsList: jspb.Message.toObjectList(msg.getMatchedIntentsList(),
     ondewo_nlu_intent_pb.Intent.toObject, includeInstance),
-    matchedEntityTypesList: jspb.Message.toObjectList(msg.getMatchedEntityTypesList(),
+matchedEntityTypesList: jspb.Message.toObjectList(msg.getMatchedEntityTypesList(),
     ondewo_nlu_entity_type_pb.EntityType.toObject, includeInstance),
-    minIntentsConfidenceMin: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0),
-    minIntentsConfidenceMax: jspb.Message.getFloatingPointFieldWithDefault(msg, 5, 0.0),
-    minEntityTypesConfidenceMin: jspb.Message.getFloatingPointFieldWithDefault(msg, 6, 0.0),
-    minEntityTypesConfidenceMax: jspb.Message.getFloatingPointFieldWithDefault(msg, 7, 0.0),
-    earliest: jspb.Message.getFloatingPointFieldWithDefault(msg, 8, 0.0),
-    latest: jspb.Message.getFloatingPointFieldWithDefault(msg, 9, 0.0),
-    minNumberTurns: jspb.Message.getFieldWithDefault(msg, 10, 0),
-    maxNumberTurns: jspb.Message.getFieldWithDefault(msg, 11, 0),
-    labelsList: (f = jspb.Message.getRepeatedField(msg, 12)) == null ? undefined : f,
-    userIdsList: (f = jspb.Message.getRepeatedField(msg, 13)) == null ? undefined : f,
-    intentTagsList: (f = jspb.Message.getRepeatedField(msg, 14)) == null ? undefined : f,
-    sessionIdsList: (f = jspb.Message.getRepeatedField(msg, 15)) == null ? undefined : f,
-    inputContextsList: jspb.Message.toObjectList(msg.getInputContextsList(),
+minIntentsConfidenceMin: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0),
+minIntentsConfidenceMax: jspb.Message.getFloatingPointFieldWithDefault(msg, 5, 0.0),
+minEntityTypesConfidenceMin: jspb.Message.getFloatingPointFieldWithDefault(msg, 6, 0.0),
+minEntityTypesConfidenceMax: jspb.Message.getFloatingPointFieldWithDefault(msg, 7, 0.0),
+earliest: jspb.Message.getFloatingPointFieldWithDefault(msg, 8, 0.0),
+latest: jspb.Message.getFloatingPointFieldWithDefault(msg, 9, 0.0),
+minNumberTurns: jspb.Message.getFieldWithDefault(msg, 10, 0),
+maxNumberTurns: jspb.Message.getFieldWithDefault(msg, 11, 0),
+labelsList: (f = jspb.Message.getRepeatedField(msg, 12)) == null ? undefined : f,
+userIdsList: (f = jspb.Message.getRepeatedField(msg, 13)) == null ? undefined : f,
+intentTagsList: (f = jspb.Message.getRepeatedField(msg, 14)) == null ? undefined : f,
+sessionIdsList: (f = jspb.Message.getRepeatedField(msg, 15)) == null ? undefined : f,
+inputContextsList: jspb.Message.toObjectList(msg.getInputContextsList(),
     ondewo_nlu_context_pb.Context.toObject, includeInstance),
-    outputContextsList: jspb.Message.toObjectList(msg.getOutputContextsList(),
+outputContextsList: jspb.Message.toObjectList(msg.getOutputContextsList(),
     ondewo_nlu_context_pb.Context.toObject, includeInstance),
-    durationInSMin: jspb.Message.getFloatingPointFieldWithDefault(msg, 18, 0.0),
-    durationInSMax: jspb.Message.getFloatingPointFieldWithDefault(msg, 19, 0.0),
-    durationInMMin: jspb.Message.getFloatingPointFieldWithDefault(msg, 20, 0.0),
-    durationInMMax: jspb.Message.getFloatingPointFieldWithDefault(msg, 21, 0.0),
-    durationInMRoundedMin: jspb.Message.getFloatingPointFieldWithDefault(msg, 22, 0.0),
-    durationInMRoundedMax: jspb.Message.getFloatingPointFieldWithDefault(msg, 23, 0.0),
-    durationInterval15sRoundedMin: jspb.Message.getFloatingPointFieldWithDefault(msg, 24, 0.0),
-    durationInterval15sRoundedMax: jspb.Message.getFloatingPointFieldWithDefault(msg, 25, 0.0),
-    durationInterval30sRoundedMin: jspb.Message.getFloatingPointFieldWithDefault(msg, 26, 0.0),
-    durationInterval30sRoundedMax: jspb.Message.getFloatingPointFieldWithDefault(msg, 27, 0.0),
-    durationInterval45sRoundedMin: jspb.Message.getFloatingPointFieldWithDefault(msg, 28, 0.0),
-    durationInterval45sRoundedMax: jspb.Message.getFloatingPointFieldWithDefault(msg, 29, 0.0),
-    startedTimeSlotPerHourMin: jspb.Message.getFieldWithDefault(msg, 30, ""),
-    startedTimeSlotPerHourMax: jspb.Message.getFieldWithDefault(msg, 31, ""),
-    startedTimeSlotPerQuarterHourMin: jspb.Message.getFieldWithDefault(msg, 32, ""),
-    startedTimeSlotPerQuarterHourMax: jspb.Message.getFieldWithDefault(msg, 33, ""),
-    startedTimeSlotPerHalfHourMin: jspb.Message.getFieldWithDefault(msg, 34, ""),
-    startedTimeSlotPerHalfHourMax: jspb.Message.getFieldWithDefault(msg, 35, ""),
-    startedTimeSlotPerDayPhaseMin: jspb.Message.getFieldWithDefault(msg, 36, ""),
-    startedTimeSlotPerDayPhaseMax: jspb.Message.getFieldWithDefault(msg, 37, ""),
-    startedTimeSlotPerMinuteMin: jspb.Message.getFieldWithDefault(msg, 38, ""),
-    startedTimeSlotPerMinuteMax: jspb.Message.getFieldWithDefault(msg, 39, ""),
-    durationInSRoundedMin: jspb.Message.getFloatingPointFieldWithDefault(msg, 40, 0.0),
-    durationInSRoundedMax: jspb.Message.getFloatingPointFieldWithDefault(msg, 41, 0.0),
-    platformsList: (f = jspb.Message.getRepeatedField(msg, 42)) == null ? undefined : f,
-    accountIdsList: (f = jspb.Message.getRepeatedField(msg, 43)) == null ? undefined : f,
-    propertyIdsList: (f = jspb.Message.getRepeatedField(msg, 44)) == null ? undefined : f,
-    datastreamIdsList: (f = jspb.Message.getRepeatedField(msg, 45)) == null ? undefined : f,
-    originIdsList: (f = jspb.Message.getRepeatedField(msg, 46)) == null ? undefined : f,
-    identifiedUserIdsList: (f = jspb.Message.getRepeatedField(msg, 47)) == null ? undefined : f,
-    durationInterval60sRoundedMin: jspb.Message.getFloatingPointFieldWithDefault(msg, 48, 0.0),
-    durationInterval60sRoundedMax: jspb.Message.getFloatingPointFieldWithDefault(msg, 49, 0.0)
+durationInSMin: jspb.Message.getFloatingPointFieldWithDefault(msg, 18, 0.0),
+durationInSMax: jspb.Message.getFloatingPointFieldWithDefault(msg, 19, 0.0),
+durationInMMin: jspb.Message.getFloatingPointFieldWithDefault(msg, 20, 0.0),
+durationInMMax: jspb.Message.getFloatingPointFieldWithDefault(msg, 21, 0.0),
+durationInMRoundedMin: jspb.Message.getFloatingPointFieldWithDefault(msg, 22, 0.0),
+durationInMRoundedMax: jspb.Message.getFloatingPointFieldWithDefault(msg, 23, 0.0),
+durationInterval15sRoundedMin: jspb.Message.getFloatingPointFieldWithDefault(msg, 24, 0.0),
+durationInterval15sRoundedMax: jspb.Message.getFloatingPointFieldWithDefault(msg, 25, 0.0),
+durationInterval30sRoundedMin: jspb.Message.getFloatingPointFieldWithDefault(msg, 26, 0.0),
+durationInterval30sRoundedMax: jspb.Message.getFloatingPointFieldWithDefault(msg, 27, 0.0),
+durationInterval45sRoundedMin: jspb.Message.getFloatingPointFieldWithDefault(msg, 28, 0.0),
+durationInterval45sRoundedMax: jspb.Message.getFloatingPointFieldWithDefault(msg, 29, 0.0),
+startedTimeSlotPerHourMin: jspb.Message.getFieldWithDefault(msg, 30, ""),
+startedTimeSlotPerHourMax: jspb.Message.getFieldWithDefault(msg, 31, ""),
+startedTimeSlotPerQuarterHourMin: jspb.Message.getFieldWithDefault(msg, 32, ""),
+startedTimeSlotPerQuarterHourMax: jspb.Message.getFieldWithDefault(msg, 33, ""),
+startedTimeSlotPerHalfHourMin: jspb.Message.getFieldWithDefault(msg, 34, ""),
+startedTimeSlotPerHalfHourMax: jspb.Message.getFieldWithDefault(msg, 35, ""),
+startedTimeSlotPerDayPhaseMin: jspb.Message.getFieldWithDefault(msg, 36, ""),
+startedTimeSlotPerDayPhaseMax: jspb.Message.getFieldWithDefault(msg, 37, ""),
+startedTimeSlotPerMinuteMin: jspb.Message.getFieldWithDefault(msg, 38, ""),
+startedTimeSlotPerMinuteMax: jspb.Message.getFieldWithDefault(msg, 39, ""),
+durationInSRoundedMin: jspb.Message.getFloatingPointFieldWithDefault(msg, 40, 0.0),
+durationInSRoundedMax: jspb.Message.getFloatingPointFieldWithDefault(msg, 41, 0.0),
+platformsList: (f = jspb.Message.getRepeatedField(msg, 42)) == null ? undefined : f,
+accountIdsList: (f = jspb.Message.getRepeatedField(msg, 43)) == null ? undefined : f,
+propertyIdsList: (f = jspb.Message.getRepeatedField(msg, 44)) == null ? undefined : f,
+datastreamIdsList: (f = jspb.Message.getRepeatedField(msg, 45)) == null ? undefined : f,
+originIdsList: (f = jspb.Message.getRepeatedField(msg, 46)) == null ? undefined : f,
+identifiedUserIdsList: (f = jspb.Message.getRepeatedField(msg, 47)) == null ? undefined : f,
+durationInterval60sRoundedMin: jspb.Message.getFloatingPointFieldWithDefault(msg, 48, 0.0),
+durationInterval60sRoundedMax: jspb.Message.getFloatingPointFieldWithDefault(msg, 49, 0.0)
   };
 
   if (includeInstance) {
@@ -24058,43 +28065,43 @@ proto.ondewo.nlu.SessionInfo.prototype.toObject = function(opt_includeInstance) 
  */
 proto.ondewo.nlu.SessionInfo.toObject = function(includeInstance, msg) {
   var f, obj = {
-    languageCodesList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f,
-    matchedIntentsList: jspb.Message.toObjectList(msg.getMatchedIntentsList(),
+languageCodesList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f,
+matchedIntentsList: jspb.Message.toObjectList(msg.getMatchedIntentsList(),
     ondewo_nlu_intent_pb.Intent.toObject, includeInstance),
-    matchedEntityTypesList: jspb.Message.toObjectList(msg.getMatchedEntityTypesList(),
+matchedEntityTypesList: jspb.Message.toObjectList(msg.getMatchedEntityTypesList(),
     ondewo_nlu_entity_type_pb.EntityType.toObject, includeInstance),
-    minIntentsConfidence: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0),
-    minEntityTypesConfidence: jspb.Message.getFloatingPointFieldWithDefault(msg, 5, 0.0),
-    earliest: jspb.Message.getFloatingPointFieldWithDefault(msg, 6, 0.0),
-    latest: jspb.Message.getFloatingPointFieldWithDefault(msg, 7, 0.0),
-    numberTurns: jspb.Message.getFieldWithDefault(msg, 8, 0),
-    labelsList: (f = jspb.Message.getRepeatedField(msg, 9)) == null ? undefined : f,
-    userIdsList: (f = jspb.Message.getRepeatedField(msg, 10)) == null ? undefined : f,
-    intentTagsList: (f = jspb.Message.getRepeatedField(msg, 11)) == null ? undefined : f,
-    inputContextStepsList: jspb.Message.toObjectList(msg.getInputContextStepsList(),
+minIntentsConfidence: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0),
+minEntityTypesConfidence: jspb.Message.getFloatingPointFieldWithDefault(msg, 5, 0.0),
+earliest: jspb.Message.getFloatingPointFieldWithDefault(msg, 6, 0.0),
+latest: jspb.Message.getFloatingPointFieldWithDefault(msg, 7, 0.0),
+numberTurns: jspb.Message.getFieldWithDefault(msg, 8, 0),
+labelsList: (f = jspb.Message.getRepeatedField(msg, 9)) == null ? undefined : f,
+userIdsList: (f = jspb.Message.getRepeatedField(msg, 10)) == null ? undefined : f,
+intentTagsList: (f = jspb.Message.getRepeatedField(msg, 11)) == null ? undefined : f,
+inputContextStepsList: jspb.Message.toObjectList(msg.getInputContextStepsList(),
     proto.ondewo.nlu.SessionInfo.ContextSteps.toObject, includeInstance),
-    outputContextStepsList: jspb.Message.toObjectList(msg.getOutputContextStepsList(),
+outputContextStepsList: jspb.Message.toObjectList(msg.getOutputContextStepsList(),
     proto.ondewo.nlu.SessionInfo.ContextSteps.toObject, includeInstance),
-    durationInS: jspb.Message.getFloatingPointFieldWithDefault(msg, 14, 0.0),
-    durationInM: jspb.Message.getFloatingPointFieldWithDefault(msg, 15, 0.0),
-    durationInMRounded: jspb.Message.getFloatingPointFieldWithDefault(msg, 16, 0.0),
-    durationInterval15sRounded: jspb.Message.getFloatingPointFieldWithDefault(msg, 17, 0.0),
-    durationInterval30sRounded: jspb.Message.getFloatingPointFieldWithDefault(msg, 18, 0.0),
-    durationInterval45sRounded: jspb.Message.getFloatingPointFieldWithDefault(msg, 19, 0.0),
-    startedTimeSlotPerHour: jspb.Message.getFieldWithDefault(msg, 20, ""),
-    startedTimeSlotPerQuarterHour: jspb.Message.getFieldWithDefault(msg, 21, ""),
-    startedTimeSlotPerHalfHour: jspb.Message.getFieldWithDefault(msg, 22, ""),
-    startedTimeSlotPerDayPhase: jspb.Message.getFieldWithDefault(msg, 23, ""),
-    startedTimeSlotPerMinute: jspb.Message.getFieldWithDefault(msg, 24, ""),
-    durationInSRounded: jspb.Message.getFloatingPointFieldWithDefault(msg, 25, 0.0),
-    platformsList: (f = jspb.Message.getRepeatedField(msg, 26)) == null ? undefined : f,
-    accountIdsList: (f = jspb.Message.getRepeatedField(msg, 27)) == null ? undefined : f,
-    propertyIdsList: (f = jspb.Message.getRepeatedField(msg, 28)) == null ? undefined : f,
-    datastreamIdsList: (f = jspb.Message.getRepeatedField(msg, 29)) == null ? undefined : f,
-    originIdsList: (f = jspb.Message.getRepeatedField(msg, 30)) == null ? undefined : f,
-    identifiedUserIdsList: (f = jspb.Message.getRepeatedField(msg, 31)) == null ? undefined : f,
-    durationInterval60sRounded: jspb.Message.getFloatingPointFieldWithDefault(msg, 32, 0.0),
-    parentCommentList: jspb.Message.toObjectList(msg.getParentCommentList(),
+durationInS: jspb.Message.getFloatingPointFieldWithDefault(msg, 14, 0.0),
+durationInM: jspb.Message.getFloatingPointFieldWithDefault(msg, 15, 0.0),
+durationInMRounded: jspb.Message.getFloatingPointFieldWithDefault(msg, 16, 0.0),
+durationInterval15sRounded: jspb.Message.getFloatingPointFieldWithDefault(msg, 17, 0.0),
+durationInterval30sRounded: jspb.Message.getFloatingPointFieldWithDefault(msg, 18, 0.0),
+durationInterval45sRounded: jspb.Message.getFloatingPointFieldWithDefault(msg, 19, 0.0),
+startedTimeSlotPerHour: jspb.Message.getFieldWithDefault(msg, 20, ""),
+startedTimeSlotPerQuarterHour: jspb.Message.getFieldWithDefault(msg, 21, ""),
+startedTimeSlotPerHalfHour: jspb.Message.getFieldWithDefault(msg, 22, ""),
+startedTimeSlotPerDayPhase: jspb.Message.getFieldWithDefault(msg, 23, ""),
+startedTimeSlotPerMinute: jspb.Message.getFieldWithDefault(msg, 24, ""),
+durationInSRounded: jspb.Message.getFloatingPointFieldWithDefault(msg, 25, 0.0),
+platformsList: (f = jspb.Message.getRepeatedField(msg, 26)) == null ? undefined : f,
+accountIdsList: (f = jspb.Message.getRepeatedField(msg, 27)) == null ? undefined : f,
+propertyIdsList: (f = jspb.Message.getRepeatedField(msg, 28)) == null ? undefined : f,
+datastreamIdsList: (f = jspb.Message.getRepeatedField(msg, 29)) == null ? undefined : f,
+originIdsList: (f = jspb.Message.getRepeatedField(msg, 30)) == null ? undefined : f,
+identifiedUserIdsList: (f = jspb.Message.getRepeatedField(msg, 31)) == null ? undefined : f,
+durationInterval60sRounded: jspb.Message.getFloatingPointFieldWithDefault(msg, 32, 0.0),
+parentCommentList: jspb.Message.toObjectList(msg.getParentCommentList(),
     ondewo_nlu_common_pb.Comment.toObject, includeInstance)
   };
 
@@ -24578,7 +28585,7 @@ proto.ondewo.nlu.SessionInfo.ContextSteps.prototype.toObject = function(opt_incl
  */
 proto.ondewo.nlu.SessionInfo.ContextSteps.toObject = function(includeInstance, msg) {
   var f, obj = {
-    contextsList: jspb.Message.toObjectList(msg.getContextsList(),
+contextsList: jspb.Message.toObjectList(msg.getContextsList(),
     ondewo_nlu_context_pb.Context.toObject, includeInstance)
   };
 
@@ -25622,9 +29629,9 @@ proto.ondewo.nlu.ListSessionsResponse.prototype.toObject = function(opt_includeI
  */
 proto.ondewo.nlu.ListSessionsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    sessionsList: jspb.Message.toObjectList(msg.getSessionsList(),
+sessionsList: jspb.Message.toObjectList(msg.getSessionsList(),
     proto.ondewo.nlu.Session.toObject, includeInstance),
-    nextPageToken: jspb.Message.getFieldWithDefault(msg, 2, "")
+nextPageToken: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -25805,9 +29812,9 @@ proto.ondewo.nlu.GetSessionRequest.prototype.toObject = function(opt_includeInst
  */
 proto.ondewo.nlu.GetSessionRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    sessionId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    sessionView: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
+sessionId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+sessionView: jspb.Message.getFieldWithDefault(msg, 2, 0),
+fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -26023,10 +30030,10 @@ proto.ondewo.nlu.CreateSessionRequest.prototype.toObject = function(opt_includeI
  */
 proto.ondewo.nlu.CreateSessionRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    parent: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    sessionUuid: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    labelsList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f,
-    contextsList: jspb.Message.toObjectList(msg.getContextsList(),
+parent: jspb.Message.getFieldWithDefault(msg, 1, ""),
+sessionUuid: jspb.Message.getFieldWithDefault(msg, 2, ""),
+labelsList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f,
+contextsList: jspb.Message.toObjectList(msg.getContextsList(),
     ondewo_nlu_context_pb.Context.toObject, includeInstance)
   };
 
@@ -26285,7 +30292,7 @@ proto.ondewo.nlu.DeleteSessionRequest.prototype.toObject = function(opt_includeI
  */
 proto.ondewo.nlu.DeleteSessionRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    sessionId: jspb.Message.getFieldWithDefault(msg, 1, "")
+sessionId: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -26415,10 +30422,10 @@ proto.ondewo.nlu.CreateSessionReviewRequest.prototype.toObject = function(opt_in
  */
 proto.ondewo.nlu.CreateSessionReviewRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    sessionId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    parentReviewId: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    sessionReview: (f = msg.getSessionReview()) && proto.ondewo.nlu.SessionReview.toObject(includeInstance, f),
-    sessionReviewView: jspb.Message.getFieldWithDefault(msg, 4, 0)
+sessionId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+parentReviewId: jspb.Message.getFieldWithDefault(msg, 2, ""),
+sessionReview: (f = msg.getSessionReview()) && proto.ondewo.nlu.SessionReview.toObject(includeInstance, f),
+sessionReviewView: jspb.Message.getFieldWithDefault(msg, 4, 0)
   };
 
   if (includeInstance) {
@@ -26663,13 +30670,13 @@ proto.ondewo.nlu.SessionReview.prototype.toObject = function(opt_includeInstance
  */
 proto.ondewo.nlu.SessionReview.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    sessionReviewStepsList: jspb.Message.toObjectList(msg.getSessionReviewStepsList(),
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+sessionReviewStepsList: jspb.Message.toObjectList(msg.getSessionReviewStepsList(),
     proto.ondewo.nlu.SessionReviewStep.toObject, includeInstance),
-    createdAt: (f = msg.getCreatedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    modifiedAt: (f = msg.getModifiedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    createdBy: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    modifiedBy: jspb.Message.getFieldWithDefault(msg, 6, "")
+createdAt: (f = msg.getCreatedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+modifiedAt: (f = msg.getModifiedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+createdBy: jspb.Message.getFieldWithDefault(msg, 5, ""),
+modifiedBy: jspb.Message.getFieldWithDefault(msg, 6, "")
   };
 
   if (includeInstance) {
@@ -27024,23 +31031,23 @@ proto.ondewo.nlu.SessionReviewStep.prototype.toObject = function(opt_includeInst
  */
 proto.ondewo.nlu.SessionReviewStep.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    annotatedUsersays: (f = msg.getAnnotatedUsersays()) && ondewo_nlu_intent_pb.Intent.TrainingPhrase.toObject(includeInstance, f),
-    languageCode: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    detectedIntentsList: jspb.Message.toObjectList(msg.getDetectedIntentsList(),
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+annotatedUsersays: (f = msg.getAnnotatedUsersays()) && ondewo_nlu_intent_pb.Intent.TrainingPhrase.toObject(includeInstance, f),
+languageCode: jspb.Message.getFieldWithDefault(msg, 3, ""),
+detectedIntentsList: jspb.Message.toObjectList(msg.getDetectedIntentsList(),
     proto.ondewo.nlu.DetectedIntent.toObject, includeInstance),
-    contextsList: jspb.Message.toObjectList(msg.getContextsList(),
+contextsList: jspb.Message.toObjectList(msg.getContextsList(),
     ondewo_nlu_context_pb.Context.toObject, includeInstance),
-    contextsOutList: jspb.Message.toObjectList(msg.getContextsOutList(),
+contextsOutList: jspb.Message.toObjectList(msg.getContextsOutList(),
     ondewo_nlu_context_pb.Context.toObject, includeInstance),
-    queryTextOriginal: jspb.Message.getFieldWithDefault(msg, 7, ""),
-    platformsList: (f = jspb.Message.getRepeatedField(msg, 8)) == null ? undefined : f,
-    timestamp: (f = msg.getTimestamp()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    createdAt: (f = msg.getCreatedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    modifiedAt: (f = msg.getModifiedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    createdBy: jspb.Message.getFieldWithDefault(msg, 12, ""),
-    modifiedBy: jspb.Message.getFieldWithDefault(msg, 13, ""),
-    audioFileResourcesList: jspb.Message.toObjectList(msg.getAudioFileResourcesList(),
+queryTextOriginal: jspb.Message.getFieldWithDefault(msg, 7, ""),
+platformsList: (f = jspb.Message.getRepeatedField(msg, 8)) == null ? undefined : f,
+timestamp: (f = msg.getTimestamp()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+createdAt: (f = msg.getCreatedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+modifiedAt: (f = msg.getModifiedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+createdBy: jspb.Message.getFieldWithDefault(msg, 12, ""),
+modifiedBy: jspb.Message.getFieldWithDefault(msg, 13, ""),
+audioFileResourcesList: jspb.Message.toObjectList(msg.getAudioFileResourcesList(),
     proto.ondewo.nlu.AudioFileResource.toObject, includeInstance)
   };
 
@@ -27748,12 +31755,12 @@ proto.ondewo.nlu.DetectedIntent.prototype.toObject = function(opt_includeInstanc
  */
 proto.ondewo.nlu.DetectedIntent.toObject = function(includeInstance, msg) {
   var f, obj = {
-    intent: (f = msg.getIntent()) && ondewo_nlu_intent_pb.Intent.toObject(includeInstance, f),
-    score: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0),
-    algorithm: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    fulfillmentMessagesList: jspb.Message.toObjectList(msg.getFulfillmentMessagesList(),
+intent: (f = msg.getIntent()) && ondewo_nlu_intent_pb.Intent.toObject(includeInstance, f),
+score: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0),
+algorithm: jspb.Message.getFieldWithDefault(msg, 3, ""),
+fulfillmentMessagesList: jspb.Message.toObjectList(msg.getFulfillmentMessagesList(),
     ondewo_nlu_intent_pb.Intent.Message.toObject, includeInstance),
-    requiredParamMissing: jspb.Message.getBooleanFieldWithDefault(msg, 5, false)
+requiredParamMissing: jspb.Message.getBooleanFieldWithDefault(msg, 5, false)
   };
 
   if (includeInstance) {
@@ -28042,7 +32049,7 @@ proto.ondewo.nlu.ListSessionLabelsRequest.prototype.toObject = function(opt_incl
  */
 proto.ondewo.nlu.ListSessionLabelsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    sessionId: jspb.Message.getFieldWithDefault(msg, 1, "")
+sessionId: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -28172,9 +32179,9 @@ proto.ondewo.nlu.ListSessionLabelsOfAllSessionsRequest.prototype.toObject = func
  */
 proto.ondewo.nlu.ListSessionLabelsOfAllSessionsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    parent: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    sessionFilter: (f = msg.getSessionFilter()) && proto.ondewo.nlu.SessionFilter.toObject(includeInstance, f),
-    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
+parent: jspb.Message.getFieldWithDefault(msg, 1, ""),
+sessionFilter: (f = msg.getSessionFilter()) && proto.ondewo.nlu.SessionFilter.toObject(includeInstance, f),
+fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -28411,7 +32418,7 @@ proto.ondewo.nlu.ListSessionLabelsResponse.prototype.toObject = function(opt_inc
  */
 proto.ondewo.nlu.ListSessionLabelsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    labelsList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
+labelsList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -28560,9 +32567,9 @@ proto.ondewo.nlu.ListLanguageCodesOfAllSessionsRequest.prototype.toObject = func
  */
 proto.ondewo.nlu.ListLanguageCodesOfAllSessionsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    parent: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    sessionFilter: (f = msg.getSessionFilter()) && proto.ondewo.nlu.SessionFilter.toObject(includeInstance, f),
-    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
+parent: jspb.Message.getFieldWithDefault(msg, 1, ""),
+sessionFilter: (f = msg.getSessionFilter()) && proto.ondewo.nlu.SessionFilter.toObject(includeInstance, f),
+fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -28799,7 +32806,7 @@ proto.ondewo.nlu.ListLanguageCodesResponse.prototype.toObject = function(opt_inc
  */
 proto.ondewo.nlu.ListLanguageCodesResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    languageCodesList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
+languageCodesList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -28948,9 +32955,9 @@ proto.ondewo.nlu.ListMatchedIntentsOfAllSessionsRequest.prototype.toObject = fun
  */
 proto.ondewo.nlu.ListMatchedIntentsOfAllSessionsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    parent: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    sessionFilter: (f = msg.getSessionFilter()) && proto.ondewo.nlu.SessionFilter.toObject(includeInstance, f),
-    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
+parent: jspb.Message.getFieldWithDefault(msg, 1, ""),
+sessionFilter: (f = msg.getSessionFilter()) && proto.ondewo.nlu.SessionFilter.toObject(includeInstance, f),
+fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -29187,7 +33194,7 @@ proto.ondewo.nlu.ListMatchedIntentsResponse.prototype.toObject = function(opt_in
  */
 proto.ondewo.nlu.ListMatchedIntentsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    matchedIntentsList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
+matchedIntentsList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -29336,9 +33343,9 @@ proto.ondewo.nlu.ListMatchedEntityTypesOfAllSessionsRequest.prototype.toObject =
  */
 proto.ondewo.nlu.ListMatchedEntityTypesOfAllSessionsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    parent: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    sessionFilter: (f = msg.getSessionFilter()) && proto.ondewo.nlu.SessionFilter.toObject(includeInstance, f),
-    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
+parent: jspb.Message.getFieldWithDefault(msg, 1, ""),
+sessionFilter: (f = msg.getSessionFilter()) && proto.ondewo.nlu.SessionFilter.toObject(includeInstance, f),
+fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -29575,7 +33582,7 @@ proto.ondewo.nlu.ListMatchedEntityTypesResponse.prototype.toObject = function(op
  */
 proto.ondewo.nlu.ListMatchedEntityTypesResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    matchedEntityTypesList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
+matchedEntityTypesList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -29724,9 +33731,9 @@ proto.ondewo.nlu.ListUserIdsOfAllSessionsRequest.prototype.toObject = function(o
  */
 proto.ondewo.nlu.ListUserIdsOfAllSessionsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    parent: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    sessionFilter: (f = msg.getSessionFilter()) && proto.ondewo.nlu.SessionFilter.toObject(includeInstance, f),
-    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
+parent: jspb.Message.getFieldWithDefault(msg, 1, ""),
+sessionFilter: (f = msg.getSessionFilter()) && proto.ondewo.nlu.SessionFilter.toObject(includeInstance, f),
+fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -29963,7 +33970,7 @@ proto.ondewo.nlu.ListUserIdsResponse.prototype.toObject = function(opt_includeIn
  */
 proto.ondewo.nlu.ListUserIdsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    userIdsList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
+userIdsList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -30112,9 +34119,9 @@ proto.ondewo.nlu.ListIdentifiedUserIdsOfAllSessionsRequest.prototype.toObject = 
  */
 proto.ondewo.nlu.ListIdentifiedUserIdsOfAllSessionsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    parent: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    sessionFilter: (f = msg.getSessionFilter()) && proto.ondewo.nlu.SessionFilter.toObject(includeInstance, f),
-    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
+parent: jspb.Message.getFieldWithDefault(msg, 1, ""),
+sessionFilter: (f = msg.getSessionFilter()) && proto.ondewo.nlu.SessionFilter.toObject(includeInstance, f),
+fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -30351,7 +34358,7 @@ proto.ondewo.nlu.ListIdentifiedUserIdsResponse.prototype.toObject = function(opt
  */
 proto.ondewo.nlu.ListIdentifiedUserIdsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    identifiedUserIdsList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
+identifiedUserIdsList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -30500,9 +34507,9 @@ proto.ondewo.nlu.ListTagsOfAllSessionsRequest.prototype.toObject = function(opt_
  */
 proto.ondewo.nlu.ListTagsOfAllSessionsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    parent: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    sessionFilter: (f = msg.getSessionFilter()) && proto.ondewo.nlu.SessionFilter.toObject(includeInstance, f),
-    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
+parent: jspb.Message.getFieldWithDefault(msg, 1, ""),
+sessionFilter: (f = msg.getSessionFilter()) && proto.ondewo.nlu.SessionFilter.toObject(includeInstance, f),
+fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -30739,7 +34746,7 @@ proto.ondewo.nlu.ListTagsResponse.prototype.toObject = function(opt_includeInsta
  */
 proto.ondewo.nlu.ListTagsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    tagsList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
+tagsList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -30888,9 +34895,9 @@ proto.ondewo.nlu.ListInputContextsOfAllSessionsRequest.prototype.toObject = func
  */
 proto.ondewo.nlu.ListInputContextsOfAllSessionsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    parent: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    sessionFilter: (f = msg.getSessionFilter()) && proto.ondewo.nlu.SessionFilter.toObject(includeInstance, f),
-    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
+parent: jspb.Message.getFieldWithDefault(msg, 1, ""),
+sessionFilter: (f = msg.getSessionFilter()) && proto.ondewo.nlu.SessionFilter.toObject(includeInstance, f),
+fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -31127,7 +35134,7 @@ proto.ondewo.nlu.ListInputContextsResponse.prototype.toObject = function(opt_inc
  */
 proto.ondewo.nlu.ListInputContextsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    inputContextsList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
+inputContextsList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -31276,9 +35283,9 @@ proto.ondewo.nlu.ListOutputContextsOfAllSessionsRequest.prototype.toObject = fun
  */
 proto.ondewo.nlu.ListOutputContextsOfAllSessionsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    parent: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    sessionFilter: (f = msg.getSessionFilter()) && proto.ondewo.nlu.SessionFilter.toObject(includeInstance, f),
-    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
+parent: jspb.Message.getFieldWithDefault(msg, 1, ""),
+sessionFilter: (f = msg.getSessionFilter()) && proto.ondewo.nlu.SessionFilter.toObject(includeInstance, f),
+fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -31515,7 +35522,7 @@ proto.ondewo.nlu.ListOutputContextsResponse.prototype.toObject = function(opt_in
  */
 proto.ondewo.nlu.ListOutputContextsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    outputContextsList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
+outputContextsList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -31664,9 +35671,9 @@ proto.ondewo.nlu.ListPlatformsOfAllSessionsRequest.prototype.toObject = function
  */
 proto.ondewo.nlu.ListPlatformsOfAllSessionsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    parent: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    sessionFilter: (f = msg.getSessionFilter()) && proto.ondewo.nlu.SessionFilter.toObject(includeInstance, f),
-    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
+parent: jspb.Message.getFieldWithDefault(msg, 1, ""),
+sessionFilter: (f = msg.getSessionFilter()) && proto.ondewo.nlu.SessionFilter.toObject(includeInstance, f),
+fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -31903,7 +35910,7 @@ proto.ondewo.nlu.ListPlatformsResponse.prototype.toObject = function(opt_include
  */
 proto.ondewo.nlu.ListPlatformsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    platformsList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
+platformsList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -32052,9 +36059,9 @@ proto.ondewo.nlu.ListAccountIdsOfAllSessionsRequest.prototype.toObject = functio
  */
 proto.ondewo.nlu.ListAccountIdsOfAllSessionsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    parent: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    sessionFilter: (f = msg.getSessionFilter()) && proto.ondewo.nlu.SessionFilter.toObject(includeInstance, f),
-    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
+parent: jspb.Message.getFieldWithDefault(msg, 1, ""),
+sessionFilter: (f = msg.getSessionFilter()) && proto.ondewo.nlu.SessionFilter.toObject(includeInstance, f),
+fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -32291,7 +36298,7 @@ proto.ondewo.nlu.ListAccountIdsResponse.prototype.toObject = function(opt_includ
  */
 proto.ondewo.nlu.ListAccountIdsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    accountIdsList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
+accountIdsList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -32440,8 +36447,8 @@ proto.ondewo.nlu.ListPropertyIdsOfAllSessionsRequest.prototype.toObject = functi
  */
 proto.ondewo.nlu.ListPropertyIdsOfAllSessionsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    parent: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    sessionFilter: (f = msg.getSessionFilter()) && proto.ondewo.nlu.SessionFilter.toObject(includeInstance, f)
+parent: jspb.Message.getFieldWithDefault(msg, 1, ""),
+sessionFilter: (f = msg.getSessionFilter()) && proto.ondewo.nlu.SessionFilter.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -32628,7 +36635,7 @@ proto.ondewo.nlu.ListPropertyIdsResponse.prototype.toObject = function(opt_inclu
  */
 proto.ondewo.nlu.ListPropertyIdsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    propertyIdsList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
+propertyIdsList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -32777,8 +36784,8 @@ proto.ondewo.nlu.ListDatastreamIdsOfAllSessionsRequest.prototype.toObject = func
  */
 proto.ondewo.nlu.ListDatastreamIdsOfAllSessionsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    parent: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    sessionFilter: (f = msg.getSessionFilter()) && proto.ondewo.nlu.SessionFilter.toObject(includeInstance, f)
+parent: jspb.Message.getFieldWithDefault(msg, 1, ""),
+sessionFilter: (f = msg.getSessionFilter()) && proto.ondewo.nlu.SessionFilter.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -32965,7 +36972,7 @@ proto.ondewo.nlu.ListDatastreamIdsResponse.prototype.toObject = function(opt_inc
  */
 proto.ondewo.nlu.ListDatastreamIdsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    datastreamIdsList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
+datastreamIdsList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -33114,9 +37121,9 @@ proto.ondewo.nlu.ListOriginIdsOfAllSessionsRequest.prototype.toObject = function
  */
 proto.ondewo.nlu.ListOriginIdsOfAllSessionsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    parent: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    sessionFilter: (f = msg.getSessionFilter()) && proto.ondewo.nlu.SessionFilter.toObject(includeInstance, f),
-    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
+parent: jspb.Message.getFieldWithDefault(msg, 1, ""),
+sessionFilter: (f = msg.getSessionFilter()) && proto.ondewo.nlu.SessionFilter.toObject(includeInstance, f),
+fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -33353,7 +37360,7 @@ proto.ondewo.nlu.ListOriginIdsResponse.prototype.toObject = function(opt_include
  */
 proto.ondewo.nlu.ListOriginIdsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    originIdsList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
+originIdsList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -33509,8 +37516,8 @@ proto.ondewo.nlu.AddSessionLabelsRequest.prototype.toObject = function(opt_inclu
  */
 proto.ondewo.nlu.AddSessionLabelsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    sessionId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    labelsList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f
+sessionId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+labelsList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -33695,8 +37702,8 @@ proto.ondewo.nlu.DeleteSessionLabelsRequest.prototype.toObject = function(opt_in
  */
 proto.ondewo.nlu.DeleteSessionLabelsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    sessionId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    labelsList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f
+sessionId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+labelsList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -33874,8 +37881,8 @@ proto.ondewo.nlu.AddSessionCommentRequest.prototype.toObject = function(opt_incl
  */
 proto.ondewo.nlu.AddSessionCommentRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    sessionId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    comment: (f = msg.getComment()) && ondewo_nlu_common_pb.Comment.toObject(includeInstance, f)
+sessionId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+comment: (f = msg.getComment()) && ondewo_nlu_common_pb.Comment.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -34062,8 +38069,8 @@ proto.ondewo.nlu.DeleteSessionCommentsRequest.prototype.toObject = function(opt_
  */
 proto.ondewo.nlu.DeleteSessionCommentsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    sessionId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    commentNamesList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f
+sessionId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+commentNamesList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -34241,8 +38248,8 @@ proto.ondewo.nlu.UpdateSessionCommentsRequest.prototype.toObject = function(opt_
  */
 proto.ondewo.nlu.UpdateSessionCommentsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    sessionId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    comment: (f = msg.getComment()) && ondewo_nlu_common_pb.Comment.toObject(includeInstance, f)
+sessionId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+comment: (f = msg.getComment()) && ondewo_nlu_common_pb.Comment.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -34422,10 +38429,10 @@ proto.ondewo.nlu.ListSessionCommentsRequest.prototype.toObject = function(opt_in
  */
 proto.ondewo.nlu.ListSessionCommentsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    sessionId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    pageToken: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f),
-    isResolved: jspb.Message.getBooleanFieldWithDefault(msg, 4, false)
+sessionId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+pageToken: jspb.Message.getFieldWithDefault(msg, 2, ""),
+fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f),
+isResolved: (f = jspb.Message.getBooleanField(msg, 4)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -34681,11 +38688,11 @@ proto.ondewo.nlu.ListSessionCommentsOfAllSessionsRequest.prototype.toObject = fu
  */
 proto.ondewo.nlu.ListSessionCommentsOfAllSessionsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    parent: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    sessionFilter: (f = msg.getSessionFilter()) && proto.ondewo.nlu.SessionFilter.toObject(includeInstance, f),
-    pageToken: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f),
-    isResolved: jspb.Message.getBooleanFieldWithDefault(msg, 5, false)
+parent: jspb.Message.getFieldWithDefault(msg, 1, ""),
+sessionFilter: (f = msg.getSessionFilter()) && proto.ondewo.nlu.SessionFilter.toObject(includeInstance, f),
+pageToken: jspb.Message.getFieldWithDefault(msg, 3, ""),
+fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f),
+isResolved: (f = jspb.Message.getBooleanField(msg, 5)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -34998,9 +39005,9 @@ proto.ondewo.nlu.ListSessionCommentsResponse.prototype.toObject = function(opt_i
  */
 proto.ondewo.nlu.ListSessionCommentsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    commentList: jspb.Message.toObjectList(msg.getCommentList(),
+commentList: jspb.Message.toObjectList(msg.getCommentList(),
     ondewo_nlu_common_pb.Comment.toObject, includeInstance),
-    pageToken: jspb.Message.getFieldWithDefault(msg, 2, "")
+pageToken: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -35181,25 +39188,25 @@ proto.ondewo.nlu.SessionFeedback.prototype.toObject = function(opt_includeInstan
  */
 proto.ondewo.nlu.SessionFeedback.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    sessionId: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    sessionStepId: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    responseId: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    sessionStepLlmTelemetryId: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    rating: jspb.Message.getFieldWithDefault(msg, 6, 0),
-    categoricalValue: jspb.Message.getFieldWithDefault(msg, 7, ""),
-    score: jspb.Message.getFloatingPointFieldWithDefault(msg, 8, 0.0),
-    comment: jspb.Message.getFieldWithDefault(msg, 9, ""),
-    criterion: jspb.Message.getFieldWithDefault(msg, 10, ""),
-    authorType: jspb.Message.getFieldWithDefault(msg, 11, 0),
-    annotatorUserId: jspb.Message.getFieldWithDefault(msg, 12, ""),
-    originId: jspb.Message.getFieldWithDefault(msg, 13, ""),
-    identifiedUserId: jspb.Message.getFieldWithDefault(msg, 14, ""),
-    raw: (f = msg.getRaw()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
-    createdAt: (f = msg.getCreatedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    modifiedAt: (f = msg.getModifiedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    createdBy: jspb.Message.getFieldWithDefault(msg, 18, ""),
-    modifiedBy: jspb.Message.getFieldWithDefault(msg, 19, "")
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+sessionId: jspb.Message.getFieldWithDefault(msg, 2, ""),
+sessionStepId: jspb.Message.getFieldWithDefault(msg, 3, ""),
+responseId: jspb.Message.getFieldWithDefault(msg, 4, ""),
+sessionStepLlmTelemetryId: jspb.Message.getFieldWithDefault(msg, 5, ""),
+rating: jspb.Message.getFieldWithDefault(msg, 6, 0),
+categoricalValue: jspb.Message.getFieldWithDefault(msg, 7, ""),
+score: (f = jspb.Message.getOptionalFloatingPointField(msg, 8)) == null ? undefined : f,
+comment: jspb.Message.getFieldWithDefault(msg, 9, ""),
+criterion: jspb.Message.getFieldWithDefault(msg, 10, ""),
+authorType: jspb.Message.getFieldWithDefault(msg, 11, 0),
+annotatorUserId: jspb.Message.getFieldWithDefault(msg, 12, ""),
+originId: jspb.Message.getFieldWithDefault(msg, 13, ""),
+identifiedUserId: jspb.Message.getFieldWithDefault(msg, 14, ""),
+raw: (f = msg.getRaw()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
+createdAt: (f = msg.getCreatedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+modifiedAt: (f = msg.getModifiedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+createdBy: jspb.Message.getFieldWithDefault(msg, 18, ""),
+modifiedBy: jspb.Message.getFieldWithDefault(msg, 19, "")
   };
 
   if (includeInstance) {
@@ -35932,8 +39939,8 @@ proto.ondewo.nlu.AddSessionFeedbackRequest.prototype.toObject = function(opt_inc
  */
 proto.ondewo.nlu.AddSessionFeedbackRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    sessionId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    feedback: (f = msg.getFeedback()) && proto.ondewo.nlu.SessionFeedback.toObject(includeInstance, f)
+sessionId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+feedback: (f = msg.getFeedback()) && proto.ondewo.nlu.SessionFeedback.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -36113,9 +40120,9 @@ proto.ondewo.nlu.AddSessionStepFeedbackRequest.prototype.toObject = function(opt
  */
 proto.ondewo.nlu.AddSessionStepFeedbackRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    sessionId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    sessionStepId: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    feedback: (f = msg.getFeedback()) && proto.ondewo.nlu.SessionFeedback.toObject(includeInstance, f)
+sessionId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+sessionStepId: jspb.Message.getFieldWithDefault(msg, 2, ""),
+feedback: (f = msg.getFeedback()) && proto.ondewo.nlu.SessionFeedback.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -36324,8 +40331,8 @@ proto.ondewo.nlu.GetSessionFeedbackRequest.prototype.toObject = function(opt_inc
  */
 proto.ondewo.nlu.GetSessionFeedbackRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -36505,8 +40512,8 @@ proto.ondewo.nlu.UpdateSessionFeedbackRequest.prototype.toObject = function(opt_
  */
 proto.ondewo.nlu.UpdateSessionFeedbackRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    feedback: (f = msg.getFeedback()) && proto.ondewo.nlu.SessionFeedback.toObject(includeInstance, f),
-    updateMask: (f = msg.getUpdateMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
+feedback: (f = msg.getFeedback()) && proto.ondewo.nlu.SessionFeedback.toObject(includeInstance, f),
+updateMask: (f = msg.getUpdateMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -36707,7 +40714,7 @@ proto.ondewo.nlu.DeleteSessionFeedbackRequest.prototype.toObject = function(opt_
  */
 proto.ondewo.nlu.DeleteSessionFeedbackRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, "")
+name: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -36837,9 +40844,9 @@ proto.ondewo.nlu.ListSessionFeedbackRequest.prototype.toObject = function(opt_in
  */
 proto.ondewo.nlu.ListSessionFeedbackRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    sessionId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    pageToken: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
+sessionId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+pageToken: jspb.Message.getFieldWithDefault(msg, 2, ""),
+fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -37048,12 +41055,12 @@ proto.ondewo.nlu.ListSessionFeedbackOfAllSessionsRequest.prototype.toObject = fu
  */
 proto.ondewo.nlu.ListSessionFeedbackOfAllSessionsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    parent: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    sessionFilter: (f = msg.getSessionFilter()) && proto.ondewo.nlu.SessionFilter.toObject(includeInstance, f),
-    pageToken: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f),
-    feedbackFilter: (f = msg.getFeedbackFilter()) && proto.ondewo.nlu.FeedbackFilter.toObject(includeInstance, f),
-    orderBy: jspb.Message.getFieldWithDefault(msg, 6, "")
+parent: jspb.Message.getFieldWithDefault(msg, 1, ""),
+sessionFilter: (f = msg.getSessionFilter()) && proto.ondewo.nlu.SessionFilter.toObject(includeInstance, f),
+pageToken: jspb.Message.getFieldWithDefault(msg, 3, ""),
+fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f),
+feedbackFilter: (f = msg.getFeedbackFilter()) && proto.ondewo.nlu.FeedbackFilter.toObject(includeInstance, f),
+orderBy: jspb.Message.getFieldWithDefault(msg, 6, "")
   };
 
   if (includeInstance) {
@@ -37398,10 +41405,10 @@ proto.ondewo.nlu.ListSessionFeedbackResponse.prototype.toObject = function(opt_i
  */
 proto.ondewo.nlu.ListSessionFeedbackResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    feedbackList: jspb.Message.toObjectList(msg.getFeedbackList(),
+feedbackList: jspb.Message.toObjectList(msg.getFeedbackList(),
     proto.ondewo.nlu.SessionFeedback.toObject, includeInstance),
-    nextPageToken: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    totalCount: jspb.Message.getFieldWithDefault(msg, 3, 0)
+nextPageToken: jspb.Message.getFieldWithDefault(msg, 2, ""),
+totalCount: jspb.Message.getFieldWithDefault(msg, 3, 0)
   };
 
   if (includeInstance) {
@@ -37618,18 +41625,18 @@ proto.ondewo.nlu.FeedbackFilter.prototype.toObject = function(opt_includeInstanc
  */
 proto.ondewo.nlu.FeedbackFilter.toObject = function(includeInstance, msg) {
   var f, obj = {
-    ratingsList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f,
-    authorTypesList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f,
-    hasComment: jspb.Message.getBooleanFieldWithDefault(msg, 3, false),
-    earliest: (f = msg.getEarliest()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    latest: (f = msg.getLatest()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    criteriaList: (f = jspb.Message.getRepeatedField(msg, 6)) == null ? undefined : f,
-    languageCodesList: (f = jspb.Message.getRepeatedField(msg, 7)) == null ? undefined : f,
-    annotatorUserIdsList: (f = jspb.Message.getRepeatedField(msg, 8)) == null ? undefined : f,
-    originIdsList: (f = jspb.Message.getRepeatedField(msg, 9)) == null ? undefined : f,
-    scoreMin: jspb.Message.getFloatingPointFieldWithDefault(msg, 10, 0.0),
-    scoreMax: jspb.Message.getFloatingPointFieldWithDefault(msg, 11, 0.0),
-    scope: jspb.Message.getFieldWithDefault(msg, 12, 0)
+ratingsList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f,
+authorTypesList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f,
+hasComment: (f = jspb.Message.getBooleanField(msg, 3)) == null ? undefined : f,
+earliest: (f = msg.getEarliest()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+latest: (f = msg.getLatest()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+criteriaList: (f = jspb.Message.getRepeatedField(msg, 6)) == null ? undefined : f,
+languageCodesList: (f = jspb.Message.getRepeatedField(msg, 7)) == null ? undefined : f,
+annotatorUserIdsList: (f = jspb.Message.getRepeatedField(msg, 8)) == null ? undefined : f,
+originIdsList: (f = jspb.Message.getRepeatedField(msg, 9)) == null ? undefined : f,
+scoreMin: (f = jspb.Message.getOptionalFloatingPointField(msg, 10)) == null ? undefined : f,
+scoreMax: (f = jspb.Message.getOptionalFloatingPointField(msg, 11)) == null ? undefined : f,
+scope: jspb.Message.getFieldWithDefault(msg, 12, 0)
   };
 
   if (includeInstance) {
@@ -38292,10 +42299,10 @@ proto.ondewo.nlu.FeedbackBreakdownBucket.prototype.toObject = function(opt_inclu
  */
 proto.ondewo.nlu.FeedbackBreakdownBucket.toObject = function(includeInstance, msg) {
   var f, obj = {
-    key: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    thumbsUpCount: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    thumbsDownCount: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    total: jspb.Message.getFieldWithDefault(msg, 4, 0)
+key: jspb.Message.getFieldWithDefault(msg, 1, ""),
+thumbsUpCount: jspb.Message.getFieldWithDefault(msg, 2, 0),
+thumbsDownCount: jspb.Message.getFieldWithDefault(msg, 3, 0),
+total: jspb.Message.getFieldWithDefault(msg, 4, 0)
   };
 
   if (includeInstance) {
@@ -38519,26 +42526,26 @@ proto.ondewo.nlu.FeedbackStatistics.prototype.toObject = function(opt_includeIns
  */
 proto.ondewo.nlu.FeedbackStatistics.toObject = function(includeInstance, msg) {
   var f, obj = {
-    totalFeedback: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    thumbsUpCount: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    thumbsDownCount: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    sessionLevelCount: jspb.Message.getFieldWithDefault(msg, 4, 0),
-    sessionStepLevelCount: jspb.Message.getFieldWithDefault(msg, 5, 0),
-    commentCount: jspb.Message.getFieldWithDefault(msg, 6, 0),
-    sessionReviewCount: jspb.Message.getFieldWithDefault(msg, 7, 0),
-    sessionCommentCount: jspb.Message.getFieldWithDefault(msg, 8, 0),
-    byLanguageList: jspb.Message.toObjectList(msg.getByLanguageList(),
+totalFeedback: jspb.Message.getFieldWithDefault(msg, 1, 0),
+thumbsUpCount: jspb.Message.getFieldWithDefault(msg, 2, 0),
+thumbsDownCount: jspb.Message.getFieldWithDefault(msg, 3, 0),
+sessionLevelCount: jspb.Message.getFieldWithDefault(msg, 4, 0),
+sessionStepLevelCount: jspb.Message.getFieldWithDefault(msg, 5, 0),
+commentCount: jspb.Message.getFieldWithDefault(msg, 6, 0),
+sessionReviewCount: jspb.Message.getFieldWithDefault(msg, 7, 0),
+sessionCommentCount: jspb.Message.getFieldWithDefault(msg, 8, 0),
+byLanguageList: jspb.Message.toObjectList(msg.getByLanguageList(),
     proto.ondewo.nlu.FeedbackBreakdownBucket.toObject, includeInstance),
-    byIntentList: jspb.Message.toObjectList(msg.getByIntentList(),
+byIntentList: jspb.Message.toObjectList(msg.getByIntentList(),
     proto.ondewo.nlu.FeedbackBreakdownBucket.toObject, includeInstance),
-    byAuthorTypeList: jspb.Message.toObjectList(msg.getByAuthorTypeList(),
+byAuthorTypeList: jspb.Message.toObjectList(msg.getByAuthorTypeList(),
     proto.ondewo.nlu.FeedbackBreakdownBucket.toObject, includeInstance),
-    unspecifiedRatingCount: jspb.Message.getFieldWithDefault(msg, 12, 0),
-    scoredCount: jspb.Message.getFieldWithDefault(msg, 13, 0),
-    averageScore: jspb.Message.getFloatingPointFieldWithDefault(msg, 14, 0.0),
-    byOriginList: jspb.Message.toObjectList(msg.getByOriginList(),
+unspecifiedRatingCount: jspb.Message.getFieldWithDefault(msg, 12, 0),
+scoredCount: jspb.Message.getFieldWithDefault(msg, 13, 0),
+averageScore: jspb.Message.getFloatingPointFieldWithDefault(msg, 14, 0.0),
+byOriginList: jspb.Message.toObjectList(msg.getByOriginList(),
     proto.ondewo.nlu.FeedbackBreakdownBucket.toObject, includeInstance),
-    byCriterionList: jspb.Message.toObjectList(msg.getByCriterionList(),
+byCriterionList: jspb.Message.toObjectList(msg.getByCriterionList(),
     proto.ondewo.nlu.FeedbackBreakdownBucket.toObject, includeInstance)
   };
 
@@ -39214,11 +43221,11 @@ proto.ondewo.nlu.GetFeedbackStatisticsRequest.prototype.toObject = function(opt_
  */
 proto.ondewo.nlu.GetFeedbackStatisticsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    parent: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    sessionFilter: (f = msg.getSessionFilter()) && proto.ondewo.nlu.SessionFilter.toObject(includeInstance, f),
-    includeReviewAndCommentRollup: jspb.Message.getBooleanFieldWithDefault(msg, 3, false),
-    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f),
-    feedbackFilter: (f = msg.getFeedbackFilter()) && proto.ondewo.nlu.FeedbackFilter.toObject(includeInstance, f)
+parent: jspb.Message.getFieldWithDefault(msg, 1, ""),
+sessionFilter: (f = msg.getSessionFilter()) && proto.ondewo.nlu.SessionFilter.toObject(includeInstance, f),
+includeReviewAndCommentRollup: jspb.Message.getBooleanFieldWithDefault(msg, 3, false),
+fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f),
+feedbackFilter: (f = msg.getFeedbackFilter()) && proto.ondewo.nlu.FeedbackFilter.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -39527,7 +43534,7 @@ proto.ondewo.nlu.GetFeedbackStatisticsResponse.prototype.toObject = function(opt
  */
 proto.ondewo.nlu.GetFeedbackStatisticsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    statistics: (f = msg.getStatistics()) && proto.ondewo.nlu.FeedbackStatistics.toObject(includeInstance, f)
+statistics: (f = msg.getStatistics()) && proto.ondewo.nlu.FeedbackStatistics.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -39678,11 +43685,11 @@ proto.ondewo.nlu.FeedbackTimeSeriesBucket.prototype.toObject = function(opt_incl
  */
 proto.ondewo.nlu.FeedbackTimeSeriesBucket.toObject = function(includeInstance, msg) {
   var f, obj = {
-    bucketStart: (f = msg.getBucketStart()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    thumbsUpCount: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    thumbsDownCount: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    total: jspb.Message.getFieldWithDefault(msg, 4, 0),
-    bucketEnd: (f = msg.getBucketEnd()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+bucketStart: (f = msg.getBucketStart()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+thumbsUpCount: jspb.Message.getFieldWithDefault(msg, 2, 0),
+thumbsDownCount: jspb.Message.getFieldWithDefault(msg, 3, 0),
+total: jspb.Message.getFieldWithDefault(msg, 4, 0),
+bucketEnd: (f = msg.getBucketEnd()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -39970,16 +43977,16 @@ proto.ondewo.nlu.GetFeedbackStatisticsTimeSeriesRequest.prototype.toObject = fun
  */
 proto.ondewo.nlu.GetFeedbackStatisticsTimeSeriesRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    parent: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    sessionFilter: (f = msg.getSessionFilter()) && proto.ondewo.nlu.SessionFilter.toObject(includeInstance, f),
-    bucketWidthSeconds: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    maxBuckets: jspb.Message.getFieldWithDefault(msg, 4, 0),
-    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f),
-    feedbackFilter: (f = msg.getFeedbackFilter()) && proto.ondewo.nlu.FeedbackFilter.toObject(includeInstance, f),
-    granularity: jspb.Message.getFieldWithDefault(msg, 7, 0),
-    timeZone: jspb.Message.getFieldWithDefault(msg, 8, ""),
-    start: (f = msg.getStart()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    end: (f = msg.getEnd()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+parent: jspb.Message.getFieldWithDefault(msg, 1, ""),
+sessionFilter: (f = msg.getSessionFilter()) && proto.ondewo.nlu.SessionFilter.toObject(includeInstance, f),
+bucketWidthSeconds: jspb.Message.getFieldWithDefault(msg, 3, 0),
+maxBuckets: jspb.Message.getFieldWithDefault(msg, 4, 0),
+fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f),
+feedbackFilter: (f = msg.getFeedbackFilter()) && proto.ondewo.nlu.FeedbackFilter.toObject(includeInstance, f),
+granularity: jspb.Message.getFieldWithDefault(msg, 7, 0),
+timeZone: jspb.Message.getFieldWithDefault(msg, 8, ""),
+start: (f = msg.getStart()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+end: (f = msg.getEnd()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -40482,7 +44489,7 @@ proto.ondewo.nlu.GetFeedbackStatisticsTimeSeriesResponse.prototype.toObject = fu
  */
 proto.ondewo.nlu.GetFeedbackStatisticsTimeSeriesResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    bucketsList: jspb.Message.toObjectList(msg.getBucketsList(),
+bucketsList: jspb.Message.toObjectList(msg.getBucketsList(),
     proto.ondewo.nlu.FeedbackTimeSeriesBucket.toObject, includeInstance)
   };
 
@@ -40635,9 +44642,9 @@ proto.ondewo.nlu.ListSessionReviewsRequest.prototype.toObject = function(opt_inc
  */
 proto.ondewo.nlu.ListSessionReviewsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    sessionId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    sessionReviewView: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    pageToken: jspb.Message.getFieldWithDefault(msg, 4, "")
+sessionId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+sessionReviewView: jspb.Message.getFieldWithDefault(msg, 2, 0),
+pageToken: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
 
   if (includeInstance) {
@@ -40832,9 +44839,9 @@ proto.ondewo.nlu.ListSessionReviewsResponse.prototype.toObject = function(opt_in
  */
 proto.ondewo.nlu.ListSessionReviewsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    sessionReviewsList: jspb.Message.toObjectList(msg.getSessionReviewsList(),
+sessionReviewsList: jspb.Message.toObjectList(msg.getSessionReviewsList(),
     proto.ondewo.nlu.SessionReview.toObject, includeInstance),
-    nextPageToken: jspb.Message.getFieldWithDefault(msg, 2, "")
+nextPageToken: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -41015,9 +45022,9 @@ proto.ondewo.nlu.GetSessionReviewRequest.prototype.toObject = function(opt_inclu
  */
 proto.ondewo.nlu.GetSessionReviewRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    sessionReviewId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    sessionReviewView: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
+sessionReviewId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+sessionReviewView: jspb.Message.getFieldWithDefault(msg, 2, 0),
+fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -41226,9 +45233,9 @@ proto.ondewo.nlu.GetLatestSessionReviewRequest.prototype.toObject = function(opt
  */
 proto.ondewo.nlu.GetLatestSessionReviewRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    sessionId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    sessionReviewView: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
+sessionId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+sessionReviewView: jspb.Message.getFieldWithDefault(msg, 2, 0),
+fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -41465,10 +45472,10 @@ proto.ondewo.nlu.FileResource.prototype.toObject = function(opt_includeInstance)
  */
 proto.ondewo.nlu.FileResource.toObject = function(includeInstance, msg) {
   var f, obj = {
-    documentFileResource: (f = msg.getDocumentFileResource()) && proto.ondewo.nlu.DocumentFileResource.toObject(includeInstance, f),
-    audioFileResource: (f = msg.getAudioFileResource()) && proto.ondewo.nlu.AudioFileResource.toObject(includeInstance, f),
-    imageFileResource: (f = msg.getImageFileResource()) && proto.ondewo.nlu.ImageFileResource.toObject(includeInstance, f),
-    videoFileResource: (f = msg.getVideoFileResource()) && proto.ondewo.nlu.VideoFileResource.toObject(includeInstance, f)
+documentFileResource: (f = msg.getDocumentFileResource()) && proto.ondewo.nlu.DocumentFileResource.toObject(includeInstance, f),
+audioFileResource: (f = msg.getAudioFileResource()) && proto.ondewo.nlu.AudioFileResource.toObject(includeInstance, f),
+imageFileResource: (f = msg.getImageFileResource()) && proto.ondewo.nlu.ImageFileResource.toObject(includeInstance, f),
+videoFileResource: (f = msg.getVideoFileResource()) && proto.ondewo.nlu.VideoFileResource.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -41769,13 +45776,13 @@ proto.ondewo.nlu.DocumentFileResource.prototype.toObject = function(opt_includeI
  */
 proto.ondewo.nlu.DocumentFileResource.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    displayName: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    bytes: msg.getBytes_asB64(),
-    createdAt: (f = msg.getCreatedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    modifiedAt: (f = msg.getModifiedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    createdBy: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    modifiedBy: jspb.Message.getFieldWithDefault(msg, 7, "")
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+displayName: jspb.Message.getFieldWithDefault(msg, 2, ""),
+bytes: msg.getBytes_asB64(),
+createdAt: (f = msg.getCreatedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+modifiedAt: (f = msg.getModifiedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+createdBy: jspb.Message.getFieldWithDefault(msg, 6, ""),
+modifiedBy: jspb.Message.getFieldWithDefault(msg, 7, "")
   };
 
   if (includeInstance) {
@@ -42145,13 +46152,13 @@ proto.ondewo.nlu.ImageFileResource.prototype.toObject = function(opt_includeInst
  */
 proto.ondewo.nlu.ImageFileResource.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    displayName: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    bytes: msg.getBytes_asB64(),
-    createdAt: (f = msg.getCreatedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    modifiedAt: (f = msg.getModifiedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    createdBy: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    modifiedBy: jspb.Message.getFieldWithDefault(msg, 7, "")
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+displayName: jspb.Message.getFieldWithDefault(msg, 2, ""),
+bytes: msg.getBytes_asB64(),
+createdAt: (f = msg.getCreatedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+modifiedAt: (f = msg.getModifiedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+createdBy: jspb.Message.getFieldWithDefault(msg, 6, ""),
+modifiedBy: jspb.Message.getFieldWithDefault(msg, 7, "")
   };
 
   if (includeInstance) {
@@ -42528,19 +46535,19 @@ proto.ondewo.nlu.AudioFileResource.prototype.toObject = function(opt_includeInst
  */
 proto.ondewo.nlu.AudioFileResource.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    bytes: msg.getBytes_asB64(),
-    language: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    durationInS: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0),
-    sampleRate: jspb.Message.getFieldWithDefault(msg, 5, 0),
-    audioFileResourceType: jspb.Message.getFieldWithDefault(msg, 6, 0),
-    transcriptionsList: jspb.Message.toObjectList(msg.getTranscriptionsList(),
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+bytes: msg.getBytes_asB64(),
+language: jspb.Message.getFieldWithDefault(msg, 3, ""),
+durationInS: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0),
+sampleRate: jspb.Message.getFieldWithDefault(msg, 5, 0),
+audioFileResourceType: jspb.Message.getFieldWithDefault(msg, 6, 0),
+transcriptionsList: jspb.Message.toObjectList(msg.getTranscriptionsList(),
     proto.ondewo.nlu.S2tTranscription.toObject, includeInstance),
-    createdAt: (f = msg.getCreatedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    modifiedAt: (f = msg.getModifiedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    createdBy: jspb.Message.getFieldWithDefault(msg, 10, ""),
-    modifiedBy: jspb.Message.getFieldWithDefault(msg, 11, ""),
-    displayName: jspb.Message.getFieldWithDefault(msg, 12, "")
+createdAt: (f = msg.getCreatedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+modifiedAt: (f = msg.getModifiedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+createdBy: jspb.Message.getFieldWithDefault(msg, 10, ""),
+modifiedBy: jspb.Message.getFieldWithDefault(msg, 11, ""),
+displayName: jspb.Message.getFieldWithDefault(msg, 12, "")
   };
 
   if (includeInstance) {
@@ -43077,16 +47084,16 @@ proto.ondewo.nlu.VideoFileResource.prototype.toObject = function(opt_includeInst
  */
 proto.ondewo.nlu.VideoFileResource.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    displayName: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    bytes: msg.getBytes_asB64(),
-    durationInS: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0),
-    resolution: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    frameRate: jspb.Message.getFloatingPointFieldWithDefault(msg, 6, 0.0),
-    createdAt: (f = msg.getCreatedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    modifiedAt: (f = msg.getModifiedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    createdBy: jspb.Message.getFieldWithDefault(msg, 9, ""),
-    modifiedBy: jspb.Message.getFieldWithDefault(msg, 10, "")
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+displayName: jspb.Message.getFieldWithDefault(msg, 2, ""),
+bytes: msg.getBytes_asB64(),
+durationInS: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0),
+resolution: jspb.Message.getFieldWithDefault(msg, 5, ""),
+frameRate: jspb.Message.getFloatingPointFieldWithDefault(msg, 6, 0.0),
+createdAt: (f = msg.getCreatedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+modifiedAt: (f = msg.getModifiedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+createdBy: jspb.Message.getFieldWithDefault(msg, 9, ""),
+modifiedBy: jspb.Message.getFieldWithDefault(msg, 10, "")
   };
 
   if (includeInstance) {
@@ -43550,12 +47557,12 @@ proto.ondewo.nlu.GetAudioFilesRequest.prototype.toObject = function(opt_includeI
  */
 proto.ondewo.nlu.GetAudioFilesRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    parent: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    namesList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f,
-    resourceView: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    pageToken: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    sortingMode: jspb.Message.getFieldWithDefault(msg, 5, 0),
-    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
+parent: jspb.Message.getFieldWithDefault(msg, 1, ""),
+namesList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f,
+resourceView: jspb.Message.getFieldWithDefault(msg, 3, 0),
+pageToken: jspb.Message.getFieldWithDefault(msg, 4, ""),
+sortingMode: jspb.Message.getFieldWithDefault(msg, 5, 0),
+fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -43877,10 +47884,10 @@ proto.ondewo.nlu.GetAudioFilesResponse.prototype.toObject = function(opt_include
  */
 proto.ondewo.nlu.GetAudioFilesResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    audioFilesList: jspb.Message.toObjectList(msg.getAudioFilesList(),
+audioFilesList: jspb.Message.toObjectList(msg.getAudioFilesList(),
     proto.ondewo.nlu.AudioFileResource.toObject, includeInstance),
-    errorMessage: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    nextPageToken: jspb.Message.getFieldWithDefault(msg, 3, "")
+errorMessage: jspb.Message.getFieldWithDefault(msg, 2, ""),
+nextPageToken: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -44097,11 +48104,11 @@ proto.ondewo.nlu.AddAudioFilesRequest.prototype.toObject = function(opt_includeI
  */
 proto.ondewo.nlu.AddAudioFilesRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    parent: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    sessionId: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    audioFileResourcesList: jspb.Message.toObjectList(msg.getAudioFileResourcesList(),
+parent: jspb.Message.getFieldWithDefault(msg, 1, ""),
+sessionId: jspb.Message.getFieldWithDefault(msg, 2, ""),
+audioFileResourcesList: jspb.Message.toObjectList(msg.getAudioFileResourcesList(),
     proto.ondewo.nlu.AudioFileResource.toObject, includeInstance),
-    sessionStepId: jspb.Message.getFieldWithDefault(msg, 4, "")
+sessionStepId: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
 
   if (includeInstance) {
@@ -44347,9 +48354,9 @@ proto.ondewo.nlu.AddAudioFilesResponse.prototype.toObject = function(opt_include
  */
 proto.ondewo.nlu.AddAudioFilesResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    audioFileResourcesList: jspb.Message.toObjectList(msg.getAudioFileResourcesList(),
+audioFileResourcesList: jspb.Message.toObjectList(msg.getAudioFileResourcesList(),
     proto.ondewo.nlu.AudioFileResource.toObject, includeInstance),
-    errorMessage: jspb.Message.getFieldWithDefault(msg, 2, "")
+errorMessage: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -44537,8 +48544,8 @@ proto.ondewo.nlu.DeleteAudioFilesRequest.prototype.toObject = function(opt_inclu
  */
 proto.ondewo.nlu.DeleteAudioFilesRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    parent: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    namesList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f
+parent: jspb.Message.getFieldWithDefault(msg, 1, ""),
+namesList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -44723,8 +48730,8 @@ proto.ondewo.nlu.DeleteAudioFilesResponse.prototype.toObject = function(opt_incl
  */
 proto.ondewo.nlu.DeleteAudioFilesResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    namesList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f,
-    errorMessage: jspb.Message.getFieldWithDefault(msg, 2, "")
+namesList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f,
+errorMessage: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -44902,12 +48909,12 @@ proto.ondewo.nlu.ListAudioFilesRequest.prototype.toObject = function(opt_include
  */
 proto.ondewo.nlu.ListAudioFilesRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    parent: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    sessionId: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    resourceView: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    pageToken: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    sortingMode: jspb.Message.getFieldWithDefault(msg, 5, 0),
-    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
+parent: jspb.Message.getFieldWithDefault(msg, 1, ""),
+sessionId: jspb.Message.getFieldWithDefault(msg, 2, ""),
+resourceView: jspb.Message.getFieldWithDefault(msg, 3, 0),
+pageToken: jspb.Message.getFieldWithDefault(msg, 4, ""),
+sortingMode: jspb.Message.getFieldWithDefault(msg, 5, 0),
+fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -45210,10 +49217,10 @@ proto.ondewo.nlu.ListAudioFilesResponse.prototype.toObject = function(opt_includ
  */
 proto.ondewo.nlu.ListAudioFilesResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    audioFilesList: jspb.Message.toObjectList(msg.getAudioFilesList(),
+audioFilesList: jspb.Message.toObjectList(msg.getAudioFilesList(),
     proto.ondewo.nlu.AudioFileResource.toObject, includeInstance),
-    nextPageToken: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    errorMessage: jspb.Message.getFieldWithDefault(msg, 3, "")
+nextPageToken: jspb.Message.getFieldWithDefault(msg, 2, ""),
+errorMessage: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -45423,10 +49430,10 @@ proto.ondewo.nlu.GetAudioFileOfSessionRequest.prototype.toObject = function(opt_
  */
 proto.ondewo.nlu.GetAudioFileOfSessionRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    parent: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    sessionId: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    resourceView: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
+parent: jspb.Message.getFieldWithDefault(msg, 1, ""),
+sessionId: jspb.Message.getFieldWithDefault(msg, 2, ""),
+resourceView: jspb.Message.getFieldWithDefault(msg, 3, 0),
+fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -45669,6 +49676,95 @@ proto.ondewo.nlu.LlmAgentNodePhase = {
   LLM_AGENT_NODE_PHASE_STARTED: 1,
   LLM_AGENT_NODE_PHASE_COMPLETED: 2,
   LLM_AGENT_NODE_PHASE_FAILED: 3
+};
+
+/**
+ * @enum {number}
+ */
+proto.ondewo.nlu.TurnInterruptionReason = {
+  TURN_INTERRUPTION_REASON_UNSPECIFIED: 0,
+  TURN_INTERRUPTION_REASON_BARGE_IN: 1,
+  TURN_INTERRUPTION_REASON_CALLER_SPOKE_WHILE_THINKING: 2,
+  TURN_INTERRUPTION_REASON_CALL_ENDED: 3,
+  TURN_INTERRUPTION_REASON_FILLER_CUT: 4,
+  TURN_INTERRUPTION_REASON_NO_FINAL_TIMEOUT: 5,
+  TURN_INTERRUPTION_REASON_OPERATOR_TAKEOVER: 6,
+  TURN_INTERRUPTION_REASON_BOT_MUTED: 7
+};
+
+/**
+ * @enum {number}
+ */
+proto.ondewo.nlu.BackgroundWorkPolicy = {
+  BACKGROUND_WORK_POLICY_KEEP: 0,
+  BACKGROUND_WORK_POLICY_CANCEL_PENDING: 1
+};
+
+/**
+ * @enum {number}
+ */
+proto.ondewo.nlu.HeardTextPrecision = {
+  HEARD_TEXT_PRECISION_UNSPECIFIED: 0,
+  HEARD_TEXT_PRECISION_NONE_HEARD: 1,
+  HEARD_TEXT_PRECISION_FULL: 2,
+  HEARD_TEXT_PRECISION_ESTIMATED_SERVER: 3,
+  HEARD_TEXT_PRECISION_PROPORTIONAL: 4
+};
+
+/**
+ * @enum {number}
+ */
+proto.ondewo.nlu.TurnControlAckStatus = {
+  TURN_CONTROL_ACK_STATUS_UNSPECIFIED: 0,
+  TURN_CONTROL_ACK_STATUS_CANCELLED: 1,
+  TURN_CONTROL_ACK_STATUS_CANCELLED_QUEUED: 2,
+  TURN_CONTROL_ACK_STATUS_ALREADY_FINISHED: 3,
+  TURN_CONTROL_ACK_STATUS_UNKNOWN_TURN: 4,
+  TURN_CONTROL_ACK_STATUS_HEARD_APPLIED: 5,
+  TURN_CONTROL_ACK_STATUS_HEARD_STALE: 6,
+  TURN_CONTROL_ACK_STATUS_DRAFT_DISCARDED: 7
+};
+
+/**
+ * @enum {number}
+ */
+proto.ondewo.nlu.WarmTransferIntroTextSource = {
+  WARM_TRANSFER_INTRO_TEXT_SOURCE_UNSPECIFIED: 0,
+  WARM_TRANSFER_INTRO_TEXT_SOURCE_TEMPLATE: 1,
+  WARM_TRANSFER_INTRO_TEXT_SOURCE_LLM_SUMMARY: 2
+};
+
+/**
+ * @enum {number}
+ */
+proto.ondewo.nlu.WarmTransferIntroDecision = {
+  WARM_TRANSFER_INTRO_DECISION_UNSPECIFIED: 0,
+  WARM_TRANSFER_INTRO_DECISION_PENDING: 1,
+  WARM_TRANSFER_INTRO_DECISION_ACCEPTED: 2,
+  WARM_TRANSFER_INTRO_DECISION_DECLINED: 3,
+  WARM_TRANSFER_INTRO_DECISION_NO_DECISION: 4
+};
+
+/**
+ * @enum {number}
+ */
+proto.ondewo.nlu.WarmTransferIntroDecidedBy = {
+  WARM_TRANSFER_INTRO_DECIDED_BY_UNSPECIFIED: 0,
+  WARM_TRANSFER_INTRO_DECIDED_BY_DTMF: 1,
+  WARM_TRANSFER_INTRO_DECIDED_BY_SPEECH: 2,
+  WARM_TRANSFER_INTRO_DECIDED_BY_TIMEOUT: 3
+};
+
+/**
+ * @enum {number}
+ */
+proto.ondewo.nlu.WarmTransferIntroStage = {
+  WARM_TRANSFER_INTRO_STAGE_UNSPECIFIED: 0,
+  WARM_TRANSFER_INTRO_STAGE_PREPARED: 1,
+  WARM_TRANSFER_INTRO_STAGE_READY_ASKED: 2,
+  WARM_TRANSFER_INTRO_STAGE_INTRO_SPOKEN: 3,
+  WARM_TRANSFER_INTRO_STAGE_REASON_ASKED: 4,
+  WARM_TRANSFER_INTRO_STAGE_CLOSED: 5
 };
 
 /**

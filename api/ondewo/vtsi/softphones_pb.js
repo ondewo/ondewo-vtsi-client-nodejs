@@ -13,13 +13,13 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global = (function() {
-  if (this) { return this; }
-  if (typeof window !== 'undefined') { return window; }
-  if (typeof global !== 'undefined') { return global; }
-  if (typeof self !== 'undefined') { return self; }
-  return Function('return this')();
-}.call(null));
+var global =
+    (typeof globalThis !== 'undefined' && globalThis) ||
+    (typeof window !== 'undefined' && window) ||
+    (typeof global !== 'undefined' && global) ||
+    (typeof self !== 'undefined' && self) ||
+    (function () { return this; }).call(null) ||
+    Function('return this')();
 
 var google_protobuf_field_mask_pb = require('google-protobuf/google/protobuf/field_mask_pb.js');
 goog.object.extend(proto, google_protobuf_field_mask_pb);
@@ -622,27 +622,28 @@ proto.ondewo.vtsi.SoftphoneAccount.prototype.toObject = function(opt_includeInst
  */
 proto.ondewo.vtsi.SoftphoneAccount.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    softphoneAccountId: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    displayName: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    sipUsername: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    transportSecurity: jspb.Message.getFieldWithDefault(msg, 6, 0),
-    enabled: jspb.Message.getBooleanFieldWithDefault(msg, 7, false),
-    maxContacts: jspb.Message.getFieldWithDefault(msg, 8, 0),
-    labelsMap: (f = msg.getLabelsMap()) ? f.toObject(includeInstance, undefined) : [],
-    allowedDestinationsList: (f = jspb.Message.getRepeatedField(msg, 10)) == null ? undefined : f,
-    currentCertificateName: jspb.Message.getFieldWithDefault(msg, 11, ""),
-    currentCertificateSha256Fingerprint: jspb.Message.getFieldWithDefault(msg, 12, ""),
-    currentCertificateExpireTime: (f = msg.getCurrentCertificateExpireTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    sipPasswordSetAt: (f = msg.getSipPasswordSetAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    createdBy: jspb.Message.getFieldWithDefault(msg, 15, ""),
-    createdAt: (f = msg.getCreatedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    modifiedBy: jspb.Message.getFieldWithDefault(msg, 17, ""),
-    modifiedAt: (f = msg.getModifiedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    locked: jspb.Message.getBooleanFieldWithDefault(msg, 19, false),
-    lockedAt: (f = msg.getLockedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    lockedReason: jspb.Message.getFieldWithDefault(msg, 21, "")
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+softphoneAccountId: jspb.Message.getFieldWithDefault(msg, 2, ""),
+vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 3, ""),
+displayName: jspb.Message.getFieldWithDefault(msg, 4, ""),
+sipUsername: jspb.Message.getFieldWithDefault(msg, 5, ""),
+transportSecurity: jspb.Message.getFieldWithDefault(msg, 6, 0),
+enabled: (f = jspb.Message.getBooleanField(msg, 7)) == null ? undefined : f,
+maxContacts: jspb.Message.getFieldWithDefault(msg, 8, 0),
+labelsMap: (f = msg.getLabelsMap()) ? f.toObject(includeInstance, undefined) : [],
+allowedDestinationsList: (f = jspb.Message.getRepeatedField(msg, 10)) == null ? undefined : f,
+currentCertificateName: jspb.Message.getFieldWithDefault(msg, 11, ""),
+currentCertificateSha256Fingerprint: jspb.Message.getFieldWithDefault(msg, 12, ""),
+currentCertificateExpireTime: (f = msg.getCurrentCertificateExpireTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+sipPasswordSetAt: (f = msg.getSipPasswordSetAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+createdBy: jspb.Message.getFieldWithDefault(msg, 15, ""),
+createdAt: (f = msg.getCreatedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+modifiedBy: jspb.Message.getFieldWithDefault(msg, 17, ""),
+modifiedAt: (f = msg.getModifiedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+locked: jspb.Message.getBooleanFieldWithDefault(msg, 19, false),
+lockedAt: (f = msg.getLockedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+lockedReason: jspb.Message.getFieldWithDefault(msg, 21, ""),
+description: jspb.Message.getFieldWithDefault(msg, 22, "")
   };
 
   if (includeInstance) {
@@ -769,6 +770,10 @@ proto.ondewo.vtsi.SoftphoneAccount.deserializeBinaryFromReader = function(msg, r
     case 21:
       var value = /** @type {string} */ (reader.readString());
       msg.setLockedReason(value);
+      break;
+    case 22:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setDescription(value);
       break;
     default:
       reader.skipField();
@@ -945,6 +950,13 @@ proto.ondewo.vtsi.SoftphoneAccount.serializeBinaryToWriter = function(message, w
   if (f.length > 0) {
     writer.writeString(
       21,
+      f
+    );
+  }
+  f = message.getDescription();
+  if (f.length > 0) {
+    writer.writeString(
+      22,
       f
     );
   }
@@ -1132,7 +1144,8 @@ proto.ondewo.vtsi.SoftphoneAccount.prototype.getLabelsMap = function(opt_noLazyC
  */
 proto.ondewo.vtsi.SoftphoneAccount.prototype.clearLabelsMap = function() {
   this.getLabelsMap().clear();
-  return this;};
+  return this;
+};
 
 
 /**
@@ -1465,6 +1478,24 @@ proto.ondewo.vtsi.SoftphoneAccount.prototype.setLockedReason = function(value) {
 };
 
 
+/**
+ * optional string description = 22;
+ * @return {string}
+ */
+proto.ondewo.vtsi.SoftphoneAccount.prototype.getDescription = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 22, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.vtsi.SoftphoneAccount} returns this
+ */
+proto.ondewo.vtsi.SoftphoneAccount.prototype.setDescription = function(value) {
+  return jspb.Message.setProto3StringField(this, 22, value);
+};
+
+
 
 
 
@@ -1497,23 +1528,23 @@ proto.ondewo.vtsi.SoftphoneCertificate.prototype.toObject = function(opt_include
  */
 proto.ondewo.vtsi.SoftphoneCertificate.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    softphoneAccountName: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    status: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    certificatePem: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    issuerCaCertificatePem: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    sha256Fingerprint: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    serialNumber: jspb.Message.getFieldWithDefault(msg, 7, ""),
-    subject: jspb.Message.getFieldWithDefault(msg, 8, ""),
-    notBefore: (f = msg.getNotBefore()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    notAfter: (f = msg.getNotAfter()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    createdBy: jspb.Message.getFieldWithDefault(msg, 11, ""),
-    createdAt: (f = msg.getCreatedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    supersededAt: (f = msg.getSupersededAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    supersededByCertificateName: jspb.Message.getFieldWithDefault(msg, 14, ""),
-    revokedAt: (f = msg.getRevokedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    revokedBy: jspb.Message.getFieldWithDefault(msg, 16, ""),
-    revocationReason: jspb.Message.getFieldWithDefault(msg, 17, "")
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+softphoneAccountName: jspb.Message.getFieldWithDefault(msg, 2, ""),
+status: jspb.Message.getFieldWithDefault(msg, 3, 0),
+certificatePem: jspb.Message.getFieldWithDefault(msg, 4, ""),
+issuerCaCertificatePem: jspb.Message.getFieldWithDefault(msg, 5, ""),
+sha256Fingerprint: jspb.Message.getFieldWithDefault(msg, 6, ""),
+serialNumber: jspb.Message.getFieldWithDefault(msg, 7, ""),
+subject: jspb.Message.getFieldWithDefault(msg, 8, ""),
+notBefore: (f = msg.getNotBefore()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+notAfter: (f = msg.getNotAfter()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+createdBy: jspb.Message.getFieldWithDefault(msg, 11, ""),
+createdAt: (f = msg.getCreatedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+supersededAt: (f = msg.getSupersededAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+supersededByCertificateName: jspb.Message.getFieldWithDefault(msg, 14, ""),
+revokedAt: (f = msg.getRevokedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+revokedBy: jspb.Message.getFieldWithDefault(msg, 16, ""),
+revocationReason: jspb.Message.getFieldWithDefault(msg, 17, "")
   };
 
   if (includeInstance) {
@@ -2212,10 +2243,10 @@ proto.ondewo.vtsi.SoftphoneCredentials.prototype.toObject = function(opt_include
  */
 proto.ondewo.vtsi.SoftphoneCredentials.toObject = function(includeInstance, msg) {
   var f, obj = {
-    sipPassword: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    pkcs12Bundle: msg.getPkcs12Bundle_asB64(),
-    pkcs12Password: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    certificate: (f = msg.getCertificate()) && proto.ondewo.vtsi.SoftphoneCertificate.toObject(includeInstance, f)
+sipPassword: jspb.Message.getFieldWithDefault(msg, 1, ""),
+pkcs12Bundle: msg.getPkcs12Bundle_asB64(),
+pkcs12Password: jspb.Message.getFieldWithDefault(msg, 3, ""),
+certificate: (f = msg.getCertificate()) && proto.ondewo.vtsi.SoftphoneCertificate.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -2484,26 +2515,26 @@ proto.ondewo.vtsi.SoftphoneProvisioning.prototype.toObject = function(opt_includ
  */
 proto.ondewo.vtsi.SoftphoneProvisioning.toObject = function(includeInstance, msg) {
   var f, obj = {
-    softphoneAccountName: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    transportSecurity: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    sipDomain: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    sipAddress: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    sipServerHost: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    sipServerPort: jspb.Message.getFieldWithDefault(msg, 6, 0),
-    sipTransport: jspb.Message.getFieldWithDefault(msg, 7, ""),
-    outboundProxy: jspb.Message.getFieldWithDefault(msg, 8, ""),
-    username: jspb.Message.getFieldWithDefault(msg, 9, ""),
-    authUsername: jspb.Message.getFieldWithDefault(msg, 10, ""),
-    realm: jspb.Message.getFieldWithDefault(msg, 11, ""),
-    srtpMode: jspb.Message.getFieldWithDefault(msg, 12, 0),
-    codecsList: (f = jspb.Message.getRepeatedField(msg, 13)) == null ? undefined : f,
-    serverCaCertificatePem: jspb.Message.getFieldWithDefault(msg, 14, ""),
-    serverCertificateSha256Fingerprint: jspb.Message.getFieldWithDefault(msg, 15, ""),
-    clientCertificateName: jspb.Message.getFieldWithDefault(msg, 16, ""),
-    clientCertificateSha256Fingerprint: jspb.Message.getFieldWithDefault(msg, 17, ""),
-    clientCertificateExpireTime: (f = msg.getClientCertificateExpireTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    zoiperInstructions: jspb.Message.getFieldWithDefault(msg, 19, ""),
-    clientCertificateSupportNote: jspb.Message.getFieldWithDefault(msg, 20, "")
+softphoneAccountName: jspb.Message.getFieldWithDefault(msg, 1, ""),
+transportSecurity: jspb.Message.getFieldWithDefault(msg, 2, 0),
+sipDomain: jspb.Message.getFieldWithDefault(msg, 3, ""),
+sipAddress: jspb.Message.getFieldWithDefault(msg, 4, ""),
+sipServerHost: jspb.Message.getFieldWithDefault(msg, 5, ""),
+sipServerPort: jspb.Message.getFieldWithDefault(msg, 6, 0),
+sipTransport: jspb.Message.getFieldWithDefault(msg, 7, ""),
+outboundProxy: jspb.Message.getFieldWithDefault(msg, 8, ""),
+username: jspb.Message.getFieldWithDefault(msg, 9, ""),
+authUsername: jspb.Message.getFieldWithDefault(msg, 10, ""),
+realm: jspb.Message.getFieldWithDefault(msg, 11, ""),
+srtpMode: jspb.Message.getFieldWithDefault(msg, 12, 0),
+codecsList: (f = jspb.Message.getRepeatedField(msg, 13)) == null ? undefined : f,
+serverCaCertificatePem: jspb.Message.getFieldWithDefault(msg, 14, ""),
+serverCertificateSha256Fingerprint: jspb.Message.getFieldWithDefault(msg, 15, ""),
+clientCertificateName: jspb.Message.getFieldWithDefault(msg, 16, ""),
+clientCertificateSha256Fingerprint: jspb.Message.getFieldWithDefault(msg, 17, ""),
+clientCertificateExpireTime: (f = msg.getClientCertificateExpireTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+zoiperInstructions: jspb.Message.getFieldWithDefault(msg, 19, ""),
+clientCertificateSupportNote: jspb.Message.getFieldWithDefault(msg, 20, "")
   };
 
   if (includeInstance) {
@@ -3231,14 +3262,14 @@ proto.ondewo.vtsi.SoftphoneAccountFilter.prototype.toObject = function(opt_inclu
  */
 proto.ondewo.vtsi.SoftphoneAccountFilter.toObject = function(includeInstance, msg) {
   var f, obj = {
-    transportSecuritiesList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f,
-    enabled: jspb.Message.getBooleanFieldWithDefault(msg, 2, false),
-    labelsMap: (f = msg.getLabelsMap()) ? f.toObject(includeInstance, undefined) : [],
-    displayNameContains: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    sipUsernameContains: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    certificateExpiresBefore: (f = msg.getCertificateExpiresBefore()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    certificateExpiresAfter: (f = msg.getCertificateExpiresAfter()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    locked: jspb.Message.getBooleanFieldWithDefault(msg, 8, false)
+transportSecuritiesList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f,
+enabled: (f = jspb.Message.getBooleanField(msg, 2)) == null ? undefined : f,
+labelsMap: (f = msg.getLabelsMap()) ? f.toObject(includeInstance, undefined) : [],
+displayNameContains: jspb.Message.getFieldWithDefault(msg, 4, ""),
+sipUsernameContains: jspb.Message.getFieldWithDefault(msg, 5, ""),
+certificateExpiresBefore: (f = msg.getCertificateExpiresBefore()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+certificateExpiresAfter: (f = msg.getCertificateExpiresAfter()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+locked: (f = jspb.Message.getBooleanField(msg, 8)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -3492,7 +3523,8 @@ proto.ondewo.vtsi.SoftphoneAccountFilter.prototype.getLabelsMap = function(opt_n
  */
 proto.ondewo.vtsi.SoftphoneAccountFilter.prototype.clearLabelsMap = function() {
   this.getLabelsMap().clear();
-  return this;};
+  return this;
+};
 
 
 /**
@@ -3680,9 +3712,9 @@ proto.ondewo.vtsi.SoftphoneCertificateFilter.prototype.toObject = function(opt_i
  */
 proto.ondewo.vtsi.SoftphoneCertificateFilter.toObject = function(includeInstance, msg) {
   var f, obj = {
-    statusesList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f,
-    expiresBefore: (f = msg.getExpiresBefore()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    expiresAfter: (f = msg.getExpiresAfter()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+statusesList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f,
+expiresBefore: (f = msg.getExpiresBefore()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+expiresAfter: (f = msg.getExpiresAfter()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -3933,8 +3965,8 @@ proto.ondewo.vtsi.SoftphoneAccountSorting.prototype.toObject = function(opt_incl
  */
 proto.ondewo.vtsi.SoftphoneAccountSorting.toObject = function(includeInstance, msg) {
   var f, obj = {
-    sortingField: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    sortingMode: jspb.Message.getFieldWithDefault(msg, 2, 0)
+sortingField: (f = jspb.Message.getField(msg, 1)) == null ? undefined : f,
+sortingMode: (f = jspb.Message.getField(msg, 2)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -4141,9 +4173,9 @@ proto.ondewo.vtsi.CreateSoftphoneAccountRequest.prototype.toObject = function(op
  */
 proto.ondewo.vtsi.CreateSoftphoneAccountRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    softphoneAccount: (f = msg.getSoftphoneAccount()) && proto.ondewo.vtsi.SoftphoneAccount.toObject(includeInstance, f),
-    idempotencyKey: jspb.Message.getFieldWithDefault(msg, 3, "")
+vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 1, ""),
+softphoneAccount: (f = msg.getSoftphoneAccount()) && proto.ondewo.vtsi.SoftphoneAccount.toObject(includeInstance, f),
+idempotencyKey: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -4352,8 +4384,8 @@ proto.ondewo.vtsi.CreateSoftphoneAccountResponse.prototype.toObject = function(o
  */
 proto.ondewo.vtsi.CreateSoftphoneAccountResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    softphoneAccount: (f = msg.getSoftphoneAccount()) && proto.ondewo.vtsi.SoftphoneAccount.toObject(includeInstance, f),
-    credentials: (f = msg.getCredentials()) && proto.ondewo.vtsi.SoftphoneCredentials.toObject(includeInstance, f)
+softphoneAccount: (f = msg.getSoftphoneAccount()) && proto.ondewo.vtsi.SoftphoneAccount.toObject(includeInstance, f),
+credentials: (f = msg.getCredentials()) && proto.ondewo.vtsi.SoftphoneCredentials.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -4554,8 +4586,8 @@ proto.ondewo.vtsi.GetSoftphoneAccountRequest.prototype.toObject = function(opt_i
  */
 proto.ondewo.vtsi.GetSoftphoneAccountRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -4735,8 +4767,8 @@ proto.ondewo.vtsi.UpdateSoftphoneAccountRequest.prototype.toObject = function(op
  */
 proto.ondewo.vtsi.UpdateSoftphoneAccountRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    softphoneAccount: (f = msg.getSoftphoneAccount()) && proto.ondewo.vtsi.SoftphoneAccount.toObject(includeInstance, f),
-    updateMask: (f = msg.getUpdateMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
+softphoneAccount: (f = msg.getSoftphoneAccount()) && proto.ondewo.vtsi.SoftphoneAccount.toObject(includeInstance, f),
+updateMask: (f = msg.getUpdateMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -4937,7 +4969,7 @@ proto.ondewo.vtsi.DeleteSoftphoneAccountRequest.prototype.toObject = function(op
  */
 proto.ondewo.vtsi.DeleteSoftphoneAccountRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, "")
+name: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -5067,8 +5099,8 @@ proto.ondewo.vtsi.DeleteSoftphoneAccountResponse.prototype.toObject = function(o
  */
 proto.ondewo.vtsi.DeleteSoftphoneAccountResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    revokedCertificateCount: jspb.Message.getFieldWithDefault(msg, 2, 0)
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+revokedCertificateCount: jspb.Message.getFieldWithDefault(msg, 2, 0)
   };
 
   if (includeInstance) {
@@ -5227,12 +5259,12 @@ proto.ondewo.vtsi.ListSoftphoneAccountsRequest.prototype.toObject = function(opt
  */
 proto.ondewo.vtsi.ListSoftphoneAccountsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    filter: (f = msg.getFilter()) && proto.ondewo.vtsi.SoftphoneAccountFilter.toObject(includeInstance, f),
-    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f),
-    pageSize: jspb.Message.getFieldWithDefault(msg, 4, 0),
-    pageToken: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    softphoneAccountSorting: (f = msg.getSoftphoneAccountSorting()) && proto.ondewo.vtsi.SoftphoneAccountSorting.toObject(includeInstance, f)
+vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 1, ""),
+filter: (f = msg.getFilter()) && proto.ondewo.vtsi.SoftphoneAccountFilter.toObject(includeInstance, f),
+fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f),
+pageSize: jspb.Message.getFieldWithDefault(msg, 4, 0),
+pageToken: (f = jspb.Message.getField(msg, 5)) == null ? undefined : f,
+softphoneAccountSorting: (f = msg.getSoftphoneAccountSorting()) && proto.ondewo.vtsi.SoftphoneAccountSorting.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -5595,9 +5627,9 @@ proto.ondewo.vtsi.ListSoftphoneAccountsResponse.prototype.toObject = function(op
  */
 proto.ondewo.vtsi.ListSoftphoneAccountsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    softphoneAccountsList: jspb.Message.toObjectList(msg.getSoftphoneAccountsList(),
+softphoneAccountsList: jspb.Message.toObjectList(msg.getSoftphoneAccountsList(),
     proto.ondewo.vtsi.SoftphoneAccount.toObject, includeInstance),
-    nextPageToken: jspb.Message.getFieldWithDefault(msg, 2, "")
+nextPageToken: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -5778,9 +5810,9 @@ proto.ondewo.vtsi.RotateSoftphoneCredentialsRequest.prototype.toObject = functio
  */
 proto.ondewo.vtsi.RotateSoftphoneCredentialsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    rotateSipPassword: jspb.Message.getBooleanFieldWithDefault(msg, 2, false),
-    rotateCertificate: jspb.Message.getBooleanFieldWithDefault(msg, 3, false)
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+rotateSipPassword: jspb.Message.getBooleanFieldWithDefault(msg, 2, false),
+rotateCertificate: jspb.Message.getBooleanFieldWithDefault(msg, 3, false)
   };
 
   if (includeInstance) {
@@ -5968,8 +6000,8 @@ proto.ondewo.vtsi.RotateSoftphoneCredentialsResponse.prototype.toObject = functi
  */
 proto.ondewo.vtsi.RotateSoftphoneCredentialsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    softphoneAccount: (f = msg.getSoftphoneAccount()) && proto.ondewo.vtsi.SoftphoneAccount.toObject(includeInstance, f),
-    credentials: (f = msg.getCredentials()) && proto.ondewo.vtsi.SoftphoneCredentials.toObject(includeInstance, f)
+softphoneAccount: (f = msg.getSoftphoneAccount()) && proto.ondewo.vtsi.SoftphoneAccount.toObject(includeInstance, f),
+credentials: (f = msg.getCredentials()) && proto.ondewo.vtsi.SoftphoneCredentials.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -6196,12 +6228,12 @@ proto.ondewo.vtsi.ListSoftphoneCertificatesRequest.prototype.toObject = function
  */
 proto.ondewo.vtsi.ListSoftphoneCertificatesRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    vtsiProjectName: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    softphoneAccountName: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    filter: (f = msg.getFilter()) && proto.ondewo.vtsi.SoftphoneCertificateFilter.toObject(includeInstance, f),
-    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f),
-    pageSize: jspb.Message.getFieldWithDefault(msg, 5, 0),
-    pageToken: jspb.Message.getFieldWithDefault(msg, 6, "")
+vtsiProjectName: (f = jspb.Message.getField(msg, 1)) == null ? undefined : f,
+softphoneAccountName: (f = jspb.Message.getField(msg, 2)) == null ? undefined : f,
+filter: (f = msg.getFilter()) && proto.ondewo.vtsi.SoftphoneCertificateFilter.toObject(includeInstance, f),
+fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f),
+pageSize: jspb.Message.getFieldWithDefault(msg, 5, 0),
+pageToken: (f = jspb.Message.getField(msg, 6)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -6579,9 +6611,9 @@ proto.ondewo.vtsi.ListSoftphoneCertificatesResponse.prototype.toObject = functio
  */
 proto.ondewo.vtsi.ListSoftphoneCertificatesResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    softphoneCertificatesList: jspb.Message.toObjectList(msg.getSoftphoneCertificatesList(),
+softphoneCertificatesList: jspb.Message.toObjectList(msg.getSoftphoneCertificatesList(),
     proto.ondewo.vtsi.SoftphoneCertificate.toObject, includeInstance),
-    nextPageToken: jspb.Message.getFieldWithDefault(msg, 2, "")
+nextPageToken: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -6762,8 +6794,8 @@ proto.ondewo.vtsi.GetSoftphoneCertificateRequest.prototype.toObject = function(o
  */
 proto.ondewo.vtsi.GetSoftphoneCertificateRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -6943,8 +6975,8 @@ proto.ondewo.vtsi.RevokeSoftphoneCertificateRequest.prototype.toObject = functio
  */
 proto.ondewo.vtsi.RevokeSoftphoneCertificateRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    reason: jspb.Message.getFieldWithDefault(msg, 2, "")
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+reason: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -7103,7 +7135,7 @@ proto.ondewo.vtsi.GetSoftphoneProvisioningRequest.prototype.toObject = function(
  */
 proto.ondewo.vtsi.GetSoftphoneProvisioningRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, "")
+name: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -7233,8 +7265,8 @@ proto.ondewo.vtsi.GetSoftphoneRegistrationRequest.prototype.toObject = function(
  */
 proto.ondewo.vtsi.GetSoftphoneRegistrationRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -7421,10 +7453,10 @@ proto.ondewo.vtsi.SoftphoneRegistration.prototype.toObject = function(opt_includ
  */
 proto.ondewo.vtsi.SoftphoneRegistration.toObject = function(includeInstance, msg) {
   var f, obj = {
-    softphoneAccountName: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    contactsList: jspb.Message.toObjectList(msg.getContactsList(),
+softphoneAccountName: jspb.Message.getFieldWithDefault(msg, 1, ""),
+contactsList: jspb.Message.toObjectList(msg.getContactsList(),
     proto.ondewo.vtsi.SoftphoneContact.toObject, includeInstance),
-    observedAt: (f = msg.getObservedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+observedAt: (f = msg.getObservedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -7655,12 +7687,12 @@ proto.ondewo.vtsi.SoftphoneContact.prototype.toObject = function(opt_includeInst
  */
 proto.ondewo.vtsi.SoftphoneContact.toObject = function(includeInstance, msg) {
   var f, obj = {
-    uri: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    userAgent: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    sourceAddress: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    expireTime: (f = msg.getExpireTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    roundTripMs: jspb.Message.getFloatingPointFieldWithDefault(msg, 5, 0.0),
-    status: jspb.Message.getFieldWithDefault(msg, 6, 0)
+uri: jspb.Message.getFieldWithDefault(msg, 1, ""),
+userAgent: jspb.Message.getFieldWithDefault(msg, 2, ""),
+sourceAddress: jspb.Message.getFieldWithDefault(msg, 3, ""),
+expireTime: (f = msg.getExpireTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+roundTripMs: jspb.Message.getFloatingPointFieldWithDefault(msg, 5, 0.0),
+status: jspb.Message.getFieldWithDefault(msg, 6, 0)
   };
 
   if (includeInstance) {

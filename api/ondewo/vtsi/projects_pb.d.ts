@@ -7,6 +7,7 @@
 import * as jspb from "google-protobuf";
 import * as google_protobuf_field_mask_pb from "google-protobuf/google/protobuf/field_mask_pb";
 import * as google_protobuf_timestamp_pb from "google-protobuf/google/protobuf/timestamp_pb";
+import * as ondewo_vtsi_call_configs_pb from "../../ondewo/vtsi/call_configs_pb";
 
 export class VtsiProject extends jspb.Message { 
     getName(): string;
@@ -68,6 +69,24 @@ export class VtsiProject extends jspb.Message {
     getAsteriskVersionEffective(): string;
     setAsteriskVersionEffective(value: string): VtsiProject;
 
+    hasWarmTransferDefaults(): boolean;
+    clearWarmTransferDefaults(): void;
+    getWarmTransferDefaults(): ondewo_vtsi_call_configs_pb.WarmTransferConfig | undefined;
+    setWarmTransferDefaults(value?: ondewo_vtsi_call_configs_pb.WarmTransferConfig): VtsiProject;
+
+    hasFeatureAvailability(): boolean;
+    clearFeatureAvailability(): void;
+    getFeatureAvailability(): VtsiProjectFeatureAvailability | undefined;
+    setFeatureAvailability(value?: VtsiProjectFeatureAvailability): VtsiProject;
+
+    hasIvrMenusEnabled(): boolean;
+    clearIvrMenusEnabled(): void;
+    getIvrMenusEnabled(): boolean | undefined;
+    setIvrMenusEnabled(value: boolean): VtsiProject;
+
+    getTransferTargetDirectoryMap(): jspb.Map<string, TransferTargetDirectoryItem>;
+    clearTransferTargetDirectoryMap(): void;
+
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): VtsiProject.AsObject;
     static toObject(includeInstance: boolean, msg: VtsiProject): VtsiProject.AsObject;
@@ -101,6 +120,60 @@ export namespace VtsiProject {
         statusChangedAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
         trunkRegistrationState: TrunkRegistrationState,
         asteriskVersionEffective: string,
+        warmTransferDefaults?: ondewo_vtsi_call_configs_pb.WarmTransferConfig.AsObject,
+        featureAvailability?: VtsiProjectFeatureAvailability.AsObject,
+        ivrMenusEnabled?: boolean,
+
+        transferTargetDirectoryMap: Array<[string, TransferTargetDirectoryItem.AsObject]>,
+    }
+}
+
+export class TransferTargetDirectoryItem extends jspb.Message { 
+    getDisplayName(): string;
+    setDisplayName(value: string): TransferTargetDirectoryItem;
+    getDescription(): string;
+    setDescription(value: string): TransferTargetDirectoryItem;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): TransferTargetDirectoryItem.AsObject;
+    static toObject(includeInstance: boolean, msg: TransferTargetDirectoryItem): TransferTargetDirectoryItem.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: TransferTargetDirectoryItem, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): TransferTargetDirectoryItem;
+    static deserializeBinaryFromReader(message: TransferTargetDirectoryItem, reader: jspb.BinaryReader): TransferTargetDirectoryItem;
+}
+
+export namespace TransferTargetDirectoryItem {
+    export type AsObject = {
+        displayName: string,
+        description: string,
+    }
+}
+
+export class VtsiProjectFeatureAvailability extends jspb.Message { 
+    getWarmIntro(): WarmIntroAvailability;
+    setWarmIntro(value: WarmIntroAvailability): VtsiProjectFeatureAvailability;
+    getWarmIntroPhaseB(): boolean;
+    setWarmIntroPhaseB(value: boolean): VtsiProjectFeatureAvailability;
+    getIvr(): IvrAvailability;
+    setIvr(value: IvrAvailability): VtsiProjectFeatureAvailability;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): VtsiProjectFeatureAvailability.AsObject;
+    static toObject(includeInstance: boolean, msg: VtsiProjectFeatureAvailability): VtsiProjectFeatureAvailability.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: VtsiProjectFeatureAvailability, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): VtsiProjectFeatureAvailability;
+    static deserializeBinaryFromReader(message: VtsiProjectFeatureAvailability, reader: jspb.BinaryReader): VtsiProjectFeatureAvailability;
+}
+
+export namespace VtsiProjectFeatureAvailability {
+    export type AsObject = {
+        warmIntro: WarmIntroAvailability,
+        warmIntroPhaseB: boolean,
+        ivr: IvrAvailability,
     }
 }
 
@@ -655,6 +728,22 @@ export namespace UndeployVtsiProjectResponse {
         name: string,
         errorMessage: string,
     }
+}
+
+export enum WarmIntroAvailability {
+    WARM_INTRO_AVAILABILITY_UNSPECIFIED = 0,
+    WARM_INTRO_AVAILABILITY_AVAILABLE = 1,
+    WARM_INTRO_AVAILABILITY_DISABLED_BY_DEPLOYMENT = 2,
+    WARM_INTRO_AVAILABILITY_NEEDS_LOCAL_ASTERISK = 3,
+    WARM_INTRO_AVAILABILITY_NEEDS_LISTENER = 4,
+    WARM_INTRO_AVAILABILITY_NEEDS_CALL_CONTROL_KEY = 5,
+}
+
+export enum IvrAvailability {
+    IVR_AVAILABILITY_UNSPECIFIED = 0,
+    IVR_AVAILABILITY_AVAILABLE = 1,
+    IVR_AVAILABILITY_DISABLED_BY_DEPLOYMENT = 2,
+    IVR_AVAILABILITY_NEEDS_LOCAL_ASTERISK = 3,
 }
 
 export enum TrunkRegistrationState {

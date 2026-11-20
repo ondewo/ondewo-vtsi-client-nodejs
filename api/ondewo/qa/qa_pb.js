@@ -13,13 +13,13 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global = (function() {
-  if (this) { return this; }
-  if (typeof window !== 'undefined') { return window; }
-  if (typeof global !== 'undefined') { return global; }
-  if (typeof self !== 'undefined') { return self; }
-  return Function('return this')();
-}.call(null));
+var global =
+    (typeof globalThis !== 'undefined' && globalThis) ||
+    (typeof window !== 'undefined' && window) ||
+    (typeof global !== 'undefined' && global) ||
+    (typeof self !== 'undefined' && self) ||
+    (function () { return this; }).call(null) ||
+    Function('return this')();
 
 var google_protobuf_empty_pb = require('google-protobuf/google/protobuf/empty_pb.js');
 goog.object.extend(proto, google_protobuf_empty_pb);
@@ -345,14 +345,14 @@ proto.ondewo.qa.GetAnswerRequest.prototype.toObject = function(opt_includeInstan
  */
 proto.ondewo.qa.GetAnswerRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    sessionId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    text: (f = msg.getText()) && ondewo_nlu_session_pb.TextInput.toObject(includeInstance, f),
-    maxNumAnswers: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    thresholdReader: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0),
-    thresholdRetriever: jspb.Message.getFloatingPointFieldWithDefault(msg, 5, 0.0),
-    thresholdOverall: jspb.Message.getFloatingPointFieldWithDefault(msg, 6, 0.0),
-    readerModelName: jspb.Message.getFieldWithDefault(msg, 7, ""),
-    urlFilter: (f = msg.getUrlFilter()) && proto.ondewo.qa.UrlFilter.toObject(includeInstance, f)
+sessionId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+text: (f = msg.getText()) && ondewo_nlu_session_pb.TextInput.toObject(includeInstance, f),
+maxNumAnswers: jspb.Message.getFieldWithDefault(msg, 3, 0),
+thresholdReader: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0),
+thresholdRetriever: jspb.Message.getFloatingPointFieldWithDefault(msg, 5, 0.0),
+thresholdOverall: jspb.Message.getFloatingPointFieldWithDefault(msg, 6, 0.0),
+readerModelName: jspb.Message.getFieldWithDefault(msg, 7, ""),
+urlFilter: (f = msg.getUrlFilter()) && proto.ondewo.qa.UrlFilter.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -727,7 +727,7 @@ proto.ondewo.qa.GetAnswerResponse.prototype.toObject = function(opt_includeInsta
  */
 proto.ondewo.qa.GetAnswerResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    queryResult: (f = msg.getQueryResult()) && ondewo_nlu_session_pb.DetectIntentResponse.toObject(includeInstance, f)
+queryResult: (f = msg.getQueryResult()) && ondewo_nlu_session_pb.DetectIntentResponse.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -885,7 +885,7 @@ proto.ondewo.qa.RunScraperRequest.prototype.toObject = function(opt_includeInsta
  */
 proto.ondewo.qa.RunScraperRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    projectIdsList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
+projectIdsList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -1041,7 +1041,7 @@ proto.ondewo.qa.RunScraperResponse.prototype.toObject = function(opt_includeInst
  */
 proto.ondewo.qa.RunScraperResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    scraperContainersList: jspb.Message.toObjectList(msg.getScraperContainersList(),
+scraperContainersList: jspb.Message.toObjectList(msg.getScraperContainersList(),
     proto.ondewo.qa.RunScraperResponse.ScraperContainer.toObject, includeInstance)
   };
 
@@ -1156,8 +1156,8 @@ proto.ondewo.qa.RunScraperResponse.ScraperContainer.prototype.toObject = functio
  */
 proto.ondewo.qa.RunScraperResponse.ScraperContainer.toObject = function(includeInstance, msg) {
   var f, obj = {
-    containerName: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    containerId: jspb.Message.getFieldWithDefault(msg, 2, "")
+containerName: jspb.Message.getFieldWithDefault(msg, 1, ""),
+containerId: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -1354,8 +1354,8 @@ proto.ondewo.qa.RunTrainingResponse.prototype.toObject = function(opt_includeIns
  */
 proto.ondewo.qa.RunTrainingResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    f1: jspb.Message.getFloatingPointFieldWithDefault(msg, 1, 0.0),
-    accuracy: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0)
+f1: jspb.Message.getFloatingPointFieldWithDefault(msg, 1, 0.0),
+accuracy: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0)
   };
 
   if (includeInstance) {
@@ -1521,9 +1521,9 @@ proto.ondewo.qa.UrlFilter.prototype.toObject = function(opt_includeInstance) {
  */
 proto.ondewo.qa.UrlFilter.toObject = function(includeInstance, msg) {
   var f, obj = {
-    allowedValuesList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f,
-    regexFilterInclude: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    regexFilterExclude: jspb.Message.getFieldWithDefault(msg, 3, "")
+allowedValuesList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f,
+regexFilterInclude: jspb.Message.getFieldWithDefault(msg, 2, ""),
+regexFilterExclude: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -1730,7 +1730,7 @@ proto.ondewo.qa.GetServerStateResponse.prototype.toObject = function(opt_include
  */
 proto.ondewo.qa.GetServerStateResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    serverIsReady: jspb.Message.getBooleanFieldWithDefault(msg, 1, false)
+serverIsReady: jspb.Message.getBooleanFieldWithDefault(msg, 1, false)
   };
 
   if (includeInstance) {
@@ -1867,7 +1867,7 @@ proto.ondewo.qa.ListProjectIdsResponse.prototype.toObject = function(opt_include
  */
 proto.ondewo.qa.ListProjectIdsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    projectIdsList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
+projectIdsList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -2016,7 +2016,7 @@ proto.ondewo.qa.GetProjectConfigRequest.prototype.toObject = function(opt_includ
  */
 proto.ondewo.qa.GetProjectConfigRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    projectId: jspb.Message.getFieldWithDefault(msg, 1, "")
+projectId: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -2146,7 +2146,7 @@ proto.ondewo.qa.GetProjectConfigResponse.prototype.toObject = function(opt_inclu
  */
 proto.ondewo.qa.GetProjectConfigResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    configSerialized: jspb.Message.getFieldWithDefault(msg, 1, "")
+configSerialized: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -2283,7 +2283,7 @@ proto.ondewo.qa.UpdateDatabaseRequest.prototype.toObject = function(opt_includeI
  */
 proto.ondewo.qa.UpdateDatabaseRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    projectIdsList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
+projectIdsList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -2439,7 +2439,7 @@ proto.ondewo.qa.UpdateDatabaseResponse.prototype.toObject = function(opt_include
  */
 proto.ondewo.qa.UpdateDatabaseResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    errorMessagesList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
+errorMessagesList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
   };
 
   if (includeInstance) {

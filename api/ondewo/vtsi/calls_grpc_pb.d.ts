@@ -61,6 +61,7 @@ interface ICallsService extends grpc.ServiceDefinition<grpc.UntypedServiceImplem
     inviteToCall: ICallsService_IInviteToCall;
     removeCallParticipant: ICallsService_IRemoveCallParticipant;
     setCallMediaControl: ICallsService_ISetCallMediaControl;
+    sendCallDtmf: ICallsService_ISendCallDtmf;
     streamCallAudio: ICallsService_IStreamCallAudio;
     listenCallAudio: ICallsService_IListenCallAudio;
 }
@@ -479,6 +480,15 @@ interface ICallsService_ISetCallMediaControl extends grpc.MethodDefinition<ondew
     responseSerialize: grpc.serialize<ondewo_vtsi_calls_pb.SetCallMediaControlResponse>;
     responseDeserialize: grpc.deserialize<ondewo_vtsi_calls_pb.SetCallMediaControlResponse>;
 }
+interface ICallsService_ISendCallDtmf extends grpc.MethodDefinition<ondewo_vtsi_calls_pb.SendCallDtmfRequest, ondewo_vtsi_calls_pb.SendCallDtmfResponse> {
+    path: "/ondewo.vtsi.Calls/SendCallDtmf";
+    requestStream: false;
+    responseStream: false;
+    requestSerialize: grpc.serialize<ondewo_vtsi_calls_pb.SendCallDtmfRequest>;
+    requestDeserialize: grpc.deserialize<ondewo_vtsi_calls_pb.SendCallDtmfRequest>;
+    responseSerialize: grpc.serialize<ondewo_vtsi_calls_pb.SendCallDtmfResponse>;
+    responseDeserialize: grpc.deserialize<ondewo_vtsi_calls_pb.SendCallDtmfResponse>;
+}
 interface ICallsService_IStreamCallAudio extends grpc.MethodDefinition<ondewo_vtsi_calls_pb.StreamCallAudioRequest, ondewo_vtsi_calls_pb.StreamCallAudioResponse> {
     path: "/ondewo.vtsi.Calls/StreamCallAudio";
     requestStream: true;
@@ -547,6 +557,7 @@ export interface ICallsServer {
     inviteToCall: grpc.handleUnaryCall<ondewo_vtsi_calls_pb.InviteToCallRequest, ondewo_vtsi_calls_pb.InviteToCallResponse>;
     removeCallParticipant: grpc.handleUnaryCall<ondewo_vtsi_calls_pb.RemoveCallParticipantRequest, ondewo_vtsi_calls_pb.RemoveCallParticipantResponse>;
     setCallMediaControl: grpc.handleUnaryCall<ondewo_vtsi_calls_pb.SetCallMediaControlRequest, ondewo_vtsi_calls_pb.SetCallMediaControlResponse>;
+    sendCallDtmf: grpc.handleUnaryCall<ondewo_vtsi_calls_pb.SendCallDtmfRequest, ondewo_vtsi_calls_pb.SendCallDtmfResponse>;
     streamCallAudio: grpc.handleBidiStreamingCall<ondewo_vtsi_calls_pb.StreamCallAudioRequest, ondewo_vtsi_calls_pb.StreamCallAudioResponse>;
     listenCallAudio: grpc.handleServerStreamingCall<ondewo_vtsi_calls_pb.ListenCallAudioRequest, ondewo_vtsi_calls_pb.StreamCallAudioResponse>;
 }
@@ -687,6 +698,9 @@ export interface ICallsClient {
     setCallMediaControl(request: ondewo_vtsi_calls_pb.SetCallMediaControlRequest, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_calls_pb.SetCallMediaControlResponse) => void): grpc.ClientUnaryCall;
     setCallMediaControl(request: ondewo_vtsi_calls_pb.SetCallMediaControlRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_calls_pb.SetCallMediaControlResponse) => void): grpc.ClientUnaryCall;
     setCallMediaControl(request: ondewo_vtsi_calls_pb.SetCallMediaControlRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_calls_pb.SetCallMediaControlResponse) => void): grpc.ClientUnaryCall;
+    sendCallDtmf(request: ondewo_vtsi_calls_pb.SendCallDtmfRequest, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_calls_pb.SendCallDtmfResponse) => void): grpc.ClientUnaryCall;
+    sendCallDtmf(request: ondewo_vtsi_calls_pb.SendCallDtmfRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_calls_pb.SendCallDtmfResponse) => void): grpc.ClientUnaryCall;
+    sendCallDtmf(request: ondewo_vtsi_calls_pb.SendCallDtmfRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_calls_pb.SendCallDtmfResponse) => void): grpc.ClientUnaryCall;
     streamCallAudio(): grpc.ClientDuplexStream<ondewo_vtsi_calls_pb.StreamCallAudioRequest, ondewo_vtsi_calls_pb.StreamCallAudioResponse>;
     streamCallAudio(options: Partial<grpc.CallOptions>): grpc.ClientDuplexStream<ondewo_vtsi_calls_pb.StreamCallAudioRequest, ondewo_vtsi_calls_pb.StreamCallAudioResponse>;
     streamCallAudio(metadata: grpc.Metadata, options?: Partial<grpc.CallOptions>): grpc.ClientDuplexStream<ondewo_vtsi_calls_pb.StreamCallAudioRequest, ondewo_vtsi_calls_pb.StreamCallAudioResponse>;
@@ -831,6 +845,9 @@ export class CallsClient extends grpc.Client implements ICallsClient {
     public setCallMediaControl(request: ondewo_vtsi_calls_pb.SetCallMediaControlRequest, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_calls_pb.SetCallMediaControlResponse) => void): grpc.ClientUnaryCall;
     public setCallMediaControl(request: ondewo_vtsi_calls_pb.SetCallMediaControlRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_calls_pb.SetCallMediaControlResponse) => void): grpc.ClientUnaryCall;
     public setCallMediaControl(request: ondewo_vtsi_calls_pb.SetCallMediaControlRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_calls_pb.SetCallMediaControlResponse) => void): grpc.ClientUnaryCall;
+    public sendCallDtmf(request: ondewo_vtsi_calls_pb.SendCallDtmfRequest, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_calls_pb.SendCallDtmfResponse) => void): grpc.ClientUnaryCall;
+    public sendCallDtmf(request: ondewo_vtsi_calls_pb.SendCallDtmfRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_calls_pb.SendCallDtmfResponse) => void): grpc.ClientUnaryCall;
+    public sendCallDtmf(request: ondewo_vtsi_calls_pb.SendCallDtmfRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: ondewo_vtsi_calls_pb.SendCallDtmfResponse) => void): grpc.ClientUnaryCall;
     public streamCallAudio(options?: Partial<grpc.CallOptions>): grpc.ClientDuplexStream<ondewo_vtsi_calls_pb.StreamCallAudioRequest, ondewo_vtsi_calls_pb.StreamCallAudioResponse>;
     public streamCallAudio(metadata?: grpc.Metadata, options?: Partial<grpc.CallOptions>): grpc.ClientDuplexStream<ondewo_vtsi_calls_pb.StreamCallAudioRequest, ondewo_vtsi_calls_pb.StreamCallAudioResponse>;
     public listenCallAudio(request: ondewo_vtsi_calls_pb.ListenCallAudioRequest, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<ondewo_vtsi_calls_pb.StreamCallAudioResponse>;

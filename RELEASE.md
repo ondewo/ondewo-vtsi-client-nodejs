@@ -2,6 +2,15 @@
 
 *****************
 
+## Release ONDEWO VTSI Nodejs Client 9.5.0
+
+### Improvements
+
+* Tracking API Version [9.5.0](https://github.com/ondewo/ondewo-vtsi-api/releases/tag/9.5.0) ( [Documentation](https://ondewo.github.io/ondewo-vtsi-api/) )
+* Generated with ondewo-proto-compiler 5.17.0: the js and grpc stubs now come from protoc 35.1 with `protoc-gen-js` 3.21.4 and grpc-tools 1.13.1 `grpc_node_plugin` (was the protoc 3.19.1 bundled in grpc-tools). New runtime floors: `@grpc/grpc-js ^1.14.7` and `google-protobuf 3.21.4`.
+
+*****************
+
 ## Release ONDEWO VTSI Nodejs Client 9.3.0
 
 ### Improvements
