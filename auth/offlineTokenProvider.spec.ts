@@ -648,10 +648,15 @@ nodeTest('getAuthorizationHeader returns the current Bearer header without a req
 	assert.equal(fetchStub.calls.length, 1);
 });
 
-/** A password login whose response carries no refresh_token is refused: there is no offline session. */
-nodeTest('login refuses a password grant response without a refresh_token', async () => {
-	await assert.rejects(
-		login({ ...CONFIG, fetch: makeFetchStub([{ body: { access_token: 'access-1', expires_in: 300 } }]) }),
-		{ name: 'KeycloakAuthenticationError', message: /did not contain a refresh_token/ }
-	);
+/** A password login whose response carries no refresh_token is accepted, like the python SDK. */
+nodeTest('login accepts a password grant response without a refresh_token', async () => {
+	const provider: OfflineTokenProvider = await login({
+		...CONFIG,
+		fetch: makeFetchStub([{ body: { access_token: 'access-1', expires_in: 300 } }])
+	});
+	try {
+		assert.equal(await provider.getAccessToken(), 'access-1');
+	} finally {
+		provider.stop();
+	}
 });
