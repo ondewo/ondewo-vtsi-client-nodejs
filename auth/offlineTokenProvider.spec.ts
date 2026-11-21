@@ -216,8 +216,11 @@ nodeTest('access token auto-refreshes from the offline refresh token when near e
 	assert.equal(refreshCall.params.get('client_secret'), null);
 });
 
-/** A `tokenExpirationInS` deadline marks the session expired so `getAccessToken` throws, no refresh. */
-nodeTest('tokenExpirationInS stops the refresh loop and getAccessToken then throws', async () => {
+/**
+ * A `tokenExpirationInS` deadline marks the session expired: the refresh has ended, and `getAccessToken` serves
+ * the current token as it is (it is allowed to lapse) without a refresh, as in every ONDEWO SDK.
+ */
+nodeTest('tokenExpirationInS ends the refresh and getAccessToken then serves the token without a request', async () => {
 	const fetchStub: FetchStub = makeFetchStub([
 		{ body: { access_token: 'access-1', refresh_token: 'offline-1', expires_in: 300 } }
 	]);
@@ -232,7 +235,7 @@ nodeTest('tokenExpirationInS stops the refresh loop and getAccessToken then thro
 	});
 
 	assert.equal(provider.isExpired(), true);
-	await assert.rejects(provider.getAccessToken(), /tokenExpirationInS elapsed/);
+	assert.equal(await provider.getAccessToken(), 'access-1');
 	// No refresh call was issued once the loop deadline passed.
 	assert.equal(fetchStub.calls.length, 1);
 });
@@ -248,7 +251,7 @@ nodeTest('login rejects when a required config field is missing', async () => {
 			password: '',
 			fetch: makeFetchStub([])
 		}),
-		/requires a non-empty "password"/
+		/option "password" is required .*`refreshToken`/
 	);
 });
 
@@ -270,9 +273,9 @@ nodeTest('login surfaces a Keycloak error_description on invalid_grant', async (
 	);
 });
 
-/** The error message degrades gracefully: `error_description` → `error` → raw text → `HTTP <status>`. */
-nodeTest('login falls back to error then text then HTTP status when no error_description is present', async () => {
-	// error_description absent → falls back to the bare `error` code.
+/** A refused request quotes its HTTP status and (truncated) response body, whatever the body holds. */
+nodeTest('login quotes the HTTP status and the response body of a refused request', async () => {
+	// error_description absent → the bare `error` code is in the quoted body.
 	await assert.rejects(
 		login({
 			keycloakUrl: KEYCLOAK_URL,
@@ -282,10 +285,10 @@ nodeTest('login falls back to error then text then HTTP status when no error_des
 			password: 'wrong',
 			fetch: makeFetchStub([{ ok: false, status: 401, body: { error: 'invalid_client' } }])
 		}),
-		/Keycloak token request failed \(401\): invalid_client/
+		/Keycloak token login failed with status 401: \{"error":"invalid_client"\}/
 	);
 
-	// No error/error_description either → falls back to the raw response text.
+	// No error/error_description either → the raw response text.
 	await assert.rejects(
 		login({
 			keycloakUrl: KEYCLOAK_URL,
@@ -295,10 +298,10 @@ nodeTest('login falls back to error then text then HTTP status when no error_des
 			password: 'wrong',
 			fetch: makeFetchStub([{ ok: false, status: 503, body: {} }])
 		}),
-		/Keycloak token request failed \(503\): \{\}/
+		/Keycloak token login failed with status 503: \{\}$/
 	);
 
-	// Empty body too → falls back to the "HTTP <status>" placeholder.
+	// Empty body too → just the status.
 	await assert.rejects(
 		login({
 			keycloakUrl: KEYCLOAK_URL,
@@ -308,11 +311,11 @@ nodeTest('login falls back to error then text then HTTP status when no error_des
 			password: 'wrong',
 			fetch: makeRawFetchStub('', false, 500)
 		}),
-		/Keycloak token request failed \(500\): HTTP 500/
+		/Keycloak token login failed with status 500: $/
 	);
 });
 
-/** A non-JSON 2xx body (e.g. an HTML error page) makes {@link login} reject with the raw text. */
+/** A non-JSON 2xx body (e.g. an HTML error page) makes {@link login} reject, without quoting the body. */
 nodeTest('login rejects when the token endpoint returns a non-JSON response', async () => {
 	await assert.rejects(
 		login({
@@ -323,7 +326,7 @@ nodeTest('login rejects when the token endpoint returns a non-JSON response', as
 			password: PASSWORD,
 			fetch: makeRawFetchStub('<html>502 Bad Gateway</html>', true, 200)
 		}),
-		/non-JSON response: <html>502 Bad Gateway<\/html>/
+		/Keycloak token login returned status 200 with a body that is not JSON$/
 	);
 });
 
@@ -343,8 +346,11 @@ nodeTest('login rejects when the token response contains no access_token', async
 	);
 });
 
-/** {@link OfflineTokenProvider.stop} short-circuits `getAccessToken` to reject without a refresh. */
-nodeTest('stop() makes subsequent getAccessToken fail fast without a refresh call', async () => {
+/**
+ * {@link OfflineTokenProvider.stop} ends the background refresh; the lazy `getAccessToken` keeps serving the
+ * still-valid token without a request (and would refresh on demand once it entered the leeway).
+ */
+nodeTest('stop() ends the background refresh and getAccessToken still serves the valid token', async () => {
 	const fetchStub: FetchStub = makeFetchStub([
 		{ body: { access_token: 'access-1', refresh_token: 'offline-1', expires_in: 300 } }
 	]);
@@ -358,14 +364,14 @@ nodeTest('stop() makes subsequent getAccessToken fail fast without a refresh cal
 	});
 
 	provider.stop();
-	await assert.rejects(provider.getAccessToken(), /tokenExpirationInS elapsed/);
-	// stop() short-circuits before any refresh: only the initial login call was made.
+	assert.equal(await provider.getAccessToken(), 'access-1');
+	// The token is comfortably valid: only the initial login call was made.
 	assert.equal(fetchStub.calls.length, 1);
 });
 
 /** {@link login} rejects when invoked with a non-object (here `null`) config argument. */
 nodeTest('login rejects when called without a configuration object', async () => {
-	await assert.rejects(login(null as unknown as Parameters<typeof login>[0]), /requires a configuration object/);
+	await assert.rejects(login(null as unknown as Parameters<typeof login>[0]), /requires an options object/);
 });
 
 /** With `config.fetch` omitted, {@link login} falls back to `globalThis.fetch`. */
@@ -390,7 +396,7 @@ nodeTest('login uses globalThis.fetch when config.fetch is omitted', async () =>
 	}
 });
 
-/** With neither `config.fetch` nor `globalThis.fetch` available, {@link login} rejects. */
+/** With neither `config.fetch` nor `globalThis.fetch` available, {@link login} rejects with the typed error. */
 nodeTest('login rejects when no fetch implementation is available', async () => {
 	const originalFetch: typeof globalThis.fetch = globalThis.fetch;
 	delete (globalThis as { fetch?: typeof globalThis.fetch }).fetch;
@@ -403,7 +409,7 @@ nodeTest('login rejects when no fetch implementation is available', async () => 
 				username: USERNAME,
 				password: PASSWORD
 			}),
-			/No fetch implementation available/
+			/Keycloak token login failed \(TypeError: /
 		);
 	} finally {
 		globalThis.fetch = originalFetch;
@@ -508,4 +514,144 @@ nodeTest('keycloakVerifySsl false is ignored when a custom fetch is injected', a
 	// The injected transport receives the request unchanged — the flag never touches it.
 	assert.equal(fetchStub.calls[0].init.dispatcher, undefined);
 	assert.equal(await provider.getAccessToken(), 'access-1');
+});
+
+// ---------------------------------------------------------------------------------------------
+// The vtsi 9.x surface on top of the cross-SDK provider (the catalogue in keycloakTokenProvider.spec.ts
+// covers the shared behaviour; these pin what only this SDK's earlier API reaches).
+// ---------------------------------------------------------------------------------------------
+
+/** The login options shared by the cases below. */
+const CONFIG: { keycloakUrl: string; realm: string; clientId: string; username: string; password: string } = {
+	keycloakUrl: KEYCLOAK_URL,
+	realm: REALM,
+	clientId: CLIENT_ID,
+	username: USERNAME,
+	password: PASSWORD
+};
+
+/** The two-step 9.x surface: construct with a transport, then `login()` with the stored credentials. */
+nodeTest('new OfflineTokenProvider(config, fetch) then login() performs the password grant', async () => {
+	const fetchStub: FetchStub = makeFetchStub([
+		{ body: { access_token: 'access-1', refresh_token: 'offline-1', expires_in: 300 } }
+	]);
+	const provider: OfflineTokenProvider = new OfflineTokenProvider({ ...CONFIG, tokenExpirationInS: 600 }, fetchStub);
+	try {
+		await provider.login();
+		assert.equal(fetchStub.calls[0].params.get('grant_type'), 'password');
+		assert.equal(fetchStub.calls[0].params.get('username'), USERNAME);
+		assert.equal(fetchStub.calls[0].params.get('password'), PASSWORD);
+		assert.equal(provider.isExpired(), false);
+		assert.equal(await provider.getAccessToken(), 'access-1');
+		// The stored password never reaches a rendering.
+		assert.doesNotMatch(String(provider), new RegExp(PASSWORD));
+		assert.doesNotMatch(JSON.stringify(provider), new RegExp(PASSWORD));
+	} finally {
+		provider.stop();
+	}
+});
+
+/** Before any token was acquired every reader and refresh() refuse with a TokenError. */
+nodeTest('the token readers and refresh() refuse before a token was acquired', async () => {
+	const provider: OfflineTokenProvider = new OfflineTokenProvider({ ...CONFIG }, makeFetchStub([]));
+	await assert.rejects(provider.getAccessToken(), { name: 'TokenError', message: /No access token/ });
+	await assert.rejects(provider.getAuthorizationMetadata(), { name: 'TokenError' });
+	assert.throws(() => provider.getAuthorizationHeader(), { name: 'TokenError' });
+	await assert.rejects(provider.refresh(), { name: 'TokenError' });
+	provider.stop();
+});
+
+/** refresh() refreshes at once; concurrent calls share one in-flight request. */
+nodeTest('refresh() refreshes at once and concurrent calls share one request', async () => {
+	const fetchStub: FetchStub = makeFetchStub([
+		{ body: { access_token: 'access-1', refresh_token: 'offline-1', expires_in: 300 } },
+		{ body: { access_token: 'access-2', refresh_token: 'offline-2', expires_in: 300 } }
+	]);
+	const provider: OfflineTokenProvider = await login({ ...CONFIG, fetch: fetchStub });
+	try {
+		await Promise.all([provider.refresh(), provider.refresh(), provider.refresh()]);
+		assert.equal(fetchStub.calls.length, 2);
+		assert.equal(fetchStub.calls[1].params.get('refresh_token'), 'offline-1');
+		assert.deepEqual(await provider.getAuthorizationMetadata(), { authorization: 'Bearer access-2' });
+	} finally {
+		provider.stop();
+	}
+});
+
+/** A refused refresh() raises the typed error, keeps the token and never falls back to a password grant. */
+nodeTest('a refused refresh() raises the typed error and keeps the token', async () => {
+	const fetchStub: FetchStub = makeFetchStub([
+		{ body: { access_token: 'access-1', refresh_token: 'offline-1', expires_in: 300 } },
+		{ ok: false, status: 400, body: { error: 'invalid_grant', error_description: 'Offline user session not found' } }
+	]);
+	const provider: OfflineTokenProvider = await login({ ...CONFIG, fetch: fetchStub });
+	try {
+		await assert.rejects(provider.refresh(), {
+			name: 'KeycloakAuthenticationError',
+			message: /Keycloak token refresh failed with status 400/
+		});
+		assert.equal(await provider.getAccessToken(), 'access-1');
+		assert.equal(fetchStub.calls[1].params.get('password'), null);
+	} finally {
+		provider.stop();
+	}
+});
+
+/** A diagnostics handler that throws never ends the background loop. */
+nodeTest('a throwing onRefreshError handler still leaves the loop armed', async () => {
+	const fetchStub: FetchStub = makeFetchStub([
+		{ body: { access_token: 'access-1', refresh_token: 'offline-1', expires_in: 0 } },
+		{ ok: false, status: 503, body: { error: 'temporarily_unavailable' } },
+		{ body: { access_token: 'access-2', refresh_token: 'offline-2', expires_in: 300 } }
+	]);
+	const warnings: string[] = [];
+	const provider: OfflineTokenProvider = await login({
+		...CONFIG,
+		fetch: fetchStub,
+		randomFraction: (): number => 0,
+		logger: { warn: (message: string): number => warnings.push(message), info: (): void => undefined },
+		// The production floor and retry base, shrunk so real timers fire within the test.
+		timings: { expiryLeewayS: 0, minRefreshDelayS: 0.001, retryBaseDelayS: 0.01, retryMaxDelayS: 0.01 }
+	});
+	let handlerCalls: number = 0;
+	provider.onRefreshError((): void => {
+		handlerCalls += 1;
+		throw new Error('a buggy diagnostics handler');
+	});
+	await new Promise<void>((resolve: () => void): void => {
+		setTimeout(resolve, 100);
+	});
+	provider.stop();
+	assert.equal(handlerCalls, 1);
+	assert.equal(warnings.length, 1);
+	assert.equal(fetchStub.calls.length, 3);
+	assert.equal(await provider.getAccessToken(), 'access-2');
+});
+
+/** An empty username is refused before any request. */
+nodeTest('login refuses an empty username', async () => {
+	await assert.rejects(login({ ...CONFIG, username: '', fetch: makeFetchStub([]) }), {
+		name: 'TokenError',
+		message: /"username" is required/
+	});
+});
+
+/** getAuthorizationHeader is the synchronous, non-refreshing read of the current token. */
+nodeTest('getAuthorizationHeader returns the current Bearer header without a request', async () => {
+	const fetchStub: FetchStub = makeFetchStub([
+		{ body: { access_token: 'access-1', refresh_token: 'offline-1', expires_in: 0 } }
+	]);
+	const provider: OfflineTokenProvider = await login({ ...CONFIG, fetch: fetchStub });
+	provider.stop();
+	// Already inside the leeway, yet the synchronous read sends nothing.
+	assert.equal(provider.getAuthorizationHeader(), 'Bearer access-1');
+	assert.equal(fetchStub.calls.length, 1);
+});
+
+/** A password login whose response carries no refresh_token is refused: there is no offline session. */
+nodeTest('login refuses a password grant response without a refresh_token', async () => {
+	await assert.rejects(
+		login({ ...CONFIG, fetch: makeFetchStub([{ body: { access_token: 'access-1', expires_in: 300 } }]) }),
+		{ name: 'KeycloakAuthenticationError', message: /did not contain a refresh_token/ }
+	);
 });

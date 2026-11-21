@@ -190,6 +190,36 @@ npm
 └── README.md
 ```
 
+## Authentication
+
+All RPCs are authenticated with a Keycloak-issued **bearer token**. The package ships a token provider that acquires it, refreshes it before it expires and attaches it to every call as the `authorization: Bearer <token>` gRPC metadata.
+
+```ts
+import { CallsClient, createGrpcClient, getKeycloakTokenProvider, GrpcClientConfig } from '@ondewo/vtsi-client-nodejs';
+
+// One provider per credential set, shared by every client built from it (one login).
+const tokenProvider = await getKeycloakTokenProvider({
+  keycloakUrl: 'https://auth.example.com/auth',
+  realm: 'ondewo-ccai-platform',
+  clientId: 'ondewo-vtsi-cai-sdk-public',
+  username: 'tech-user@example.com',
+  password: '...', // password login: one ROPC grant with scope=offline_access
+  // refreshToken: '...', // OR a handed-off OFFLINE token: one refresh grant, no password is ever sent
+  tokenExpirationInS: undefined // optional bound on how long the token is refreshed
+});
+
+const client: CallsClient = createGrpcClient(CallsClient, new GrpcClientConfig({ host: 'vtsi.example.com', port: 443 }), {
+  tokenProvider // null (no Keycloak fields set) attaches nothing
+});
+```
+
+- **Password or offline token.** With `refreshToken` set the provider starts with one `grant_type=refresh_token` exchange and never sends a password grant, not even when the token is refused (the refusal is raised). Keycloak's brute-force protection counts failed *logins*, so many processes sharing one technical user should start from an offline token.
+- **Refresh.** A background timer (unref-ed, so it never keeps the process alive) refreshes 30 s before expiry; `getAuthorizationMetadataAsync()`, which every call reads, refreshes on demand as well. Concurrent calls share one refresh.
+- **Failures never end the refresh.** A failed refresh is retried with jittered exponential backoff (5 s, doubling, capped at 300 s), logs one warning per failure (`logger`, default `console`) and one info line on recovery. While the token is still valid it keeps being served; only an expired token that cannot be refreshed fails the call, with a `KeycloakAuthenticationError` (a `TokenError` subclass whose `cause` is the underlying error). No message or rendering contains a password or token.
+- **Validation.** `keycloakUrl`, `realm` and `clientId` go together (setting only some throws), and one of `password` / `refreshToken` is required. `keycloakVerifySsl: false` disables TLS verification for the token request only.
+- `login(options)` builds a new, unshared provider; call `provider.stop()` (or `close()`) when you are done with one. The legacy `cai-token` / HTTP-basic credentials no longer exist. See the [`examples/`](https://github.com/ondewo/ondewo-vtsi-client-nodejs/tree/master/examples) directory for a full `Calls.ListCallers` RPC example.
+- **Earlier (9.x) surface, unchanged.** `login(config)` still accepts the transport as `fetch` (an alias of `fetchImpl`), and `new OfflineTokenProvider(config, fetch)` followed by `provider.login()` still works; `await getAccessToken()` and `await getAuthorizationMetadata()` (`{ authorization: 'Bearer <jwt>' }`) refresh on demand like `getAuthorizationMetadataAsync()`, the tuple form `createGrpcClient` reads; `refresh()` still refreshes immediately, `isExpired()` still reports a lapsed `tokenExpirationInS`, and `buildTokenEndpoint` and the `OfflineTokenLoginConfig` / `TokenResponseBody` / `FetchLike` types are still exported. Two 9.x behaviours changed to match every ONDEWO SDK: instead of `getAccessToken()` throwing, the current token is served as it is (and allowed to lapse) once `tokenExpirationInS` has elapsed, and the lazy reads keep refreshing on demand after `stop()`; and token failures are the typed `KeycloakAuthenticationError` instead of a plain `Error`.
+
 ## TLS, mutual TLS and certificates
 
 gRPC encrypts with **TLS** ("SSL" in names such as `credentials.createSsl` or `grpc.ssl_target_name_override` is legacy naming). The package ships a channel helper, `auth/grpcChannel` (exported from the package root), that builds the `@grpc/grpc-js` credentials and channel options for every generated client:
