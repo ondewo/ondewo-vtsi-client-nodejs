@@ -1039,7 +1039,7 @@ function deserialize_ondewo_vtsi_UpdateScheduledCallerRequest(buffer_arg) {
 }
 
 
-// <p>ONDEWO VTSI API</p>
+// ONDEWO VTSI API
 var CallsService = exports.CallsService = {
   // ////////////////////////////////////////////////////////////////////////////
 // Caller and Listener endpoints

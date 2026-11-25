@@ -264,7 +264,7 @@ function deserialize_ondewo_s2t_TranscribeStreamResponse(buffer_arg) {
 }
 
 
-// <p>Speech-to-text service</p>
+// Speech-to-text service
 var Speech2TextService = exports.Speech2TextService = {
   // <p>Transcribes an audio file</p>
 transcribeFile: {

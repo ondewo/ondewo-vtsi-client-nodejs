@@ -176,7 +176,7 @@ function deserialize_ondewo_sip_SipTransferCallRequest(buffer_arg) {
 }
 
 
-// <p>ONDEWO-SIP API available at <a href="https://github.com/ondewo/ondewo-sip-api">GitHub</a></p>
+// ONDEWO-SIP API available at <a href="https://github.com/ondewo/ondewo-sip-api">GitHub</a>
 var SipService = exports.SipService = {
   // <p>Starts a new SIP session for an account registered at a SIP server. <code>RegisterAccount</code> need to be called before.</p>
 sipStartSession: {

@@ -25486,7 +25486,8 @@ sipCallId: jspb.Message.getFieldWithDefault(msg, 25, ""),
 labelsMap: (f = msg.getLabelsMap()) ? f.toObject(includeInstance, undefined) : [],
 ivrMenuDisplayName: jspb.Message.getFieldWithDefault(msg, 27, ""),
 ivrPath: jspb.Message.getFieldWithDefault(msg, 28, ""),
-ivrMenuName: jspb.Message.getFieldWithDefault(msg, 29, "")
+ivrMenuName: jspb.Message.getFieldWithDefault(msg, 29, ""),
+dialedNumber: jspb.Message.getFieldWithDefault(msg, 30, "")
   };
 
   if (includeInstance) {
@@ -25649,6 +25650,10 @@ proto.ondewo.vtsi.Call.deserializeBinaryFromReader = function(msg, reader) {
     case 29:
       var value = /** @type {string} */ (reader.readString());
       msg.setIvrMenuName(value);
+      break;
+    case 30:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setDialedNumber(value);
       break;
     default:
       reader.skipField();
@@ -25885,6 +25890,13 @@ proto.ondewo.vtsi.Call.serializeBinaryToWriter = function(message, writer) {
   if (f.length > 0) {
     writer.writeString(
       29,
+      f
+    );
+  }
+  f = message.getDialedNumber();
+  if (f.length > 0) {
+    writer.writeString(
+      30,
       f
     );
   }
@@ -26713,6 +26725,24 @@ proto.ondewo.vtsi.Call.prototype.getIvrMenuName = function() {
  */
 proto.ondewo.vtsi.Call.prototype.setIvrMenuName = function(value) {
   return jspb.Message.setProto3StringField(this, 29, value);
+};
+
+
+/**
+ * optional string dialed_number = 30;
+ * @return {string}
+ */
+proto.ondewo.vtsi.Call.prototype.getDialedNumber = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 30, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ondewo.vtsi.Call} returns this
+ */
+proto.ondewo.vtsi.Call.prototype.setDialedNumber = function(value) {
+  return jspb.Message.setProto3StringField(this, 30, value);
 };
 
 

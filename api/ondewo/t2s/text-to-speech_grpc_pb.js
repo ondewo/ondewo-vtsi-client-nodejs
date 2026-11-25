@@ -319,7 +319,7 @@ function deserialize_ondewo_t2s_VoiceCloningRequest(buffer_arg) {
 }
 
 
-// <p>Text2Speech service provides endpoints for text-to-speech generation.</p>
+// Text2Speech service provides endpoints for text-to-speech generation.
 var Text2SpeechService = exports.Text2SpeechService = {
   // <p>Synthesizes a specific text sent in the request with the provided configuration requirements
 // and retrieves a response that includes the synthesized text as audio and the requested configuration.</p>

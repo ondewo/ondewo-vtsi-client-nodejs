@@ -3143,6 +3143,8 @@ export class Call extends jspb.Message {
     setIvrPath(value: string): Call;
     getIvrMenuName(): string;
     setIvrMenuName(value: string): Call;
+    getDialedNumber(): string;
+    setDialedNumber(value: string): Call;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): Call.AsObject;
@@ -3186,6 +3188,7 @@ export namespace Call {
         ivrMenuDisplayName: string,
         ivrPath: string,
         ivrMenuName: string,
+        dialedNumber: string,
     }
 }
 
